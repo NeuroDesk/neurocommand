@@ -31,14 +31,13 @@ singularity exec --pwd $deploy_path $container ./binaryFinder.sh
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
-#test   
-executable="fslmaths"
-#for executable in `cat commands.txt`; do \
+#test   executable="fslmaths"
+for executable in `cat commands.txt`; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
    echo "singularity exec --pwd \$PWD --bind /gpfs1:/gpfs1 $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
-#done
+done
 
 echo "add $container to your PATH"
 export PWD=`pwd -P`
