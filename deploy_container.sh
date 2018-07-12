@@ -9,7 +9,8 @@
 container=minc-toolkit-1.9.16.simg
 container_pull=shub://vfonov/minc-toolkit-containers:1.9.16
 
-container=minc_1p9p15_20180523.simg
+container=minc_1p9p16_20180712.simg
+
 container_pull="scp steffen@203.101.224.252:/qrisvolume/caid/$container $container"
 
 deploy_path=`pwd -P`
