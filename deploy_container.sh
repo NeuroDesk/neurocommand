@@ -30,17 +30,16 @@ singularity exec --pwd $deploy_path $container ./binaryFinder.sh
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
- 
-#for executable in `cat commands.txt`; do \
-   executable="register"
+#test   executable="register"
+for executable in `cat commands.txt`; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
    echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
+done
 
-#done
-
-#add /path/to/singularity_executables to your $PATH 
-#export PATH="$PWD:$PATH"
-#echo "# $container"
-#echo "export PATH="$PWD:$PATH"" >> ~/.bashrc
+echo "add $container to your PATH"
+export PWD=`pwd -P`
+export PATH="$PWD:$PATH"
+echo "# $container" >> ~/.bashrc
+echo "export PATH="$PWD:\$PATH"" >> ~/.bashrc
