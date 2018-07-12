@@ -32,7 +32,7 @@ singularity exec --pwd $deploy_path $container ./binaryFinder.sh
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
 #test   
-executable="fslmath"
+executable="fslmaths"
 #for executable in `cat commands.txt`; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
@@ -46,15 +46,4 @@ export PATH="$PATH:$PWD"
 echo "" >> ~/.bashrc
 echo "# $container in $PWD" >> ~/.bashrc
 echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc
-
-#There will also be a problem with multiple containers and different versions. We should set up an executable script with each container that turns the executables on and off easily.-
-#something like:-
-touch TURNOFF_${container}
-touch TURNON_${container}
-echo "PATH=`echo $PATH | sed -e 's/:$PWD/$//'`">> TURNOFF_${container}
-echo "bash">>TURNOFF_${container}
-echo "sed -e 's/:\$PWD\/$//' ~/.bashrc">> TURNOFF_${container}
-echo "export PATH="$PWD:$PATH"">>/path/to/simg/TURNON_${container}
-echo "export PATH="$PWD:$PATH"">>~/.bashrc
-echo "bash">>TURNON_${container}
 
