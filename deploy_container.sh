@@ -40,6 +40,7 @@ done
 
 echo "add $container to your PATH"
 export PWD=`pwd -P`
-export PATH="$PWD:$PATH"
-echo "# $container" >> ~/.bashrc
-echo "export PATH="$PWD:\$PATH"" >> ~/.bashrc
+export PATH="$PATH:$PWD"
+echo "" >> ~/.bashrc
+echo "# $container in $PWD" >> ~/.bashrc
+echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc
