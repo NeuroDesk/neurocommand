@@ -34,7 +34,7 @@ echo "create singularity executable for each regular executable in commands.txt"
 for executable in `cat commands.txt`; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
-   echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
+   echo "singularity exec --pwd \$PWD --bind /gpfs1:/gpfs1 $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 done
 
