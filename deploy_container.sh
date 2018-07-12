@@ -20,13 +20,13 @@ echo "checking if container needs to be downloaded"
 qq=`ls $container`
 if  [[  ${#qq} -lt 1 ]]; then
    echo "pulling image"
-   exec $container_pull
+   $container_pull
 fi
 
 echo "checking out which executables exist inside container"
 
 
-singularity exec --pwd $deploy_path $container binaryFinder.sh
+singularity exec --pwd $deploy_path $container ./binaryFinder.sh
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
@@ -34,7 +34,8 @@ echo "create singularity executable for each regular executable in commands.txt"
 #for executable in `cat commands.txt`; do \
    executable="register"
    echo $executable > $PWD/${executable}; \
-   echo "singularity exec --bind \$PWD:/mnt/ --pwd /mnt/ $deploy_path/$container $executable \$@" > $executable
+   echo "export PWD=\`pwd -P\`" > $executable 
+   echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 
 #done
