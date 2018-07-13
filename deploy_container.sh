@@ -50,18 +50,18 @@ executable="fslmaths"
    chmod a+x $executable
 #done
 
-echo -e 'export PWD=`pwd -P`' > activate_${container}
-echo -e 'export PATH="$PATH:$PWD"' >> activate_${container}
-echo -e 'echo " " >> ~/.bashrc' >> activate_${container}
-echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}
-echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}
+echo -e 'export PWD=`pwd -P`' > activate_${container}.sh
+echo -e 'export PATH="$PATH:$PWD"' >> activate_${container}.sh
+echo -e 'echo " " >> ~/.bashrc' >> activate_${container}.sh
+echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
+echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
 
 echo "removing container first, in case it is a reinstall"
-cp deactivate_ deactivate_${container}
-chmod a+x deactivate_${container}
-source deactivate_${container} $deploy_path
+cp deactivate_ deactivate_${container}.sh
+chmod a+x deactivate_${container}.sh
+source deactivate_${container}.sh $deploy_path
 
 echo "adding $container to your PATH"
-chmod a+x activate_${container}
-source activate_${container}
+chmod a+x activate_${container}.sh
+source activate_${container}.sh
 
