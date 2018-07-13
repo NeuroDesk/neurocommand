@@ -32,20 +32,22 @@ if  [[  ${#qq} -lt 1 ]]; then
 fi
 
 
-
-echo "checking which executables exist outside container"
-IFS=':'; \
-for i in $PATH; \
-      do test -d "$i" && find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; done > host_commands.txt
+# This features creates problems when binaries are meant to be in both containers and the order in the bashrc decides which-
+# ones is loaded first
+#echo "checking which executables exist outside container"
+#IFS=':'; \
+#for i in $PATH; \
+#      do test -d "$i" && find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; done > host_commands.txt
 
 
 echo "checking which executables exist inside container"
 singularity exec --pwd $deploy_path $container ./dc_binaryFinder.sh
 
 
-
-echo "creating a set of commands that is unique for the container"
-awk 'FNR==NR {a[$0]++; next} !a[$0]' host_commands.txt container_commands.txt > commands.txt
+#This features creates problems when binaries are meant to be in both containers and the order in the bashrc decides which 
+# ones is loaded first
+#echo "creating a set of commands that is unique for the container"
+#awk 'FNR==NR {a[$0]++; next} !a[$0]' host_commands.txt container_commands.txt > commands.txt
 
 
 

@@ -17,7 +17,7 @@ vi run_deploy_container.sh
 
 ## install
 ```
-source run_deploy_container.sh
+./run_deploy_container.sh
 ```
 
 ## deactivate
