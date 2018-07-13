@@ -18,7 +18,7 @@ container_pull="scp steffen@203.101.224.252:/qrisvolume/caid/$container $contain
 echo "checking for singularity ..."
 qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
-   echo "This requires singularity on your path. E.g. add "module load singularity/2.4.2" to your .bashrc"
+   echo "This requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
 fi
 
 
@@ -35,7 +35,7 @@ fi
 
 
 echo "checking which executables exist inside container"
-singularity exec --pwd $deploy_path $container ./binaryFinder.sh
+singularity exec --pwd $deploy_path $container ./dc_binaryFinder.sh
 
 
 
@@ -56,7 +56,7 @@ echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
 
 echo "removing container first, in case it is a reinstall"
-cp deactivate_ deactivate_${container}.sh
+cp dc_deactivate_ deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
 source deactivate_${container}.sh $deploy_path
 
