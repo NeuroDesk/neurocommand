@@ -51,7 +51,6 @@ done
 
 echo -e 'export PWD=`pwd -P`' > activate_${container}.sh
 echo -e 'export PATH="$PATH:$PWD"' >> activate_${container}.sh
-echo -e 'echo " " >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
 
