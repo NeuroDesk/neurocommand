@@ -1,5 +1,3 @@
-pathToRemove=$1
-#pathToRemove="/QRISdata/Q0530/qsm28subj/tools/fsl_5p0p11"
 
 echo "path to remove: $pathToRemove"
 echo "path before"

@@ -56,7 +56,7 @@ echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
 
 echo "removing container first, in case it is a reinstall"
-cp dc_deactivate_ deactivate_${container}.sh
+echo  pathToRemove=$deploy_path | cat - dc_deactivate_ > temp && mv temp deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
 source deactivate_${container}.sh $deploy_path
 
