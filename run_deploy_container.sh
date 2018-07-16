@@ -14,6 +14,8 @@ container=minc_1p9p16_20180712.simg
 container=fsl_5p0p11_20180712.simg
 container_pull="scp steffen@203.101.224.252:/qrisvolume/caid/$container $container"
 
+container=tgvqsm_fsl_5p0p11_20180716.simg
+container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
 
 echo "checking for singularity ..."
 qq=`which  singularity`
