@@ -17,6 +17,10 @@ container_pull="scp steffen@203.101.224.252:/qrisvolume/caid/$container $contain
 container=tgvqsm_fsl_5p0p11_20180717.simg
 container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
 
+container=tgvqsm_amd_20180727.simg
+container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
+
+
 echo "checking for singularity ..."
 qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
