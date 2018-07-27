@@ -47,7 +47,7 @@ fi
 
 
 echo "checking which executables exist inside container"
-singularity exec --pwd $deploy_path $container ./dc_binaryFinder.sh
+singularity exec --bind /data:/data --pwd $deploy_path $container ./dc_binaryFinder.sh
 
 
 #This features creates problems when binaries are meant to be in both containers and the order in the bashrc decides which 
