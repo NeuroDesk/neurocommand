@@ -20,6 +20,10 @@ container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $containe
 container=tgvqsm_amd_20180727.simg
 container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
 
+# define mount points for this system
+echo 'warning: it is important to set your system specific mount points in your .bashrc!: e.g. export SINGULARITY_BINDPATH="/opt,/data"'
+
+
 
 echo "checking for singularity ..."
 qq=`which  singularity`
@@ -47,7 +51,7 @@ fi
 
 
 echo "checking which executables exist inside container"
-singularity exec --bind /data:/data --pwd $deploy_path $container ./dc_binaryFinder.sh
+singularity exec --pwd $deploy_path $container ./dc_binaryFinder.sh
 
 
 #This features creates problems when binaries are meant to be in both containers and the order in the bashrc decides which 
@@ -63,7 +67,7 @@ echo "create singularity executable for each regular executable in commands.txt"
 while read executable; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
-   echo "singularity exec --pwd \$PWD --bind /gpfs1:/gpfs1 $deploy_path/$container $executable \$@" >> $executable
+   echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 done <commands.txt
 
