@@ -13,7 +13,7 @@ git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_intel_20180730
 ## install
 ```
 cd tgvqsm_intel_20180730
-./run_transparent_singularity.sh tgvqsm_intel_20180730
+./run_transparent_singularity.sh tgvqsm_intel_20180730.simg
 ```
 this will add everything you need to your .bashrc. Source .bashrc to get everything setup.
 
