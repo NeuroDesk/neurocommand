@@ -64,7 +64,7 @@ while read executable; do \
 done <commands.txt
 
 echo "creating eactivate script that runs deactive first in case it is already there"
-echo -e 'source deactivate_${container}.sh $deploy_path' > activate_${container}.sh
+echo "source deactivate_${container}.sh $deploy_path" > activate_${container}.sh
 echo -e 'export PWD=`pwd -P`' >> activate_${container}.sh
 echo -e 'export PATH="$PWD:$PATH"' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
