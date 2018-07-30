@@ -63,15 +63,16 @@ while read executable; do \
    chmod a+x $executable
 done <commands.txt
 
+echo "creating eactivate script that runs deactive first in case it is already there"
+echo -e 'source deactivate_${container}.sh $deploy_path'
 echo -e 'export PWD=`pwd -P`' > activate_${container}.sh
-echo -e 'export PATH="$PATH:$PWD"' >> activate_${container}.sh
+echo -e 'export PATH="$PWD:$PATH"' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
-echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
+echo -e 'echo "export PATH="$PWD:\$PATH"" >> ~/.bashrc' >> activate_${container}.sh
 
-echo "removing container first, in case it is a reinstall"
+echo "deactivate script"
 echo  pathToRemove=$deploy_path | cat - ts_deactivate_ > temp && mv temp deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
-source deactivate_${container}.sh $deploy_path
 
 echo "adding $container to your PATH"
 chmod a+x activate_${container}.sh
