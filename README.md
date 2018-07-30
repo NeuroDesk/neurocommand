@@ -7,7 +7,7 @@ curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659c
 
 ## clone repo into a folder with the intented image name
 ```
-git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_intel_20180730.simg	
+git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_intel_20180730	
 ```
 
 ## install
