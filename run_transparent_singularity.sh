@@ -8,21 +8,8 @@
 
 
 #Parameters
-container=minc-toolkit-1.9.16.simg
-container_pull=shub://vfonov/minc-toolkit-containers:1.9.16
-
-container=minc_1p9p16_20180712.simg
-container=fsl_5p0p11_20180712.simg
-container_pull="scp steffen@203.101.224.252:/qrisvolume/caid/$container $container"
-
-container=tgvqsm_fsl_5p0p11_20180717.simg
-container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
-
-container=tgvqsm_amd_20180727.simg
-container_pull="scp steffen@203.101.224.252:/qrisvolume/qsm/$container $container"
-
 container=tgvqsm_20180730.simg
-container_pull="curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O
+container_pull="curl -v -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O
 
 # define mount points for this system
 echo 'warning: it is important to set your system specific mount points in your .bashrc!: e.g. export SINGULARITY_BINDPATH="/opt,/data"'
@@ -55,7 +42,7 @@ fi
 
 
 echo "checking which executables exist inside container"
-singularity exec --pwd $deploy_path $container ./dc_binaryFinder.sh
+singularity exec --pwd $deploy_path $container ./ts_binaryFinder.sh
 
 
 #This features creates problems when binaries are meant to be in both containers and the order in the bashrc decides which 
@@ -81,7 +68,7 @@ echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="\$PATH:$PWD"" >> ~/.bashrc' >> activate_${container}.sh
 
 echo "removing container first, in case it is a reinstall"
-echo  pathToRemove=$deploy_path | cat - dc_deactivate_ > temp && mv temp deactivate_${container}.sh
+echo  pathToRemove=$deploy_path | cat - ts_deactivate_ > temp && mv temp deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
 source deactivate_${container}.sh $deploy_path
 

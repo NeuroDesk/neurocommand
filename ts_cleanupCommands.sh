@@ -1,5 +1,5 @@
 for executable in `cat commands.txt`; do
       echo $executable
-      rm $executable               
+      rm $executable
 done
 
