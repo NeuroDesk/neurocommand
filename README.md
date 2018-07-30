@@ -3,7 +3,7 @@ This repo aims at deploing a singularity containers transparently on our cluster
 ## Important: add bind points to .bashrc
 This script expects that you have adjusted the Singularity Bindpoints in your .bashrc:
 ```
-export SINGULARITY_BINDPATH="/gpfs1/,/30days,/90days"
+export SINGULARITY_BINDPATH="/gpfs1/,/QRISdata,/data"
 ```
 
 ## This gives you a list of available images:
