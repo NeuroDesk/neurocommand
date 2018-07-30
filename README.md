@@ -1,24 +1,21 @@
 This repo aims at deploing a singularity containers transparently on our clusters.
 
-## clone repo
+## This gives you a list of available images:
 ```
-git clone git@gitlab.com:uqsbollm/deploy_containers.git
-```
-## rename to image name
-```
-mv deploy_containers fsl_5p0p11
-cd fsl_5p0p11
+curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
 ```
 
-## edit which image should be installed
+## clone repo into a folder with the intented image name
 ```
-vi run_deploy_container.sh
+git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_20180730_intel
 ```
 
 ## install
 ```
-./run_deploy_container.sh
+./run_transparent_singularity.sh tgvqsm_20180730_intel.simg
 ```
+this will add everything you need to your .bashrc. Source .bashrc to get everything setup.
+
 
 ## deactivate
 ```
@@ -32,7 +29,7 @@ source activate_fsl_5p0p11_20180712.simg.sh
 
 ## cleanup
 ```
-./dc_cleanupCommands.sh
+./ts_cleanupCommands.sh
 rm activate_fsl_5p0p11_20180712.simg.sh
 rm deactivate_fsl_5p0p11_20180712.simg.sh
 rm commands.txt
