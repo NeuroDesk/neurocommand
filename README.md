@@ -12,6 +12,7 @@ git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_20180730_intel
 
 ## install
 ```
+cd tgvqsm_20180730_intel
 ./run_transparent_singularity.sh tgvqsm_20180730_intel.simg
 ```
 this will add everything you need to your .bashrc. Source .bashrc to get everything setup.
@@ -19,18 +20,18 @@ this will add everything you need to your .bashrc. Source .bashrc to get everyth
 
 ## deactivate
 ```
-source deactivate_fsl_5p0p11_20180712.simg.sh
+source deactivate_tgvqsm_20180730_intel.simg.sh
 ```
 
 ## activate
 ```
-source activate_fsl_5p0p11_20180712.simg.sh
+source activate_tgvqsm_20180730_intel.simg.sh
 ```
 
 ## cleanup
 ```
 ./ts_cleanupCommands.sh
-rm activate_fsl_5p0p11_20180712.simg.sh
-rm deactivate_fsl_5p0p11_20180712.simg.sh
+rm activate_tgvqsm_20180730_intel.simg.sh
+rm deactivate_tgvqsm_20180730_intel.simg.sh
 rm commands.txt
 ```
