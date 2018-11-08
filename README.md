@@ -13,31 +13,31 @@ curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659c
 
 ## clone repo into a folder with the intented image name
 ```
-git clone git@gitlab.com:uqsbollm/transparent_singularity tgvqsm_intel_20180730.simg	
+git clone https://gitlab.com/uqsbollm/transparent_singularity.git minc_1p9p16_visual_20181022.simg	
 ```
 
 ## install
 ```
-cd tgvqsm_intel_20180730.simg
-./run_transparent_singularity.sh tgvqsm_intel_20180730.simg
+cd minc_1p9p16_visual_20181022.simg
+./run_transparent_singularity.sh minc_1p9p16_visual_20181022.simg
 ```
 this will add everything you need to your .bashrc. Source .bashrc to get everything setup.
 
 
 ## deactivate
 ```
-source deactivate_tgvqsm_intel_20180730.simg.sh
+source deactivate_minc_1p9p16_visual_20181022.simg.sh
 ```
 
 ## activate
 ```
-source activate_tgvqsm_intel_20180730.simg.sh
+source activate_minc_1p9p16_visual_20181022.simg.sh
 ```
 
 ## cleanup
 ```
 ./ts_cleanupCommands.sh
-rm activate_tgvqsm_intel_20180730.simg.sh
-rm deactivate_tgvqsm_intel_20180730.simg.sh
+rm activate_minc_1p9p16_visual_20181022.simg.sh
+rm deactivate_minc_1p9p16_visual_20181022.simg.sh
 rm commands.txt
 ```
