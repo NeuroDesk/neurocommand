@@ -1,4 +1,4 @@
-This project aims at deploying a singularity container transparently, so that an application inside the container can be used without adjusting any scripts or pipelines (e.g. nipype) 
+This project aims at deploying a singularity container transparently, so that an application inside the container can be used without adjusting any scripts or pipelines (e.g. nipype). For building your own containers see examples in https://github.com/CAIsr/caid  
 
 ## Important: add bind points to .bashrc before executing this script
 This script expects that you have adjusted the Singularity Bindpoints in your .bashrc, e.g.:
