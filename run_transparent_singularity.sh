@@ -42,7 +42,7 @@ echo "create singularity executable for each regular executable in commands.txt"
 while read executable; do \
    echo $executable > $PWD/${executable}; \
    echo "export PWD=\`pwd -P\`" > $executable 
-   echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
+   echo "singularity exec -e --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 done <commands.txt
 
