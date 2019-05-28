@@ -24,7 +24,7 @@ cd minc_1p9p16_visual_20181022.simg
 ```
 
 # Use in module system LMOD
-add the module folder path to $MODULPATH
+add the module folder path to $MODULEPATH
 
 # Manual acivation and deactivation (in case module system is not available). This will add the paths to the .bashrc
 ## activate
