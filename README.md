@@ -45,3 +45,9 @@ rm activate_minc_1p9p16_visual_20181022.simg.sh
 rm deactivate_minc_1p9p16_visual_20181022.simg.sh
 rm commands.txt
 ```
+## updating a container the quick and easy way:
+list and pick name: 
+curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
+
+get:
+curl -v -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/insertCONTAINERname -O
