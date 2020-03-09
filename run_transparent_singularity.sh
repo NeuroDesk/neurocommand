@@ -20,9 +20,9 @@ echo "checking for singularity ..."
 qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
    echo "This requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
+   echo "If you are root try again as normal user"
    exit
 fi
-
 deploy_path=`pwd -P`
 echo "deploying in $deploy_path"
 echo "checking if container needs to be downloaded"
@@ -63,7 +63,7 @@ chmod a+x deactivate_${container}.sh
 echo "create module files on directory up"
 modulePath=../modules/`echo $container | cut -d _ -f 1`
 mkdir $modulePath -p
-moduleName=`echo $container | cut -d _ -f 2-`
+moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
