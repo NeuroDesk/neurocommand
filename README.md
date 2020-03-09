@@ -13,13 +13,13 @@ curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659c
 
 ## clone repo into a folder with the intented image name
 ```
-git clone https://github.com/CAIsr/transparent-singularity.git minc_1p9p16_visual_20181022.simg	
+git clone https://github.com/CAIsr/transparent-singularity.git minc_1p9p16_visual_20181022
 ```
 
 ## install
 this will create scripts for every binary in the container located in the $DEPLOY_PATH inside the container. It will also create activate and deactivate scripts and module files for lmod (https://lmod.readthedocs.io/en/latest/)
 ```
-cd minc_1p9p16_visual_20181022.simg
+cd minc_1p9p16_visual_20181022
 ./run_transparent_singularity.sh minc_1p9p16_visual_20181022.simg
 ```
 
