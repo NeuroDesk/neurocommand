@@ -20,13 +20,13 @@ git clone https://github.com/CAIsr/transparent-singularity.git convert3d_1p0p0_2
 this will create scripts for every binary in the container located in the $DEPLOY_PATH inside the container. It will also create activate and deactivate scripts and module files for lmod (https://lmod.readthedocs.io/en/latest/)
 ```
 cd convert3d_1p0p0_20200329
-./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif"
+./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif
 ```
 
 or when you want to install from the singularity registry (might be faster outside Australia):
 ```
 cd convert3d_1p0p0_20200329
-echo "./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif --storage sylabs"
+./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif --storage sylabs
 ```
 
 # Use in module system LMOD
