@@ -13,14 +13,20 @@ curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659c
 
 ## clone repo into a folder with the intented image name
 ```
-git clone https://github.com/CAIsr/transparent-singularity.git minc_1p9p16_visual_20181022
+git clone https://github.com/CAIsr/transparent-singularity.git convert3d_1p0p0_20200329
 ```
 
 ## install
 this will create scripts for every binary in the container located in the $DEPLOY_PATH inside the container. It will also create activate and deactivate scripts and module files for lmod (https://lmod.readthedocs.io/en/latest/)
 ```
-cd minc_1p9p16_visual_20181022
-./run_transparent_singularity.sh minc_1p9p16_visual_20181022.simg
+cd convert3d_1p0p0_20200329
+./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif"
+```
+
+or when you want to install from the singularity registry (might be faster outside Australia):
+```
+cd convert3d_1p0p0_20200329
+echo "./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif --storage sylabs"
 ```
 
 # Use in module system LMOD
@@ -41,10 +47,8 @@ source deactivate_minc_1p9p16_visual_20181022.simg.sh
 ## cleanup
 ```
 ./ts_cleanupCommands.sh
-rm activate_minc_1p9p16_visual_20181022.simg.sh
-rm deactivate_minc_1p9p16_visual_20181022.simg.sh
-rm commands.txt
 ```
+
 ## updating a container the quick and easy way:
 list and pick name: 
 ```

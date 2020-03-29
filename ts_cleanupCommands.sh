@@ -3,3 +3,6 @@ for executable in `cat commands.txt`; do
       rm $executable
 done
 
+rm -rf activate*
+rm -rf deactivate*
+rm commands.txt
