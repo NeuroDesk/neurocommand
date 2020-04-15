@@ -140,7 +140,7 @@ echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 
 echo "create start script for cvl"
 echo "#!/bin/bash" > cvl-${container}.sh
-echo "xterm -title '${container}' -e /bin/bash -c 'module load singularity;$deploy_path/$container --bind /30days /90days /QRISdata'" >>  cvl-${container}.sh
+echo "xterm -title '${container}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container --bind /30days /90days /QRISdata'" >>  cvl-${container}.sh
 chmod a+x cvl-${container}.sh
 
 echo "create desktop entry for cvl:"
