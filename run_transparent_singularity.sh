@@ -23,6 +23,11 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
+      -cvl|--cvl)
+      cvl="$2"
+      shift # past argument
+      shift # past value
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -50,8 +55,9 @@ if [ -z "$container" ]; then
       echo "usage examples:"
       echo "./run_transparent_singularity.sh -c CONTAINERNAME"
       echo "./run_transparent_singularity.sh --container CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif"
-      echo "./run_transparent_singularity.sh --container convert3d_1p0p0_20200329.sif --storage sylabs"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --storage sylabs"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --cvl true"
       echo "-----------------------------------------------"
       exit
    else
@@ -138,30 +144,33 @@ echo "#%Module##################################################################
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 
-echo "create start script for cvl"
-echo "#!/bin/bash" > cvl-${container}.sh
-echo "xterm -title '${container}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container --bind /30days /90days /QRISdata'" >>  cvl-${container}.sh
-chmod a+x cvl-${container}.sh
 
-echo "create desktop entry for cvl:"
-echo "[Desktop Entry]" > cvl-${container}.destkop
-echo "Comment=" >> cvl-${container}.destkop
-echo "Exec=$deploy_path/$container/cvl-${container}.sh" >> cvl-${container}.destkop
-echo "# You will need to update this to the right icon name/type" >> cvl-${container}.destkop
-echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.destkop
-echo "Name=CVL ${container}" >> cvl-${container}.destkop
-echo "StartupNotify=true" >> cvl-${container}.destkop
-echo "#Terminal=1" >> cvl-${container}.destkop
-echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.destkop
-echo "Type=Application" >> cvl-${container}.destkop
-echo "Categories=Imaging" >> cvl-${container}.destkop
-echo "X-KDE-SubstituteUID=false" >> cvl-${container}.destkop
-echo "X-KDE-Username=" >> cvl-${container}.destkop
+if [ "$cvl" = "true" ]; then
+   echo "create start script for cvl"
+   echo "#!/bin/bash" > cvl-${container}.sh
+   echo "xterm -title '${container}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container --bind /30days /90days /QRISdata'" >>  cvl-${container}.sh
+   chmod a+x cvl-${container}.sh
 
-echo "create directory entry for cvl:" 
-echo "[Desktop Entry]" > cvl-${container}.directory
-echo "Comment=CVL ${container}" >> cvl-${container}.directory
-echo "GenericName=" >> cvl-${container}.directory
-echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
-echo "Type=Directory" >> cvl-${container}.directory
-echo "Name=CVL ${container}" >> cvl-${container}.directory
+   echo "create desktop entry for cvl:"
+   echo "[Desktop Entry]" > cvl-${container}.destkop
+   echo "Comment=" >> cvl-${container}.destkop
+   echo "Exec=$deploy_path/$container/cvl-${container}.sh" >> cvl-${container}.destkop
+   echo "# You will need to update this to the right icon name/type" >> cvl-${container}.destkop
+   echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.destkop
+   echo "Name=CVL ${container}" >> cvl-${container}.destkop
+   echo "StartupNotify=true" >> cvl-${container}.destkop
+   echo "#Terminal=1" >> cvl-${container}.destkop
+   echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.destkop
+   echo "Type=Application" >> cvl-${container}.destkop
+   echo "Categories=Imaging" >> cvl-${container}.destkop
+   echo "X-KDE-SubstituteUID=false" >> cvl-${container}.destkop
+   echo "X-KDE-Username=" >> cvl-${container}.destkop
+
+   echo "create directory entry for cvl:" 
+   echo "[Desktop Entry]" > cvl-${container}.directory
+   echo "Comment=CVL ${container}" >> cvl-${container}.directory
+   echo "GenericName=" >> cvl-${container}.directory
+   echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
+   echo "Type=Directory" >> cvl-${container}.directory
+   echo "Name=CVL ${container}" >> cvl-${container}.directory
+fi
