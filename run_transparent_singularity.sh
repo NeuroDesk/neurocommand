@@ -108,6 +108,8 @@ else
    $container_pull
 fi
 
+echo "making container executable"
+chmod a+x $container
 
 echo "checking which executables exist inside container"
 singularity exec --pwd $deploy_path $container ./ts_binaryFinder.sh
