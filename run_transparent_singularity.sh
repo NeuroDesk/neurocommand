@@ -64,7 +64,7 @@ if [ -z "$container" ]; then
       echo "-------------------------------------"
       echo "installing container ${container}"
       echo "-------------------------------------"
-      
+
 
       # define mount points for this system
       echo "-------------------------------------"
@@ -119,7 +119,7 @@ echo "create singularity executable for each regular executable in commands.txt"
 #test   executable="fslmaths"
 while read executable; do \
    echo $executable > $PWD/${executable}; \
-   echo "export PWD=\`pwd -P\`" > $executable 
+   echo "export PWD=\`pwd -P\`" > $executable
    echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 done <commands.txt
@@ -154,21 +154,21 @@ if [ "$cvl" = "true" ]; then
    chmod a+x cvl-${container}.sh
 
    echo "create desktop entry for cvl:"
-   echo "[Desktop Entry]" > cvl-${container}.destkop
-   echo "Comment=" >> cvl-${container}.destkop
-   echo "Exec=$deploy_path/$container/cvl-${container}.sh" >> cvl-${container}.destkop
-   echo "# You will need to update this to the right icon name/type" >> cvl-${container}.destkop
-   echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.destkop
-   echo "Name=CVL ${container}" >> cvl-${container}.destkop
-   echo "StartupNotify=true" >> cvl-${container}.destkop
-   echo "#Terminal=1" >> cvl-${container}.destkop
-   echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.destkop
-   echo "Type=Application" >> cvl-${container}.destkop
-   echo "Categories=Imaging" >> cvl-${container}.destkop
-   echo "X-KDE-SubstituteUID=false" >> cvl-${container}.destkop
-   echo "X-KDE-Username=" >> cvl-${container}.destkop
+   echo "[Desktop Entry]" > cvl-${container}.desktop
+   echo "Comment=" >> cvl-${container}.desktop
+   echo "Exec=$deploy_path/$container/cvl-${container}.sh" >> cvl-${container}.desktop
+   echo "# You will need to update this to the right icon name/type" >> cvl-${container}.desktop
+   echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.desktop
+   echo "Name=CVL ${container}" >> cvl-${container}.desktop
+   echo "StartupNotify=true" >> cvl-${container}.desktop
+   echo "#Terminal=1" >> cvl-${container}.desktop
+   echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.desktop
+   echo "Type=Application" >> cvl-${container}.desktop
+   echo "Categories=Imaging" >> cvl-${container}.desktop
+   echo "X-KDE-SubstituteUID=false" >> cvl-${container}.desktop
+   echo "X-KDE-Username=" >> cvl-${container}.desktop
 
-   echo "create directory entry for cvl:" 
+   echo "create directory entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.directory
    echo "Comment=CVL ${container}" >> cvl-${container}.directory
    echo "GenericName=" >> cvl-${container}.directory
