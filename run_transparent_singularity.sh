@@ -172,7 +172,7 @@ if [ "$cvl" = "true" ]; then
    echo "#Terminal=1" >> cvl-${container}.desktop
    echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.desktop
    echo "Type=Application" >> cvl-${container}.desktop
-   echo "Categories=Imaging,${application_name}" >> cvl-${container}.desktop
+   echo "Categories=Imaging;${application_name}" >> cvl-${container}.desktop
    echo "X-KDE-SubstituteUID=false" >> cvl-${container}.desktop
    echo "X-KDE-Username=" >> cvl-${container}.desktop
    chmod a+rx cvl-${container}.desktop
