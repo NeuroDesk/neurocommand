@@ -148,18 +148,21 @@ echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 
 
 if [ "$cvl" = "true" ]; then
+   application_name=`echo $container | cut -d _ -f 1`
+   application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
    echo "#!/bin/bash" > cvl-${container}.sh
-   echo "xterm -title '${container}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container --bind /30days /90days /QRISdata'" >>  cvl-${container}.sh
+   echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
    chmod a+x cvl-${container}.sh
+   mv cvl-${container}.sh ../../bin
 
    echo "create desktop entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.desktop
    echo "Comment=" >> cvl-${container}.desktop
-   echo "Exec=$deploy_path/$container/cvl-${container}.sh" >> cvl-${container}.desktop
+   echo "Exec=/sw7/CVL/bin/cvl-${container}.sh" >> cvl-${container}.desktop
    echo "# You will need to update this to the right icon name/type" >> cvl-${container}.desktop
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.desktop
-   echo "Name=CVL ${container}" >> cvl-${container}.desktop
+   echo "Name=CVL ${application_name} ${application_version}" >> cvl-${container}.desktop
    echo "StartupNotify=true" >> cvl-${container}.desktop
    echo "#Terminal=1" >> cvl-${container}.desktop
    echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.desktop
@@ -167,6 +170,8 @@ if [ "$cvl" = "true" ]; then
    echo "Categories=Imaging" >> cvl-${container}.desktop
    echo "X-KDE-SubstituteUID=false" >> cvl-${container}.desktop
    echo "X-KDE-Username=" >> cvl-${container}.desktop
+   chmod a+rx cvl-${container}.desktop
+   mv cvl-${container}.desktop ../../xdg_data_dirs/applications/
 
    echo "create directory entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.directory
@@ -175,4 +180,6 @@ if [ "$cvl" = "true" ]; then
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
    echo "Type=Directory" >> cvl-${container}.directory
    echo "Name=CVL ${container}" >> cvl-${container}.directory
+   chmod a+rx cvl-${container}.directory
+   mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
 fi
