@@ -162,12 +162,12 @@ if [ "$cvl" = "true" ]; then
    echo "Exec=/sw7/CVL/bin/cvl-${container}.sh" >> cvl-${container}.desktop
    echo "# You will need to update this to the right icon name/type" >> cvl-${container}.desktop
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.desktop
-   echo "Name=CVL ${application_name} ${application_version}" >> cvl-${container}.desktop
+   echo "Name=${application_name} ${application_version}" >> cvl-${container}.desktop
    echo "StartupNotify=true" >> cvl-${container}.desktop
    echo "#Terminal=1" >> cvl-${container}.desktop
    echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.desktop
    echo "Type=Application" >> cvl-${container}.desktop
-   echo "Categories=Imaging" >> cvl-${container}.desktop
+   echo "Categories=Imaging,${application_name}" >> cvl-${container}.desktop
    echo "X-KDE-SubstituteUID=false" >> cvl-${container}.desktop
    echo "X-KDE-Username=" >> cvl-${container}.desktop
    chmod a+rx cvl-${container}.desktop
@@ -175,11 +175,11 @@ if [ "$cvl" = "true" ]; then
 
    echo "create directory entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.directory
-   echo "Comment=CVL ${container}" >> cvl-${container}.directory
+   echo "Comment=${application_name} ${application_version}" >> cvl-${container}.directory
    echo "GenericName=" >> cvl-${container}.directory
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
    echo "Type=Directory" >> cvl-${container}.directory
-   echo "Name=CVL ${container}" >> cvl-${container}.directory
+   echo "Name=${application_name}" >> cvl-${container}.directory
    chmod a+rx cvl-${container}.directory
    mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
 fi
