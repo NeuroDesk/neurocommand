@@ -157,8 +157,9 @@ if [ "$cvl" = "true" ]; then
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
    echo "#!/bin/bash" > cvl-${container}.sh
+   ## ADD MOUNTPOINTS HERE and test!
    echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
-   chmod a+x cvl-${container}.sh
+   chmod 775 cvl-${container}.sh
    mv cvl-${container}.sh ../../bin
 
    echo "create desktop entry for cvl:"
@@ -172,10 +173,10 @@ if [ "$cvl" = "true" ]; then
    echo "#Terminal=1" >> cvl-${container}.desktop
    echo "# TerminalOptions=--noclose -T '${container} Debug Window'" >> cvl-${container}.desktop
    echo "Type=Application" >> cvl-${container}.desktop
-   echo "Categories=Imaging;${application_name}" >> cvl-${container}.desktop
+   echo "Categories=${application_name}" >> cvl-${container}.desktop
    echo "X-KDE-SubstituteUID=false" >> cvl-${container}.desktop
    echo "X-KDE-Username=" >> cvl-${container}.desktop
-   chmod a+rx cvl-${container}.desktop
+   chmod 775 cvl-${container}.desktop
    mv cvl-${container}.desktop ../../xdg_data_dirs/applications/
 
    echo "create directory entry for cvl:"
@@ -185,6 +186,8 @@ if [ "$cvl" = "true" ]; then
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
    echo "Type=Directory" >> cvl-${container}.directory
    echo "Name=${application_name}" >> cvl-${container}.directory
-   chmod a+rx cvl-${container}.directory
+   chmod 775 cvl-${container}.directory
    mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
+
+   echo "If this is the first time you install this software, add a menu entry in ../../xdg_config_dirs/menus/cvl.menu - category name: ${application_name}"
 fi
