@@ -42,8 +42,9 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 if [[ -n $1 ]]; then
-    echo "Last line of file specified as non-opt/last argument:"
-    tail -1 "$1"
+   #  echo "Last line of file specified as non-opt/last argument:"
+   #  tail -1 "$1"
+    container="$1"
 fi
 
 if [ -z "$container" ]; then
@@ -53,11 +54,9 @@ if [ -z "$container" ]; then
       curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
       echo "-----------------------------------------------"
       echo "usage examples:"
-      echo "./run_transparent_singularity.sh -c CONTAINERNAME"
+      echo "./run_transparent_singularity.sh CONTAINERNAME"
       echo "./run_transparent_singularity.sh --container CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif"
       echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --storage sylabs"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --cvl true"
       echo "-----------------------------------------------"
       exit
    else
@@ -152,7 +151,8 @@ echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 
 
-if [ "$cvl" = "true" ]; then
+FILE=/sw7/CVL
+if [ -d "$FILE" ]; then
    application_name=`echo $container | cut -d _ -f 1`
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
