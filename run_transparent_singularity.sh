@@ -187,4 +187,15 @@ if [ -d "$FILE" ]; then
    mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
 
    echo "If this is the first time you install this software, add a menu entry in ../../xdg_config_dirs/menus/cvl.menu - category name: ${application_name}"
+   echo "----------------------------------"
+   echo "<Menu>"
+   echo "   <Name>CVL ${application_name}</Name>"
+   echo "   <Directory>cvl-${application_name}.directory</Directory>"
+   echo "   <Include>"
+   echo "     <And>"
+   echo "       <Category>${application_name}</Category>"
+   echo "     </And>"
+   echo "   </Include>"
+   echo " </Menu>"
+
 fi
