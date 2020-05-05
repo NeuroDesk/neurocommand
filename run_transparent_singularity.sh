@@ -158,6 +158,7 @@ if [ -d "$FILE" ]; then
    echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
    chmod 775 cvl-${container}.sh
    mv cvl-${container}.sh ../../bin
+   echo "rm ../../bin/cvl-${container}.sh" >> ts_uninstall.sh
 
    echo "create desktop entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.desktop
@@ -175,6 +176,7 @@ if [ -d "$FILE" ]; then
    echo "X-KDE-Username=" >> cvl-${container}.desktop
    chmod 775 cvl-${container}.desktop
    mv cvl-${container}.desktop ../../xdg_data_dirs/applications/
+   echo "rm ../../xdg_data_dirs/applications/cvl-${container}.desktop" >> ts_uninstall.sh
 
    echo "create directory entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.directory
@@ -185,6 +187,7 @@ if [ -d "$FILE" ]; then
    echo "Name=${application_name}" >> cvl-${container}.directory
    chmod 775 cvl-${container}.directory
    mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
+   echo "rm ../../xdg_data_dirs/desktop-directories/cvl-${container}.directory" >> ts_uninstall.sh
 
    echo "If this is the first time you install this software, add a menu entry in ../../xdg_config_dirs/menus/cvl.menu - category name: ${application_name}"
    echo "----------------------------------"
