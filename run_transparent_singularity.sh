@@ -146,7 +146,7 @@ moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
-
+echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
 
 FILE=/sw7/CVL
 if [ -d "$FILE" ]; then
