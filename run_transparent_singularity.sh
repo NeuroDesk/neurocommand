@@ -5,7 +5,7 @@
 # for downloading images from nectar it needs curl installed
 #11/07/2018
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
-set -e
+# set -e
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -42,8 +42,6 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 
 if [[ -n $1 ]]; then
-   #  echo "Last line of file specified as non-opt/last argument:"
-   #  tail -1 "$1"
     container="$1"
 fi
 
@@ -55,7 +53,6 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container CONTAINERNAME"
       echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --storage sylabs"
       echo "-----------------------------------------------"
       exit
