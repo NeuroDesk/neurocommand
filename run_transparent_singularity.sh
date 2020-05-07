@@ -154,7 +154,7 @@ if [[ -d "$FILE" ]] && [[ "$cvl"="true" ]]; then
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
    echo "#!/bin/bash" > cvl-${container}.sh
-   echo 'export SINGULARITY_BINDPATH="/state/,/RDS,/30days,/90days,/QRISdata,$SINGULARITY_BINDPATH"'
+   echo 'export SINGULARITY_BINDPATH="/state/,/RDS,/30days,/90days,/QRISdata,$SINGULARITY_BINDPATH"' >>  cvl-${container}.sh
    echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
    chmod 775 cvl-${container}.sh
    mv cvl-${container}.sh ../../bin
