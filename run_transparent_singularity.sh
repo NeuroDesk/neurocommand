@@ -162,7 +162,7 @@ if [[ -d "$FILE" ]] && [[ "$cvl"="true" ]]; then
 
    echo "create desktop entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.desktop
-   echo "Comment=" >> cvl-${container}.desktop
+   echo "Comment=${application_name} ${application_version} - CVL - Computing Power to the people" >> cvl-${container}.desktop
    echo "Exec=/sw7/CVL/bin/cvl-${container}.sh" >> cvl-${container}.desktop
    echo "# You will need to update this to the right icon name/type" >> cvl-${container}.desktop
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.desktop
@@ -180,7 +180,7 @@ if [[ -d "$FILE" ]] && [[ "$cvl"="true" ]]; then
 
    echo "create directory entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.directory
-   echo "Comment=${application_name} ${application_version}" >> cvl-${container}.directory
+   echo "Comment=${application_name} ${application_version} - CVL - Computing Power to the people" >> cvl-${container}.directory
    echo "GenericName=" >> cvl-${container}.directory
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.directory
    echo "Type=Directory" >> cvl-${container}.directory
@@ -189,7 +189,7 @@ if [[ -d "$FILE" ]] && [[ "$cvl"="true" ]]; then
    mv cvl-${container}.directory ../../xdg_data_dirs/desktop-directories/
    echo "rm ../../xdg_data_dirs/desktop-directories/cvl-${container}.directory" >> ts_uninstall.sh
 
-   echo "If this is the first time you install this software, add a menu entry in ../../xdg_config_dirs/menus/cvl.menu - category name: ${application_name}"
+   echo "If this is the first time you install this software, add a menu entry in ../xdg_config_dirs/menus/cvl.menu - category name: ${application_name}"
    echo "----------------------------------"
    echo "<Menu>"
    echo "   <Name>CVL ${application_name}</Name>"
