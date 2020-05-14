@@ -145,8 +145,8 @@ echo "create module files one directory up"
 modulePath=../modules/`echo $container | cut -d _ -f 1`
 mkdir $modulePath -p
 moduleName=`echo $container | cut -d _ -f 2`
-echo "#!/usr/bin/env bash" > ${modulePath}/${moduleName}
-echo "#%Module####################################################################" >> ${modulePath}/${moduleName}
+echo "#%Module####################################################################" > ${modulePath}/${moduleName}
+echo "module load singularity/3.5.0" >> ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
