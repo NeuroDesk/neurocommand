@@ -120,13 +120,15 @@ echo "create singularity executable for each regular executable in commands.txt"
 #test   executable="fslmaths"
 while read executable; do \
    echo $executable > $PWD/${executable}; \
-   echo "export PWD=\`pwd -P\`" > $executable
+   echo "#!/usr/bin/env bash" > $executable
+   echo "export PWD=\`pwd -P\`" >> $executable
    echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
 done <commands.txt
 
 echo "creating activate script that runs deactivate first in case it is already there"
-echo "source deactivate_${container}.sh $deploy_path" > activate_${container}.sh
+echo "#!/usr/bin/env bash" > activate_${container}.sh
+echo "source deactivate_${container}.sh $deploy_path" >> activate_${container}.sh
 echo -e 'export PWD=`pwd -P`' >> activate_${container}.sh
 echo -e 'export PATH="$PWD:$PATH"' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
@@ -143,7 +145,8 @@ echo "create module files one directory up"
 modulePath=../modules/`echo $container | cut -d _ -f 1`
 mkdir $modulePath -p
 moduleName=`echo $container | cut -d _ -f 2`
-echo "#%Module####################################################################" > ${modulePath}/${moduleName}
+echo "#!/usr/bin/env bash" > ${modulePath}/${moduleName}
+echo "#%Module####################################################################" >> ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
