@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 #Deploy script for singularity Containers "Transparent Singularity"
 #Creates wrapper scripts for all executables in a container's $DEPLOY_PATH
 # singularity needs to be available
@@ -151,12 +151,12 @@ echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "append-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
 
-FILE=/sw7/CVL
-if [[ -d "$FILE" ]] && [[ "$cvl"="true" ]]; then
+
+if [[ [[ -d "/sw7/CVL" ]] || [[ -d "/data/lfs2/CVL" ]] ]] && [[ "$cvl"="true" ]]; then
    application_name=`echo $container | cut -d _ -f 1`
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
-   echo "#!/bin/bash" > cvl-${container}.sh
+   echo "#!/usr/bin/env bash" > cvl-${container}.sh
    echo 'export SINGULARITY_BINDPATH="/state/,/RDS,/30days,/90days,/QRISdata,$SINGULARITY_BINDPATH"' >>  cvl-${container}.sh
    echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
    chmod 775 cvl-${container}.sh
