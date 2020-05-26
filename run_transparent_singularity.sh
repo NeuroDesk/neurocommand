@@ -152,7 +152,7 @@ echo "append-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
 
 
-if [[ [[ -d "/sw7/CVL" ]] || [[ -d "/data/lfs2/CVL" ]] ]] && [[ "$cvl"="true" ]]; then
+if [[ "$cvl"="true" ]]; then
    application_name=`echo $container | cut -d _ -f 1`
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
