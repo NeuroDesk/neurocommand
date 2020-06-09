@@ -146,7 +146,6 @@ modulePath=../modules/`echo $container | cut -d _ -f 1`
 mkdir $modulePath -p
 moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
-echo "module load singularity/3.5.0" >> ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "append-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
