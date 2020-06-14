@@ -43,6 +43,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [[ -n $1 ]]; then
     container="$1"
+    cvl=False
 fi
 
 if [ -z "$container" ]; then
