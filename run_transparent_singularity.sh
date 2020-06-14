@@ -151,8 +151,9 @@ echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "append-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
 
+echo "cvl-variable is set to: $cvl"
 
-if [[ "$cvl"="true" ]]; then
+if [[ "$cvl" == "true" ]]; then
    application_name=`echo $container | cut -d _ -f 1`
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
