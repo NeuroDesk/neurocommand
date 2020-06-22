@@ -1,4 +1,4 @@
-This project aims at deploying a singularity container transparently, so that an application inside the container can be used without adjusting any scripts or pipelines (e.g. nipype). For building your own containers see examples in https://github.com/CAIsr/caid  
+This project aims at deploying a singularity container transparently, so that an application inside the container can be used without adjusting any scripts or pipelines (e.g. nipype). For building your own containers see examples in https://github.com/neurodesk/caid  
 
 ## Important: add bind points to .bashrc before executing this script
 This script expects that you have adjusted the Singularity Bindpoints in your .bashrc, e.g.:
@@ -13,20 +13,20 @@ curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659c
 
 ## clone repo into a folder with the intented image name
 ```
-git clone https://github.com/CAIsr/transparent-singularity.git convert3d_1.0.0_20200420
+git clone https://github.com/CAIsr/transparent-singularity.git convert3d_1.0.0_20200622
 ```
 
 ## install
 this will create scripts for every binary in the container located in the $DEPLOY_PATH inside the container. It will also create activate and deactivate scripts and module files for lmod (https://lmod.readthedocs.io/en/latest/)
 ```
-cd convert3d_1.0.0_20200420
-./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif
+cd convert3d_1.0.0_20200622
+./run_transparent_singularity.sh --container convert3d_1.0.0_20200622.sif
 ```
 
-or when you want to install from the singularity registry (might be faster outside Australia):
+or when you want to install from the docker registry (might be faster outside Australia):
 ```
-cd convert3d_1.0.0_20200420
-./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --storage sylabs
+cd convert3d_1.0.0_20200622
+./run_transparent_singularity.sh --container convert3d_1.0.0_20200622.sif --storage docker
 ```
 
 # Use in module system LMOD

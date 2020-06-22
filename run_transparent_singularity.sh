@@ -54,7 +54,7 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200420.sif --storage sylabs"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200622.sif --storage docker"
       echo "-----------------------------------------------"
       exit
    else
@@ -73,8 +73,8 @@ fi
 container_pull="curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
 
 
-if [ "$storage" = "sylabs" ]; then
-   echo "pulling from sylabs cloud"
+if [ "$storage" = "docker" ]; then
+   echo "pulling from docker cloud"
    containerName="$(cut -d'_' -f1 <<< ${container})"
    echo "containerName: ${containerName}"
 
@@ -84,7 +84,7 @@ if [ "$storage" = "sylabs" ]; then
    containerDateAndFileEnding="$(cut -d'_' -f3 <<< ${container})"
    containerDate="$(cut -d'.' -f1 <<< ${containerDateAndFileEnding})"
    echo "containerDate: ${containerDate}"
-   container_pull="singularity pull library://sbollmann/caid/${containerName}:${containerVersion}_${containerDate}"
+   container_pull="singularity pull docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
 fi
 
 echo "checking for singularity ..."
