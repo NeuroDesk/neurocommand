@@ -24,4 +24,4 @@ jobs:
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
-      run: bash neurodesk.sh itksnap_3.8.0_20200505
+      run: bash neurodesk.sh -c itksnap_3.8.0_20200505 -d $HOME
