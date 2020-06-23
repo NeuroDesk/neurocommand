@@ -15,4 +15,4 @@ cd containers
 
 git clone https://github.com/neurodesk/transparent-singularity.git "${containerName%.sif}"
 cd "${containerName%.sif}"
-./run_transparent_singularity.sh $containerName --cvl true
+./run_transparent_singularity.sh --container $containerName --cvl true 
