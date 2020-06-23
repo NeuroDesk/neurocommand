@@ -1,4 +1,4 @@
-curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
+cat README.md 
 
 echo Enter container filename:
 read containerName
