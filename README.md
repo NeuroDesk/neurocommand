@@ -32,7 +32,7 @@ cd convert3d_1.0.0_20200622
 # Use in module system LMOD
 add the module folder path to $MODULEPATH
 
-# Manual acivation and deactivation (in case module system is not available). This will add the paths to the .bashrc
+# Manual activation and deactivation (in case module system is not available). This will add the paths to the .bashrc
 ## activate
 ```
 source activate_minc_1p9p16_visual_20181022.simg.sh
