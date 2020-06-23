@@ -9,6 +9,7 @@ if [ ! -d "containers" ]; then
   mkdir -p xdg_data_dirs/applications
   mkdir -p xdg_data_dirs/desktop-directories
   mkdir -p xdg_config_dirs/menus
+  mkdir -p bin
 fi
 
 cd containers
