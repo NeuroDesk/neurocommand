@@ -157,8 +157,11 @@ if [[ "$cvl" == "true" ]]; then
    application_version=`echo $container | cut -d _ -f 2`
    echo "create start script for cvl"
    echo "#!/usr/bin/env bash" > cvl-${container}.sh
-   echo 'export SINGULARITY_BINDPATH="/state/,/RDS,/30days,/90days,/QRISdata,$SINGULARITY_BINDPATH"' >>  cvl-${container}.sh
-   echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
+   # test bindpaths and add if they exist:
+   # echo 'export SINGULARITY_BINDPATH="/state/,/RDS,/30days,/90days,/QRISdata,$SINGULARITY_BINDPATH"' >>  cvl-${container}.sh
+   # test if module system is there, if it fails try system installed singularity
+   # echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c 'module load singularity/3.5.0;$deploy_path/$container'" >>  cvl-${container}.sh
+   echo "xterm -title '${application_name} ${application_version}' -e /bin/bash -c '$deploy_path/$container'" >>  cvl-${container}.sh
    chmod 775 cvl-${container}.sh
    mv cvl-${container}.sh ../../bin
    echo "rm ../../bin/cvl-${container}.sh" >> ts_uninstall.sh
@@ -166,7 +169,8 @@ if [[ "$cvl" == "true" ]]; then
    echo "create desktop entry for cvl:"
    echo "[Desktop Entry]" > cvl-${container}.desktop
    echo "Comment=${application_name} ${application_version} - CVL - Computing Power to the people" >> cvl-${container}.desktop
-   echo "Exec=/sw7/CVL/bin/cvl-${container}.sh" >> cvl-${container}.desktop
+   currentPath=`pwd -P`
+   echo "Exec=${currentPath}/../../bin/cvl-${container}.sh" >> cvl-${container}.desktop
    echo "# You will need to update this to the right icon name/type" >> cvl-${container}.desktop
    echo "Icon=/sw7/CVL/config/icons/cvl-neuroimaging.jpg" >> cvl-${container}.desktop
    echo "Name=${application_name} ${application_version}" >> cvl-${container}.desktop
