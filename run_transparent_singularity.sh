@@ -23,11 +23,6 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
-      -cvl|--cvl)
-      cvl="$2"
-      shift # past argument
-      shift # past value
-      ;;
       --default)
       DEFAULT=YES
       shift # past argument
