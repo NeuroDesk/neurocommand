@@ -44,11 +44,13 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "Select the container you would like to install:"
       echo "-----------------------------------------------"
-      curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
+      curl -s https://raw.githubusercontent.com/NeuroDesk/caid/master/Containerlist.md
+      echo " "
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200622.sif --storage docker"
+      echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.sif"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.sif --storage docker"
       echo "-----------------------------------------------"
       exit
    else
@@ -63,9 +65,8 @@ if [ -z "$container" ]; then
       echo "-------------------------------------"
 fi
 
-# default is swift storage
-container_pull="curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
-
+# default is docker-hub
+storage="docker"
 
 if [ "$storage" = "docker" ]; then
    echo "pulling from docker cloud"
