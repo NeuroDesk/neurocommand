@@ -13,7 +13,7 @@ curl -s https://raw.githubusercontent.com/NeuroDesk/caid/master/Containerlist.md
 
 ## clone repo into a folder with the intented image name
 ```
-git clone https://github.com/CAIsr/transparent-singularity.git convert3d_1.0.0_20200701
+git clone https://github.com/NeuroDesk/transparent-singularity convert3d_1.0.0_20200701
 ```
 
 ## install
