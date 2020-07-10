@@ -36,6 +36,7 @@ if [ -z "$installdir" ]; then
 fi
 
 echo "installing neurodesk in $installdir"
+echo "lxde_system_install: $lxde_system_install"
 
 if [ "$lxde_system_install" = "true" ]; then
     echo "replacing system files!"
