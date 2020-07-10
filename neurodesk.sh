@@ -40,10 +40,9 @@ if [ "$lxde_system_install" = "true" ]; then
     chmod 644 /root/.config/lxpanel/LXDE/icons/*
 
     # Main-menu config. Add Menu changes to vnm-applications.menu
-    rm -rf /etc/xdg/menus/lxde-applications.menu
-    mv ${installdir}/menus/lxde-applications.menu /etc/xdg/menus/
-    # THIS SHOULD BE INSERTED via the neurodesk install script	<!-- VNM Applications submenu -->
-        #<MergeFile>vnm-applications.menu</MergeFile>
+    # sed '/PATTERN/ a <LINE-TO-BE-ADDED>' FILE.txt
+    sed '/<DefaultDirectoryDirs/>/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu
+
     ln -s ${installdir}/menus/vnm-applications.menu /etc/xdg/menus/
 
     chmod 644 /etc/xdg/menus/lxde-applications.menu
