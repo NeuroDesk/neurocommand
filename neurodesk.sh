@@ -45,7 +45,7 @@ if [ -z "$installdir" ]; then
     installdir=`pwd -P`
 fi
 
-# create folder structure for CVL
+# create folder structure
 mkdir -p $installdir/containers
 mkdir -p $installdir/xdg_data_dirs/applications
 mkdir -p $installdir/xdg_data_dirs/desktop-directories

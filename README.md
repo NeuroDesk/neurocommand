@@ -1,6 +1,9 @@
 # neurodesk
-<<<<<<< Updated upstream
-an installer that makes our containerized applications available on any linux system with singularity installed
+neurodesk makes containerized applications available on any linux system with singularity installed
 
-## Run installer on any linux 
+## requirements:
+- singularity 
+- lmod
+
+## Run installer on any linux
 ./neurodesk.sh
