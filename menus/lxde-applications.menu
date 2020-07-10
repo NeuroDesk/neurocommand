@@ -9,6 +9,9 @@
 	<!-- Read standard .directory and .desktop file locations -->
 	<DefaultAppDirs/>
 	<DefaultDirectoryDirs/>
+	
+	<!-- VNM Applications submenu -->
+	<MergeFile>vnm-applications.menu</MergeFile>
 
 	<!-- Read in overrides and child menus from applications-merged/ -->
 	<DefaultMergeDirs/>
@@ -20,8 +23,7 @@
 		<MergeFile>debian-menu.menu</MergeFile>
 	</Menu>
 
-	<!-- VNM Applications submenu -->
-	<MergeFile>vnm-applications.menu</MergeFile>
+
 
 	<!-- Accessories submenu -->
 	<Menu>
