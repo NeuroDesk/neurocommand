@@ -9,7 +9,7 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
-      -i|--system_install)
+      -lxde|--lxde_system_install)
       system_install="$2"
       shift # past argument
       shift # past value
@@ -37,7 +37,7 @@ fi
 
 echo "installing neurodesk in $installdir"
 
-if [ "$system_install" = "true" ]; then
+if [ "$lxde_system_install" = "true" ]; then
     echo "replacing system files!"
     mkdir -p /root/.config/lxpanel/LXDE/icons
     ln -s ${installdir}/menus/icons/* /root/.config/lxpanel/LXDE/icons/

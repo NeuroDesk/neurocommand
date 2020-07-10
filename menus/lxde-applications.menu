@@ -13,6 +13,9 @@
 	<!-- Read in overrides and child menus from applications-merged/ -->
 	<DefaultMergeDirs/>
 
+	<!-- VNM Applications submenu -->
+	<MergeFile>vnm-applications.menu</MergeFile>
+
 	<!-- Debian menu -->
 	<Menu>
 		<Name>Debian</Name>
@@ -20,8 +23,7 @@
 		<MergeFile>debian-menu.menu</MergeFile>
 	</Menu>
 
-	<!-- VNM Applications submenu -->
-	<MergeFile>vnm-applications.menu</MergeFile>
+
 
 	<!-- Accessories submenu -->
 	<Menu>
