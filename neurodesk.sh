@@ -10,7 +10,7 @@ while [[ $# -gt 0 ]]
       shift # past value
       ;;
       -lxde|--lxde_system_install)
-      system_install="$2"
+      lxde_system_install="$2"
       shift # past argument
       shift # past value
       ;;
@@ -26,16 +26,11 @@ while [[ $# -gt 0 ]]
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-# if there is only one argument use that as installdir
-if [[ -n $1 ]]; then
-    installdir="$1"
-fi
-
 if [ -z "$installdir" ]; then
     installdir=`pwd -P`
 fi
 
-echo "installing neurodesk in $installdir"
+echo "installdir: $installdir"
 echo "lxde_system_install: $lxde_system_install"
 
 if [ "$lxde_system_install" = "true" ]; then
