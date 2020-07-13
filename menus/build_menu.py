@@ -30,15 +30,14 @@ def add_menu(name: Text, icon: Text) -> None:
         "Icon": icon,
         "Type": "Directory",
     }
-    directories_path = "./menus/desktop-directories"
+    directories_path = "./desktop-directories"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
     directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
     # Add entry to `.menu` file
-    print('attempting to create Pathlib Path:')
-    menu_path = Path("./menus/vnm-applications.menu")
+    menu_path = Path("./vnm-applications.menu")
     with open(menu_path, "r") as xml_file:
         s = xml_file.read()
     s = re.sub(r"\s+(?=<)", "", s)
@@ -102,7 +101,7 @@ def add_app(
         "Categories": category,
         "Terminal": str(terminal).lower(),
     }
-    applications_path = "./menu/applications"
+    applications_path = "./applications"
     desktop_path = Path(
         f"{applications_path}/vnm-{name.lower().replace(' ', '-')}.desktop"
     )
