@@ -31,6 +31,8 @@ def add_menu(name: Text, icon: Text) -> None:
         "Type": "Directory",
     }
     directories_path = "./menus/desktop-directories"
+    if not os.path.exists(directories_path):
+        os.makedirs(directories_path)
     directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
