@@ -51,8 +51,8 @@ if [ "$lxde_system_install" = "true" ]; then
 
     ln -s ${installdir}/menus/vnm-neuroimaging.directory /usr/share/desktop-directories/
     ln -s ${installdir}/fetch_and_run.sh /usr/share/
-
-    # Build the menu
-    cd ${installdir}/menus
-    python3 build_menu.py
 fi
+
+# Build the menu
+cd ${installdir}/menus
+python3 build_menu.py
