@@ -37,6 +37,7 @@ def add_menu(name: Text, icon: Text) -> None:
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
     # Add entry to `.menu` file
+    print('attempting to create Pathlib Path:')
     menu_path = Path("./menus/vnm-applications.menu")
     with open(menu_path, "r") as xml_file:
         s = xml_file.read()
