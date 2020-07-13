@@ -39,7 +39,7 @@ if [ "$lxde_system_install" = "true" ]; then
     ln -s ${installdir}/menus/icons/* /root/.config/lxpanel/LXDE/icons/
     chmod 644 /root/.config/lxpanel/LXDE/icons/*
 
-    # Main-menu config. Add Menu changes to vnm-applications.menu
+    # Main-menu config. Add Menu changes to lxde-applications.menu
     # sed '/PATTERN/ a <LINE-TO-BE-ADDED>' FILE.txt
     cp /etc/xdg/menus/lxde-applications.menu /etc/xdg/menus/lxde-applications.menu2
     sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu2 > /etc/xdg/menus/lxde-applications.menu
