@@ -30,6 +30,17 @@
             }
         }
     },
+    "ASHS": {
+        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
+        "apps": {
+            "ashs 2.0.0": {
+                "version": "2.0.0",
+                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
+                "exec": "bash /usr/share/fetch_and_run.sh ashs 2.0.0 20200713",
+                "comment": "Install ashs 2.0.0",
+                "terminal": true
+        }
+    },
     "Convert3D": {
         "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
