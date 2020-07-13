@@ -39,6 +39,7 @@
                 "exec": "bash /usr/share/fetch_and_run.sh ashs 2.0.0 20200713",
                 "comment": "Install ashs 2.0.0",
                 "terminal": true
+            }
         }
     },
     "Convert3D": {
