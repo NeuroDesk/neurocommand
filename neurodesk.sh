@@ -33,6 +33,11 @@ fi
 echo "installdir: $installdir"
 echo "lxde_system_install: $lxde_system_install"
 
+# Build the menu
+cd ${installdir}/menus
+python3 build_menu.py
+
+
 if [ "$lxde_system_install" = "true" ]; then
     echo "replacing system files!"
     mkdir -p /root/.config/lxpanel/LXDE/icons
@@ -51,8 +56,7 @@ if [ "$lxde_system_install" = "true" ]; then
 
     ln -s ${installdir}/menus/vnm-neuroimaging.directory /usr/share/desktop-directories/
     ln -s ${installdir}/fetch_and_run.sh /usr/share/
+    ln -s ${installdir}/menus/desktop-directories/* /usr/share/desktop-directories/
+    ln -s ${installdir}/menus/applications/* /usr/share/applications
 fi
 
-# Build the menu
-cd ${installdir}/menus
-python3 build_menu.py
