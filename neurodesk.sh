@@ -38,23 +38,23 @@ python3 build_menu.py
 
 if [ "$lxde_system_install" = "true" ]; then
     echo "doing lxde_system_install replacing system files!"
-    mkdir -p /root/.config/lxpanel/LXDE/icons
-    ln -s ${installdir}/menus/icons/* /root/.config/lxpanel/LXDE/icons/
-    chmod 644 /root/.config/lxpanel/LXDE/icons/*
 
     # Main-menu config. Add Menu changes to lxde-applications.menu
     # sed '/PATTERN/ a <LINE-TO-BE-ADDED>' FILE.txt
-    cp /etc/xdg/menus/lxde-applications.menu /etc/xdg/menus/lxde-applications.menu2
-    sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu2 > /etc/xdg/menus/lxde-applications.menu
-    rm /etc/xdg/menus/lxde-applications.menu2
-
-    ln -s ${installdir}/menus/vnm-applications.menu /etc/xdg/menus/
-
+    sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu > ${installdir}/menus/lxde-applications.menu
+    rm /etc/xdg/menus/lxde-applications.menu
+    ln -s ${installdir}/menus/lxde-applications.menu /etc/xdg/menus/
     chmod 644 /etc/xdg/menus/lxde-applications.menu
 
-    ln -s ${installdir}/menus/vnm-neuroimaging.directory /usr/share/desktop-directories/
-    ln -s ${installdir}/fetch_and_run.sh /usr/share/
-    ln -s ${installdir}/menus/desktop-directories/* /usr/share/desktop-directories/
-    ln -s ${installdir}/menus/applications/* /usr/share/applications
+    ln -s ${installdir}/menus/vnm-applications.menu /etc/xdg/menus/
+    chmod 644 /etc/xdg/menus/vnm-applications.menu
+
+    cp /usr/share/desktop-directories/* ${installdir}/menus/desktop-directories/
+    rm -rf /usr/share/desktop-directories/
+    ln -s ${installdir}/menus/desktop-directories/ /usr/share/desktop-directories/
+
+    cp /usr/share/applications/* ${installdir}/menus/applications/
+    rm -rf /usr/share/applications/
+    ln -s ${installdir}/menus/applications/ /usr/share/applications
 fi
 
