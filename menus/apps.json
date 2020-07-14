@@ -2,84 +2,72 @@
     "afni": {
         "apps": {
             "afni 20.1.18": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             }
         }
     },
     "ants": {
         "apps": {
             "ants 2.3.4": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             },
             "ants 2.3.1": {
-                "version": "20200701",
-                "exec": ""
+                "version": "20200701"
             }
         }
     },
     "ashs": {
         "apps": {
             "ashs 2.0.0": {
-                "version": "20200714",
-                "exec": ""
+                "version": "20200714"
             }
         }
     },
     "convert3D": {
         "apps": {
             "convert3D 1.0.0": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             }
         }
     },
     "freesurfer": {
         "apps": {
             "freesurfer 7.1.0": {
-                "version": "20200708",
-                "exec": ""
+                "version": "20200708"
             }
         }
     },
     "fsl": {
         "apps": {
             "fsl 6.0.3": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             },
             "fsl 6.0.2": {
-                "version": "20200701",
-                "exec": ""
+                "version": "20200701"
             },
             "fsl 6.0.1": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             }
         }
     },
     "itksnap": {
         "apps": {
             "itksnap 3.8.0": {
-                "version": "20200702",
-                "exec": "itksnap /root/MRI-crop/MRIcrop-orig.gipl"
+                "version": "20200702"
             }
         }
     },
     "minc": {
         "apps": {
             "minc 1.9.17": {
-                "version": "20200702",
-                "exec": ""
+                "version": "20200702"
             }
         }
     },
     "mrtrix3": {
         "apps": {
             "mrtrix3 3.0.0": {
-                "version": "20200709",
-                "exec": ""
+                "version": "20200709"
             }
         }
     }
