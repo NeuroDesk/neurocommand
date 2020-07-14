@@ -1,130 +1,86 @@
 {
-    "AFNI": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
+    "afni": {
         "apps": {
             "afni 20.1.18": {
-                "version": "20.1.18",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh afni 20.1.18 20200702",
-                "comment": "Install afni 20.1.18",
-                "terminal": true
+                "version": "20200702",
+                "exec": ""
             }
         }
     },
-    "ANTS": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
+    "ants": {
         "apps": {
-            "ants 2.3.1": {
-                "version": "2.3.1",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh ants 2.3.1 20200701",
-                "comment": "Install ants 2.3.1",
-                "terminal": true
-            },
             "ants 2.3.4": {
-                "version": "2.3.4",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh ants 2.3.4 20200702",
-                "comment": "Install ants 2.3.4",
-                "terminal": true
+                "version": "20200702",
+                "exec": ""
+            },
+            "ants 2.3.1": {
+                "version": "20200701",
+                "exec": ""
             }
         }
     },
     "ASHS": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "ashs 2.0.0": {
-                "version": "2.0.0",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh ashs 2.0.0 20200713",
-                "comment": "Install ashs 2.0.0",
-                "terminal": true
+                "version": "20200713",
+                "exec": ""
             }
         }
     },
     "Convert3D": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "Convert3D 1.0.0": {
-                "version": "1.0.0",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh convert3d 1.0.0 20200702",
-                "comment": "Install Convert3D 1.0.0",
-                "terminal": true
+                "version": "20200702",
+                "exec": ""
             }
         }
     },
     "FreeSurfer": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "FreeSurfer 7.1.0": {
-                "version": "7.1.0",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh freesurfer 7.1.0 20200708",
-                "comment": "Install FreeSurfer 7.1.0",
-                "terminal": true
+                "version": "20200708",
+                "exec": ""
             }
         }
     },
     "FSL": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
-            "FSL 6.0.1": {
-                "version": "6.0.1",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh fsl 6.0.1 20200702",
-                "comment": "Install fsl 6.0.1",
-                "terminal": true
+            "FSL 6.0.3": {
+                "version": "20200702",
+                "exec": ""
             },
             "FSL 6.0.2": {
-                "version": "6.0.2",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh fsl 6.0.2 20200701",
-                "comment": "Install fsl 6.0.2",
-                "terminal": true
+                "version": "20200701",
+                "exec": ""
             },
-            "FSL 6.0.3": {
-                "version": "6.0.3",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh fsl 6.0.3 20200702",
-                "comment": "Install fsl 6.0.3",
-                "terminal": true
+            "FSL 6.0.1": {
+                "version": "20200702",
+                "exec": ""
             }
         }
     },
     "ITK snap": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "ITK snap 3.8.0": {
-                "version": "3.8.0",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh itksnap 3.8.0 20200702 itksnap /root/MRI-crop/MRIcrop-orig.gipl",
-                "comment": "Start ITK snap 3.8.0",
-                "terminal": true
+                "version": "20200702",
+                "exec": "itksnap /root/MRI-crop/MRIcrop-orig.gipl",
+                "terminal": false
             }
         }
     },
     "MINC": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "MINC 1.9.17": {
-                "version": "1.9.17",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh minc 1.9.17 20200702",
-                "comment": "Start minc 1.9.17",
-                "terminal": true
+                "version": "20200702",
+                "exec": ""
             }
         }
     },
     "MRTrix3": {
-        "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
         "apps": {
             "mrtrix3 3.0.0": {
-                "version": "3.0.0",
-                "icon": "/root/.config/lxpanel/LXDE/icons/vnm.png",
-                "exec": "bash /usr/share/fetch_and_run.sh mrtrix3 3.0.0 20200709",
-                "comment": "Start mrtrix3 3.0.0",
-                "terminal": true
+                "version": "20200709",
+                "exec": ""
             }
         }
     }

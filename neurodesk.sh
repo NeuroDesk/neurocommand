@@ -31,15 +31,13 @@ if [ -z "$installdir" ]; then
 fi
 
 echo "installdir: $installdir"
-echo "lxde_system_install: $lxde_system_install"
 
 # Build the menu
 cd ${installdir}/menus
 python3 build_menu.py
 
-
 if [ "$lxde_system_install" = "true" ]; then
-    echo "replacing system files!"
+    echo "doing lxde_system_install replacing system files!"
     mkdir -p /root/.config/lxpanel/LXDE/icons
     ln -s ${installdir}/menus/icons/* /root/.config/lxpanel/LXDE/icons/
     chmod 644 /root/.config/lxpanel/LXDE/icons/*

@@ -9,25 +9,22 @@ import xml.etree.ElementTree as et
 from xml.dom import minidom
 
 
-def add_menu(name: Text, icon: Text) -> None:
+def add_menu(name: Text) -> None:
     """Add a submenu to 'VNM' menu.
 
     Parameters
     ----------
     name : Text
         The name of the submenu.
-    icon : Text
-        The path to the submenu icon inside the image (Starting with
-        ``'/root/.config/lxpanel/LXDE/icons/'`` for Xfce).
     """
     print(f"Adding submenu for '{name}'")
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
     entry["Desktop Entry"] = {
-        "Name": name.capitalize(),
-        "Comment": name.capitalize(),
-        "Icon": icon,
+        "Name": name,
+        "Comment": name,
+        "Icon": Path(Path.cwd(),"icons",f"{name}.png"),
         "Type": "Directory",
     }
     directories_path = "./desktop-directories"
@@ -63,9 +60,7 @@ def add_menu(name: Text, icon: Text) -> None:
 def add_app(
     name: Text,
     version: Text,
-    icon: Text,
     exec: Text,
-    comment: Text,
     category: Text,
     terminal: bool = True,
 ) -> None:
@@ -77,13 +72,8 @@ def add_app(
         The name of the application.
     version : Text
         The version of the applciation.
-    icon : Text
-        The path to the icon of the application (Starting with
-        ``'/root/.config/lxpanel/LXDE/icons/'`` for Xfce).
     exec : Text
         The command to run when clicking on the application item.
-    comment : Text
-        The tooltip to show when hovering the item.
     category : Text
         The category defining the menu in which the application must be added.
     terminal : bool
@@ -92,11 +82,11 @@ def add_app(
     entry = configparser.ConfigParser()
     entry.optionxform = str
     entry["Desktop Entry"] = {
-        "Name": name.capitalize(),
-        "GenericName": name.capitalize(),
-        "Comment": comment,
-        "Exec": exec,
-        "Icon": icon,
+        "Name": name,
+        "GenericName": name,
+        "Comment": "Install " + name,
+        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + name + " " + version + " " + exec,
+        "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
         "Type": "Application",
         "Categories": category,
         "Terminal": str(terminal).lower(),
@@ -119,7 +109,7 @@ if __name__ == "__main__":
 
     for menu_name, menu_data in menu_entries.items():
         # Add submenu
-        add_menu(menu_name, menu_data["icon"])
+        add_menu(menu_name)
         for app_name, app_data in menu_data.get("apps", {}).items():
             # Add application
             add_app(app_name, category=menu_name.replace(" ", "-"), **app_data)
