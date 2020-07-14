@@ -23,7 +23,7 @@ if [ -d /vnm/ ]; then
 fi
 
 CONTAINER_PATH=$PATH_PREFIX/containers
-MODS_PATH=$PATH_PREFIX/modules
+MODS_PATH=$CONTAINER_PATH/modules
 module use ${MODS_PATH}
 
 if [ ! -d ${CONTAINER_PATH} ]; then
