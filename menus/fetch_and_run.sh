@@ -13,9 +13,25 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
 # Initialize lmod
 source /usr/share/module.sh
-CONTAINER_PATH=$PWD/containers
-MODS_PATH=$PWD/modules
+
+if [ -d /vnm/ ]; then
+    PATH_PREFIX=/vnm
+    else
+    PATH_PREFIX=$PWD
+fi
+
+CONTAINER_PATH=$PATH_PREFIX/containers
+MODS_PATH=$PATH_PREFIX/modules
 module use ${MODS_PATH}
+
+if [ ! -d ${CONTAINER_PATH} ]; then
+    mkdir -p CONTAINER_PATH
+fi
+
+if [ ! -d ${MODS_PATH} ]; then
+    mkdir -p MODS_PATH
+fi
+
 
 # Check if the module is installed
 module avail -t 2>&1 | grep -i ${MOD_NAME}/${MOD_VERS}
