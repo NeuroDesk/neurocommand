@@ -14,6 +14,11 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
+      -vnm|--vnm_system_install)
+      vnm_system_install="$2"
+      shift # past argument
+      shift # past value
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -67,3 +72,14 @@ if [ "$lxde_system_install" = "true" ]; then
     ln -s ${installdir}/menus/applications/ /usr/share/applications
 fi
 
+if [ "$vnm_system_install" = "true" ]; then
+    if [ ! -d /vnm/containers ]; then
+        mkdir /vnm/containers
+    fi
+    ln -s /vnm/containers .
+
+        if [ ! -d /vnm/modules ]; then
+        mkdir /vnm/modules
+    fi
+    ln -s /vnm/modules .
+fi

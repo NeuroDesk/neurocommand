@@ -13,15 +13,15 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
 # Initialize lmod
 source /usr/share/module.sh
-VNM_PATH=/vnm
-MODS_PATH=${VNM_PATH}/modules
+CONTAINER_PATH=$PWD/containers
+MODS_PATH=$PWD/modules
 module use ${MODS_PATH}
 
 # Check if the module is installed
 module avail -t 2>&1 | grep -i ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
     CWD=$PWD
-    cd ${VNM_PATH}
+    cd ${CONTAINER_PATH}
     git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
     ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
@@ -33,7 +33,7 @@ echo "Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module loa
 if [ $# -le 3 ]; then
     source ~/.bashrc
     clear
-    CONTAINER_FILE_NAME=${VNM_PATH}/${IMG_NAME}/${IMG_NAME}.sif
+    CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
         echo "attempting to start shell in container ${IMG_NAME}"
         singularity shell ${CONTAINER_FILE_NAME}
