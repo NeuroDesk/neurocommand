@@ -15,8 +15,10 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 source /usr/share/module.sh
 
 if [ -d /vnm/ ]; then
+    echo "found /vnm - assuming install in vnm container"
     PATH_PREFIX=/vnm
     else
+    echo "install in $PWD"
     PATH_PREFIX=$PWD
 fi
 
@@ -25,11 +27,13 @@ MODS_PATH=$PATH_PREFIX/modules
 module use ${MODS_PATH}
 
 if [ ! -d ${CONTAINER_PATH} ]; then
-    mkdir -p CONTAINER_PATH
+    echo "creating ${CONTAINER_PATH}"
+    mkdir -p ${CONTAINER_PATH}
 fi
 
 if [ ! -d ${MODS_PATH} ]; then
-    mkdir -p MODS_PATH
+    echo "creating ${MODS_PATH}"
+    mkdir -p ${MODS_PATH}
 fi
 
 
