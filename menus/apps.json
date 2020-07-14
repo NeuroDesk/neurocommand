@@ -23,9 +23,9 @@
             }
         }
     },
-    "convert3D": {
+    "convert3d": {
         "apps": {
-            "convert3D 1.0.0": {
+            "convert3d 1.0.0": {
                 "version": "20200702"
             }
         }
