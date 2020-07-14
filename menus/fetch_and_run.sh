@@ -60,10 +60,10 @@ if [ $# -le 3 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "the container you have has a bug and needs to be updated on your system. To trigger a reinstall, run:"
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "rm -rf /vnm/${MOD_NAME}_${MOD_VERS}_*" 
-        echo "rm -rf /vnm/modules/${MOD_NAME}/${MOD_VERS}" 
+        echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
+        echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
         read -p "Would you like me to do this for you (Y for yes)? " choice 
-        [[ "$choice" == [Yy]* ]] && rm -rf /vnm/${MOD_NAME}_${MOD_VERS}_* && rm -rf /vnm/modules/${MOD_NAME}/${MOD_VERS}
+        [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
     fi
 
 fi
