@@ -36,6 +36,9 @@ echo "installdir: $installdir"
 cd ${installdir}/menus
 python3 build_menu.py
 
+sed "/Comment/ a Icon=${installdir}/menus/icons/vnm.png" ${installdir}/menus/vnm-neuroimaging.directory > ${installdir}/menus/desktop-directories/vnm-neuroimaging.directory
+
+
 if [ "$lxde_system_install" = "true" ]; then
     echo "doing lxde_system_install replacing system files!"
 
