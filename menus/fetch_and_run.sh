@@ -32,7 +32,6 @@ echo "Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module loa
 # If no additional command -> Give user a shell in the image
 if [ $# -le 3 ]; then
     source ~/.bashrc
-    clear
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
         echo "attempting to start shell in container ${IMG_NAME}"
