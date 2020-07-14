@@ -49,12 +49,18 @@ if [ "$lxde_system_install" = "true" ]; then
     ln -s ${installdir}/menus/vnm-applications.menu /etc/xdg/menus/
     chmod 644 /etc/xdg/menus/vnm-applications.menu
 
-    cp /usr/share/desktop-directories/* ${installdir}/menus/desktop-directories/
-    rm -rf /usr/share/desktop-directories/
-    ln -s ${installdir}/menus/desktop-directories/ /usr/share/desktop-directories/
+    if [ -d /usr/share/desktop-directories/ ]
+    then
+        cp /usr/share/desktop-directories/* ${installdir}/menus/desktop-directories/
+        rm -rf /usr/share/desktop-directories/
+    fi
+    ln -s ${installdir}/menus/desktop-directories/ /usr/share/
 
-    cp /usr/share/applications/* ${installdir}/menus/applications/
-    rm -rf /usr/share/applications/
+    if [ -d /usr/share/applications/ ]
+    then
+        cp /usr/share/applications/* ${installdir}/menus/applications/
+        rm -rf /usr/share/applications/
+    fi
     ln -s ${installdir}/menus/applications/ /usr/share/applications
 fi
 
