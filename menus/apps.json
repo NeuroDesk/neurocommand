@@ -63,8 +63,7 @@
         "apps": {
             "itksnap 3.8.0": {
                 "version": "20200702",
-                "exec": "itksnap /root/MRI-crop/MRIcrop-orig.gipl",
-                "terminal": false
+                "exec": "itksnap /root/MRI-crop/MRIcrop-orig.gipl"
             }
         }
     },
