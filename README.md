@@ -7,11 +7,13 @@ export SINGULARITY_BINDPATH="/gpfs1/,/QRISdata,/data"
 ```
 
 ## This gives you a list of available images:
+https://github.com/NeuroDesk/caid/packages
 ```
 curl -s https://github.com/Neurodesk/caid/packages | sed -n "s/^.*\/NeuroDesk\/caid\/packages\/.*>\(.*\)\(\S*\)<\/a>$/\1/p"
 ```
 
 ## This gives you a list of all tested images available in neurodesk:
+https://github.com/NeuroDesk/neurodesk/blob/master/menus/apps.json
 ```
 curl -s https://raw.githubusercontent.com/NeuroDesk/neurodesk/master/menus/apps.json
 ```
