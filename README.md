@@ -8,8 +8,14 @@ export SINGULARITY_BINDPATH="/gpfs1/,/QRISdata,/data"
 
 ## This gives you a list of available images:
 ```
-curl -s https://raw.githubusercontent.com/NeuroDesk/caid/master/Containerlist.md
+curl -s https://github.com/Neurodesk/caid/packages | sed -n "s/^.*\/NeuroDesk\/caid\/packages\/.*>\(.*\)\(\S*\)<\/a>$/\1/p"
 ```
+
+## This gives you a list of all tested images available in neurodesk:
+```
+curl -s https://raw.githubusercontent.com/NeuroDesk/neurodesk/master/menus/apps.json
+```
+
 
 ## clone repo into a folder with the intented image name
 ```
