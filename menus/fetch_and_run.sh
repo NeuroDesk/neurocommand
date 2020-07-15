@@ -12,7 +12,7 @@ MOD_DATE=$3
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
 # Initialize lmod
-# source /usr/share/module.sh
+source /usr/share/module.sh
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
 PATH_PREFIX=$PWD
