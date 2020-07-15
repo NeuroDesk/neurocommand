@@ -59,8 +59,8 @@ if [ $# -le 3 ]; then
     source ~/.bashrc
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
-        echo "attempting to start shell in container ${IMG_NAME}"
-        singularity shell ${CONTAINER_FILE_NAME}
+        echo "attempting to launch container ${IMG_NAME}"
+        .${CONTAINER_FILE_NAME}
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "the container you have has a bug and needs to be updated on your system. To trigger a reinstall, run:"
