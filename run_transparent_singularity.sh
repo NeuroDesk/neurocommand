@@ -44,7 +44,9 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "Select the container you would like to install:"
       echo "-----------------------------------------------"
-      curl -s https://raw.githubusercontent.com/NeuroDesk/caid/master/Containerlist.md
+      echo "full list: https://github.com/NeuroDesk/caid/packages"
+      echo "singularity container cache list:"
+      curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
       echo " "
       echo "-----------------------------------------------"
       echo "usage examples:"
@@ -65,8 +67,14 @@ if [ -z "$container" ]; then
       echo "-------------------------------------"
 fi
 
-# default is docker-hub
-storage="docker"
+# check if image is available on singularity cache:
+if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
+   echo "$container exists in the cache"
+   container_pull="curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
+else
+   echo "$container does not exist in cache - loading from docker!"
+   storage="docker"
+fi
 
 if [ "$storage" = "docker" ]; then
    echo "pulling from docker cloud"
