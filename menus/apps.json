@@ -19,7 +19,7 @@
     "ashs": {
         "apps": {
             "ashs 2.0.0": {
-                "version": "20200714"
+                "version": "20200715"
             },
             "ashs 1.0.0": {
                 "version": "20200715"
@@ -36,7 +36,7 @@
     "freesurfer": {
         "apps": {
             "freesurfer 7.1.0": {
-                "version": "20200708"
+                "version": "20200716"
             }
         }
     },
