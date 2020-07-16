@@ -35,16 +35,6 @@ def add_app(
     log[" " + name + " " + version + " "] = { }
     with open('log.txt', "a",) as log_file:
         log.write(log_file, space_around_delimiters=False)
-    
-    cache = configparser.ConfigParser()
-    cache.optionxform = str
-    cache["command"] = {
-        "singularity pull docker": "://vnmd/" + name.replace(" ", "_") + ":" + version,
-        "source ": "../setupSwift.sh",
-        "swift upload singularityImages ": name.replace(" ", "_") + "_" + version + ".sif --segment-size 1073741824",
-        "rm ": name.replace(" ", "_") + "_" + version + ".sif"  }
-    with open('cache_raw.sh', "a",) as cache_script:
-        cache.write(cache_script, space_around_delimiters=False)
 
 
 if __name__ == "__main__":
