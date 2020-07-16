@@ -71,6 +71,8 @@ def add_app(
         The name of the application.
     version : Text
         The version of the applciation.
+    exec : Text
+        The command to run when clicking on the application item.
     category : Text
         The category defining the menu in which the application must be added.
     terminal : bool
@@ -82,7 +84,7 @@ def add_app(
         "Name": name,
         "GenericName": name,
         "Comment": "Install " + name + " " + version,
-        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + name + " " + version,
+        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + name + " " + version  + " " + exec,
         "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
         "Type": "Application",
         "Categories": category,
