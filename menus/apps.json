@@ -77,7 +77,7 @@
                 "version": "20200702",
                 "exec": ""
             },
-            "minc 1.9.17 register": {
+            "minc-register 1.9.17 ": {
                 "version": "20200702",
                 "exec": "register"
             }
