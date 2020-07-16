@@ -60,8 +60,8 @@ def add_menu(name: Text) -> None:
 def add_app(
     name: Text,
     version: Text,
-    exec: Text = "",
     category: Text,
+    exec: Text = "",
     terminal: bool = True,
 ) -> None:
     """Add an application to the menu.
