@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+# set -e
 
 #cleanup swift storage first
 curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
@@ -12,7 +12,15 @@ source ../setupSwift.sh
 echo "deleting ..."
 swift delete singularityImages ${containerName}
 
+#tagging release
+buildDate=`date +%Y%m%d`
+echo "tagging this release as ${buildDate}"
+# git tag -d ${buildDate}
+# git push --delete origin ${buildDate}
+git tag ${buildDate}
+git push origin --tags
 
+#creating logfile with available containers
 cd menus
 rm log.txt
 python write_log.py
@@ -20,6 +28,9 @@ cd ..
 
 sed -i '/^$/d' menus/log.txt
 
+clear
+
+#reading logfile, checking if containers exist in cache and if not pull and store on swift 
 while read p; do
   name=`echo "$p" | cut -d ' ' -f 2`
   echo $name
@@ -40,9 +51,5 @@ while read p; do
 done <menus/log.txt
 
 
-#tagging release
-export buildDate=`date +%Y%m%d`
-echo "tagging this release as ${buildDate}"
-git tag buildDate
-git push origin --tags
+
 
