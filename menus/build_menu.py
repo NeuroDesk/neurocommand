@@ -81,7 +81,7 @@ def add_app(
     entry["Desktop Entry"] = {
         "Name": name,
         "GenericName": name,
-        "Comment": "Install " + name,
+        "Comment": "Install " + name + " " + version,
         "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + name + " " + version,
         "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
         "Type": "Application",
