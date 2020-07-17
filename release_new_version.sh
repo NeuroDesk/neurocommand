@@ -43,9 +43,17 @@ while read p; do
     echo "${name}_${version}_${buildDate}.sif exists"
   else
     echo "${name}_${version}_${buildDate}.sif does not exist yet - caching from docker and storing on swift!"
+    echo "sudo rm -rf /tmp/*"
+    sudo rm -rf /tmp/*
+    echo "sudo rm -rf /storage/scratch/singularity_steffen_home/.singularity/cache"
+    sudo rm -rf /storage/scratch/singularity_steffen_home/.singularity/cache
+    echo "singularity pull docker://vnmd/${name}_${version}:${buildDate}"
     singularity pull docker://vnmd/${name}_${version}:${buildDate}
+    echo "source ../setupSwift.sh"
     source ../setupSwift.sh
+    echo "swift upload singularityImages ${name}_${version}_${buildDate}.sif --segment-size 1073741824"
     swift upload singularityImages ${name}_${version}_${buildDate}.sif --segment-size 1073741824
+    echo "rm ${name}_${version}_${buildDate}.sif"
     rm ${name}_${version}_${buildDate}.sif
   fi
 done <menus/log.txt
