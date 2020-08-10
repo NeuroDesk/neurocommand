@@ -14,6 +14,11 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
+      -all|--install_all_containers)
+      install_all_containers="$2"
+      shift # past argument
+      shift # past value
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -65,4 +70,8 @@ if [ "$lxde_system_install" = "true" ]; then
         rm -rf /usr/share/applications/
     fi
     ln -s ${installdir}/menus/applications/ /usr/share/applications
+fi
+
+if [ "$install_all_containers" = "true" ]; then
+    echo "downloading all containers now!"
 fi

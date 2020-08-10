@@ -1,47 +1,20 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
 on:
   push:
     branches: [ master ]
   pull_request:
     branches: [ master ]
 
-env:
-  DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
-  OS_PASSWORD: ${{ secrets.SWIFT_OS_PASSWORD }}
-  OS_PROJECT_ID: ${{ secrets.SWIFT_OS_PROJECT_ID }}
-  OS_USERNAME: ${{ secrets.SWIFT_OS_USERNAME }}
-  OS_APPLICATION_CREDENTIAL_ID: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_ID }}
-  OS_APPLICATION_CREDENTIAL_SECRET: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_SECRET }}
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   build-singularity:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set environment variables
-        run: |
-          APPLICATION="itksnap_3.8.0"
-          BUILDDATE="20200720"
-          echo "::set-env name=APPLICATION::$APPLICATION"
-          echo "::set-env name=BUILDDATE::$BUILDDATE"
-      - name: Log into Github Package registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-      - name: Log into Dockerhub (optional)
-        if: env.DOCKERHUB_ORG != ''
-        run: echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-      - name: Free up disk space on runner (optional)
-        if: env.APPLICATION == 'fsl' || env.APPLICATION == 'mrtrix3'
-        run: bash .github/workflows/free-up-space.sh
       - uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name : Run singularity builder + Upload singularity registry
+      - name : Check if singularity cache file exists
         run: | 
-          IMAGELIST=(itksnap_3.8.0 julia_1.4.1)
-          for IMAGENAME in "${IMAGELIST[@]}"; do /bin/bash .github/workflows/build-singularity.sh $IMAGENAME; done
+          IMAGELIST=(itksnap_3.8.0_20200714 afni_20.1.18_20200702)
+          for IMAGENAME in "${IMAGELIST[@]}"; do /bin/bash .github/workflows/check-singularity.sh
