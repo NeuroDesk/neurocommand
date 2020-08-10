@@ -12,10 +12,10 @@ else
     echo "[DEBUG] IMAGEID: $IMAGEID"
 
     echo "[DEBUG] Pulling latest build of singularity ..."
-    docker pull $REGISTRY/singularity
+    docker pull singularity
     echo "[DEBUG] Build singularity container ..."
-    echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity build /home/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
-    docker run -v $HOME:/home $REGISTRY/singularity build "/home/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
+    echo "[DEBUG] docker run -v $HOME:/home singularity build /home/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
+    docker run -v $HOME:/home singularity build "/home/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
 
     echo "[DEBUG] Configure for SWIFT storage"
     pip install python-swiftclient python-keystoneclient
