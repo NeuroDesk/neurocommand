@@ -17,4 +17,4 @@ jobs:
       - name : Check if singularity cache file exists
         run: | 
           IMAGELIST=(itksnap_3.8.0_20200714 afni_20.1.18_20200702)
-          for IMAGENAME in "${IMAGELIST[@]}"; do /bin/bash .github/workflows/check-singularity.sh $IMAGENAME
+          for IMAGENAME in "${IMAGELIST[@]}"; do /bin/bash .github/workflows/check-singularity.sh $IMAGENAME; done
