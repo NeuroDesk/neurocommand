@@ -1,3 +1,6 @@
+#!/bin/bash
+set -e
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
    do
@@ -55,7 +58,7 @@ if [ "$lxde_system_install" = "true" ]; then
     echo "doing lxde_system_install replacing system files!"
 
     # Main-menu config. Add Menu changes to lxde-applications.menu
-    # sed '/PATTERN/ a <LINE-TO-BE-ADDED>' FILE.txt
+    # sed '/PATTERN/ a <app-TO-BE-ADDED>' FILE.txt
     sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu > ${installdir}/menus/lxde-applications.menu
     rm /etc/xdg/menus/lxde-applications.menu
     ln -s ${installdir}/menus/lxde-applications.menu /etc/xdg/menus/
@@ -80,5 +83,26 @@ if [ "$lxde_system_install" = "true" ]; then
 fi
 
 if [ "$install_all_containers" = "true" ]; then
+    echo "================================"
     echo "downloading all containers now!"
+    echo "================================"
+    cat ${installdir}/menus/applications/vnm-* | grep Exec > all_execs.sh
+    sed -i 's/Exec=//g' all_execs.sh
+    sed -i 's/fetch_and_run.sh/fetch_containers.sh/g' all_execs.sh
+    while IFS="" read -r p || [ -n "$p" ]
+    do
+    date
+    echo "executing " $p
+    if $p ; then
+        echo "Container successfully installed"
+        echo "-------------------------------------------------------------------------------------"
+        date
+    else
+        echo "======================================="
+        echo "!!!!!!! Container install failed !!!!!!"
+        echo "======================================="
+        date
+        exit
+    fi
+    done < all_execs.sh
 fi
