@@ -81,11 +81,20 @@ def add_app(
     """
     entry = configparser.ConfigParser()
     entry.optionxform = str
+
+    if exec:
+        # assumes that executable name is before the dash and after the dash the normal container name and version
+        container_name = name.split("-")[1]
+        exec_name = name.split("-")[0] + " " + name.split("-")[1].split(" ")[1]
+    else: 
+        container_name = name
+        exec_name = name
+
     entry["Desktop Entry"] = {
-        "Name": name,
-        "GenericName": name,
-        "Comment": "Install " + name + " " + version,
-        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + name + " " + version  + " " + exec,
+        "Name": exec_name,
+        "GenericName": exec_name,
+        "Comment": name + " " + version,
+        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + container_name + " " + version  + " " + exec,
         "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
         "Type": "Application",
         "Categories": category,

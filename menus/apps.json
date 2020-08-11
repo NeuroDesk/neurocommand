@@ -65,7 +65,7 @@
     },
     "itksnap": {
         "apps": {
-            "itksnap 3.8.0": {
+            "itksnap-itksnap 3.8.0": {
                 "version": "20200714",
                 "exec": "itksnap /MRIcrop-orig.gipl"
             }
@@ -77,7 +77,7 @@
                 "version": "20200702",
                 "exec": ""
             },
-            "minc-register 1.9.17 ": {
+            "register-minc 1.9.17": {
                 "version": "20200702",
                 "exec": "register"
             }
