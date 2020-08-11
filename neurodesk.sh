@@ -39,9 +39,14 @@ echo "installdir: $installdir"
 
 # Build the menu
 cd ${installdir}/menus
+
+# start fresh from template:
+cp vnm-applications.menu.template vnm-applications.menu
+
 python3 build_menu.py
 
 sed "/Comment/ a Icon=${installdir}/menus/icons/vnm.png" ${installdir}/menus/vnm-neuroimaging.directory > ${installdir}/menus/desktop-directories/vnm-neuroimaging.directory
+
 
 
 if [ "$lxde_system_install" = "true" ]; then
