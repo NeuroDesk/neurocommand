@@ -7,3 +7,4 @@ menus/applications
 menus/desktop-directories
 lxde-applications.menu
 vnm-applications.menu
+menus/all_execs.sh
