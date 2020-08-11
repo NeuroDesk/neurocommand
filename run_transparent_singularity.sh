@@ -5,7 +5,7 @@
 # for downloading images from nectar it needs curl installed
 #11/07/2018
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
-# set -e
+set -e
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
