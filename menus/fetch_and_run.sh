@@ -23,7 +23,7 @@ if [ -d /vnm/ ]; then
 fi
 
 if [ -d /data/lfs2/neurodesk ]; then
-    echo "found /data/lfs2/neurodesk - system wide install"
+    echo "found /data/lfs2/neurodesk - system wide install at CAI"
     PATH_PREFIX=/data/lfs2/neurodesk
 fi
 
@@ -58,8 +58,9 @@ echo "Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module loa
 if [ $# -le 3 ]; then
     source ~/.bashrc
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
+    echo "looking for ${CONTAINER_FILE_NAME}"
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
-        echo "attempting to launch container ${IMG_NAME}"
+        echo "found it. Attempting to launch container ${IMG_NAME}"
         singularity shell ${CONTAINER_FILE_NAME}
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
