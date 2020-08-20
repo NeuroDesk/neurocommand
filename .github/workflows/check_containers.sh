@@ -5,7 +5,6 @@ echo "checking if containers are built"
 
 #creating logfile with available containers
 cd menus
-rm log.txt
 python write_log.py
 
 # remove empty lines
