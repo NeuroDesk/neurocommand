@@ -85,7 +85,7 @@
     },
     "mrtrix3": {
         "apps": {
-            "mrtrix3 3.0.0": {
+            "mrtrix3 3.0.1": {
                 "version": "20200811",
                 "exec": ""
             }
