@@ -4,7 +4,7 @@
 echo "checking if containers are built"
 
 #creating logfile with available containers
-cd ../../menus
+cd menus
 rm log.txt
 python write_log.py
 
@@ -38,5 +38,5 @@ buildDate=`date +%Y%m%d`
 echo "tagging this release as ${buildDate}"
 # git tag -d ${buildDate}
 # git push --delete origin ${buildDate}
-git tag ${buildDate}
-git push origin --tags
+git tag ${buildDate} --force
+git push origin --tags --force
