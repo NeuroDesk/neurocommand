@@ -14,7 +14,6 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: 3.8
-      - name : Check if singularity cache file exists
+      - name : Check if singularity cache files exists
         run: | 
-          IMAGELIST=(itksnap_3.8.0_20200714 ants_2.3.4_20200720)
-          for IMAGENAME in "${IMAGELIST[@]}"; do /bin/bash .github/workflows/check-singularity.sh $IMAGENAME; done
+          /bin/bash .github/workflows/check_containers.sh

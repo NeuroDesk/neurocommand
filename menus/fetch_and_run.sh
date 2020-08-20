@@ -26,11 +26,12 @@ if [ $# -le 3 ]; then
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
     echo "looking for ${CONTAINER_FILE_NAME}"
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
-        echo "found it. Attempting to launch container ${IMG_NAME}"
+        clear
+        echo "Attempting to launch container ${IMG_NAME}"
         singularity shell ${CONTAINER_FILE_NAME}
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "the container you have has a bug and needs to be updated on your system. To trigger a reinstall, run:"
+        echo "the container ${CONTAINER_FILE_NAME} has a bug and needs to be updated on your system. To trigger a reinstall, run:"
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
         echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
