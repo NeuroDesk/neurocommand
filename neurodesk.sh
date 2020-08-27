@@ -45,8 +45,8 @@ cd ${installdir}/menus
 
 # start fresh from template:
 cp vnm-applications.menu.template vnm-applications.menu
-rm applications/vnm-*
-rm desktop-directories/vnm-*
+[ -d applications ] && rm applications/vnm-*
+[ -d desktop-directories ] && rm desktop-directories/vnm-*
 
 python3 build_menu.py
 
