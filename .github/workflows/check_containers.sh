@@ -31,6 +31,11 @@ do
     fi
 done < log.txt
 
+# check if the installer runs:
+cd ..
+bash neurodesk.sh --lxde_system_install true
+
+
 # if it got until here, all containers exist - we can tag a new release:
 #tagging release
 buildDate=`date +%Y%m%d`
