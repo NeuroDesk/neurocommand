@@ -60,7 +60,8 @@ if [ "$lxde_system_install" = "true" ]; then
     # Main-menu config. Add Menu changes to lxde-applications.menu
     # sed '/PATTERN/ a <app-TO-BE-ADDED>' FILE.txt
     sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu > ${installdir}/menus/lxde-applications.menu
-    rm /etc/xdg/menus/lxde-applications.menu
+    # Backup lxde-applications.menu
+    mv /etc/xdg/menus/lxde-applications.menu /etc/xdg/menus/lxde-applications.menu.BAK
     ln -s ${installdir}/menus/lxde-applications.menu /etc/xdg/menus/
     chmod 644 /etc/xdg/menus/lxde-applications.menu
 
