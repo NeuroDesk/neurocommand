@@ -4,6 +4,10 @@
             "afni 20.2.13": {
                 "version": "20200820",
                 "exec": ""
+            },
+            "suma-afni 20.2.13": {
+                "version": "20200820",
+                "exec": "suma"
             }
         }
     },
@@ -36,6 +40,10 @@
             "freesurfer 7.1.0": {
                 "version": "20200811",
                 "exec": ""
+            },
+            "freeview-freesurfer 7.1.0": {
+                "version": "20200811",
+                "exec": "freeview"
             }
         }
     },
@@ -44,6 +52,10 @@
             "fsl 6.0.3": {
                 "version": "20200820",
                 "exec": ""
+            },
+            "fsleyes-fsl 6.0.3": {
+                "version": "20200820",
+                "exec": "fsleyes"
             }
         }
     },
