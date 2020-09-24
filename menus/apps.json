@@ -37,12 +37,12 @@
     },
     "freesurfer": {
         "apps": {
-            "freesurfer 7.1.0": {
-                "version": "20200811",
+            "freesurfer 7.1.1": {
+                "version": "20200924",
                 "exec": ""
             },
-            "freeview-freesurfer 7.1.0": {
-                "version": "20200811",
+            "freeview-freesurfer 7.1.1": {
+                "version": "20200924",
                 "exec": "freeview"
             }
         }
