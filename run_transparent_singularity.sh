@@ -76,6 +76,13 @@ else
    storage="docker"
 fi
 
+# check if singularity is installed in the correct version
+singularity_version=`singularity --version`
+if [ "$singularity_version" = "2.6.1-dist" ]; then
+   echo "$singularity_version is not compatible with images in the cache - loading from docker!"
+   storage="docker"
+fi
+
 if [ "$storage" = "docker" ]; then
    echo "pulling from docker cloud"
    containerName="$(cut -d'_' -f1 <<< ${container})"
