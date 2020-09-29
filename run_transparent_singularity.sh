@@ -82,7 +82,7 @@ echo "containerDate: ${containerDate}"
 # if no container extension is given, assume .sif
 if [ "$containerEnding" = "$containerDate" ]; then
    containerEnding="sif"
-   container=${containerName}_${containerVersion}-${containerDate}.${containerEnding}
+   container=${containerName}_${containerVersion}_${containerDate}.${containerEnding}
 fi
 
 echo "containerEnding: ${containerEnding}"
