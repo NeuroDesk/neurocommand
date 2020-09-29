@@ -80,7 +80,7 @@ containerEnding="$(cut -d'.' -f2 <<< ${containerDateAndFileEnding})"
 echo "containerDate: ${containerDate}"
 
 # if no container extension is given, assume .sif
-if [ "$containerEnding" ="$containerDate" ]; then
+if [ "$containerEnding" = "$containerDate" ]; then
    containerEnding="sif"
    container=${containerName}_${containerVersion}-${containerDate}.${containerEnding}
 fi
