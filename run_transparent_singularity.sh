@@ -67,6 +67,25 @@ if [ -z "$container" ]; then
       echo "-------------------------------------"
 fi
 
+containerName="$(cut -d'_' -f1 <<< ${container})"
+echo "containerName: ${containerName}"
+
+containerVersion="$(cut -d'_' -f2 <<< ${container})"
+echo "containerVersion: ${containerVersion}"
+
+containerDateAndFileEnding="$(cut -d'_' -f3 <<< ${container})"
+containerDate="$(cut -d'.' -f1 <<< ${containerDateAndFileEnding})"
+containerEnding="$(cut -d'.' -f2 <<< ${containerDateAndFileEnding})"
+
+echo "containerDate: ${containerDate}"
+echo "containerEnding: ${containerEnding}"
+
+# if no container extension is given, assume .sif
+if [ -z "$containerEnding" ]; then
+   containerEnding=".sif"
+   container=${containerName}_${containerVersion}-${containerDate}.${containerEnding}
+fi
+
 # check if image is available on singularity cache:
 if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
    echo "$container exists in the cache"
@@ -76,15 +95,7 @@ else
    storage="docker"
 fi
 
-containerName="$(cut -d'_' -f1 <<< ${container})"
-echo "containerName: ${containerName}"
 
-containerVersion="$(cut -d'_' -f2 <<< ${container})"
-echo "containerVersion: ${containerVersion}"
-
-containerDateAndFileEnding="$(cut -d'_' -f3 <<< ${container})"
-containerDate="$(cut -d'.' -f1 <<< ${containerDateAndFileEnding})"
-echo "containerDate: ${containerDate}"
 
 # check if singularity is installed in the correct version
 singularity_version=`singularity --version`
@@ -94,6 +105,7 @@ if [ "$singularity_version" = "2.6.1-dist" ]; then
 
    echo "this singularity version needs a different image name:"
    container=${containerName}_${containerVersion}-${containerDate}.simg
+   echo $container
 fi
 
 
