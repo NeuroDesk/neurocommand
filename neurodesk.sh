@@ -107,3 +107,6 @@ if [ "$install_all_containers" = "true" ]; then
     fi
     done < all_execs.sh
 fi
+
+echo "to install all containers, run:"
+echo "./neurodesk.sh --install_all_containers true"
