@@ -85,6 +85,16 @@ if [ "$containerEnding" = "$containerDate" ]; then
    container=${containerName}_${containerVersion}_${containerDate}.${containerEnding}
 fi
 
+# check if singularity is installed in the correct version
+singularity_version=`singularity --version`
+if [ "$singularity_version" = "2.6.1-dist" ]; then
+   echo "$singularity_version need older image format!"
+   containerEnding="simg"
+   echo "this singularity version needs a different image name:"
+   container=${containerName}_${containerVersion}-${containerDate}.simg
+   echo $container
+fi
+
 echo "containerEnding: ${containerEnding}"
 echo "trying if $container exists in the cache"
 
@@ -96,19 +106,6 @@ if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.a
 else
    echo "$container does not exist in cache - loading from docker!"
    storage="docker"
-fi
-
-
-
-# check if singularity is installed in the correct version
-singularity_version=`singularity --version`
-if [ "$singularity_version" = "2.6.1-dist" ]; then
-   echo "$singularity_version is not compatible with images in the cache - loading from docker!"
-   storage="docker"
-
-   echo "this singularity version needs a different image name:"
-   container=${containerName}_${containerVersion}-${containerDate}.simg
-   echo $container
 fi
 
 
