@@ -11,8 +11,7 @@ MOD_DATE=$3
 
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
-# Initialize lmod
-source /usr/share/module.sh
+
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
 export PATH_PREFIX=$PWD
@@ -20,12 +19,16 @@ export PATH_PREFIX=$PWD
 if [ -d /vnm/ ]; then
     echo "found /vnm - assuming install in vnm container"
     export PATH_PREFIX=/vnm
+    # Initialize lmod
+    source /usr/share/module.sh
 fi
 
 if [ -d /data/lfs2/neurodesk ]; then
     echo "found /data/lfs2/neurodesk - system wide install at CAI"
     export PATH_PREFIX=/data/lfs2/neurodesk
 fi
+
+source /etc/profile
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
 export MODS_PATH=$CONTAINER_PATH/modules
