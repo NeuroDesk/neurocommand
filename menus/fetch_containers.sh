@@ -29,6 +29,11 @@ fi
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
 export MODS_PATH=$CONTAINER_PATH/modules
+
+echo "CONTAINER_PATH: $CONTAINER_PATH"
+echo "MODS_PATH: $MODS_PATH"
+
+echo "trying to module use  ${MODS_PATH}"
 module use ${MODS_PATH}
 
 if [ ! -d ${CONTAINER_PATH} ]; then
