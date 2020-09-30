@@ -90,5 +90,13 @@
                 "exec": "mrview"
             }
         }
+    },
+    "tgvqsm": {
+        "apps": {
+            "tgvqsm 1.0.0": {
+                "version": "20200929",
+                "exec": ""
+            }
+        }
     }
 }
