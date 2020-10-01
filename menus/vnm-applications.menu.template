@@ -8,7 +8,7 @@
 	<!-- VNM Neuroimaging submenu -->
 	<Menu>
 		<Name>VNM Neuroimaging</Name>
-		<Directory>vnm-neuroimaging.directory</Directory>
+		<Directory>vnm/vnm-neuroimaging.directory</Directory>
 		<Include>
 			<And>
 				<Category>VNM-Neuroimaging</Category>
