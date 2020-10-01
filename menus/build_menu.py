@@ -27,10 +27,10 @@ def add_menu(name: Text) -> None:
         "Icon": Path(Path.cwd(),"icons",f"{name}.png"),
         "Type": "Directory",
     }
-    directories_path = "./desktop-directories"
+    directories_path = "./desktop-directories/vnm"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
-    directory_name = f"vnm/vnm-{name.lower().replace(' ', '-')}.directory"
+    directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
     # Add entry to `.menu` file
@@ -44,7 +44,7 @@ def add_menu(name: Text) -> None:
     name_el = et.SubElement(sub_el, "Name")
     name_el.text = name.capitalize()
     dir_el = et.SubElement(sub_el, "Directory")
-    dir_el.text = directory_name
+    dir_el.text = "vnm/"+directory_name
     include_el = et.SubElement(sub_el, "Include")
     and_el = et.SubElement(include_el, "And")
     cat_el = et.SubElement(and_el, "Category")
