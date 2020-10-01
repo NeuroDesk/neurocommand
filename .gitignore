@@ -10,3 +10,5 @@ vnm-applications.menu
 menus/all_execs.sh
 log_*
 .vscode
+*.ini
+local
