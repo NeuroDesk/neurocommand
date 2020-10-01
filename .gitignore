@@ -12,3 +12,4 @@ log_*
 .vscode
 *.ini
 local
+__pycache__
