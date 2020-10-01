@@ -27,7 +27,7 @@ def add_menu(name: Text) -> None:
         "Icon": Path(Path.cwd(),"icons",f"{name}.png"),
         "Type": "Directory",
     }
-    directories_path = "./desktop-directories/vnm"
+    directories_path = "./desktop-directories"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
     directory_name = f"vnm/vnm-{name.lower().replace(' ', '-')}.directory"
