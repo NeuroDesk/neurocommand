@@ -10,6 +10,7 @@ import xml.etree.ElementTree as et
 import logging
 import shutil
 import stat
+import re
 
 import menus.build_menu
 
@@ -25,11 +26,6 @@ signal.signal(signal.SIGINT, signal_handler)
 # Global settings
 CONFIG_FILE = 'neurodesk.ini'
 DEFAULT_PATHS = {}
-# DEFAULT_PATHS['lxde'] = {
-#     'appmenu': '/etc/xdg/menus/lxde-applications.menu',
-#     'appdir': '/usr/share/applications/',
-#     'deskdir': '/usr/share/desktop-directories/'
-# }
 DEFAULT_PATHS['lxde'] = {
     'appmenu': '/etc/xdg/menus/lxde-applications.menu',
     'appdir': '/usr/share/applications/',
@@ -46,6 +42,23 @@ def get_args():
     return args
 
 
+def vnm_xml(xml, newxml):
+    oldtag = '<DefaultMergeDirs/>'
+    newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
+    with open(xml, "r") as fh:
+        lines = fh.readlines()
+    with open(newxml, "w") as fh:
+        for line in lines:
+            fh.write(re.sub(f'{oldtag}', f'{oldtag}\n\n\t{newtag}', line))
+    try:
+        et.parse(newxml)
+    except et.ParseError:
+        logging.error(f'InvalidXMLError with appmenu [{newxml}]')
+        logging.error('Exiting ...')
+        sys.exit()
+
+
+
 if __name__ == "__main__":
 
     if os.name != 'posix':
@@ -56,7 +69,6 @@ if __name__ == "__main__":
 
     config['vnm'] = {'installdir': '', 'appmenu': '', 'appdir': '', 'deskdir': ''}
     config.read(CONFIG_FILE)
-
 
     if args.lxde:
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
@@ -113,6 +125,11 @@ if __name__ == "__main__":
         config.write(fh)
 
     appmenu_template = Path('menus/vnm-applications.menu.template').resolve(strict=True)
+    new_appmenu = installdir/appmenu.name
     vnm_appmenu = installdir/'vnm-applications.menu'
+    vnm_deskdir = installdir/'desktop-directories'
+    vnm_appdir = installdir/'applications'
 
     shutil.copy2(appmenu_template, vnm_appmenu)
+    vnm_xml(appmenu, new_appmenu)
+

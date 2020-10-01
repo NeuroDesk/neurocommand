@@ -7,7 +7,7 @@ GetINISection() {
   local filename="$1"
   local section="$2"
 
-  array_name="cfg${section}"
+  array_name="${section}"
   declare -g -A ${array_name}
   eval $(awk -v configuration_array="${array_name}" \
              -v members="$section" \
@@ -36,15 +36,15 @@ filename="neurodesk.ini"
 section="vnm"
 GetINISection "$filename" "$section"
 
-echo "[${section}]"
-for key in $(eval echo $\{'!'cfg${section}[@]\}); do
-        echo -e "  ${key} = $(eval echo $\{cfg${section}[$key]\}) (access it using $(echo $\{cfg${section}[$key]\}))"
-done
 
-# mv /etc/xdg/menus/lxde-applications.menu /etc/xdg/menus/lxde-applications.menu.BAK
-# ln -s ${installdir}/menus/lxde-applications.menu /etc/xdg/menus/
-# chmod 644 /etc/xdg/menus/lxde-applications.menu
 
-# ln -s ${installdir}/menus/vnm-applications.menu /etc/xdg/menus/
-# chmod 644 /etc/xdg/menus/vnm-applications.menu
+appmenudir="$(dirname "${vnm[appmenu]}")"
 
+echo "WARNING: Will modify/replace system files!!!"
+echo "sed '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' ${vnm[appmenu]} > ${vnm[installdir]}/lxde-applications.menu"
+echo "mv ${vnm[appmenu]} ${vnm[appmenu]}.BAK"
+echo "ln -s ${vnm[installdir]}/menus/lxde-applications.menu $appmenudir"
+echo "ln -s ${vnm[installdir]}/menus/vnm-applications.menu $appmenudir"
+
+echo "cp ${vnm[installdir]}/menus/desktop-directories/vnm-*.directory ${vnm[deskdir]}"
+echo "cp ${vnm[installdir]}/menus/desktop-directories/vnm-*.desktop ${vnm[appdir]}"
