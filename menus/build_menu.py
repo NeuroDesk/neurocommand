@@ -111,9 +111,9 @@ def add_app(
     os.chmod(desktop_path, 0o644)
 
 
-if __name__ == "__main__":
+def apps_from_json(appsjson):
     # Read applications file
-    with open(Path("./apps.json"), "r") as json_file:
+    with open(Path(appsjson), "r") as json_file:
         menu_entries = json.load(json_file)
 
     for menu_name, menu_data in menu_entries.items():
@@ -122,3 +122,7 @@ if __name__ == "__main__":
         for app_name, app_data in menu_data.get("apps", {}).items():
             # Add application
             add_app(app_name, category=menu_name.replace(" ", "-"), **app_data)
+
+
+if __name__ == "__main__":
+    apps_from_json("./apps.json")
