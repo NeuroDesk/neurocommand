@@ -84,7 +84,7 @@ if [ "$lxde_system_install" = "true" ]; then
 fi
 
 
-cat ${installdir}/menus/applications/vnm-* | grep Exec > all_execs.sh
+cat ${installdir}/menus/applications/vnm/vnm-* | grep Exec > all_execs.sh
 sed -i 's/Exec=//g' all_execs.sh
 sed -i 's/fetch_and_run.sh/fetch_containers.sh/g' all_execs.sh
 
