@@ -12,7 +12,6 @@ import shutil
 import stat
 import re
 
-import menus.build_menu
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
