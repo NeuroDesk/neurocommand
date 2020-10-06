@@ -7,7 +7,7 @@ import re
 from typing import Text
 import xml.etree.ElementTree as et
 from xml.dom import minidom
-
+import logging
 
 def add_menu(installdir: Path, name: Text) -> None:
     """Add a submenu to 'VNM' menu.
@@ -17,24 +17,24 @@ def add_menu(installdir: Path, name: Text) -> None:
     name : Text
         The name of the submenu.
     """
-    print(f"Adding submenu for '{name}'")
+    logging.info(f"Adding submenu for '{name}'")
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
     entry["Desktop Entry"] = {
         "Name": name,
         "Comment": name,
-        "Icon": Path(Path.cwd(),"icons",f"{name}.png"),
+        "Icon": installdir/f"icons/{name}.png",
         "Type": "Directory",
     }
-    directories_path = "./desktop-directories/vnm"
+    directories_path = installdir/"desktop-directories/vnm"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
     directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
     # Add entry to `.menu` file
-    menu_path = Path("./vnm-applications.menu")
+    menu_path = installdir/"vnm-applications.menu"
     with open(menu_path, "r") as xml_file:
         s = xml_file.read()
     s = re.sub(r"\s+(?=<)", "", s)
@@ -126,6 +126,8 @@ def apps_from_json(installdir: Path, appsjson: Path) -> None:
 
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO, format='%(message)s')
+
     installdir = Path.cwd().resolve(strict=True)
     appsjson = Path('apps.json').resolve(strict=True)
     apps_from_json(installdir, appsjson)
