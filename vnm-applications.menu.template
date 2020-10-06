@@ -1,0 +1,20 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+	<Name>Applications</Name>
+
+	<!-- VNM Neuroimaging submenu -->
+	<Menu>
+		<Name>VNM Neuroimaging</Name>
+		<Directory>vnm/vnm-neuroimaging.directory</Directory>
+		<Include>
+			<And>
+				<Category>VNM-Neuroimaging</Category>
+			</And>
+		</Include>
+
+	</Menu> <!-- End VNM Neuroimaging -->
+
+</Menu> <!-- End Applications -->

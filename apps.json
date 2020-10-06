@@ -1,0 +1,102 @@
+{
+    "afni": {
+        "apps": {
+            "afni 20.2.13": {
+                "version": "20200820",
+                "exec": ""
+            },
+            "suma-afni 20.2.13": {
+                "version": "20200820",
+                "exec": "suma"
+            }
+        }
+    },
+    "ants": {
+        "apps": {
+            "ants 2.3.4": {
+                "version": "20200811",
+                "exec": ""
+            }
+        }
+    },
+    "ashs": {
+        "apps": {
+            "ashs 2.0.0": {
+                "version": "20200820",
+                "exec": ""
+            }
+        }
+    },
+    "convert3d": {
+        "apps": {
+            "convert3d 1.0.0": {
+                "version": "20200811",
+                "exec": ""
+            }
+        }
+    },
+    "freesurfer": {
+        "apps": {
+            "freesurfer 7.1.1": {
+                "version": "20200924",
+                "exec": ""
+            },
+            "freeview-freesurfer 7.1.1": {
+                "version": "20200924",
+                "exec": "freeview"
+            }
+        }
+    },
+    "fsl": {
+        "apps": {
+            "fsl 6.0.3": {
+                "version": "20200820",
+                "exec": ""
+            },
+            "fsleyes-fsl 6.0.3": {
+                "version": "20200820",
+                "exec": "fsleyes"
+            }
+        }
+    },
+    "itksnap": {
+        "apps": {
+            "itksnap-itksnap 3.8.0": {
+                "version": "20200811",
+                "exec": "itksnap /MRIcrop-orig.gipl"
+            }
+        }
+    },
+    "minc": {
+        "apps": {
+            "minc 1.9.17": {
+                "version": "20200811",
+                "exec": ""
+            },
+            "register-minc 1.9.17": {
+                "version": "20200811",
+                "exec": "register"
+            }
+        }
+    },
+    "mrtrix3": {
+        "apps": {
+            "mrtrix3 3.0.1": {
+                "version": "20200811",
+                "exec": ""
+            },
+            "mrview-mrtrix3 3.0.1": {
+                "version": "20200811",
+                "exec": "mrview"
+            }
+        }
+    },
+    "tgvqsm": {
+        "apps": {
+            "tgvqsm 1.0.0": {
+                "version": "20200929",
+                "exec": ""
+            }
+        }
+    }
+}
