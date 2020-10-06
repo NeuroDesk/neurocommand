@@ -12,13 +12,14 @@ import shutil
 import stat
 import re
 
+from menus.build_menu import apps_from_json
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
 
 # CLI signal handler for safe Ctrl-C
 def signal_handler(signal, frame):
-        print('\nExiting ...')
+        logging.info('\nExiting ...')
         sys.exit(0)
 signal.signal(signal.SIGINT, signal_handler)
 
@@ -41,7 +42,7 @@ def get_args():
     return args
 
 
-def vnm_xml(xml, newxml):
+def vnm_xml(xml: Path, newxml: Path) -> None:
     oldtag = '<DefaultMergeDirs/>'
     newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
     with open(xml, "r") as fh:
@@ -132,3 +133,5 @@ if __name__ == "__main__":
     shutil.copy2(appmenu_template, vnm_appmenu)
     vnm_xml(appmenu, new_appmenu)
 
+    appsjson = Path('menus/apps.json').resolve(strict=True)
+    apps_from_json(installdir, appsjson)

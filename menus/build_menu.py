@@ -9,7 +9,7 @@ import xml.etree.ElementTree as et
 from xml.dom import minidom
 
 
-def add_menu(name: Text) -> None:
+def add_menu(installdir: Path, name: Text) -> None:
     """Add a submenu to 'VNM' menu.
 
     Parameters
@@ -58,6 +58,7 @@ def add_menu(name: Text) -> None:
 
 
 def add_app(
+    installdir: Path,
     name: Text,
     version: Text,
     category: Text,
@@ -111,18 +112,20 @@ def add_app(
     os.chmod(desktop_path, 0o644)
 
 
-def apps_from_json(appsjson):
+def apps_from_json(installdir: Path, appsjson: Path) -> None:
     # Read applications file
-    with open(Path(appsjson), "r") as json_file:
+    with open(appsjson, "r") as json_file:
         menu_entries = json.load(json_file)
 
     for menu_name, menu_data in menu_entries.items():
         # Add submenu
-        add_menu(menu_name)
+        add_menu(installdir, menu_name)
         for app_name, app_data in menu_data.get("apps", {}).items():
             # Add application
-            add_app(app_name, category=menu_name.replace(" ", "-"), **app_data)
+            add_app(installdir, app_name, category=menu_name.replace(" ", "-"), **app_data)
 
 
 if __name__ == "__main__":
-    apps_from_json("./apps.json")
+    installdir = Path.cwd().resolve(strict=True)
+    appsjson = Path('apps.json').resolve(strict=True)
+    apps_from_json(installdir, appsjson)
