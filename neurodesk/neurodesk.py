@@ -12,7 +12,7 @@ import shutil
 import stat
 import re
 
-from build_menu import apps_from_json
+from neurodesk.build_menu import apps_from_json
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)

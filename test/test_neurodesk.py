@@ -1,6 +1,6 @@
 
 
-from neurodesk import vnm_xml
+from neurodesk.neurodesk import vnm_xml
 
 import xml.etree.ElementTree as et
 import filecmp
