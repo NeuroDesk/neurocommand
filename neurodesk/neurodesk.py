@@ -12,7 +12,7 @@ import shutil
 import stat
 import re
 
-from menus.build_menu import apps_from_json
+from build_menu import apps_from_json
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -24,7 +24,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 # Global settings
-CONFIG_FILE = 'neurodesk.ini'
+CONFIG_FILE = 'config.ini'
 DEFAULT_PATHS = {}
 DEFAULT_PATHS['lxde'] = {
     'appmenu': '/etc/xdg/menus/lxde-applications.menu',
@@ -59,8 +59,7 @@ def vnm_xml(xml: Path, newxml: Path) -> None:
 
 
 
-if __name__ == "__main__":
-
+def main():
     if os.name != 'posix':
         raise OSError
 
@@ -124,7 +123,7 @@ if __name__ == "__main__":
     with open(CONFIG_FILE, 'w+') as fh:
         config.write(fh)
 
-    appmenu_template = Path('menus/vnm-applications.menu.template').resolve(strict=True)
+    appmenu_template = Path('neurodesk/vnm-applications.menu.template').resolve(strict=True)
     new_appmenu = installdir/appmenu.name
     vnm_appmenu = installdir/'vnm-applications.menu'
     vnm_deskdir = installdir/'desktop-directories'
@@ -133,5 +132,9 @@ if __name__ == "__main__":
     shutil.copy2(appmenu_template, vnm_appmenu)
     vnm_xml(appmenu, new_appmenu)
 
-    appsjson = Path('menus/apps.json').resolve(strict=True)
+    appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     apps_from_json(installdir, appsjson)
+
+
+if __name__ == "__main__":
+    main()
