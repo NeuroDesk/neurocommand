@@ -101,7 +101,7 @@ def add_app(
         "Categories": category,
         "Terminal": str(terminal).lower(),
     }
-    applications_path = "./applications/vnm"
+    applications_path = installdir/"applications/vnm"
     if not os.path.exists(applications_path):
         os.makedirs(applications_path)
     desktop_path = Path(
