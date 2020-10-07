@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source utils/configparser.sh
+source neurodesk/configparser.sh
 
 echo "WARNING: Will modify/replace system files!!!"
 read -p "Press enter to continue ..."
