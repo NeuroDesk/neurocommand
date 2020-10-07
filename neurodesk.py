@@ -12,7 +12,7 @@ import shutil
 import stat
 import re
 
-from neurodesk.build_menu import apps_from_json
+from build_menu import apps_from_json
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -35,9 +35,7 @@ DEFAULT_PATHS['lxde'] = {
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action="store_true", default=False)
-    parser.add_argument('--installdir', action="store_true", default=False)
     parser.add_argument('--lxde', action="store_true", default=False)
-    parser.add_argument('--root', action="store_true", default=False)
     args = parser.parse_args()
     return args
 
