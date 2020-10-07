@@ -41,13 +41,28 @@ def get_args():
 
 
 def vnm_xml(xml: Path, newxml: Path) -> None:
-    oldtag = '<DefaultMergeDirs/>'
+    oldtag = '<Menu>'
     newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
+    tagcount = 0
+    replace = True
+    
     with open(xml, "r") as fh:
         lines = fh.readlines()
+        for line in lines:
+            if newtag in line:
+                replace = False
+                break
+
     with open(newxml, "w") as fh:
         for line in lines:
-            fh.write(re.sub(f'{oldtag}', f'{oldtag}\n\n\t{newtag}', line))
+            if replace and oldtag in line:
+                tagcount += 1
+                if tagcount == 2:
+                    fh.write(re.sub(f'{oldtag}', f'{newtag}\n\n\t{oldtag}', line))
+                else:
+                    fh.write(line)
+            else:
+                fh.write(line)
     try:
         et.parse(newxml)
     except et.ParseError:
