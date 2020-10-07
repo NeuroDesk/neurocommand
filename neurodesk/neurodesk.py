@@ -104,7 +104,8 @@ def main():
         sys.exit()
     
     try:
-        appmenu = Path(config['vnm']['appmenu']).expanduser().resolve(strict=True)
+        appmenu = Path(config['vnm']['appmenu']).expanduser()
+        appmenu.resolve(strict=True)
         et.parse(appmenu)
     except et.ParseError:
         logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
@@ -112,7 +113,8 @@ def main():
         sys.exit()
 
     try:
-        appdir = Path(config['vnm']['appdir']).expanduser().resolve(strict=True)
+        appdir = Path(config['vnm']['appdir']).expanduser()
+        appdir.resolve(strict=True)
         next(appdir.glob("*.desktop"))
     except StopIteration:
         logging.error(f'.desktop files not found in appdir [{appdir}]')
@@ -120,7 +122,8 @@ def main():
         sys.exit()
 
     try:
-        deskdir = Path(config['vnm']['deskdir']).expanduser().resolve(strict=True)
+        deskdir = Path(config['vnm']['deskdir']).expanduser()
+        deskdir.resolve(strict=True)
         next(deskdir.glob("*.directory"))
     except StopIteration:
         logging.error(f'.directory files not found in deskdir [{deskdir}]')
