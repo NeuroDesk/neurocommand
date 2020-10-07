@@ -95,7 +95,7 @@ def add_app(
         "Name": exec_name,
         "GenericName": exec_name,
         "Comment": name + " " + version,
-        "Exec": "bash " + str(Path(Path.cwd(),"fetch_and_run.sh"))  + " " + container_name + " " + version  + " " + exec,
+        "Exec": "bash " + str(installdir/"fetch_and_run.sh")  + " " + container_name + " " + version  + " " + exec,
         "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
         "Type": "Application",
         "Categories": category,

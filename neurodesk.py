@@ -146,6 +146,7 @@ def main():
     vnm_appdir = installdir/'applications'
 
     shutil.copy2(appmenu_template, vnm_appmenu)
+    shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     vnm_xml(appmenu, new_appmenu)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
