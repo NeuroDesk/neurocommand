@@ -30,3 +30,12 @@ GetINISection() {
                     }' ${filename}
         )
 }
+
+rm_symlink(){ [ ! -L "$1" ] || rm -v "$1"; }
+
+filename="config.ini"
+section="vnm"
+GetINISection "$filename" "$section"
+
+appmenudir="$(dirname "${vnm[appmenu]}")"
+appmenufile="$(basename "${vnm[appmenu]}")"
