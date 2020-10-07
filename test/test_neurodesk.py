@@ -9,7 +9,7 @@ import pytest
 
 def test_vnm_xml(tmp_path):
     # Read in test applications.menu (for lxde)
-    xml = Path('test/lxde-applications.menu').resolve(strict=True)
+    xml = Path('test/test_lxde-applications.menu').resolve(strict=True)
     et.parse(xml)
 
     newxml = tmp_path/'new.xml'
