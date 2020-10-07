@@ -13,6 +13,7 @@ import stat
 import re
 
 from neurodesk.build_menu import apps_from_json
+from neurodesk.build_menu import add_vnm_menu
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -58,7 +59,7 @@ def vnm_xml(xml: Path, newxml: Path) -> None:
             if replace and oldtag in line:
                 tagcount += 1
                 if tagcount == 2:
-                    fh.write(re.sub(f'{oldtag}', f'{newtag}\n\n\t{oldtag}', line))
+                    fh.write(re.sub(f'{oldtag}', f'{newtag}\n\t{oldtag}', line))
                 else:
                     fh.write(line)
             else:
@@ -149,6 +150,7 @@ def main():
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     apps_from_json(installdir, appsjson)
+    add_vnm_menu(installdir, 'VNM Neuroimaging')
 
 
 if __name__ == "__main__":
