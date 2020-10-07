@@ -12,7 +12,7 @@ import shutil
 import stat
 import re
 
-from build_menu import apps_from_json
+from neurodesk.build_menu import apps_from_json
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -79,9 +79,9 @@ def main():
         config['vnm']['deskdir'] = input(f'deskdir: ') or config['vnm']['deskdir']
 
     try:
-        installdir = Path(config['vnm']['installdir']).resolve(strict=False)
+        installdir = Path(config['vnm']['installdir']).expanduser().resolve(strict=False)
         if installdir == Path.cwd():
-            installdir = Path.cwd()/'local'
+            installdir = Path.cwd()/'installdir'
         installdir.mkdir(parents=True, exist_ok=True)
     except PermissionError:
         logging.error(f'PermissionError creating installdir [{installdir}]')
@@ -89,16 +89,15 @@ def main():
         sys.exit()
     
     try:
-        appmenu = Path(config['vnm']['appmenu']).resolve(strict=True)
+        appmenu = Path(config['vnm']['appmenu']).expanduser().resolve(strict=True)
         et.parse(appmenu)
     except et.ParseError:
         logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
         logging.error('Exiting ...')
         sys.exit()
 
-    appdir = Path(config['vnm']['appdir']).resolve(strict=True)
     try:
-        appdir = Path(config['vnm']['appdir']).resolve(strict=True)
+        appdir = Path(config['vnm']['appdir']).expanduser().resolve(strict=True)
         next(appdir.glob("*.desktop"))
     except StopIteration:
         logging.error(f'.desktop files not found in appdir [{appdir}]')
@@ -106,7 +105,7 @@ def main():
         sys.exit()
 
     try:
-        deskdir = Path(config['vnm']['deskdir']).resolve(strict=True)
+        deskdir = Path(config['vnm']['deskdir']).expanduser().resolve(strict=True)
         next(deskdir.glob("*.directory"))
     except StopIteration:
         logging.error(f'.directory files not found in deskdir [{deskdir}]')
