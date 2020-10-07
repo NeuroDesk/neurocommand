@@ -27,7 +27,7 @@ def add_menu(installdir: Path, name: Text) -> None:
         "Icon": installdir/f"icons/{name}.png",
         "Type": "Directory",
     }
-    directories_path = installdir/"desktop-directories/vnm"
+    directories_path = installdir/"desktop-directories"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
     directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
@@ -101,7 +101,7 @@ def add_app(
         "Categories": category,
         "Terminal": str(terminal).lower(),
     }
-    applications_path = installdir/"applications/vnm"
+    applications_path = installdir/"applications"
     if not os.path.exists(applications_path):
         os.makedirs(applications_path)
     desktop_path = Path(
