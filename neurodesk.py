@@ -80,7 +80,7 @@ def main():
     args = get_args()
     config = configparser.ConfigParser()
 
-    config['vnm'] = {'installdir': '', 'appmenu': '', 'appdir': '', 'deskdir': ''}
+    config['vnm'] = {'installdir': '', 'appmenu': '', 'appdir': '', 'deskdir': '', 'edit': ''}
     config.read(CONFIG_FILE)
 
     if args.lxde:
@@ -89,10 +89,15 @@ def main():
         config['vnm']['deskdir'] = DEFAULT_PATHS['lxde']['deskdir']
 
     if args.init:
-        config['vnm']['installdir'] = input(f'installdir: ') or config['vnm']['installdir']
-        config['vnm']['appmenu'] = input(f'appmenu: ') or config['vnm']['appmenu']
-        config['vnm']['appdir'] = input(f'appdir: ') or config['vnm']['appdir']
-        config['vnm']['deskdir'] = input(f'deskdir: ') or config['vnm']['deskdir']
+        config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
+        config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
+        config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
+        config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
+        while not config['vnm']['edit'] in ["y", "n"]:
+            config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
+            config['vnm']['edit'] = config['vnm']['edit'].lower()
+            if config['vnm']['edit'] == "":
+                config['vnm']['edit'] = "y"
 
     try:
         installdir = Path(config['vnm']['installdir']).expanduser().resolve(strict=False)
@@ -104,17 +109,14 @@ def main():
         logging.error('Exiting ...')
         sys.exit()
     
-    if config['vnm']['appmenu']:
-        try:
-            appmenu = Path(config['vnm']['appmenu']).expanduser()
-            appmenu.resolve(strict=True)
-            et.parse(appmenu)
-        except et.ParseError:
-            logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
-            logging.error('Exiting ...')
-            sys.exit()
-    else:
-        appmenu = ""
+    try:
+        appmenu = Path(config['vnm']['appmenu']).expanduser()
+        appmenu.resolve(strict=True)
+        et.parse(appmenu)
+    except et.ParseError:
+        logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
+        logging.error('Exiting ...')
+        sys.exit()
 
     try:
         appdir = Path(config['vnm']['appdir']).expanduser()
