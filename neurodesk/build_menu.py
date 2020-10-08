@@ -24,7 +24,7 @@ def add_menu(installdir: Path, name: Text) -> None:
     entry["Desktop Entry"] = {
         "Name": name,
         "Comment": name,
-        "Icon": installdir/f"icons/{name}.png",
+        "Icon": installdir/f"icons/{name.split()[0]}.png",
         "Type": "Directory",
     }
     directories_path = installdir/"desktop-directories"
@@ -96,7 +96,7 @@ def add_app(
         "GenericName": exec_name,
         "Comment": name + " " + version,
         "Exec": "bash " + str(installdir/"fetch_and_run.sh")  + " " + container_name + " " + version  + " " + exec,
-        "Icon": Path(Path.cwd(),"icons",f"{name.split()[0]}.png"),
+        "Icon": installdir/f"icons/{name.split()[0]}.png",
         "Type": "Application",
         "Categories": category,
         "Terminal": str(terminal).lower(),

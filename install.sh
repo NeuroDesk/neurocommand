@@ -4,7 +4,9 @@ source neurodesk/configparser.sh
 
 echo "WARNING: Will modify/replace system files!!!"
 read -p "Press enter to continue ..."
-mv -vn ${vnm[appmenu]} ${vnm[appmenu]}.BAK
+if [ -n "${vnm[appmenu]}" ]; then
+    mv -vn ${vnm[appmenu]} ${vnm[appmenu]}.BAK
+fi
 ln -s ${vnm[installdir]}/$appmenufile $appmenudir
 ln -s ${vnm[installdir]}/vnm-applications.menu $appmenudir
 
