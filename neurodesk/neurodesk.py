@@ -158,6 +158,7 @@ def main():
         vnm_xml(appmenu, new_appmenu)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
+    (installdir/'icons').mkdir(exist_ok=True)
     apps_from_json(installdir, appsjson)
     add_vnm_menu(installdir, 'VNM Neuroimaging')
 
