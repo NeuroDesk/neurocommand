@@ -104,14 +104,17 @@ def main():
         logging.error('Exiting ...')
         sys.exit()
     
-    try:
-        appmenu = Path(config['vnm']['appmenu']).expanduser()
-        appmenu.resolve(strict=True)
-        et.parse(appmenu)
-    except et.ParseError:
-        logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
-        logging.error('Exiting ...')
-        sys.exit()
+    if config['vnm']['appmenu']:
+        try:
+            appmenu = Path(config['vnm']['appmenu']).expanduser()
+            appmenu.resolve(strict=True)
+            et.parse(appmenu)
+        except et.ParseError:
+            logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
+            logging.error('Exiting ...')
+            sys.exit()
+    else:
+        appmenu = ""
 
     try:
         appdir = Path(config['vnm']['appdir']).expanduser()
@@ -140,14 +143,17 @@ def main():
         config.write(fh)
 
     appmenu_template = Path('neurodesk/vnm-applications.menu.template').resolve(strict=True)
-    new_appmenu = installdir/appmenu.name
+    
     vnm_appmenu = installdir/'vnm-applications.menu'
     vnm_deskdir = installdir/'desktop-directories'
     vnm_appdir = installdir/'applications'
 
     shutil.copy2(appmenu_template, vnm_appmenu)
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
-    vnm_xml(appmenu, new_appmenu)
+
+    if appmenu:
+        new_appmenu = installdir/appmenu.name
+        vnm_xml(appmenu, new_appmenu)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     apps_from_json(installdir, appsjson)
