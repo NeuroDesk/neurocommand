@@ -7,6 +7,7 @@ import re
 from typing import Text
 import xml.etree.ElementTree as et
 from xml.dom import minidom
+import shutil
 import logging
 
 def add_menu(installdir: Path, name: Text) -> None:
@@ -18,13 +19,21 @@ def add_menu(installdir: Path, name: Text) -> None:
         The name of the submenu.
     """
     logging.info(f"Adding submenu for '{name}'")
+    icon_path = installdir/f"icons/{name.split()[0]}.png"
+    icon_src = (Path(__file__).parent/'icons'/icon_path.name)
+    try:
+        shutil.copy2(icon_src, icon_path)
+    except FileNotFoundError:
+        logging.warning(f'{icon_src} not found')
+        icon_src = (Path(__file__).parent/'icons/vnm.png')
+        shutil.copy2(icon_src, icon_path)
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
     entry["Desktop Entry"] = {
         "Name": name,
         "Comment": name,
-        "Icon": installdir/f"icons/{name.split()[0]}.png",
+        "Icon": icon_path,
         "Type": "Directory",
     }
     directories_path = installdir/"desktop-directories"
@@ -80,6 +89,14 @@ def add_app(
     terminal : bool
         If set to ``True``, a terminal is opened when launching the application.
     """
+    icon_path = installdir/f"icons/{name.split()[0]}.png"
+    icon_src = Path(__file__).parent/'icons'/icon_path.name
+    try:
+        shutil.copy2(icon_src, icon_path)
+    except FileNotFoundError:
+        logging.warning(f'{icon_src} not found')
+        icon_src = (Path(__file__).parent/'icons/vnm.png')
+        shutil.copy2(icon_src, icon_path)
     entry = configparser.ConfigParser()
     entry.optionxform = str
 
@@ -96,7 +113,7 @@ def add_app(
         "GenericName": exec_name,
         "Comment": name + " " + version,
         "Exec": "bash " + str(installdir/"fetch_and_run.sh")  + " " + container_name + " " + version  + " " + exec,
-        "Icon": installdir/f"icons/{name.split()[0]}.png",
+        "Icon": icon_path,
         "Type": "Application",
         "Categories": category,
         "Terminal": str(terminal).lower(),
@@ -127,13 +144,17 @@ def apps_from_json(installdir: Path, appsjson: Path) -> None:
 
 def add_vnm_menu(installdir: Path, name: Text) -> None:
     logging.info(f"Adding submenu for '{name}'")
+    icon_path = installdir/"icons/vnm.png"
+    icon_src = Path(__file__).parent/'icons/vnm.png'
+    shutil.copy2(icon_src, icon_path)
+
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
     entry["Desktop Entry"] = {
         "Name": name,
         "Comment": name,
-        "Icon": installdir/f"icons/{name}.png",
+        "Icon": icon_path,
         "Type": "Directory",
     }
     directories_path = installdir/"desktop-directories"
