@@ -13,3 +13,4 @@ log_*
 *.ini
 local
 __pycache__
+*.pyc
