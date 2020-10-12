@@ -80,15 +80,29 @@ def main():
     args = get_args()
     config = configparser.ConfigParser()
 
-    config['vnm'] = {'installdir': '', 'appmenu': '', 'appdir': '', 'deskdir': '', 'edit': ''}
+    config['vnm'] = {
+        'deskenv': '', 
+        'installdir': '',
+        'appmenu': '',
+        'appdir': '',
+        'deskdir': '', 
+        'edit': ''
+        }
     config.read(CONFIG_FILE)
 
     if args.lxde:
+        config['vnm']['deskenv'] = 'lxde'
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
         config['vnm']['appdir'] = DEFAULT_PATHS['lxde']['appdir']
         config['vnm']['deskdir'] = DEFAULT_PATHS['lxde']['deskdir']
 
     if args.init:
+        while not config['vnm']['deskenv'] in ["lxde", "mate"]:
+            config['vnm']['deskenv'] = input(f'Desktop Env? [lxde/mate]: ')
+            config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
+            if config['vnm']['deskenv'] == "":
+                logging.info('Defaulting to lxde')
+                config['vnm']['deskenv'] = "lxde"
         config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
         config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
         config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
@@ -165,7 +179,7 @@ def main():
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
-    apps_from_json(installdir, appsjson)
+    apps_from_json(config['vnm']['deskenv'], installdir, appsjson)
     add_vnm_menu(installdir, 'VNM Neuroimaging')
 
 
