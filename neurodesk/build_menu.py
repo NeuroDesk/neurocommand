@@ -67,6 +67,7 @@ def add_menu(installdir: Path, name: Text) -> None:
 
 
 def add_app(
+    deskenv: Text,
     installdir: Path,
     name: Text,
     version: Text,
@@ -108,28 +109,53 @@ def add_app(
         container_name = name
         exec_name = name
 
-    entry["Desktop Entry"] = {
-        "Name": exec_name,
-        "GenericName": exec_name,
-        "Comment": name + " " + version,
-        "Exec": "bash " + str(installdir/"fetch_and_run.sh")  + " " + container_name + " " + version  + " " + exec,
-        "Icon": icon_path,
-        "Type": "Application",
-        "Categories": category,
-        "Terminal": str(terminal).lower(),
-    }
+    basename = f"vnm-{name.lower().replace(' ', '-')}"
+    fetch_and_run_sh = installdir/"fetch_and_run.sh"
+
+    bin_path = installdir/"bin"
+    bin_path.mkdir(exist_ok=True)
+    sh_path = bin_path/f"{basename}.sh"
+    with open(sh_path, "w",) as sh_file:
+        sh_file.write("#!/usr/bin/env bash\n")
+        if deskenv == 'mate':
+            sh_file.write(f"mate-terminal --window --title \"{name}\" -e \'/bin/bash -c \"export LD_PRELOAD=;module load singularity; {str(fetch_and_run_sh)} {container_name} {version} {exec}\"\'")
+        else:
+            sh_file.write(f"bash {str(fetch_and_run_sh)} {container_name} {version} {exec}")
+    os.chmod(sh_path, 0o755)
+    
+    if deskenv == 'mate':
+        entry["Desktop Entry"] = {
+            "Name": exec_name,
+            "GenericName": exec_name,
+            "Comment": name + " " + version,
+            "Exec": str(sh_path),
+            "Icon": icon_path,
+            "Type": "Application",
+            "Categories": category
+        }
+    else:
+        entry["Desktop Entry"] = {
+            "Name": exec_name,
+            "GenericName": exec_name,
+            "Comment": name + " " + version,
+            "Exec": str(sh_path),
+            "Icon": icon_path,
+            "Type": "Application",
+            "Categories": category,
+            "Terminal": str(terminal).lower()
+        }
+
+
     applications_path = installdir/"applications"
-    if not os.path.exists(applications_path):
-        os.makedirs(applications_path)
-    desktop_path = Path(
-        f"{applications_path}/vnm-{name.lower().replace(' ', '-')}.desktop"
-    )
+    applications_path.mkdir(exist_ok=True)
+    desktop_path = applications_path/f"{basename}.desktop"
+
     with open(desktop_path, "w",) as desktop_file:
         entry.write(desktop_file, space_around_delimiters=False)
     os.chmod(desktop_path, 0o644)
 
 
-def apps_from_json(installdir: Path, appsjson: Path) -> None:
+def apps_from_json(deskenv: Text, installdir: Path, appsjson: Path) -> None:
     # Read applications file
     with open(appsjson, "r") as json_file:
         menu_entries = json.load(json_file)
@@ -139,7 +165,7 @@ def apps_from_json(installdir: Path, appsjson: Path) -> None:
         add_menu(installdir, menu_name)
         for app_name, app_data in menu_data.get("apps", {}).items():
             # Add application
-            add_app(installdir, app_name, category=menu_name.replace(" ", "-"), **app_data)
+            add_app(deskenv, installdir, app_name, category=menu_name.replace(" ", "-"), **app_data)
 
 
 def add_vnm_menu(installdir: Path, name: Text) -> None:
@@ -172,4 +198,4 @@ if __name__ == "__main__":
     appsjson = Path('apps.json').resolve(strict=True)
     
     add_vnm_menu(installdir, 'VNM Neuroimaging')
-    apps_from_json(installdir, appsjson)
+    apps_from_json('lxde', installdir, appsjson)
