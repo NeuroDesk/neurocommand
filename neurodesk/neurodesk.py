@@ -152,6 +152,12 @@ def main():
 
     shutil.copy2(appmenu_template, vnm_appmenu)
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
+    shutil.copy2('neurodesk/fetch_containers.sh', installdir)
+    shutil.copy2('neurodesk/configparser.sh', installdir)
+    shutil.copy2('config.ini', installdir)
+    os.chmod(installdir/'fetch_and_run.sh', 0o755)
+    os.chmod(installdir/'fetch_containers.sh', 0o755)
+    os.chmod(installdir/'configparser.sh', 0o755)
 
     if appmenu:
         new_appmenu = installdir/appmenu.name

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source neurodesk/configparser.sh
+source configparser.sh
 
 install_all_containers="true"
 
