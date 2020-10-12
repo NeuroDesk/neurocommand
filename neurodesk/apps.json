@@ -1,12 +1,12 @@
 {
     "afni": {
         "apps": {
-            "afni 20.2.13": {
-                "version": "20200820",
+            "afni 20.3.00": {
+                "version": "20201011",
                 "exec": ""
             },
-            "suma-afni 20.2.13": {
-                "version": "20200820",
+            "suma-afni 20.3.00": {
+                "version": "20201011",
                 "exec": "suma"
             }
         }
@@ -22,7 +22,7 @@
     "ashs": {
         "apps": {
             "ashs 2.0.0": {
-                "version": "20200820",
+                "version": "20200905",
                 "exec": ""
             }
         }
@@ -50,11 +50,11 @@
     "fsl": {
         "apps": {
             "fsl 6.0.3": {
-                "version": "20200820",
+                "version": "20200905",
                 "exec": ""
             },
             "fsleyes-fsl 6.0.3": {
-                "version": "20200820",
+                "version": "20200905",
                 "exec": "fsleyes"
             }
         }
@@ -82,11 +82,11 @@
     "mrtrix3": {
         "apps": {
             "mrtrix3 3.0.1": {
-                "version": "20200811",
+                "version": "20200908",
                 "exec": ""
             },
             "mrview-mrtrix3 3.0.1": {
-                "version": "20200811",
+                "version": "20200908",
                 "exec": "mrview"
             }
         }
