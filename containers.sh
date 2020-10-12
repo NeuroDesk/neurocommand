@@ -1,12 +1,19 @@
 #!/bin/bash
 
-source configparser.sh
+source neurodesk/configparser.sh
 
 install_all_containers="true"
 
-cat ${vnm[installdir]}/applications/vnm-* | grep Exec > all_execs.sh
+# wget -c https://github.com/NeuroDesk/transparent-singularity/archive/master.zip -O ${vnm[installdir]}/transparent-singularity.zip
+# unzip -o ${vnm[installdir]}/transparent-singularity.zip -d ${vnm[installdir]}
+
+cat ${vnm[installdir]}/bin/vnm-* | grep fetch_and_run > all_execs.sh
+
 sed -i 's/Exec=//g' all_execs.sh
 sed -i 's/fetch_and_run.sh/fetch_containers.sh/g' all_execs.sh
+sed -i 's/export LD_PRELOAD=""; module load singularity; //g' all_execs.sh
+
+cat all_execs.sh
 
 if [ "$install_all_containers" = "true" ]; then
     echo "================================"
@@ -34,6 +41,6 @@ echo "------------------------------------"
 echo "to install individual containers, run:"
 cat all_execs.sh
 
-echo "------------------------------------"
-echo "to install all containers, run:"
-echo "./neurodesk.sh --install_all_containers true"
+# echo "------------------------------------"
+# echo "to install all containers, run:"
+# echo "./neurodesk.sh --install_all_containers true"

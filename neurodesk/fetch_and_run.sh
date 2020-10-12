@@ -12,6 +12,7 @@ echo "Script name : $_script"
 echo "Current working dir : $PWD"
 echo "Script location path (dir) : $_base"
 
+source ${_base}/configparser.sh
 source ${_base}/fetch_containers.sh $1 $2 $3
 echo "fetching containers done."
 echo "MOD_NAME: " $MOD_NAME

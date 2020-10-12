@@ -1,5 +1,5 @@
 #!/bin/bash
-
+source /scratch/cvl-admin/neurodesk/neurodesk/configparser.sh
 # fetch_containers.sh [name] [version] [date]
 # Example - downloads the container:
 #   fetch_and_run.sh itksnap 3.8.0 20200505
@@ -11,10 +11,12 @@ MOD_DATE=$3
 
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
-
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+source ${_base}/configparser.sh
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
-export PATH_PREFIX=$PWD
+export PATH_PREFIX=${vnm[installdir]}
 
 if [ -d /vnm/ ]; then
     echo "found /vnm - assuming install in vnm container"
@@ -54,7 +56,9 @@ module avail -t 2>&1 | grep -i ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
-    git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
+    mkdir -p ${IMG_NAME}
+    cp ${vnm[installdir]}/transparent-singularity-master/* ${IMG_NAME}/
+    #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
     ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
     rm -rf .git* README.md run_transparent_singularity ts_*

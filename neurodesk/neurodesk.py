@@ -182,6 +182,5 @@ def main():
     apps_from_json(config['vnm']['deskenv'], installdir, appsjson)
     add_vnm_menu(installdir, 'VNM Neuroimaging')
 
-
 if __name__ == "__main__":
     main()

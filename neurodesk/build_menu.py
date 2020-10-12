@@ -118,9 +118,10 @@ def add_app(
     with open(sh_path, "w",) as sh_file:
         sh_file.write("#!/usr/bin/env bash\n")
         if deskenv == 'mate':
-            sh_file.write(f"mate-terminal --window --title \"{name}\" -e \'/bin/bash -c \"export LD_PRELOAD=;module load singularity; {str(fetch_and_run_sh)} {container_name} {version} {exec}\"\'")
+            sh_file.write(f"export LD_PRELOAD=\"\"; module load singularity; {str(fetch_and_run_sh)} {container_name} {version} {exec}")
         else:
-            sh_file.write(f"bash {str(fetch_and_run_sh)} {container_name} {version} {exec}")
+            sh_file.write(f"{str(fetch_and_run_sh)} {container_name} {version} {exec}")
+        sh_file.write('\n')
     os.chmod(sh_path, 0o755)
     
     if deskenv == 'mate':
@@ -128,7 +129,7 @@ def add_app(
             "Name": exec_name,
             "GenericName": exec_name,
             "Comment": name + " " + version,
-            "Exec": str(sh_path),
+            "Exec": f"mate-terminal --window --title \"{name}\" -e \'/bin/bash {str(sh_path)}\'",
             "Icon": icon_path,
             "Type": "Application",
             "Categories": category
@@ -197,5 +198,6 @@ if __name__ == "__main__":
     installdir = Path.cwd().resolve(strict=True)
     appsjson = Path('apps.json').resolve(strict=True)
     
-    add_vnm_menu(installdir, 'VNM Neuroimaging')
+    add_vnm_menu(installdir, 'VNM Imaging')
     apps_from_json('lxde', installdir, appsjson)
+ 
