@@ -33,7 +33,7 @@ GetINISection() {
 
 rm_symlink(){ [ ! -L "$1" ] || rm -v "$1"; }
 
-filename="config.ini"
+filename="/scratch/cvl-admin/neurodesk/config.ini"
 section="vnm"
 GetINISection "$filename" "$section"
 
