@@ -117,7 +117,7 @@ def main():
     try:
         installdir = Path(config['vnm']['installdir']).expanduser().resolve(strict=False)
         if installdir == Path.cwd():
-            installdir = Path.cwd()/'installdir'
+            installdir = Path.cwd()/'local'
         installdir.mkdir(parents=True, exist_ok=True)
     except PermissionError:
         logging.error(f'PermissionError creating installdir [{installdir}]')
