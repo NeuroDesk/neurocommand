@@ -69,6 +69,7 @@ def add_menu(installdir: Path, name: Text) -> None:
 def add_app(
     deskenv: Text,
     installdir: Path,
+    sh_prefix: Text,
     name: Text,
     version: Text,
     category: Text,
@@ -117,8 +118,9 @@ def add_app(
     sh_path = bin_path/f"{basename}.sh"
     with open(sh_path, "w",) as sh_file:
         sh_file.write("#!/usr/bin/env bash\n")
+        sh_file.write(f"{sh_prefix} ")
         if deskenv == 'mate':
-            sh_file.write(f"export LD_PRELOAD=\"\"; module load singularity; {str(fetch_and_run_sh)} {container_name} {version} {exec}")
+            sh_file.write(f"{str(fetch_and_run_sh)} {container_name} {version} {exec}")
         else:
             sh_file.write(f"{str(fetch_and_run_sh)} {container_name} {version} {exec}")
         sh_file.write('\n')
@@ -156,7 +158,7 @@ def add_app(
     os.chmod(desktop_path, 0o644)
 
 
-def apps_from_json(deskenv: Text, installdir: Path, appsjson: Path) -> None:
+def apps_from_json(deskenv: Text, installdir: Path, appsjson: Path, sh_prefix='')  -> None:
     # Read applications file
     with open(appsjson, "r") as json_file:
         menu_entries = json.load(json_file)
@@ -166,7 +168,7 @@ def apps_from_json(deskenv: Text, installdir: Path, appsjson: Path) -> None:
         add_menu(installdir, menu_name)
         for app_name, app_data in menu_data.get("apps", {}).items():
             # Add application
-            add_app(deskenv, installdir, app_name, category=menu_name.replace(" ", "-"), **app_data)
+            add_app(deskenv, installdir, sh_prefix, app_name, category=menu_name.replace(" ", "-"), **app_data)
 
 
 def add_vnm_menu(installdir: Path, name: Text) -> None:

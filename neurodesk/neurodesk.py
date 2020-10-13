@@ -86,10 +86,11 @@ def main():
         'appmenu': '',
         'appdir': '',
         'deskdir': '', 
-        'edit': ''
+        'edit': '',
+        'sh_prefix': ''
         }
     config.read(CONFIG_FILE)
-
+    print(config['vnm']['sh_prefix'])
     if args.lxde:
         config['vnm']['deskenv'] = 'lxde'
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
@@ -179,7 +180,7 @@ def main():
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
-    apps_from_json(config['vnm']['deskenv'], installdir, appsjson)
+    apps_from_json(config['vnm']['deskenv'], installdir, appsjson, config['vnm']['sh_prefix'])
     add_vnm_menu(installdir, 'VNM Neuroimaging')
 
 if __name__ == "__main__":
