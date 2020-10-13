@@ -58,6 +58,7 @@ def add_menu(installdir: Path, name: Text) -> None:
     and_el = et.SubElement(include_el, "And")
     cat_el = et.SubElement(and_el, "Category")
     cat_el.text = name.replace(" ", "-")
+    cat_el.text = f"vnm-{cat_el.text}"
     xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
     with open(menu_path, "w") as f:
         f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
@@ -126,6 +127,8 @@ def add_app(
         sh_file.write('\n')
     os.chmod(sh_path, 0o755)
     
+    category = f"vnm-{category}"
+
     if deskenv == 'mate':
         entry["Desktop Entry"] = {
             "Name": exec_name,
