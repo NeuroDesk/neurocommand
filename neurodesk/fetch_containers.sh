@@ -1,5 +1,5 @@
 #!/bin/bash
-source /scratch/cvl-admin/neurodesk/neurodesk/configparser.sh
+
 # fetch_containers.sh [name] [version] [date]
 # Example - downloads the container:
 #   fetch_and_run.sh itksnap 3.8.0 20200505
