@@ -33,7 +33,10 @@ GetINISection() {
 
 rm_symlink(){ [ ! -L "$1" ] || rm -v "$1"; }
 
-filename="/scratch/cvl-admin/neurodesk/config.ini"
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+
+filename="${_base}/config.ini"
 section="vnm"
 GetINISection "$filename" "$section"
 
