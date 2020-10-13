@@ -25,7 +25,7 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 # Global settings
-CONFIG_FILE = 'config.ini'
+CONFIG_FILE = 'neurodesk/config.ini'
 DEFAULT_PATHS = {}
 DEFAULT_PATHS['lxde'] = {
     'appmenu': '/etc/xdg/menus/lxde-applications.menu',
@@ -168,7 +168,7 @@ def main():
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
-    shutil.copy2('config.ini', installdir)
+    shutil.copy2('neurodesk/config.ini', installdir)
     os.chmod(installdir/'fetch_and_run.sh', 0o755)
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
