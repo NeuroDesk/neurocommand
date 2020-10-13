@@ -109,7 +109,7 @@ def add_app(
         container_name = name
         exec_name = name
 
-    basename = f"vnm-{name.lower().replace(' ', '-')}"
+    basename = f"vnm-{name.lower().replace(' ', '-').replace('.', '_')}"
     fetch_and_run_sh = installdir/"fetch_and_run.sh"
 
     bin_path = installdir/"bin"
