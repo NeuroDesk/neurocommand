@@ -91,6 +91,14 @@
             }
         }
     },
+    "spinalcordtoolbox": {
+        "apps": {
+            "spinalcordtoolbox 4.3": {
+                "version": "20201014",
+                "exec": ""
+            }
+        }
+    },
     "tgvqsm": {
         "apps": {
             "tgvqsm 1.0.0": {
