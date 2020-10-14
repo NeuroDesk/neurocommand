@@ -52,7 +52,7 @@ if [ ! -d ${MODS_PATH} ]; then
 fi
 
 # Check if the module is there - if not this means we definetly need to install the container
-module avail -t 2>&1 | grep -i ${MOD_NAME}/${MOD_VERS}
+module spider ${MOD_NAME}/${MOD_VERS} | grep -i ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
