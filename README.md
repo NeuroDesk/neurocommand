@@ -7,8 +7,14 @@ neurodesk makes containerized applications available on any linux system with si
 
 
 ## Linux 
-Run installer on any linux
-`./neurodesk.sh`
+Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
+Run `bash containers.sh`
+
+(Install) `sudo bash install.sh`  
+_Creates symlinks to menu files in installation dir_  
+  
+(Uninstall) `sudo bash uninstall.sh`  
+_Removes symlinks_  
 
 ## Windows
 
@@ -29,5 +35,6 @@ Change `port=3389` to `port=3390` and save
 #### Running
 1. `sudo service xrdp start` to start xrdp server
 2. Open Microsoft Remote Desktop Connection in Windows host
-3. Connect to `localhost:3390`
-An LXDE desktop should as a Microsoft Remote Desktop  
+3. Connect to `localhost:3390`  
+_An LXDE desktop should as a Microsoft Remote Desktop_  
+4. Follow Linux guide from here on
