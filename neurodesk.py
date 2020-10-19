@@ -90,12 +90,12 @@ def main():
         'sh_prefix': ''
         }
     config.read(CONFIG_FILE)
-    print(config['vnm']['sh_prefix'])
     if args.lxde:
         config['vnm']['deskenv'] = 'lxde'
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
         config['vnm']['appdir'] = DEFAULT_PATHS['lxde']['appdir']
         config['vnm']['deskdir'] = DEFAULT_PATHS['lxde']['deskdir']
+        config['vnm']['edit'] = 'y'
 
     if args.init:
         while not config['vnm']['deskenv'] in ["lxde", "mate"]:
