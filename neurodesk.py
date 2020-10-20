@@ -11,6 +11,7 @@ import logging
 import shutil
 import stat
 import re
+import  distutils.dir_util
 
 from neurodesk.build_menu import apps_from_json
 from neurodesk.build_menu import add_vnm_menu
@@ -170,7 +171,7 @@ def main():
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
     shutil.copy2('neurodesk/config.ini', installdir)
-    shutil.copytree('neurodesk/transparent-singularity', installdir/'transparent-singularity', dirs_exist_ok=True)
+    distutils.dir_util.copy_tree('neurodesk/transparent-singularity', str(installdir/'transparent-singularity'))
     os.chmod(installdir/'fetch_and_run.sh', 0o755)
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
