@@ -1,11 +1,7 @@
-menus/log.txt
-menus/cache.sh
-menus/cache_raw_1.sh
-menus/cache_raw.sh
-containers
-menus/applications
-menus/desktop-directories
-lxde-applications.menu
-vnm-applications.menu
-menus/all_execs.sh
+all_execs.sh
 log_*
+.vscode
+*.ini
+local
+__pycache__
+*.pyc

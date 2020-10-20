@@ -11,10 +11,12 @@ MOD_DATE=$3
 
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
-
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+source ${_base}/configparser.sh
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
-export PATH_PREFIX=$PWD
+export PATH_PREFIX=${vnm_installdir}
 
 if [ -d /vnm/ ]; then
     echo "found /vnm - assuming install in vnm container"
@@ -50,11 +52,13 @@ if [ ! -d ${MODS_PATH} ]; then
 fi
 
 # Check if the module is there - if not this means we definetly need to install the container
-module avail -t 2>&1 | grep -i ${MOD_NAME}/${MOD_VERS}
+module spider ${MOD_NAME}/${MOD_VERS} | grep -i ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
-    git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
+    mkdir -p ${IMG_NAME}
+    cp -n ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
+    #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
     ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
     rm -rf .git* README.md run_transparent_singularity ts_*
