@@ -170,6 +170,7 @@ def main():
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
     shutil.copy2('neurodesk/config.ini', installdir)
+    shutil.copytree('neurodesk/transparent-singularity', installdir/'transparent-singularity', dirs_exist_ok=True)
     os.chmod(installdir/'fetch_and_run.sh', 0o755)
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
