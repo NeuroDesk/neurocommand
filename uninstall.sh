@@ -7,7 +7,7 @@ echo "WARNING: Will modify/replace system files!!!"
 
 if [ "${vnm_edit}" == "y" ]; then
     rm_symlink ${vnm_appmenu}
-    mv -vn ${vnm_appmenu}.BAK $vnm_appmenu}
+    mv -vn ${vnm_appmenu}.BAK ${vnm_appmenu}
 else 
     echo "!!! Remove <MergeFile>vnm-applications.menu</MergeFile> from ${vnm_appmenu} !!!"
 fi
