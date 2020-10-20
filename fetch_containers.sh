@@ -16,7 +16,7 @@ _base="$(dirname $_script)" ## Delete last component from $_script ##
 source ${_base}/configparser.sh
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
-export PATH_PREFIX=${vnm[installdir]}
+export PATH_PREFIX=${vnm_installdir}
 
 if [ -d /vnm/ ]; then
     echo "found /vnm - assuming install in vnm container"
@@ -57,7 +57,7 @@ if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
     mkdir -p ${IMG_NAME}
-    cp -n ${vnm[installdir]}/transparent-singularity-master/* ${IMG_NAME}/
+    cp -n ${vnm_installdir}/transparent-singularity-master/* ${IMG_NAME}/
     #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
     ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
