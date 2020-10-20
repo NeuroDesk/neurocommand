@@ -56,6 +56,14 @@
             "fsleyes-fsl 6.0.3": {
                 "version": "20200905",
                 "exec": "fsleyes"
+            },
+            "fsl 6.0.4": {
+                "version": "20201014",
+                "exec": ""
+            },
+            "fsleyes-fsl 6.0.4": {
+                "version": "20201014",
+                "exec": "fsleyes"
             }
         }
     },
@@ -88,6 +96,14 @@
             "mrview-mrtrix3 3.0.1": {
                 "version": "20200908",
                 "exec": "mrview"
+            }
+        }
+    },
+    "spinalcordtoolbox": {
+        "apps": {
+            "spinalcordtoolbox 4.3": {
+                "version": "20201015",
+                "exec": ""
             }
         }
     },
