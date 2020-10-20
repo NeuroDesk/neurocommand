@@ -4,7 +4,7 @@
 echo "checking if containers are built"
 
 #creating logfile with available containers
-cd menus
+cd neurodesk
 python write_log.py
 
 # remove empty lines
