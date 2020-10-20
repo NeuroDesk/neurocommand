@@ -4,8 +4,8 @@ source neurodesk/configparser.sh
 
 install_all_containers="true"
 
-wget -c https://github.com/NeuroDesk/transparent-singularity/archive/master.zip -O ${vnm_installdir}/transparent-singularity.zip
-unzip -o ${vnm_installdir}/transparent-singularity.zip -d ${vnm_installdir}
+# wget -c https://github.com/NeuroDesk/transparent-singularity/archive/master.zip -O ${vnm_installdir}/transparent-singularity.zip
+# unzip -o ${vnm_installdir}/transparent-singularity.zip -d ${vnm_installdir}
 
 cat ${vnm_installdir}/bin/vnm-* | grep fetch_and_run > all_execs.sh
 
