@@ -38,6 +38,7 @@ def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action="store_true", default=False)
     parser.add_argument('--lxde', action="store_true", default=False)
+    parser.add_argument('--edit', action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -96,6 +97,9 @@ def main():
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
         config['vnm']['appdir'] = DEFAULT_PATHS['lxde']['appdir']
         config['vnm']['deskdir'] = DEFAULT_PATHS['lxde']['deskdir']
+        config['vnm']['edit'] = 'n'
+
+    if args.edit:
         config['vnm']['edit'] = 'y'
 
     if args.init:

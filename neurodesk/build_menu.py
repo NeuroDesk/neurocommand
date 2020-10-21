@@ -53,7 +53,7 @@ def add_menu(installdir: Path, name: Text) -> None:
     name_el = et.SubElement(sub_el, "Name")
     name_el.text = name.capitalize()
     dir_el = et.SubElement(sub_el, "Directory")
-    dir_el.text = directory_name
+    dir_el.text = f'vnm/{directory_name}'
     include_el = et.SubElement(sub_el, "Include")
     and_el = et.SubElement(include_el, "And")
     cat_el = et.SubElement(and_el, "Category")

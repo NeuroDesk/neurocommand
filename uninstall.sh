@@ -12,9 +12,12 @@ else
     echo "!!! Remove <MergeFile>vnm-applications.menu</MergeFile> from ${vnm_appmenu} !!!"
 fi
 rm_symlink ${vnm_appmenudir}/vnm-applications.menu
-for file in ${vnm_appdir}/vnm-*.desktop; do
-    rm_symlink $file
-done
-for file in ${vnm_deskdir}/vnm-*.directory; do
-    rm_symlink $file
-done
+rm_symlink ${vnm_appdir}/vnm
+rm_symlink ${vnm_deskdir}/vnm
+
+#for file in ${vnm_appdir}/vnm-*.desktop; do
+#    rm_symlink $file
+#done
+#for file in ${vnm_deskdir}/vnm-*.directory; do
+#    rm_symlink $file
+#done

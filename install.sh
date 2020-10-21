@@ -13,9 +13,12 @@ else
 fi
 ln -s ${vnm_installdir}/vnm-applications.menu ${vnm_appmenudir}
 
-for file in ${vnm_installdir}/applications/vnm-*.desktop; do
-    ln -s $file ${vnm_appdir}
-done
-for file in ${vnm_installdir}/desktop-directories/vnm-*.directory; do
-    ln -s $file ${vnm_deskdir}
-done
+ln -s ${vnm_installdir}/applications ${vnm_appdir}/vnm
+ln -s ${vnm_installdir}/desktop-directories ${vnm_deskdir}/vnm
+
+#for file in ${vnm_installdir}/applications/vnm-*.desktop; do
+#    ln -s $file ${vnm_appdir}
+#done
+#for file in ${vnm_installdir}/desktop-directories/vnm-*.directory; do
+#    ln -s $file ${vnm_deskdir}
+#done
