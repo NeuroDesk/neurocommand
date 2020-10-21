@@ -25,11 +25,6 @@ if [ -d /vnm/ ]; then
     source /usr/share/module.sh
 fi
 
-if [ -d /data/lfs2/neurodesk ]; then
-    echo "found /data/lfs2/neurodesk - system wide install at CAI"
-    export PATH_PREFIX=/data/lfs2/neurodesk
-fi
-
 source /etc/profile
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
@@ -52,7 +47,7 @@ if [ ! -d ${MODS_PATH} ]; then
 fi
 
 # Check if the module is there - if not this means we definetly need to install the container
-module spider ${MOD_NAME}/${MOD_VERS} | grep -i ${MOD_NAME}/${MOD_VERS}
+module spider ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
