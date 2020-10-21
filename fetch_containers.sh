@@ -52,7 +52,7 @@ if [ $? -ne 0 ]; then
     CWD=$PWD
     cd ${CONTAINER_PATH}
     mkdir -p ${IMG_NAME}
-    cp -n ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
+    cp ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
     #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
     ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
