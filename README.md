@@ -2,19 +2,42 @@
 neurodesk makes containerized applications available on any linux system with singularity installed
 
 ## Requirements:
-- singularity 
-- lmod
-
+- singularity (https://sylabs.io/guides/3.5/user-guide/quick_start.html)  
+- lmod (https://lmod.readthedocs.io/en/latest/)  
+- python (https://docs.conda.io/en/latest/miniconda.html#linux-installers)  
 
 ## Linux 
-Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
-Run `bash containers.sh`
+### Inital install
+#### For Lxde desktops
 
-(Install) `sudo bash install.sh`  
+If running on an lxde desktop...
+Run `bash build.sh --lxde`
+
+#### For Mate desktops
+
+Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
+lxde/mate: Mate  
+installdir: Where all the neurodesk files will be stored (Default: ./local)  
+appmenu: The linux menu xml file.  (Usually /etc/xdg/menus/\*\*\*\*-applications.menu)  
+appdir: Location for the .desktop files for this linux desktop (Usually /usr/share/applications)  
+deskdir: Location for the .directory files for this linux desktop (Typically /usr/share/desktop-directories)  
+
+#### For desktop menus:  
+
+`sudo bash install.sh` to install  
 _Creates symlinks to menu files in installation dir_  
   
-(Uninstall) `sudo bash uninstall.sh`  
+`sudo bash uninstall.sh` to uninstall  
 _Removes symlinks_  
+
+### To update
+
+Run `git pull`  
+Run `bash build.sh`  
+_install.sh does not need to be run again_
+
+#### To download all containers
+Run `bash containers.sh`
 
 ## Windows
 
