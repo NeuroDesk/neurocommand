@@ -5,18 +5,35 @@ neurodesk makes containerized applications available on any linux system with si
 - singularity 
 - lmod
 
-
 ## Linux 
+### Inital install
+#### For Lxde desktops
+
+If running on an lxde desktop...
+Run `bash build.sh --lxde`
+
+#### For Mate desktops
+
 Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
-Run `bash containers.sh`
+lxde/mate: Mate  
+installdir: Where all the neurodesk files will be stored (Default: ./local)  
+appmenu: The linux menu xml file.  (Usually /etc/xdg/menus/\*\*\*\*-applications.menu)  
+appdir: Location for the .desktop files for this linux desktop (Usually /usr/share/applications)  
+deskdir: Location for the .directory files for this linux desktop (Typically /usr/share/desktop-directories)  
+Run `bash containers.sh`  
 
 #### For desktop menus:  
 
-(Install) `sudo bash install.sh`  
+`sudo bash install.sh` to install  
 _Creates symlinks to menu files in installation dir_  
   
-(Uninstall) `sudo bash uninstall.sh`  
+`sudo bash uninstall.sh` to uninstall  
 _Removes symlinks_  
+
+### To update
+Run `git pull`  
+Run `bash build.sh`  
+_install.sh does not need to be run again_
 
 ## Windows
 
