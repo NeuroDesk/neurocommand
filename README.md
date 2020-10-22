@@ -20,7 +20,6 @@ installdir: Where all the neurodesk files will be stored (Default: ./local)
 appmenu: The linux menu xml file.  (Usually /etc/xdg/menus/\*\*\*\*-applications.menu)  
 appdir: Location for the .desktop files for this linux desktop (Usually /usr/share/applications)  
 deskdir: Location for the .directory files for this linux desktop (Typically /usr/share/desktop-directories)  
-Run `bash containers.sh`  
 
 #### For desktop menus:  
 
@@ -31,9 +30,13 @@ _Creates symlinks to menu files in installation dir_
 _Removes symlinks_  
 
 ### To update
+
 Run `git pull`  
 Run `bash build.sh`  
 _install.sh does not need to be run again_
+
+#### To download all containers
+Run `bash containers.sh`
 
 ## Windows
 
