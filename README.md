@@ -10,7 +10,8 @@ neurodesk makes containerized applications available on any linux system with si
 Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
 Run `bash containers.sh`
 
-For desktop menus:
+#### For desktop menus:  
+
 (Install) `sudo bash install.sh`  
 _Creates symlinks to menu files in installation dir_  
   
