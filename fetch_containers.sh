@@ -18,13 +18,6 @@ source ${_base}/configparser.sh
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
 export PATH_PREFIX=${vnm_installdir}
 
-if [ -d /vnm/ ]; then
-    echo "found /vnm - assuming install in vnm container"
-    export PATH_PREFIX=/vnm
-    # Initialize lmod
-    source /usr/share/module.sh
-fi
-
 source /etc/profile
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
