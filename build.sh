@@ -1,3 +1,3 @@
-#!/usr/bin/python3
+#!/bin/bash
 
 python -m neurodesk $@
