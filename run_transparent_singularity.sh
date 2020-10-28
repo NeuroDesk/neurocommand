@@ -153,7 +153,7 @@ while read executable; do \
    echo "export PWD=\`pwd -P\`" >> $executable
    echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
    chmod a+x $executable
-done <commands.txt
+done < ~/commands.txt
 
 echo "creating activate script that runs deactivate first in case it is already there"
 echo "#!/usr/bin/env bash" > activate_${container}.sh
