@@ -8,6 +8,13 @@ neurodesk makes containerized applications available on any linux system with si
 
 ## Linux 
 ### Inital install
+#### CLI mode - For non-desktop experiance
+If running on cli only ...
+Run `bash build.sh --init`
+Enter a installdir (defaults to ./local)
+Skip past the others
+Run `bash build.sh --cli` to install in cli mode
+Run `bash containers.sh` for installing all containers
 #### For Lxde desktops
 
 If running on an lxde desktop...
