@@ -39,6 +39,7 @@ def get_args():
     parser.add_argument('--init', action="store_true", default=False)
     parser.add_argument('--lxde', action="store_true", default=False)
     parser.add_argument('--edit', action="store_true", default=False)
+    parser.add_argument('--cli', action="store_true", default=False)
     args = parser.parse_args()
     return args
 
@@ -100,6 +101,9 @@ def main():
         config['vnm']['edit'] = 'n'
 
     if args.edit:
+        config['vnm']['edit'] = 'y'
+
+    if args.cli:
         config['vnm']['edit'] = 'y'
 
     if args.init:
@@ -167,8 +171,8 @@ def main():
     appmenu_template = Path('neurodesk/vnm-applications.menu.template').resolve(strict=True)
     
     vnm_appmenu = installdir/'vnm-applications.menu'
-    vnm_deskdir = installdir/'desktop-directories'
-    vnm_appdir = installdir/'applications'
+    # vnm_deskdir = installdir/'desktop-directories'
+    # vnm_appdir = installdir/'applications'
 
     shutil.copy2(appmenu_template, vnm_appmenu)
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
@@ -186,8 +190,9 @@ def main():
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
-    apps_from_json(config['vnm']['deskenv'], installdir, appsjson, config['vnm']['sh_prefix'])
-    add_vnm_menu(installdir, 'VNM Neuroimaging')
+    apps_from_json(args.cli, config['vnm']['deskenv'], installdir, appsjson, config['vnm']['sh_prefix'])
+    if not args.cli:
+        add_vnm_menu(installdir, 'VNM Neuroimaging')
 
 if __name__ == "__main__":
     main()
