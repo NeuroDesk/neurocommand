@@ -133,37 +133,39 @@ def main():
         logging.error('Exiting ...')
         sys.exit()
     
-    try:
-        appmenu = Path(config['vnm']['appmenu']).expanduser()
-        appmenu.resolve(strict=True)
-        et.parse(appmenu)
-    except et.ParseError:
-        logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
-        logging.error('Exiting ...')
-        sys.exit()
+    if not args.cli:
+        try:
+            appmenu = Path(config['vnm']['appmenu']).expanduser()
+            appmenu.resolve(strict=True)
+            et.parse(appmenu)
+        except et.ParseError:
+            logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
+            logging.error('Exiting ...')
+            sys.exit()
 
-    try:
-        appdir = Path(config['vnm']['appdir']).expanduser()
-        appdir.resolve(strict=True)
-        next(appdir.glob("*.desktop"))
-    except StopIteration:
-        logging.error(f'.desktop files not found in appdir [{appdir}]')
-        logging.error('Exiting ...')
-        sys.exit()
+        try:
+            appdir = Path(config['vnm']['appdir']).expanduser()
+            appdir.resolve(strict=True)
+            next(appdir.glob("*.desktop"))
+        except StopIteration:
+            logging.error(f'.desktop files not found in appdir [{appdir}]')
+            logging.error('Exiting ...')
+            sys.exit()
 
-    try:
-        deskdir = Path(config['vnm']['deskdir']).expanduser()
-        deskdir.resolve(strict=True)
-        next(deskdir.glob("*.directory"))
-    except StopIteration:
-        logging.error(f'.directory files not found in deskdir [{deskdir}]')
-        logging.error('Exiting ...')
-        sys.exit()
+        try:
+            deskdir = Path(config['vnm']['deskdir']).expanduser()
+            deskdir.resolve(strict=True)
+            next(deskdir.glob("*.directory"))
+        except StopIteration:
+            logging.error(f'.directory files not found in deskdir [{deskdir}]')
+            logging.error('Exiting ...')
+            sys.exit()
 
+        config['vnm']['appmenu'] = str(appmenu)
+        config['vnm']['appdir'] = str(appdir)
+        config['vnm']['deskdir'] = str(deskdir)
+    
     config['vnm']['installdir'] = str(installdir)
-    config['vnm']['appmenu'] = str(appmenu)
-    config['vnm']['appdir'] = str(appdir)
-    config['vnm']['deskdir'] = str(deskdir)
 
     with open(CONFIG_FILE, 'w+') as fh:
         config.write(fh)
@@ -184,7 +186,7 @@ def main():
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
 
-    if appmenu:
+    if not args.cli and appmenu:
         new_appmenu = installdir/appmenu.name
         vnm_xml(appmenu, new_appmenu)
 
