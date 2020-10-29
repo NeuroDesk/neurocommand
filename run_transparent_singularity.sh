@@ -152,7 +152,7 @@ echo "create singularity executable for each regular executable in commands.txt"
 while read executable; do \
    echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
-   echo "export PWD=$_base" >> $executable
+   echo "export PWD=\`pwd -P\`" >> $executable
    echo "singularity exec --pwd \$PWD $_base/$container $executable \$@" >> $executable
    chmod a+x $executable
 done < $_base/commands.txt
@@ -160,7 +160,7 @@ done < $_base/commands.txt
 echo "creating activate script that runs deactivate first in case it is already there"
 echo "#!/usr/bin/env bash" > activate_${container}.sh
 echo "source deactivate_${container}.sh $_base" >> activate_${container}.sh
-echo -e "export PWD=$_base" >> activate_${container}.sh
+echo -e "export PWD=\`pwd -P\`" >> activate_${container}.sh
 echo -e 'export PATH="$PWD:$PATH"' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="$PWD:\$PATH"" >> ~/.bashrc' >> activate_${container}.sh
