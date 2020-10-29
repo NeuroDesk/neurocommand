@@ -42,6 +42,6 @@ if [ $# -le 3 ]; then
 fi
 
 # If additional command -> Run it
-module load ${MOD_NAME}/${MOD_VERS}
+echo "module load ${MOD_NAME}/${MOD_VERS}"
 echo "Running command '${@:4}'."
 ${@:4}

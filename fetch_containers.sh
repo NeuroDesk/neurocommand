@@ -38,17 +38,19 @@ if [ ! -d ${MODS_PATH} ]; then
     echo "creating ${MODS_PATH}"
     mkdir -p ${MODS_PATH}
 fi
-
+# Update application transparent-singularity with latest version
+CWD=$PWD
+cd ${CONTAINER_PATH}
+mkdir -p ${IMG_NAME}
+cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
+cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
 # Check if the module is there - if not this means we definetly need to install the container
 module spider ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
-    CWD=$PWD
-    cd ${CONTAINER_PATH}
-    mkdir -p ${IMG_NAME}
-    cp ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
+    # cp ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
     #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
-    ./run_transparent_singularity.sh --container ${IMG_NAME}.sif
+    ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.sif
     rm -rf .git* README.md run_transparent_singularity ts_*
     else # if the container is there, check if the image version is correct. If not, we need to remove the wrong version and download again:
         CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
