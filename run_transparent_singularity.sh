@@ -7,6 +7,9 @@
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
 set -e
 
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
    do
@@ -128,8 +131,7 @@ if [[  ${#qq} -lt 1 ]]; then
    fi
 fi
 
-deploy_path=`pwd -P`
-echo "deploying in $deploy_path"
+echo "deploying in $_base"
 echo "checking if container needs to be downloaded"
 if  [[ -f $container ]]; then
    echo "container downloaded already. Remove to re-download!"
@@ -142,39 +144,40 @@ echo "making container executable"
 chmod a+x $container
 
 echo "checking which executables exist inside container"
-singularity exec --pwd $deploy_path $container ./ts_binaryFinder.sh
+singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
 #test   executable="fslmaths"
 while read executable; do \
-   echo $executable > $PWD/${executable}; \
+   echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
    echo "export PWD=\`pwd -P\`" >> $executable
-   echo "singularity exec --pwd \$PWD $deploy_path/$container $executable \$@" >> $executable
+   echo "singularity exec --pwd \$PWD $_base/$container $executable \$@" >> $executable
    chmod a+x $executable
-done <commands.txt
+done < $_base/commands.txt
 
 echo "creating activate script that runs deactivate first in case it is already there"
 echo "#!/usr/bin/env bash" > activate_${container}.sh
-echo "source deactivate_${container}.sh $deploy_path" >> activate_${container}.sh
-echo -e 'export PWD=`pwd -P`' >> activate_${container}.sh
+echo "source deactivate_${container}.sh $_base" >> activate_${container}.sh
+echo -e "export PWD=\`pwd -P\`" >> activate_${container}.sh
 echo -e 'export PATH="$PWD:$PATH"' >> activate_${container}.sh
 echo -e 'echo "# Container in $PWD" >> ~/.bashrc' >> activate_${container}.sh
 echo -e 'echo "export PATH="$PWD:\$PATH"" >> ~/.bashrc' >> activate_${container}.sh
 chmod a+x activate_${container}.sh
 
 echo "deactivate script"
-echo  pathToRemove=$deploy_path | cat - ts_deactivate_ > temp && mv temp deactivate_${container}.sh
+echo  pathToRemove=$_base | cat - ts_deactivate_ > temp && mv temp deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
 
 
 
 echo "create module files one directory up"
-modulePath=../modules/`echo $container | cut -d _ -f 1`
+modulePath=$_base/../modules/`echo $container | cut -d _ -f 1`
+echo $modulePath
 mkdir $modulePath -p
 moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
-echo "prepend-path PATH ${deploy_path}" >> ${modulePath}/${moduleName}
+echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
