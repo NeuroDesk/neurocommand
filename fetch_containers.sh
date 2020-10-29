@@ -42,11 +42,11 @@ fi
 CWD=$PWD
 cd ${CONTAINER_PATH}
 mkdir -p ${IMG_NAME}
-cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
-cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
 # Check if the module is there - if not this means we definetly need to install the container
 module spider ${MOD_NAME}/${MOD_VERS}
 if [ $? -ne 0 ]; then
+    cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
+    cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
     # cp ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
     #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
     cd ${IMG_NAME}
