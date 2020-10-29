@@ -58,11 +58,11 @@
                 "exec": "fsleyes"
             },
             "fsl 6.0.4": {
-                "version": "20201014",
+                "version": "20201028",
                 "exec": ""
             },
             "fsleyes-fsl 6.0.4": {
-                "version": "20201014",
+                "version": "20201028",
                 "exec": "fsleyes"
             }
         }
