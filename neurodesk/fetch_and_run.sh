@@ -43,5 +43,6 @@ fi
 
 # If additional command -> Run it
 echo "module load ${MOD_NAME}/${MOD_VERS}"
+module load ${MOD_NAME}/${MOD_VERS}
 echo "Running command '${@:4}'."
 ${@:4}
