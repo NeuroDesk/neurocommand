@@ -99,6 +99,14 @@
             }
         }
     },
+    "root": {
+        "apps": {
+            "root 6.22.02": {
+                "version": "20201104",
+                "exec": ""
+            }
+        }
+    },
     "spinalcordtoolbox": {
         "apps": {
             "spinalcordtoolbox 4.3": {
