@@ -75,6 +75,14 @@
             }
         }
     },
+    "julia": {
+        "apps": {
+            "julia 1.4.1": {
+                "version": "20201104",
+                "exec": ""
+            }
+        }
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
