@@ -30,6 +30,9 @@ if [ $# -le 3 ]; then
         clear
         echo "Attempting to launch container ${IMG_NAME}"
         singularity shell ${CONTAINER_FILE_NAME}
+        if [ -f "/README.md" ]; then
+            cat /README.md
+        fi
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "the container ${CONTAINER_FILE_NAME} has a bug and needs to be updated on your system. To trigger a reinstall, run:"
