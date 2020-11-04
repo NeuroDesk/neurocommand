@@ -192,7 +192,7 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
             app.app_names()
             app.add_app_sh()
             if not cli:
-                app.add_app_menu
+                app.add_app_menu()
 
 def add_vnm_menu(installdir: Path, name: Text) -> None:
     logging.info(f"Adding submenu for '{name}'")
