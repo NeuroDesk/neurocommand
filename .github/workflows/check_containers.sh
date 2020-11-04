@@ -33,10 +33,8 @@ done < log.txt
 
 # check if the installer runs:
 cd ..
-bash build.sh --lxde
+bash build.sh --lxde --edit
 bash install.sh
-#bash neurodesk.sh --lxde_system_install true
-
 
 # if it got until here, all containers exist - we can tag a new release:
 #tagging release
