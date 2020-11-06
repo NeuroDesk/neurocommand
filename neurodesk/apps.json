@@ -95,6 +95,14 @@
             }
         }
     },
+    "mriqc": {
+        "apps": {
+            "mriqc_0.15.2": {
+                "version": "20201104",
+                "exec": ""
+            }
+        }
+    },
     "mrtrix3": {
         "apps": {
             "mrtrix3 3.0.1": {
