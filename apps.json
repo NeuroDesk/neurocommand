@@ -123,6 +123,14 @@
             }
         }
     },
+    "mrtrix3tissue": {
+        "apps": {
+            "mrtrix3tissue 5.2.8": {
+                "version": "20201106",
+                "exec": ""
+            }
+        }
+    },
     "root": {
         "apps": {
             "root 6.22.02": {
