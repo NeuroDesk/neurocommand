@@ -35,6 +35,14 @@
             }
         }
     },
+    "fmriprep": {
+        "apps": {
+            "fmriprep 20.2.0": {
+                "version": "20201105",
+                "exec": ""
+            }
+        }
+    },
     "freesurfer": {
         "apps": {
             "freesurfer 7.1.1": {
@@ -75,6 +83,14 @@
             }
         }
     },
+    "julia": {
+        "apps": {
+            "julia 1.4.1": {
+                "version": "20201104",
+                "exec": ""
+            }
+        }
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
@@ -84,6 +100,14 @@
             "register-minc 1.9.17": {
                 "version": "20200811",
                 "exec": "register"
+            }
+        }
+    },
+    "mriqc": {
+        "apps": {
+            "mriqc 0.15.2": {
+                "version": "20201104",
+                "exec": ""
             }
         }
     },
@@ -99,10 +123,26 @@
             }
         }
     },
+    "mrtrix3tissue": {
+        "apps": {
+            "mrtrix3tissue 5.2.8": {
+                "version": "20201106",
+                "exec": ""
+            }
+        }
+    },
     "root": {
         "apps": {
             "root 6.22.02": {
                 "version": "20201104",
+                "exec": ""
+            }
+        }
+    },
+    "slicer": {
+        "apps": {
+            "slicer 4.11.20200930": {
+                "version": "20201106",
                 "exec": ""
             }
         }
