@@ -97,7 +97,7 @@
     },
     "mriqc": {
         "apps": {
-            "mriqc_0.15.2": {
+            "mriqc 0.15.2": {
                 "version": "20201104",
                 "exec": ""
             }
