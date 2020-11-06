@@ -131,6 +131,14 @@
             }
         }
     },
+    "slicer": {
+        "apps": {
+            "slicer 4.11.20200930": {
+                "version": "20201106",
+                "exec": ""
+            }
+        }
+    },
     "spinalcordtoolbox": {
         "apps": {
             "spinalcordtoolbox 4.3": {
