@@ -25,7 +25,7 @@ jobs:
         run: |
           git remote add subtree https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/neurodesk.git
           git remote add upstream https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/vnm.git
-      - name: Pull neurodesk into subtree
+      - name: Pull neurodesk into vnm/neurodesk
         run:  git subtree pull --prefix neurodesk subtree master
       - name: Push to vnm
         run:  git push upstream master
