@@ -33,6 +33,6 @@ done < log.txt
 
 # check if the installer runs:
 cd ..
-sudo apt install lxde python3
+sudo apt install lxde
 sudo bash build.sh --lxde --edit
 sudo bash install.sh
