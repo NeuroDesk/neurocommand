@@ -33,6 +33,6 @@ done < log.txt
 
 # check if the installer runs:
 cd ..
-apt install lxde
+sudo apt install lxde
 bash build.sh --lxde --edit
 bash install.sh
