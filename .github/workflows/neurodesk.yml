@@ -12,8 +12,8 @@ jobs:
   check-singularity-cache:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: actions/setup-python@v3
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v2
         with:
           python-version: 3.8
       - name : Check if singularity cache files exists
