@@ -2,9 +2,9 @@
 neurodesk makes containerized applications available on any linux system with singularity installed
 
 ## Requirements:
+- python (https://docs.conda.io/en/latest/miniconda.html#linux-installers)  
 - singularity (https://sylabs.io/guides/3.5/user-guide/quick_start.html)  
 - lmod (https://lmod.readthedocs.io/en/latest/)  
-- python (https://docs.conda.io/en/latest/miniconda.html#linux-installers)  
 
 ## Linux 
 ### Inital install
