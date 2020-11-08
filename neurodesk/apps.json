@@ -86,7 +86,7 @@
     "julia": {
         "apps": {
             "julia 1.4.1": {
-                "version": "20201104",
+                "version": "20201108",
                 "exec": ""
             }
         }
@@ -154,7 +154,7 @@
     "spinalcordtoolbox": {
         "apps": {
             "spinalcordtoolbox 4.3": {
-                "version": "20201015",
+                "version": "20201108",
                 "exec": ""
             }
         }
