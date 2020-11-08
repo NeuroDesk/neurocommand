@@ -33,16 +33,6 @@ done < log.txt
 
 # check if the installer runs:
 cd ..
+apt install lxde
 bash build.sh --lxde --edit
 bash install.sh
-
-# if it got until here, all containers exist - we can tag a new release:
-#tagging release
-# buildDate=`date +%Y%m%d`
-# echo "tagging this release as ${buildDate}"
-# # git tag -d ${buildDate}
-# # git push --delete origin ${buildDate}
-# git tag ${buildDate} --force
-# git push origin --tags --force
-
-#push this to vnm repo:
