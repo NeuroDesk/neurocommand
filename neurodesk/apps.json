@@ -143,6 +143,10 @@
         "apps": {
             "slicer 4.11.20200930": {
                 "version": "20201108",
+                "exec": ""
+            },
+            "3DSlicerGui-slicer 4.11.20200930": {
+                "version": "20201108",
                 "exec": "Slicer"
             }
         }
