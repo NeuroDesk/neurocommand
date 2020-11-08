@@ -1,26 +1,29 @@
 # neurodesk
 neurodesk makes containerized applications available on any linux system with singularity installed
 
-## Requirements:
+## Run Desktop with neurodesk installed in a Dockercontainer
+https://github.com/NeuroDesk/vnm/
+
+
+
+## Linux 
+### Requirements:
 - python (https://docs.conda.io/en/latest/miniconda.html#linux-installers)  
 - singularity (https://sylabs.io/guides/3.5/user-guide/quick_start.html)  
 - lmod (https://lmod.readthedocs.io/en/latest/)  
 
-## Linux 
 ### Inital install
-#### CLI mode - For non-desktop experiance  
+#### command line mode - For non-desktop experience (e.g. running on an HPC)  
 If running on cli only ...  
 Run `bash build.sh --cli --lxde` to install in cli mode  
 Run `bash containers.sh` for installing all containers  
 
 #### For Lxde desktops
-
 If running on an lxde desktop...
-Run `bash build.sh --lxde`
+Run `bash build.sh --lxde --edit`
 
 #### For Mate desktops
-
-Run `bash build.sh --init`  (or `bash build.sh --lxde`)  
+Run `bash build.sh --init`  (or `bash build.sh --lxde --edit`)  
 lxde/mate: Mate  
 installdir: Where all the neurodesk files will be stored (Default: ./local)  
 appmenu: The linux menu xml file.  (Usually /etc/xdg/menus/\*\*\*\*-applications.menu)  
@@ -50,7 +53,7 @@ Run `bash containers.sh`
 For more information on WSL: https://docs.microsoft.com/en-us/windows/wsl/  
 
 #### Setting up
-1. Setup WSL/WSL2 using the following instructions _(Ubuntu 18.04 recommended)_  
+1. Setup WSL2 using the following instructions _(Ubuntu 18.04 recommended)_  
 https://docs.microsoft.com/en-us/windows/wsl/install-win10  
 _Proceed until a Ubuntu bash shell is available from the Windows Host_  
 _Run the remaining commands in the Bash shell_
