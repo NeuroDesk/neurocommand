@@ -142,8 +142,8 @@
     "slicer": {
         "apps": {
             "slicer 4.11.20200930": {
-                "version": "20201106",
-                "exec": ""
+                "version": "20201108",
+                "exec": "Slicer"
             }
         }
     },
