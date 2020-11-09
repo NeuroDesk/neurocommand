@@ -1,0 +1,31 @@
+name: push-to-neurodesk
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: NeuroDesk/neurodesk
+          token: ${{secrets.VNM_NEURODESK}}
+          persist-credentials: false
+          fetch-depth: 0
+      - name: Setup git config
+        run: |
+          git config --local user.name "Github Action"
+          git config --local user.email "actions@github.com"
+          git config pull.ff only
+      - name: Setup git remotes
+        run: |
+          git remote add subtree https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/transparent-singularity.git
+          git remote add upstream https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/neurodesk.git
+      - name: Pull transparent-singularity into subtree
+        run:  git subtree pull --prefix neurodesk/transparent-singularity subtree master --squash
+      - name: Push to neurodesk
+        run:  git push upstream master
