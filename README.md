@@ -1,7 +1,7 @@
 # neurodesk
 neurodesk makes containerized applications available on any linux system with singularity installed
 
-## Run Desktop with neurodesk installed in a Dockercontainer
+## Run Desktop with neurodesk installed in a Docker container
 https://github.com/NeuroDesk/vnm/
 
 
