@@ -1,10 +1,8 @@
-FROM python:3
+# start from our VNM image
+FROM docker.pkg.github.com/neurodesk/vnm/vnm:20201109
 
-WORKDIR /usr/src/app
+COPY neurodesk /neurodesk
 
-COPY requirements.txt ./
-RUN pip install --no-cache-dir -r requirements.txt
-
-COPY . .
-
-CMD [ "python", "./your-daemon-or-script.py" ]
+WORKDIR /neurodesk
+RUN bash build.sh --lxde --edit
+RUN bash install.sh
