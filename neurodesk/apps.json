@@ -45,10 +45,6 @@
     },
     "fmriprep": {
         "apps": {
-            "fmriprep 20.2.0": {
-                "version": "20201109",
-                "exec": ""
-            },
             "fmriprep 20.1.3": {
                 "version": "20201118",
                 "exec": ""
