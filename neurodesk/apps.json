@@ -27,6 +27,14 @@
             }
         }
     },
+    "bidstools": {
+        "apps": {
+            "bidstools 1.0.0": {
+                "version": "20201117",
+                "exec": ""
+            }
+        }
+    },
     "convert3d": {
         "apps": {
             "convert3d 1.0.0": {
@@ -156,6 +164,14 @@
             "spinalcordtoolbox 4.3": {
                 "version": "20201108",
                 "exec": ""
+            }
+        }
+    },
+    "spm12": {
+        "apps": {
+            "spm12-spm12 r7219": {
+                "version": "20201117",
+                "exec": "spm12_glnxa64"
             }
         }
     },
