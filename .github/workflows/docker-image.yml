@@ -3,16 +3,8 @@ name: Neurodesk CI and build Docker Image
 on:
   push:
     branches: [ master ]
-    paths:
-      - .github/workflows/docker-image.yml
-      - Dockerfile
-      - neurodesk/*
     paths-ignore: [ '**/README.md' ]  
   pull_request:
-    paths:
-      - .github/workflows/docker-image.yml
-      - Dockerfile
-      - neurodesk/*
     paths-ignore: [ '**/README.md' ] 
     
 env:
