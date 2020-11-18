@@ -12,7 +12,8 @@ on:
     paths:
       - .github/workflows/docker-image.yml
       - Dockerfile
-    paths-ignore: [ '**/README.md' ] - neurodesk/*
+      - neurodesk/*
+    paths-ignore: [ '**/README.md' ] 
     
 env:
   DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
