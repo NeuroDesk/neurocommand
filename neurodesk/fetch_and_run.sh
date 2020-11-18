@@ -36,7 +36,7 @@ if [ $# -le 3 ]; then
             echo "Container ran OK"
         else
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "the container ${CONTAINER_FILE_NAME} has a bug and needs to be updated on your system. To trigger a reinstall, run:"
+            echo "the container ${CONTAINER_FILE_NAME} experienced an error. If you want to trigger a reinstall, run:"
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
             echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
@@ -45,7 +45,7 @@ if [ $# -le 3 ]; then
         fi
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "the container ${CONTAINER_FILE_NAME} has a bug and needs to be updated on your system. To trigger a reinstall, run:"
+        echo "the container ${CONTAINER_FILE_NAME} needs to be updated on your system. To trigger a reinstall, run:"
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
         echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
