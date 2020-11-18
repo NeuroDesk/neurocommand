@@ -174,7 +174,7 @@ def main():
     
     vnm_appmenu = installdir/'vnm-applications.menu'
     # vnm_deskdir = installdir/'desktop-directories'
-    # vnm_appdir = installdir/'applications'
+    
 
     shutil.copy2(appmenu_template, vnm_appmenu)
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
@@ -195,6 +195,14 @@ def main():
     apps_from_json(args.cli, config['vnm']['deskenv'], installdir, appsjson, config['vnm']['sh_prefix'])
     if not args.cli:
         add_vnm_menu(installdir, 'VNM Neuroimaging')
+
+    # Remove any symlinks from local appdir
+    # Prevents symlink recursion
+    vnm_appdir = installdir/'applications'
+    for file in vnm_appdir.glob('*'):
+        if file.is_symlink():
+            os.unlink(file)
+
 
 if __name__ == "__main__":
     main()
