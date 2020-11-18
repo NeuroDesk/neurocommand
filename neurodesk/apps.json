@@ -30,7 +30,7 @@
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
-                "version": "20201117",
+                "version": "20201118",
                 "exec": ""
             }
         }
@@ -170,7 +170,7 @@
     "spm12": {
         "apps": {
             "spm12-spm12 r7219": {
-                "version": "20201117",
+                "version": "20201118",
                 "exec": "spm12_glnxa64"
             }
         }
