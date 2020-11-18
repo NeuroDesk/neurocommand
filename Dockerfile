@@ -1,7 +1,7 @@
 # start from our VNM image
-FROM docker.pkg.github.com/neurodesk/vnm/vnm:20201109
+FROM docker.pkg.github.com/neurodesk/vnm/vnm:20201118
 
-COPY neurodesk /neurodesk/neurodesk
+COPY . /neurodesk/
 
 WORKDIR /neurodesk
 RUN bash build.sh --lxde --edit
