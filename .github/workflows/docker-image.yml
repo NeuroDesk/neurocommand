@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Neurodesk CI and build Docker Image
 
 on:
   push:
@@ -7,11 +7,12 @@ on:
       - .github/workflows/docker-image.yml
       - Dockerfile
       - neurodesk/*
+    paths-ignore: [ '**/README.md' ]  
   pull_request:
     paths:
       - .github/workflows/docker-image.yml
       - Dockerfile
-      - neurodesk/*
+    paths-ignore: [ '**/README.md' ] - neurodesk/*
     
 env:
   DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
@@ -21,6 +22,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name : Check if singularity cache files exists
+      run: | 
+        /bin/bash .github/workflows/check_containers.sh
     - name: Pull latest build from Github Packages
       run: |
         echo ${GITHUB_REF}
