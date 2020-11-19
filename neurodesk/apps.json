@@ -35,10 +35,26 @@
             }
         }
     },
+    "connectomeworkbench": {
+        "apps": {
+            "connectomeworkbench 1.4.2": {
+                "version": "20201119",
+                "exec": ""
+            }
+        }
+    },
     "convert3d": {
         "apps": {
             "convert3d 1.0.0": {
                 "version": "20200811",
+                "exec": ""
+            }
+        }
+    },
+    "datalad": {
+        "apps": {
+            "datalad 0.13.3": {
+                "version": "20201119",
                 "exec": ""
             }
         }
