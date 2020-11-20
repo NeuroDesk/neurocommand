@@ -30,7 +30,7 @@
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
-                "version": "20201118",
+                "version": "20201120",
                 "exec": ""
             }
         }
