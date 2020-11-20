@@ -186,7 +186,7 @@
     "spm12": {
         "apps": {
             "spm12-spm12 r7219": {
-                "version": "20201118",
+                "version": "20201120",
                 "exec": "run_spm12.sh /opt/matlabmcr-2010a/"
             }
         }
