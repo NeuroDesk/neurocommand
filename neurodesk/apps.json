@@ -187,7 +187,7 @@
         "apps": {
             "spm12-spm12 r7219": {
                 "version": "20201118",
-                "exec": "spm12_glnxa64"
+                "exec": "run_spm12.sh /opt/matlabmcr-2010a/"
             }
         }
     },
