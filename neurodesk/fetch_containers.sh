@@ -29,12 +29,12 @@ echo "MODS_PATH: $MODS_PATH"
 echo "trying to module use  ${MODS_PATH}"
 module use ${MODS_PATH}
 
-if [ ! -d ${CONTAINER_PATH} ]; then
+if [ ! -L ${CONTAINER_PATH} ]; then
     echo "creating ${CONTAINER_PATH}"
     mkdir -p ${CONTAINER_PATH}
 fi
 
-if [ ! -d ${MODS_PATH} ]; then
+if [ ! -L ${MODS_PATH} ]; then
     echo "creating ${MODS_PATH}"
     mkdir -p ${MODS_PATH}
 fi
