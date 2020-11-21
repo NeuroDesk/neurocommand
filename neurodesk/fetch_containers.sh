@@ -29,14 +29,14 @@ echo "MODS_PATH: $MODS_PATH"
 echo "trying to module use  ${MODS_PATH}"
 module use ${MODS_PATH}
 
-if [ ! -L ${CONTAINER_PATH} ]; then
-    echo "creating ${CONTAINER_PATH}"
-    mkdir -p ${CONTAINER_PATH}
+if [ ! -L `readlink -f $CONTAINER_PATH` ]; then
+    echo "creating `readlink -f $CONTAINER_PATH`"
+    mkdir -p `readlink -f $CONTAINER_PATH`
 fi
 
-if [ ! -L ${MODS_PATH} ]; then
-    echo "creating ${MODS_PATH}"
-    mkdir -p ${MODS_PATH}
+if [ ! -d `readlink -f $MODS_PATH` ]; then
+    echo "creating `readlink -f $MODS_PATH`"
+    mkdir -p `readlink -f $MODS_PATH`
 fi
 # Update application transparent-singularity with latest version
 CWD=$PWD
