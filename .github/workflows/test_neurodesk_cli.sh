@@ -31,7 +31,7 @@ echo "python version is ... "
 python --version
 echo "where am I"
 pwd
-python -m neurodesk --cli --lxde
+python -m neurodesk --cli
 # bash build.sh --cli --lxde
 # sudo bash build.sh --cli --lxde
 cat all_execs.sh
