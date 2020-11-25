@@ -31,15 +31,8 @@ echo "python version is ... "
 python --version
 echo "where am I"
 pwd
-echo "whoami"
-whoami
-echo "ls -la"
-ls -la
-mkdir testing
-ls -la 
-python -m neurodesk $@
-ls -la 
-bash build.sh --cli --lxde
+python -m neurodesk --cli --lxde
+# bash build.sh --cli --lxde
 # sudo bash build.sh --cli --lxde
 cat all_execs.sh
 
