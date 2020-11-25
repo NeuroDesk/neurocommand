@@ -29,8 +29,13 @@ echo "checking if neurodesk installs and a containers gets downloaded correctly"
 # cd ..
 echo "python version is ... "
 python --version
-sudo python --version
-# python -m neurodesk $@
+echo "where am I"
+pwd
+echo "whoami"
+whoami
+echo "ls -la"
+sudo chmod a+rwx . -R
+ls -la
 bash build.sh --cli --lxde
 # sudo bash build.sh --cli --lxde
 cat all_execs.sh
