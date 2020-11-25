@@ -41,6 +41,3 @@ echo "------------------------------------"
 echo "to install individual containers, run:"
 cat all_execs.sh
 
-# echo "------------------------------------"
-# echo "to install all containers, run:"
-# echo "./neurodesk.sh --install_all_containers true"
