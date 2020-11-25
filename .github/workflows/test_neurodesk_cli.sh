@@ -29,6 +29,9 @@ echo "checking if neurodesk installs and a containers gets downloaded correctly"
 # cd ..
 echo "python version is ... "
 python --version
-sudo bash build.sh --cli --lxde
+sudo python --version
+# python -m neurodesk $@
+bash build.sh --cli --lxde
+# sudo bash build.sh --cli --lxde
 cat all_execs.sh
 
