@@ -5,7 +5,7 @@
 # for downloading images from nectar it needs curl installed
 #11/07/2018
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
-set -e
+# set -e
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
@@ -88,8 +88,21 @@ if [ "$containerEnding" = "$containerDate" ]; then
    container=${containerName}_${containerVersion}_${containerDate}.${containerEnding}
 fi
 
+echo "checking for singularity ..."
+qq=`which  singularity`
+if [[  ${#qq} -lt 1 ]]; then
+   echo "This script requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
+   echo "If you are root try again as normal user"
+   echo "trying to module load:"
+   module load singularity
+   qq=`which  singularity`
+   if [[  ${#qq} -lt 1 ]]; then
+      echo "ERROR: SOMETHING IS WRONG WITH SINGULARITY"
+   fi
+fi
+
 # check if singularity is installed in the correct version
-singularity_version=`singularity --version`
+singularity_version=`singularity --version` || echo "SINGULARITY is not loaded or not installed!"
 if [ "$singularity_version" = "2.6.1-dist" ]; then
    echo "$singularity_version need older image format!"
    containerEnding="simg"
@@ -118,18 +131,7 @@ if [ "$storage" = "docker" ]; then
    container_pull="singularity pull docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
 fi
 
-echo "checking for singularity ..."
-qq=`which  singularity`
-if [[  ${#qq} -lt 1 ]]; then
-   echo "This script requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
-   echo "If you are root try again as normal user"
-   echo "trying to module load:"
-   module load singularity/3.5.0
-   qq=`which  singularity`
-   if [[  ${#qq} -lt 1 ]]; then
-      exit
-   fi
-fi
+
 
 echo "deploying in $_base"
 echo "checking if container needs to be downloaded"
