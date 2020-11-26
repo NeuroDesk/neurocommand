@@ -104,6 +104,7 @@ def main():
         config['vnm']['edit'] = 'y'
 
     if args.cli:
+        print('installing in command line mode without desktop menus')
         config['vnm']['edit'] = 'y'
 
     if args.init:

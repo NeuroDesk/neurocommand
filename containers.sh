@@ -4,6 +4,11 @@ source neurodesk/configparser.sh
 
 install_all_containers="true"
 
+if [ "$1" != "" ]; then
+    echo "Entering Debug mode"
+    install_all_containers="false"
+fi
+
 # wget -c https://github.com/NeuroDesk/transparent-singularity/archive/master.zip -O ${vnm_installdir}/transparent-singularity.zip
 # unzip -o ${vnm_installdir}/transparent-singularity.zip -d ${vnm_installdir}
 

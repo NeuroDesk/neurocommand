@@ -15,6 +15,8 @@ https://github.com/NeuroDesk/vnm/
 ### Inital install
 #### command line mode - For non-desktop experience (e.g. running on an HPC)  
 If running on cli only ...  
+Run `git clone https://github.com/NeuroDesk/neurodesk.git` to clone the directory
+Run `cd neurodesk` to change into the directory
 Run `bash build.sh --cli --lxde` to install in cli mode  
 Run `bash containers.sh` for installing all containers  
 
