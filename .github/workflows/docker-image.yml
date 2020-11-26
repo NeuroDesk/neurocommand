@@ -45,10 +45,8 @@ jobs:
         echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
         echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
         echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
-    - name: Test menu items in container
+    - name: Test container
       run: |
-        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
-        docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
         /bin/bash .github/workflows/test_neurodesk_image.sh
     - name: Push to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
