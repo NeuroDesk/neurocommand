@@ -35,10 +35,12 @@ bash build.sh --cli --lxde
 bash containers.sh
 bash /home/runner/work/neurodesk/neurodesk/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
 
-ls /home/runner/work/neurodesk/neurodesk/local/containers/
+ls /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811
 
-if [ -f /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811.sif ]; then
+if [ -f /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.sif ]; then
     echo "Container file exists"
+    exit 0
 else 
-    echo "Container file does not exist"
+    echo "Container file does not exist!!!!!!!!!"
+    exit 1
 fi
