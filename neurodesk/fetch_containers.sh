@@ -39,7 +39,6 @@ if [ ! -d `readlink -f $MODS_PATH` ]; then
     mkdir -p `readlink -f $MODS_PATH`
 fi
 # Update application transparent-singularity with latest version
-CWD=$PWD
 cd ${CONTAINER_PATH}
 mkdir -p ${IMG_NAME}
 # Check if the module is there - if not this means we definetly need to install the container
@@ -47,6 +46,20 @@ mkdir -p ${IMG_NAME}
 CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
 if [ -f "${CONTAINER_FILE_NAME}" ]; then
     echo "found it. Container ${IMG_NAME} is installed."
+    echo "check if container is full downloaded and executable:"
+    singularity exec ${CONTAINER_FILE_NAME} ls
+    if [ $? -ne 0 ]; then
+        echo "Container ${IMG_NAME} seems to be fully downloaded and executable."
+    else 
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo "the container is incomplete and needs to be re-downloaded - run:"
+        echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
+        echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
+        echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
+        read -p "Would you like me to do this for you (Y for yes)? " choice 
+        [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
+        exit
+    fi
 else
     cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
     cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
