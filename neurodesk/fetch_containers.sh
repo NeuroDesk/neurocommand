@@ -31,12 +31,12 @@ module use ${MODS_PATH}
 
 if [ ! -L `readlink -f $CONTAINER_PATH` ]; then
     echo "creating `readlink -f $CONTAINER_PATH`"
-    mkdir -p `readlink -f $CONTAINER_PATH` || echo "Something went wrong. " && exit
+    mkdir -p `readlink -f $CONTAINER_PATH` || ( echo "Something went wrong. " && exit )
 fi
 
 if [ ! -d `readlink -f $MODS_PATH` ]; then
     echo "creating `readlink -f $MODS_PATH`"
-    mkdir -p `readlink -f $MODS_PATH` || echo "Something went wrong. " && exit
+    mkdir -p `readlink -f $MODS_PATH` || ( echo "Something went wrong. " && exit )
 fi
 # Update application transparent-singularity with latest version
 cd ${CONTAINER_PATH}
