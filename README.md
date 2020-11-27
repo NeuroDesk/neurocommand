@@ -14,11 +14,13 @@ https://github.com/NeuroDesk/vnm/
 
 ### Inital install
 #### command line mode - For non-desktop experience (e.g. running on an HPC)  
-If running on cli only ...  
-Run `git clone https://github.com/NeuroDesk/neurodesk.git` to clone the directory
+If running on cli only ... 
+Load singularity and for best performance it should be 3.x e.g. `module load singularity/3.5.0` 
+Run `git clone https://github.com/NeuroDesk/neurodesk.git` to clone the repository
 Run `cd neurodesk` to change into the directory
-Run `bash build.sh --cli --lxde` to install in cli mode  
-Run `bash containers.sh` for installing all containers  
+Run `bash build.sh --cli` to install in cli mode  
+Run `bash containers.sh` for installing indiviual containers or `bash containers.sh --all` for installing all containers
+Run `module use $PWD/local/containers/modules/` to add the containers to your module search path. Add this to your .bashrc if working.
 
 #### For Lxde desktops
 If running on an lxde desktop...
