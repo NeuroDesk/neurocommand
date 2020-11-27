@@ -21,9 +21,6 @@ jobs:
     - name : Check if singularity cache files exist
       run: | 
         /bin/bash .github/workflows/check_containers.sh
-    - name : Test neurodesk cli version
-      run: | 
-        /bin/bash .github/workflows/test_neurodesk_cli.sh
     - name: Pull latest build from Github Packages
       run: |
         echo ${GITHUB_REF}
@@ -45,6 +42,9 @@ jobs:
         echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
         echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
         echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
+    - name: Test neurodesk cli version
+      run: | 
+        /bin/bash .github/workflows/test_neurodesk_cli.sh
     - name: Test container
       run: |
         /bin/bash .github/workflows/test_neurodesk_image.sh
