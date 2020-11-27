@@ -47,6 +47,11 @@ CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
 if [ -f "${CONTAINER_FILE_NAME}" ]; then
     echo "found it. Container ${IMG_NAME} is there."
     echo "now checking if container is fully downloaded and executable:"
+    qq=`which  singularity`
+    if [[  ${#qq} -lt 1 ]]; then
+        echo "ERROR: This script requires singularity on your path. EXITING"
+        exit
+    fi
     singularity exec ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
