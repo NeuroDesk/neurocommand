@@ -21,6 +21,7 @@ If running on cli only ...
 - Run `bash build.sh --cli` to install in cli mode  
 - Run `bash containers.sh` for installing indiviual containers or `bash containers.sh --all` for installing all containers
 - Run `module use $PWD/local/containers/modules/` to add the containers to your module search path. Add this to your .bashrc if working.
+- Run `module avail` to see the installed containers at the top of the list (neurodesk containers will take preference over system modules with the same name)
 
 #### For Lxde desktops
 If running on an lxde desktop...
@@ -49,7 +50,7 @@ Run `bash build.sh`
 _install.sh does not need to be run again_
 
 #### To download all containers
-Run `bash containers.sh`
+Run `bash containers.sh --all`
 
 ## Windows
 
