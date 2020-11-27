@@ -46,7 +46,7 @@ mkdir -p ${IMG_NAME}
 CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
 if [ -f "${CONTAINER_FILE_NAME}" ]; then
     echo "found it. Container ${IMG_NAME} is there."
-    echo "now checking if container is full downloaded and executable:"
+    echo "now checking if container is fully downloaded and executable:"
     singularity exec ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"

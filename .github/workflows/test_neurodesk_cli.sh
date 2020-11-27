@@ -20,3 +20,7 @@ else
     echo "Container file does not exist!!!!!!!!!"
     exit 1
 fi
+
+# cleanup
+rm -rf /home/runner/work/neurodesk/neurodesk/local/
+rm /home/runner/work/neurodesk/neurodesk/all_execs.sh
