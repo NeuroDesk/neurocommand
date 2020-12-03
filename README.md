@@ -1,9 +1,10 @@
 # neurodesk
-neurodesk makes containerized applications available on any linux system with singularity installed
+A flexible, scalable, and easy to use data analysis environment for reproducible neuroimaging
+
+![Screenshot](Screenshot.png)
 
 ## Run Desktop with neurodesk installed in a Docker container
-https://github.com/NeuroDesk/vnm/
-
+Quickstart: https://github.com/NeuroDesk/vnm/
 
 
 ## Linux 
@@ -74,3 +75,9 @@ Change `port=3389` to `port=3390` and save
 3. Connect to `localhost:3390`  
 _An LXDE desktop should as a Microsoft Remote Desktop_  
 4. Follow Linux guide from here on
+
+## Acknowledgments
+<img src="https://github.com/NeuroDesk/vnm/blob/master/nif.png" width="250">
+<img src="https://github.com/NeuroDesk/vnm/blob/master/uq_logo.png" width="250">
+<img src="https://github.com/NeuroDesk/vnm/blob/master/logo-long-full.svg" width="250">
+<img src="https://www.gigacrc.uliege.be/upload/docs/image/svg-xml/2018-10/_uliege_giga_crc.svg" width="250">
