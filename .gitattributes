@@ -1,3 +1,7 @@
+# Set non-text as binary
+* text=auto
+*.png binary
+
 # Forcing UNIX LF line endings for text files added to container
 config/*.sh text eol=lf
 config/rc.xml text eol=lf
