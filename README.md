@@ -1,7 +1,7 @@
 # neurodesk
 A flexible, scalable, and easy to use data analysis environment for reproducible neuroimaging
 
-![Screenshot](Screenshot.png)
+<img src="https://github.com/NeuroDesk/vnm/blob/master/Screenshot.png">
 
 ## Run Desktop with neurodesk installed in a Docker container
 Quickstart: https://github.com/NeuroDesk/vnm/
