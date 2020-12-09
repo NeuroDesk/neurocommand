@@ -19,17 +19,18 @@ for appsh in ${vnm_installdir}/bin/vnm-*.sh; do
     echo $appfetch
     if [ "$install_all_containers" = "true" ]; then
          eval $appfetch
-#        if `eval '$appfetch'` ; then
-#            echo "Container successfully installed"
-#            echo "-------------------------------------------------------------------------------------"
-#            date
-#        else
-#            echo "======================================="
-#            echo "!!!!!!! Container install failed !!!!!!"
-#            echo "======================================="
-#            date
-#            exit
-#        fi
+        err=$?
+        if [ $err -eq 0 ] ; then
+            echo "Container successfully installed"
+            echo "-------------------------------------------------------------------------------------"
+            date
+        else
+            echo "======================================="
+            echo "!!!!!!! Container install failed !!!!!!"
+            echo "======================================="
+            date
+            exit
+        fi
         
     fi
 done
