@@ -18,17 +18,18 @@ for appsh in ${vnm_installdir}/bin/vnm-*.sh; do
     appfetch=$(sed -n 's/fetch_and_run.sh/fetch_containers.sh/p' $appsh)
     echo $appfetch
     if [ "$install_all_containers" = "true" ]; then
-        if `eval "$appfetch"` ; then
-            echo "Container successfully installed"
-            echo "-------------------------------------------------------------------------------------"
-            date
-        else
-            echo "======================================="
-            echo "!!!!!!! Container install failed !!!!!!"
-            echo "======================================="
-            date
-            exit
-        fi
+         eval $appfetch
+#        if `eval '$appfetch'` ; then
+#            echo "Container successfully installed"
+#            echo "-------------------------------------------------------------------------------------"
+#            date
+#        else
+#            echo "======================================="
+#            echo "!!!!!!! Container install failed !!!!!!"
+#            echo "======================================="
+#            date
+#            exit
+#        fi
         
     fi
 done
