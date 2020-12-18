@@ -31,9 +31,9 @@ do
         curl -v -X PUT -u ${ORACLE_USER} --upload-file ${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET   
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
-            echo "${IMAGENAME_BUILDDATE}.sif was freshly uploaded and exists now :)"
+            echo "${IMAGENAME_BUILDDATE}.sif was freshly build and exists now :)"
         else
-            echo "${IMAGENAME_BUILDDATE}.sif does not exist yet"
+            echo "${IMAGENAME_BUILDDATE}.sif does not exist yet. Something is WRONG"
             exit 2
         fi
     fi
