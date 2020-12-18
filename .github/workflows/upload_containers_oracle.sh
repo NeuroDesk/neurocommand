@@ -50,7 +50,8 @@ do
         docker run -v $HOME:/home $REGISTRY/singularity3 build "/home/${IMAGENAME_BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
-        curl -v -X PUT -u ${ORACLE_USER} --upload-file /home/${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET   
+        curl -v -X PUT -u ${ORACLE_USER} --upload-file $HOME/${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET
+        rm $HOME/${IMAGENAME_BUILDDATE}.sif
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
             echo "${IMAGENAME_BUILDDATE}.sif was freshly build and exists now :)"
