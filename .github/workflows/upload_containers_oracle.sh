@@ -38,12 +38,16 @@ do
         echo "[DEBUG] REGISTRY: $REGISTRY"
         IMAGEID="$DOCKERHUB_ORG/$IMAGENAME_BUILDDATE"
         echo "[DEBUG] IMAGEID: $IMAGEID"
+        IMAGENAME="$(cut -d'.' -f1 <<< ${IMAGENAME_BUILDDATE})"
+        BUILDDATE="$(cut -d'.' -f2 <<< ${IMAGENAME_BUILDDATE})"
+        echo "[DEBUG] IMAGENAME: $IMAGENAME"
+        echo "[DEBUG] BUILDDATE: $BUILDDATE"
 
         echo "[DEBUG] Pulling latest build of singularity ..."
         docker pull $REGISTRY/singularity3
         echo "[DEBUG] Build singularity container ..."
-        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity build /home/${IMAGENAME_BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME_BUILDDATE"
-        docker run -v $HOME:/home $REGISTRY/singularity3 build "/home/${IMAGENAME_BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME_BUILDDATE
+        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity build /home/${IMAGENAME_BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE"
+        docker run -v $HOME:/home $REGISTRY/singularity3 build "/home/${IMAGENAME_BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file ${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET   
