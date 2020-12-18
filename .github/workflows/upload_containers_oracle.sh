@@ -68,6 +68,11 @@ do
         echo "${IMAGENAME_BUILDDATE}.simg exists"
     else
         echo "${IMAGENAME_BUILDDATE}.simg does not exist yet - building it!"
+        echo "[DEBUG] DOCKERHUB_ORG: $DOCKERHUB_ORG"
+        IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
+        BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
+        echo "[DEBUG] IMAGENAME: $IMAGENAME"
+        echo "[DEBUG] BUILDDATE: $BUILDDATE"
         singularity build "/home/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
