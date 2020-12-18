@@ -38,8 +38,8 @@ do
         echo "[DEBUG] REGISTRY: $REGISTRY"
         IMAGEID="$DOCKERHUB_ORG/$IMAGENAME_BUILDDATE"
         echo "[DEBUG] IMAGEID: $IMAGEID"
-        IMAGENAME="$(cut -d'.' -f1 <<< ${IMAGENAME_BUILDDATE})"
-        BUILDDATE="$(cut -d'.' -f2 <<< ${IMAGENAME_BUILDDATE})"
+        IMAGENAME="$(cut -d'_' -f1 <<< ${IMAGENAME_BUILDDATE})"
+        BUILDDATE="$(cut -d'_' -f2 <<< ${IMAGENAME_BUILDDATE})"
         echo "[DEBUG] IMAGENAME: $IMAGENAME"
         echo "[DEBUG] BUILDDATE: $BUILDDATE"
 
