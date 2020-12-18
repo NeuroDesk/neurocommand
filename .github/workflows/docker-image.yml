@@ -9,8 +9,8 @@ on:
     
 env:
   DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
-  ORACLE_SINGULARITY3_USER: ${{ secrets.ORACLE_SINGULARITY3_USER }}
-  ORACLE_SINGULARITY3_ENDPOINT: ${{ secrets.ORACLE_SINGULARITY3_ENDPOINT }}
+  ORACLE_USER: ${{ secrets.ORACLE_USER }}
+  ORACLE_NEURODESK_BUCKET: ${{ secrets.ORACLE_NEURODESK_BUCKET }}
 
 jobs:
   build:
@@ -25,8 +25,8 @@ jobs:
         /bin/bash .github/workflows/check_containers.sh
     - name : Check if singularity cache files exist in oracle cloud
       run: |
-        echo "ORACLE_SINGULARITY3_USER=$ORACLE_SINGULARITY3_USER" >> $GITHUB_ENV 
-        echo "ORACLE_SINGULARITY3_ENDPOINT=$ORACLE_SINGULARITY3_ENDPOINT" >> $GITHUB_ENV 
+        echo "ORACLE_USER=$ORACLE_USER" >> $GITHUB_ENV 
+        echo "ORACLE_NEURODESK_BUCKET=$ORACLE_NEURODESK_BUCKET" >> $GITHUB_ENV 
         /bin/bash .github/workflows/upload_containers_oracle.sh
     - name: Pull latest build from Github Packages
       run: |

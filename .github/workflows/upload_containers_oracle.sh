@@ -23,14 +23,14 @@ sed -i 's/ /_/g' log.txt
 while IFS= read -r IMAGENAME_BUILDDATE
 do
   echo "$IMAGENAME_BUILDDATE"
-    if curl --output /dev/null --silent --head --fail "https://objectstorage.ap-sydney-1.oraclecloud.com/n/nrrir2sdpmdp/b/singularity3/o/${IMAGENAME_BUILDDATE}.sif"; then
+    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
         echo "${IMAGENAME_BUILDDATE}.sif exists"
     else
         echo "${IMAGENAME_BUILDDATE}.sif does not exist yet - building it!"
         touch ${IMAGENAME_BUILDDATE}.sif
-        curl -v -X PUT -u ${ORACLE_SINGULARITY3_USER} --upload-file ${IMAGENAME_BUILDDATE}.sif $ORACLE_SINGULARITY3_ENDPOINT   
+        curl -v -X PUT -u ${ORACLE_USER} --upload-file ${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET   
 
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.ap-sydney-1.oraclecloud.com/n/nrrir2sdpmdp/b/singularity3/o/${IMAGENAME_BUILDDATE}.sif"; then
+        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
             echo "${IMAGENAME_BUILDDATE}.sif was freshly uploaded and exists now :)"
         else
             echo "${IMAGENAME_BUILDDATE}.sif does not exist yet"
