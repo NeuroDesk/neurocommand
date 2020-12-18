@@ -73,11 +73,12 @@ do
         BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
         echo "[DEBUG] IMAGENAME: $IMAGENAME"
         echo "[DEBUG] BUILDDATE: $BUILDDATE"
-        singularity build "/home/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+        sudo singularity build "/home/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
         rm $HOME/${IMAGENAME_BUILDDATE}.simg
+        rm -rf /home/runner/.singularity/docker
         df -h
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
