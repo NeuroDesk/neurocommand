@@ -37,7 +37,7 @@ jobs:
           echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
           echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
           echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
-      - name: Push to Github packages (if changes found)
+      - name: Push to Github packages
         run: |
           # Push to GH Packages
           docker tag $IMAGEID:$SHORT_SHA $IMAGEID:$BUILDDATE
