@@ -29,7 +29,7 @@ do
         echo "${IMAGENAME_BUILDDATE}.sif does not exist yet - building it!"
         
         echo "[DEBUG] DOCKERHUB_ORG: $DOCKERHUB_ORG"
-        REGISTRY=$(echo docker.pkg.github.com/$GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')
+        REGISTRY="docker.pkg.github.com/neurodesk/caid"
         echo "[DEBUG] REGISTRY: $REGISTRY"
         IMAGEID="$DOCKERHUB_ORG/$IMAGENAME_BUILDDATE"
         echo "[DEBUG] IMAGEID: $IMAGEID"
