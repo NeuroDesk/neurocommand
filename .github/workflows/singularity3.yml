@@ -38,7 +38,6 @@ jobs:
           echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
           echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
       - name: Push to Github packages (if changes found)
-        if: env.GITHUB_REF == 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
         run: |
           # Push to GH Packages
           docker tag $IMAGEID:$SHORT_SHA $IMAGEID:$BUILDDATE
