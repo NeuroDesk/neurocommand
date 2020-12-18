@@ -22,6 +22,8 @@ jobs:
         python-version: 3.8
     - name : Check if singularity cache files exist in nectar
       run: | 
+        echo ${GITHUB_REF}
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         /bin/bash .github/workflows/check_containers.sh
     - name : Check if singularity cache files exist in oracle cloud
       run: |
@@ -30,8 +32,6 @@ jobs:
         /bin/bash .github/workflows/upload_containers_oracle.sh
     - name: Pull latest build from Github Packages
       run: |
-        echo ${GITHUB_REF}
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
         IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
         {
