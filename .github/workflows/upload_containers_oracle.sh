@@ -28,6 +28,7 @@ sudo apt-get install singularity-container
 while IFS= read -r IMAGENAME_BUILDDATE
 do
   echo "$IMAGENAME_BUILDDATE"
+    #build singularity 3 image
     if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
         echo "${IMAGENAME_BUILDDATE}.sif exists"
     else
@@ -58,6 +59,26 @@ do
             echo "${IMAGENAME_BUILDDATE}.sif was freshly build and exists now :)"
         else
             echo "${IMAGENAME_BUILDDATE}.sif does not exist yet. Something is WRONG"
+            exit 2
+        fi
+    fi
+
+    #build singularity 2 image
+    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
+        echo "${IMAGENAME_BUILDDATE}.simg exists"
+    else
+        echo "${IMAGENAME_BUILDDATE}.simg does not exist yet - building it!"
+        singularity build "/home/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+
+        echo "[DEBUG] Attempting upload to Oracle ..."
+        curl -v -X PUT -u ${ORACLE_USER} --upload-file $HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
+        rm $HOME/${IMAGENAME_BUILDDATE}.simg
+        df -h
+
+        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
+            echo "${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+        else
+            echo "${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
             exit 2
         fi
     fi
