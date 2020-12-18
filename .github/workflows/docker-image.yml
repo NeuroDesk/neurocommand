@@ -25,6 +25,8 @@ jobs:
         echo ${GITHUB_REF}
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         /bin/bash .github/workflows/check_containers.sh
+    - name: Free up disk space on runner
+      run: bash .github/workflows/free-up-space.sh
     - name : Check if singularity cache files exist in oracle cloud
       run: |
         echo "ORACLE_USER=$ORACLE_USER" >> $GITHUB_ENV 

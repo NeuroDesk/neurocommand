@@ -52,6 +52,7 @@ do
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $HOME/${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET
         rm $HOME/${IMAGENAME_BUILDDATE}.sif
+        df -h
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.sif"; then
             echo "${IMAGENAME_BUILDDATE}.sif was freshly build and exists now :)"
