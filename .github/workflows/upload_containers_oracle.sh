@@ -35,10 +35,10 @@ do
         echo "[DEBUG] IMAGEID: $IMAGEID"
 
         echo "[DEBUG] Pulling latest build of singularity ..."
-        docker pull $REGISTRY/singularity
+        docker pull $REGISTRY/singularity3
         echo "[DEBUG] Build singularity container ..."
         echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity build /home/${IMAGENAME_BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
-        docker run -v $HOME:/home $REGISTRY/singularity build "/home/${IMAGENAME_BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
+        docker run -v $HOME:/home $REGISTRY/singularity3 build "/home/${IMAGENAME_BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file ${IMAGENAME_BUILDDATE}.sif $ORACLE_NEURODESK_BUCKET   
