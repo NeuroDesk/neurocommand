@@ -27,6 +27,7 @@ jobs:
         python-version: 3.8
     - name: Pull latest build from Github Packages
       run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
         IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
@@ -72,7 +73,6 @@ jobs:
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
       run: |
         echo ${GITHUB_REF}
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         echo "ORACLE_USER=$ORACLE_USER" >> $GITHUB_ENV 
         echo "ORACLE_NEURODESK_BUCKET=$ORACLE_NEURODESK_BUCKET" >> $GITHUB_ENV 
         /bin/bash .github/workflows/upload_containers_oracle.sh
