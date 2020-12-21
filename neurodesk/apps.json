@@ -117,7 +117,7 @@
     },
     "gimp": {
         "apps": {
-            "gimp-gimp 2.10.18": {
+            "gimp 2.10.18": {
                 "version": "20201123",
                 "exec": "gimp"
             }
@@ -125,7 +125,7 @@
     },
     "itksnap": {
         "apps": {
-            "itksnap-itksnap 3.8.0": {
+            "itksnap 3.8.0": {
                 "version": "20200811",
                 "exec": "itksnap /MRIcrop-orig.gipl"
             }
@@ -217,7 +217,7 @@
     },
     "spm12": {
         "apps": {
-            "spm12-spm12 r7219": {
+            "spm12 r7219": {
                 "version": "20201120",
                 "exec": "run_spm12.sh /opt/matlabmcr-2010a/"
             }

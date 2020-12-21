@@ -39,7 +39,7 @@ def add_app(
 
 if __name__ == "__main__":
     # Read applications file
-    with open(Path("./apps.json"), "r") as json_file:
+    with open(Path("./neurodesk/apps.json"), "r") as json_file:
         menu_entries = json.load(json_file)
 
     for menu_name, menu_data in menu_entries.items():

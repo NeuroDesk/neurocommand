@@ -4,8 +4,7 @@
 echo "checking if containers are built"
 
 #creating logfile with available containers
-cd neurodesk
-python3 write_log.py
+python3 neurodesk/write_log.py
 
 # remove empty lines
 sed -i '/^$/d' log.txt
