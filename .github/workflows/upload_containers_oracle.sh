@@ -35,14 +35,6 @@ export OS_PROJECT_NAME="CAI_Container_Builder"
 export OS_USER_DOMAIN_NAME="Default"
 export OS_REGION_NAME="Melbourne"
 
-touch test.txt
-swift upload singularityImages test.txt --segment-size 1073741824
-which swift
-ls /usr/share/swift
-ls /usr/share/swift/usr
-ls /usr/share/swift/usr/bin
-exit
-
 export IMAGE_HOME="/home/runner"
 
 while IFS= read -r IMAGENAME_BUILDDATE
