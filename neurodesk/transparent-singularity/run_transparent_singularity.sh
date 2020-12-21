@@ -47,15 +47,15 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "Select the container you would like to install:"
       echo "-----------------------------------------------"
-      echo "full list: https://github.com/NeuroDesk/caid/packages"
       echo "singularity container cache list:"
       curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
+      # curl -s -S -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/
+      # curl -s -S -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/
       echo " "
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
-      echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.sif"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.sif --storage docker"
+      echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.simg"
       echo "-----------------------------------------------"
       exit
    else
@@ -82,9 +82,9 @@ containerEnding="$(cut -d'.' -f2 <<< ${containerDateAndFileEnding})"
 
 echo "containerDate: ${containerDate}"
 
-# if no container extension is given, assume .sif
+# if no container extension is given, assume .simg
 if [ "$containerEnding" = "$containerDate" ]; then
-   containerEnding="sif"
+   containerEnding="simg"
    container=${containerName}_${containerVersion}_${containerDate}.${containerEnding}
 fi
 
@@ -95,16 +95,6 @@ if [[  ${#qq} -lt 1 ]]; then
    echo "If you are root try again as normal user"
 fi
 
-# check if singularity is installed in the correct version
-singularity_version=`singularity --version` || echo "SINGULARITY is not loaded or not installed!"
-if [ "$singularity_version" = "2.6.1-dist" ]; then
-   echo "$singularity_version need older image format!"
-   containerEnding="simg"
-   echo "this singularity version needs a different image name:"
-   container=${containerName}_${containerVersion}-${containerDate}.simg
-   echo $container
-fi
-
 echo "containerEnding: ${containerEnding}"
 echo "trying if $container exists in the cache"
 
@@ -113,18 +103,7 @@ echo "trying if $container exists in the cache"
 if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
    echo "$container exists in the cache"
    container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
-else
-   echo "$container does not exist in cache - loading from docker!"
-   storage="docker"
 fi
-
-
-if [ "$storage" = "docker" ]; then
-   echo "pulling from docker cloud"
- 
-   container_pull="singularity pull docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
-fi
-
 
 
 echo "deploying in $_base"
