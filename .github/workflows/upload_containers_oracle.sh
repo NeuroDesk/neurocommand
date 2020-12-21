@@ -26,13 +26,22 @@ sudo apt-get update
 sudo apt-get install singularity-container
 
 echo "[DEBUG] Configure for SWIFT storage"
-pip install wheel
-pip install python-swiftclient python-keystoneclient
+which pip
+sudo pip install wheel
+sudo pip install python-swiftclient python-keystoneclient
 export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
 export OS_AUTH_TYPE=v3applicationcredential
 export OS_PROJECT_NAME="CAI_Container_Builder"
 export OS_USER_DOMAIN_NAME="Default"
 export OS_REGION_NAME="Melbourne"
+
+touch test.txt
+swift upload singularityImages test.txt --segment-size 1073741824
+which swift
+ls /usr/share/swift
+ls /usr/share/swift/usr
+ls /usr/share/swift/usr/bin
+
 
 export IMAGE_HOME="/home/runner"
 
