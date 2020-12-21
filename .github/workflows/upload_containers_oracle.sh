@@ -38,7 +38,7 @@ do
         BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
         echo "[DEBUG] IMAGENAME: $IMAGENAME"
         echo "[DEBUG] BUILDDATE: $BUILDDATE"
-        sudo singularity build "$HOME/${IMAGENAME_BUILDDATE}.simg" docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
+        sudo singularity build "$HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
