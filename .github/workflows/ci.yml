@@ -27,6 +27,7 @@ jobs:
         python-version: 3.8
     - name: Pull latest build from Github Packages
       run: |
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
         IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
         {
@@ -61,7 +62,6 @@ jobs:
     - name: Push to Dockerhub  (if enabled & changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.DOCKERHUB_ORG != ''
       run: |
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
         # Push to GH Packages
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:$BUILDDATE
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:latest
