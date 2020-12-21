@@ -5,7 +5,7 @@
                 "version": "20201011",
                 "exec": ""
             },
-            "suma-afni 20.3.00": {
+            "sumaGUI-afni 20.3.00": {
                 "version": "20201011",
                 "exec": "suma"
             }
@@ -89,7 +89,7 @@
                 "version": "20200924",
                 "exec": ""
             },
-            "freeview-freesurfer 7.1.1": {
+            "freeviewGUI-freesurfer 7.1.1": {
                 "version": "20200924",
                 "exec": "freeview"
             }
@@ -101,7 +101,7 @@
                 "version": "20200905",
                 "exec": ""
             },
-            "fsleyes-fsl 6.0.3": {
+            "fsleyesGUI-fsl 6.0.3": {
                 "version": "20200905",
                 "exec": "fsleyes"
             },
@@ -109,7 +109,7 @@
                 "version": "20201029",
                 "exec": ""
             },
-            "fsleyes-fsl 6.0.4": {
+            "fsleyesGUI-fsl 6.0.4": {
                 "version": "20201029",
                 "exec": "fsleyes"
             }
@@ -117,17 +117,25 @@
     },
     "gimp": {
         "apps": {
-            "gimp 2.10.18": {
+            "gimpGUI-gimp 2.10.18": {
                 "version": "20201123",
                 "exec": "gimp"
+            },
+            "gimp 2.10.18": {
+                "version": "20201123",
+                "exec": ""
             }
         }
     },
     "itksnap": {
         "apps": {
-            "itksnap 3.8.0": {
+            "itksnapGUI-itksnap 3.8.0": {
                 "version": "20200811",
                 "exec": "itksnap /MRIcrop-orig.gipl"
+            },
+            "itksnap 3.8.0": {
+                "version": "20200811",
+                "exec": ""
             }
         }
     },
@@ -145,7 +153,7 @@
                 "version": "20200811",
                 "exec": ""
             },
-            "register-minc 1.9.17": {
+            "registerGUI-minc 1.9.17": {
                 "version": "20200811",
                 "exec": "register"
             }
@@ -165,7 +173,7 @@
                 "version": "20200908",
                 "exec": ""
             },
-            "mrview-mrtrix3 3.0.1": {
+            "mrviewGUI-mrtrix3 3.0.1": {
                 "version": "20200908",
                 "exec": "mrview"
             },
@@ -173,7 +181,7 @@
                 "version": "20201125",
                 "exec": ""
             },
-            "mrview-mrtrix3 3.0.2": {
+            "mrviewGUI-mrtrix3 3.0.2": {
                 "version": "20201125",
                 "exec": "mrview"
             }
@@ -201,7 +209,7 @@
                 "version": "20201108",
                 "exec": ""
             },
-            "3DSlicerGui-slicer 4.11.20200930": {
+            "3DSlicerGUI-slicer 4.11.20200930": {
                 "version": "20201108",
                 "exec": "Slicer"
             }
@@ -217,9 +225,13 @@
     },
     "spm12": {
         "apps": {
-            "spm12 r7219": {
+            "spm12GUI-spm12 r7219": {
                 "version": "20201120",
                 "exec": "run_spm12.sh /opt/matlabmcr-2010a/"
+            },
+            "spm12 r7219": {
+                "version": "20201120",
+                "exec": ""
             }
         }
     },
