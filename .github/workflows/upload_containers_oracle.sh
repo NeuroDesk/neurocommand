@@ -38,17 +38,18 @@ export IMAGE_HOME="/home/runner/"
 while IFS= read -r IMAGENAME_BUILDDATE
 do
     echo "$IMAGENAME_BUILDDATE"
-
+    echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet - building it!"
+    echo "[DEBUG] DOCKERHUB_ORG: $DOCKERHUB_ORG"
+    IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
+    BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
+    echo "[DEBUG] IMAGENAME: $IMAGENAME"
+    echo "[DEBUG] BUILDDATE: $BUILDDATE"
+    
     # Oracle Ashburn (with cloud mirror to Zurich)
     if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
     else
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet - building it!"
-        echo "[DEBUG] DOCKERHUB_ORG: $DOCKERHUB_ORG"
-        IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
-        BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
-        echo "[DEBUG] IMAGENAME: $IMAGENAME"
-        echo "[DEBUG] BUILDDATE: $BUILDDATE"
+
         sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
