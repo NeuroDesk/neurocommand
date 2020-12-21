@@ -41,7 +41,7 @@ which swift
 ls /usr/share/swift
 ls /usr/share/swift/usr
 ls /usr/share/swift/usr/bin
-
+exit
 
 export IMAGE_HOME="/home/runner"
 
