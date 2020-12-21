@@ -25,8 +25,6 @@ jobs:
     - uses: actions/setup-python@v2
       with:
         python-version: 3.8
-    - name: Free up disk space on runner
-      run: bash .github/workflows/free-up-space.sh
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
       run: |
         echo ${GITHUB_REF}
