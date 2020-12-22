@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # set -e
 export IMAGENAME="neurodesk"
-export BUILDDATE="latest"
 export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
 export OS_AUTH_TYPE=v3applicationcredential
 export OS_PROJECT_NAME="CAI_Container_Builder"
@@ -13,7 +12,7 @@ if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashb
     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in ashburn oracle cloud"
 else
 
-    sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+    sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg" docker://$DOCKERHUB_ORG/${IMAGENAME}:$BUILDDATE
 
     echo "[DEBUG] Attempting upload to Oracle ..."
     curl -v -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET

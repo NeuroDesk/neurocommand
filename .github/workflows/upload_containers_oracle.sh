@@ -33,9 +33,6 @@ export IMAGE_HOME="/home/runner"
 
 while IFS= read -r IMAGENAME_BUILDDATE
 do
-    echo "$IMAGENAME_BUILDDATE"
-    echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet - building it!"
-    echo "[DEBUG] DOCKERHUB_ORG: $DOCKERHUB_ORG"
     IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
     BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
     echo "[DEBUG] IMAGENAME: $IMAGENAME"

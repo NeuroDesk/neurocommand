@@ -1,5 +1,5 @@
-# start from our VNM image
-FROM docker.pkg.github.com/neurodesk/vnm/vnm:20201221
+# start from our VNM base image
+FROM docker.pkg.github.com/neurodesk/vnm/vnm_base:20201222
 
 COPY . /neurodesk/
 
