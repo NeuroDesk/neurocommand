@@ -4,6 +4,8 @@
 # Example - downloads the container:
 #   fetch_and_run.sh itksnap 3.8.0 20200505
 
+echo "[DEBUG] This is fetch_containers.sh script"
+
 # Read arguments
 MOD_NAME=$1
 MOD_VERS=$2
@@ -50,7 +52,7 @@ if [ -f "${CONTAINER_FILE_NAME}" ]; then
     qq=`which  singularity`
     if [[  ${#qq} -lt 1 ]]; then
         echo "ERROR: This script requires singularity on your path. EXITING"
-        exit
+        exit 2
     fi
     singularity exec ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then

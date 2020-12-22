@@ -13,11 +13,11 @@ bash /home/runner/work/neurodesk/neurodesk/local/fetch_containers.sh itksnap 3.8
 
 ls /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811
 
-if [ -f /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.sif ]; then
-    echo "Container file exists"
+if [ -f /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.simg ]; then
+    echo "Container file exists (from test_neurodesk_cli.sh)"
     exit 0
 else 
-    echo "Container file does not exist!!!!!!!!!"
+    echo "Container file does not exist!!!!!!!!! (from test_neurodesk_cli.sh)"
     exit 1
 fi
 
