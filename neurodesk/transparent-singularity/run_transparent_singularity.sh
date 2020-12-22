@@ -55,6 +55,7 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.sif --storage docker"
       echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.simg"
       echo "-----------------------------------------------"
       exit
@@ -103,6 +104,15 @@ echo "trying if $container exists in the cache"
 if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
    echo "$container exists in the cache"
    container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
+else
+   echo "$container does not exist in cache - loading from docker!"
+   storage="docker"
+fi
+
+if [ "$storage" = "docker" ]; then
+   echo "pulling from docker cloud"
+
+   container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
 fi
 
 
