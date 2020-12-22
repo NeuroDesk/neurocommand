@@ -43,7 +43,7 @@ cd ${CONTAINER_PATH}
 mkdir -p ${IMG_NAME}
 # Check if the module is there - if not this means we definetly need to install the container
 
-CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
+CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
 if [ -f "${CONTAINER_FILE_NAME}" ]; then
     echo "found it. Container ${IMG_NAME} is there."
     echo "now checking if container is fully downloaded and executable:"
@@ -69,35 +69,8 @@ else
     cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
     cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
     cd ${IMG_NAME}
-    ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.sif
+    ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg
     rm -rf .git* README.md run_transparent_singularity ts_*
 fi
-
-# This seems to cause problems if a module is there with the same name but not from neurodesk:
-# module spider ${MOD_NAME}/${MOD_VERS}
-# if [ $? -ne 0 ]; then
-#     cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
-#     cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
-#     # cp ${vnm_installdir}/transparent-singularity/* ${IMG_NAME}/
-#     #git clone https://github.com/Neurodesk/transparent-singularity.git ${IMG_NAME}
-#     cd ${IMG_NAME}
-#     ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.sif
-#     rm -rf .git* README.md run_transparent_singularity ts_*
-#     else # if the container is there, check if the image version is correct. If not, we need to remove the wrong version and download again:
-#         CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.sif
-#         echo "looking for ${CONTAINER_FILE_NAME}"
-#         if [ -f "${CONTAINER_FILE_NAME}" ]; then
-#             echo "found it. Container ${IMG_NAME} is installed."
-#         else 
-#             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-#             echo "the container you have has a bug and needs to be updated on your system. To trigger a reinstall, run:"
-#             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-#             echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
-#             echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
-#             read -p "Would you like me to do this for you (Y for yes)? " choice 
-#             [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
-#             exit
-#         fi
-# fi
 
 
