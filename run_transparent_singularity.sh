@@ -7,6 +7,9 @@
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
 # set -e
 
+echo "[DEBUG] This is run_transparent_singularity.sh script"
+
+
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 
