@@ -37,6 +37,4 @@ jobs:
         echo "ORACLE_USER=$ORACLE_USER" >> $GITHUB_ENV 
         echo "ORACLE_NEURODESK_BUCKET=$ORACLE_NEURODESK_BUCKET" >> $GITHUB_ENV 
         /bin/bash .github/workflows/upload_containers_oracle.sh
-    - name: Upload Neurodesk Singularity Container
-      run: |
-        /bin/bash .github/workflows/upload_neurodesk_singularity.sh
+

@@ -32,6 +32,16 @@ jobs:
     - name: Test neurodesk cli version
       run: |
         /bin/bash .github/workflows/test_neurodesk_cli.sh
+    - name: Pull latest vnm build from Github Packages
+      run: |
+        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm
+        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
+        {
+          docker pull $IMAGEID \
+            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
+            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
+        } || echo "$IMAGEID not found. Resuming build..."
+        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
     - name: Build new vnm image
       run: |
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)

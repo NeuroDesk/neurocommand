@@ -67,3 +67,6 @@ jobs:
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:latest
         docker push $DOCKERHUB_ORG/neurodesk:latest
         docker push $DOCKERHUB_ORG/neurodesk:$BUILDDATE
+    - name: Upload Neurodesk Singularity Container
+      run: |
+        /bin/bash .github/workflows/upload_neurodesk_singularity.sh
