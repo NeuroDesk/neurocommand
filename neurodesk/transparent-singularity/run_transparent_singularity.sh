@@ -7,7 +7,7 @@
 #by Steffen Bollmann <Steffen.Bollmann@cai.uq.edu.au> & Tom Shaw <t.shaw@uq.edu.au>
 # set -e
 
-echo "[DEBUG] This is run_transparent_singularity.sh script"
+echo "[DEBUG] This is the run_transparent_singularity.sh script"
 
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
@@ -106,7 +106,15 @@ echo "trying if $container exists in the cache"
 # check if image is available on singularity cache:
 if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
    echo "$container exists in the cache"
-   container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
+   echo "check if aria2 is installed ..."
+   qq=`which  aria2c`
+   if [[  ${#qq} -lt 1 ]]; then
+      echo "aria2 is not install. Defaulting to curl."
+      container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
+   else 
+      container_pull="aria2c https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
+   fi
+
 else
    echo "$container does not exist in cache - loading from docker!"
    storage="docker"
