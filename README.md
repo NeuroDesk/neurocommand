@@ -1,6 +1,8 @@
 # neurodesk
 A flexible, scalable, and easy to use data analysis environment for reproducible neuroimaging
 
+For inquiries, please click on the "Discussions" tab above. Alternatively, you may contact Steffen Bollmann (https://github.com/stebo85), Oren Civier (https://github.com/civier) or Aswin Narayanan (https://github.com/aswinnarayanan).
+
 <img src="https://github.com/NeuroDesk/vnm/blob/master/Screenshot.png">
 
 ## Run Desktop with neurodesk installed in a Docker container
