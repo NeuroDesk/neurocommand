@@ -46,6 +46,13 @@ do
     if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
     else
+        # check if there is enough free disk space on the runner:
+        FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
+        echo "[DEBUG] This runner has ${FREE} free disk space"
+        if [[ $FREE -lt 10485760 ]]; then               # 10G = 10*1024*1024k
+            # less than 10GBs free! clean up!
+            bash .github/workflows/free-up-space.sh
+        fi;
 
         sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
 
