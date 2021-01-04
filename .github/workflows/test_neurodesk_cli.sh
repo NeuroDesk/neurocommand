@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -e
+# set -e
 
 #setup singularity 2.6.1 from neurodebian
 wget -O- http://neuro.debian.net/lists/bionic.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
