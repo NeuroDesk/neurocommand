@@ -17,6 +17,8 @@ export OS_USER_DOMAIN_NAME="Default"
 export OS_REGION_NAME="Melbourne"
 
 export IMAGENAME="neurodesk"
+export IMAGE_HOME="/home/runner"
+
 
 # Oracle Ashburn (with cloud mirror to Zurich)
 if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME}_${BUILDDATE}.simg"; then
