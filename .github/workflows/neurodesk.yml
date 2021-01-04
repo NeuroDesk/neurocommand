@@ -29,9 +29,6 @@ jobs:
       run: |
         echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
-    - name: Test neurodesk cli version
-      run: |
-        /bin/bash .github/workflows/test_neurodesk_cli.sh
     - name: Pull latest neurodesk build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
@@ -51,6 +48,9 @@ jobs:
         echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
         echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
         echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
+    - name: Test neurodesk cli version
+      run: |
+        /bin/bash .github/workflows/test_neurodesk_cli.sh
     - name: Push neurodesk to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
       run: |
