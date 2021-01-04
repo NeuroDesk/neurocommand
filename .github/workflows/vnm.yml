@@ -66,7 +66,7 @@ jobs:
       if: env.GITHUB_REF != 'refs/heads/master' && env.DOCKERHUB_ORG != ''
       run: |
         # Push to GH Packages
-        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:$BUILDDATE
-        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:latest
-        docker push $DOCKERHUB_ORG/neurodesk:latest
-        docker push $DOCKERHUB_ORG/neurodesk:$BUILDDATE
+        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:$BUILDDATE
+        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:latest
+        docker push $DOCKERHUB_ORG/vnm:latest
+        docker push $DOCKERHUB_ORG/vnm:$BUILDDATE
