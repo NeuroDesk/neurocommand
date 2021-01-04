@@ -5,4 +5,3 @@ COPY . /neurodesk/
 
 WORKDIR /neurodesk
 RUN bash build.sh --cli
-RUN bash install.sh
