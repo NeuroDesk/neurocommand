@@ -4,5 +4,5 @@ FROM docker.pkg.github.com/neurodesk/vnm/neurodesk_base:20201223
 COPY . /neurodesk/
 
 WORKDIR /neurodesk
-RUN bash build.sh --cli --lxde
+RUN bash build.sh --cli
 RUN bash install.sh
