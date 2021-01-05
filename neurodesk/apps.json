@@ -1,12 +1,12 @@
 {
     "afni": {
         "apps": {
-            "afni 20.3.00": {
-                "version": "20201011",
+            "afni 20.3.05": {
+                "version": "20210104",
                 "exec": ""
             },
-            "sumaGUI-afni 20.3.00": {
-                "version": "20201011",
+            "sumaGUI-afni 20.3.05": {
+                "version": "20210104",
                 "exec": "suma"
             }
         }
@@ -14,7 +14,7 @@
     "ants": {
         "apps": {
             "ants 2.3.4": {
-                "version": "20200811",
+                "version": "20210104",
                 "exec": ""
             }
         }
@@ -22,7 +22,7 @@
     "ashs": {
         "apps": {
             "ashs 2.0.0": {
-                "version": "20200905",
+                "version": "20210105",
                 "exec": ""
             }
         }
@@ -46,7 +46,7 @@
     "convert3d": {
         "apps": {
             "convert3d 1.0.0": {
-                "version": "20200811",
+                "version": "20210105",
                 "exec": ""
             }
         }
@@ -86,11 +86,11 @@
     "freesurfer": {
         "apps": {
             "freesurfer 7.1.1": {
-                "version": "20200924",
+                "version": "20210105",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 7.1.1": {
-                "version": "20200924",
+                "version": "20210105",
                 "exec": "freeview"
             }
         }
@@ -106,11 +106,11 @@
                 "exec": "fsleyes"
             },
             "fsl 6.0.4": {
-                "version": "20201029",
+                "version": "20210105",
                 "exec": ""
             },
             "fsleyesGUI-fsl 6.0.4": {
-                "version": "20201029",
+                "version": "20210105",
                 "exec": "fsleyes"
             }
         }
@@ -118,11 +118,11 @@
     "gimp": {
         "apps": {
             "gimpGUI-gimp 2.10.18": {
-                "version": "20201123",
+                "version": "20210104",
                 "exec": "gimp"
             },
             "gimp 2.10.18": {
-                "version": "20201123",
+                "version": "20210104",
                 "exec": ""
             }
         }
@@ -142,7 +142,7 @@
     "julia": {
         "apps": {
             "julia 1.4.1": {
-                "version": "20201108",
+                "version": "20210105",
                 "exec": ""
             }
         }
@@ -150,11 +150,11 @@
     "minc": {
         "apps": {
             "minc 1.9.17": {
-                "version": "20200811",
+                "version": "20210105",
                 "exec": ""
             },
             "registerGUI-minc 1.9.17": {
-                "version": "20200811",
+                "version": "20210105",
                 "exec": "register"
             }
         }
@@ -191,6 +191,14 @@
         "apps": {
             "mrtrix3tissue 5.2.8": {
                 "version": "20201111",
+                "exec": ""
+            }
+        }
+    },
+    "lashis": {
+        "apps": {
+            "lashis 1.0": {
+                "version": "20210105",
                 "exec": ""
             }
         }
@@ -238,7 +246,7 @@
     "tgvqsm": {
         "apps": {
             "tgvqsm 1.0.0": {
-                "version": "20200929",
+                "version": "20210105",
                 "exec": ""
             }
         }
