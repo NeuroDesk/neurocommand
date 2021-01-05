@@ -112,8 +112,8 @@ else
 
         echo "[DEBUG] Pulling latest build of singularity ..."
         docker pull $REGISTRY/singularity3
-        echo "[DEBUG] Build singularity container ..."
-        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity build /home/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
+        echo "[DEBUG] Build singularity sif container ..."
+        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity3 build /home/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
         docker run -v $HOME:/home $REGISTRY/singularity build "/home/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
         sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
     fi
