@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-export container="neurodesk_20210105.simg"
+export container="neurodesk_20210106.sif"
 
 #test for singularity install
 echo -n "checking for singularity ..."
