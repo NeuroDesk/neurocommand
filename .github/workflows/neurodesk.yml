@@ -133,14 +133,13 @@ jobs:
             && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
         } || echo "$IMAGEID not found. Resuming build..."
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
-        BUILDDATE=`date +%Y%m%d`
-        echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
     - name: Push vnm to Dockerhub  
       run: |
+        BUILDDATE=`date +%Y%m%d`
         echo "[DEBUG] docker IMAGEID: $IMAGEID"
         echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
-        docker tag $IMAGEID:$BUILDDATE $DOCKERHUB_ORG/vnm:$BUILDDATE
-        docker tag $IMAGEID:$BUILDDATE $DOCKERHUB_ORG/vnm:latest
+        docker tag $IMAGEID:latest $DOCKERHUB_ORG/vnm:$BUILDDATE
+        docker tag $IMAGEID:latest $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:$BUILDDATE
   build_neurodesk:
