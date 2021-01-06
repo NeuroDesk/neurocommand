@@ -202,9 +202,8 @@ jobs:
             && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
         } || echo "$IMAGEID not found. Resuming build..."
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
-    - name: Upload Neurodesk Singularity Container SIMG
+    - name: Upload Neurodesk Singularity Container simg
       run: |
-        BUILDDATE=`date +%Y%m%d`
         /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
   deploy_neurodesk_sif:
     needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
@@ -212,8 +211,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
+      with: python-version: 3.8
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
@@ -228,5 +226,4 @@ jobs:
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
     - name: Upload Neurodesk Singularity Container SIF
       run: |
-        BUILDDATE=`date +%Y%m%d`
         /bin/bash .github/workflows/upload_neurodesk_singularity_sif.sh

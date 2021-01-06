@@ -16,6 +16,7 @@ export OS_PROJECT_NAME="CAI_Container_Builder"
 export OS_USER_DOMAIN_NAME="Default"
 export OS_REGION_NAME="Melbourne"
 
+export BUILDDATE=`date +%Y%m%d`
 export IMAGENAME="neurodesk"
 export IMAGE_HOME="/home/runner"
 
