@@ -16,6 +16,8 @@ env:
   OS_USERNAME: ${{ secrets.SWIFT_OS_USERNAME }}
   OS_APPLICATION_CREDENTIAL_ID: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_ID }}
   OS_APPLICATION_CREDENTIAL_SECRET: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_SECRET }}
+  BUILDDATE: `date +%Y%m%d`
+
 
 jobs:
   upload_containers_oracle:
@@ -46,7 +48,6 @@ jobs:
       run: |
         /bin/bash .github/workflows/test_neurodesk_cli.sh
   build_vnm:
-    needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -72,7 +73,6 @@ jobs:
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
         docker build . --file vnm/Dockerfile --tag $IMAGEID:$SHORT_SHA --cache-from $IMAGEID --label "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" --label "GITHUB_SHA=$GITHUB_SHA"
         ROOTFS_NEW=$(docker inspect --format='{{.RootFS}}' $IMAGEID:$SHORT_SHA)
-        BUILDDATE=`date +%Y%m%d`
         echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
         echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
         echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
@@ -112,7 +112,7 @@ jobs:
         echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   deploy_vnm:
-    needs: [test_vnm_image]
+    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -136,7 +136,6 @@ jobs:
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
     - name: Push vnm to Dockerhub
       run: |
-        # Push to GH Packages
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:$BUILDDATE
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:latest
@@ -168,7 +167,6 @@ jobs:
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
         docker build . --file neurodesk/Dockerfile --tag $IMAGEID:$SHORT_SHA --cache-from $IMAGEID --label "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" --label "GITHUB_SHA=$GITHUB_SHA"
         ROOTFS_NEW=$(docker inspect --format='{{.RootFS}}' $IMAGEID:$SHORT_SHA)
-        BUILDDATE=`date +%Y%m%d`
         echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
         echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
         echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
