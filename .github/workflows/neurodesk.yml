@@ -124,6 +124,7 @@ jobs:
         echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
     - name: Pull latest vnm build from Github Packages
       run: |
+        echo "[DEBUG] docker GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
         IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
         {
@@ -139,6 +140,8 @@ jobs:
         echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
     - name: Push vnm to Dockerhub
       run: |
+        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:$BUILDDATE
+        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:latest
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:$BUILDDATE
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:latest
