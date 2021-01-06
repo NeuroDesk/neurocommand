@@ -49,8 +49,8 @@ do
         # check if there is enough free disk space on the runner:
         FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
         echo "[DEBUG] This runner has ${FREE} free disk space"
-        if [[ $FREE -lt 10485760 ]]; then               # 10G = 10*1024*1024k
-            # less than 10GBs free! clean up!
+        if [[ $FREE -lt 30485760 ]]; then               # 20G = 10*1024*1024k
+            # less than 30GBs free! clean up!
             bash .github/workflows/free-up-space.sh
         fi;
 
@@ -71,6 +71,13 @@ do
     if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in swift storage"
     else
+        # check if there is enough free disk space on the runner:
+        FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
+        echo "[DEBUG] This runner has ${FREE} free disk space"
+        if [[ $FREE -lt 30485760 ]]; then               # 20G = 10*1024*1024k
+            # less than 30GBs free! clean up!
+            bash .github/workflows/free-up-space.sh
+        fi;
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - building it!"
         if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
             sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
