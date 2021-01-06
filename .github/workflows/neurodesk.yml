@@ -135,22 +135,19 @@ jobs:
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
         BUILDDATE=`date +%Y%m%d`
-        echo "[DEBUG] docker IMAGEID: $IMAGEID"
-        echo "[DEBUG] docker SHORT_SHA: $SHORT_SHA"
-        echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
+        echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
+        echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
     - name: Push vnm to Dockerhub  
       run: |
         echo "[DEBUG] docker IMAGEID: $IMAGEID"
         echo "[DEBUG] docker SHORT_SHA: $SHORT_SHA"
-        echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
-        BUILDDATE=`date +%Y%m%d`
         echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:$BUILDDATE
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:$BUILDDATE
   build_neurodesk:
-    needs: [upload_containers_oracle, test_neurodesk_cli]
+    needs: [upload_containers_oracle, test_neurodesk_clic]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
