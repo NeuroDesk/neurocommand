@@ -26,9 +26,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
       run: |
         echo ${GITHUB_REF}
@@ -53,9 +51,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
@@ -92,9 +88,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
@@ -110,7 +104,7 @@ jobs:
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
         echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
-  deploy_vnm:
+  deploy_vnm_docker:
     needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle]
     runs-on: ubuntu-18.04
     steps:
@@ -119,9 +113,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
       run: |
         echo "[DEBUG] docker GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
@@ -151,9 +143,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
@@ -189,7 +179,7 @@ jobs:
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:latest
         docker push $DOCKERHUB_ORG/neurodesk:latest
         docker push $DOCKERHUB_ORG/neurodesk:$BUILDDATE
-  deploy_neurodesk_singularity_simg:
+  deploy_neurodesk_simg:
     needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
@@ -198,9 +188,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
@@ -213,8 +201,9 @@ jobs:
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
     - name: Upload Neurodesk Singularity Container SIMG
       run: |
+        BUILDDATE=`date +%Y%m%d`
         /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
-  deploy_neurodesk_singularity_sif:
+  deploy_neurodesk_sif:
     needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
@@ -223,9 +212,7 @@ jobs:
       with:
         python-version: 3.8
     - name: login to docker hubs
-      run: |
-        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+      run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
       run: |
         IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
@@ -236,6 +223,7 @@ jobs:
             && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
         } || echo "$IMAGEID not found. Resuming build..."
         echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
-    - name: Upload Neurodesk Singularity Container SIMG
+    - name: Upload Neurodesk Singularity Container SIF
       run: |
+        BUILDDATE=`date +%Y%m%d`
         /bin/bash .github/workflows/upload_neurodesk_singularity_sif.sh
