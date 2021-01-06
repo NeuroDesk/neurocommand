@@ -147,7 +147,7 @@ jobs:
         docker push $DOCKERHUB_ORG/vnm:latest
         docker push $DOCKERHUB_ORG/vnm:$BUILDDATE
   build_neurodesk:
-    needs: [upload_containers_oracle, test_neurodesk_clic]
+    needs: [upload_containers_oracle, test_neurodesk_cli]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
