@@ -45,18 +45,8 @@ jobs:
     - name: Test neurodesk cli version
       run: |
         /bin/bash .github/workflows/test_neurodesk_cli.sh
-  test_neurodesk_image:
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: Test VNM container image
-      run: |
-        /bin/bash .github/workflows/test_neurodesk_image.sh
   build_vnm:
-    needs: [upload_containers_oracle, test_neurodesk_cli, test_neurodesk_image]
+    needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -94,8 +84,57 @@ jobs:
         docker tag $IMAGEID:$SHORT_SHA $IMAGEID:latest
         docker push $IMAGEID:latest
         docker push $IMAGEID:$BUILDDATE
-    - name: Push vnm to Dockerhub  (if enabled & changes found)
-      if: env.GITHUB_REF != 'refs/heads/master' && env.DOCKERHUB_ORG != ''
+  test_vnm_image:
+    needs: [build_vnm]
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+     - name: login to docker hubs
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Pull latest vnm build from Github Packages
+      run: |
+        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
+        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
+        {
+          docker pull $IMAGEID \
+            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
+            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
+        } || echo "$IMAGEID not found. Resuming build..."
+        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+    - name: Test VNM container image
+      run: |
+        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
+        echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
+        # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
+  deploy_vnm:
+    needs: [test_vnm_image]
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      with:
+        python-version: 3.8
+    - name: login to docker hubs
+      run: |
+        echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+        echo "${{ secrets.DOCKERHUB_PASSWORD }}" | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+    - name: Pull latest vnm build from Github Packages
+      run: |
+        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
+        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
+        {
+          docker pull $IMAGEID \
+            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
+            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
+        } || echo "$IMAGEID not found. Resuming build..."
+        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
+    - name: Push vnm to Dockerhub
       run: |
         # Push to GH Packages
         docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/vnm:$BUILDDATE
