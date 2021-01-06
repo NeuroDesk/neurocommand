@@ -113,9 +113,8 @@ else
         echo "[DEBUG] Pulling latest build of singularity ..."
         docker pull $REGISTRY/singularity3
         echo "[DEBUG] Build singularity sif container ..."
-        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity3 build /home/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
-        docker run -v $HOME:/home $REGISTRY/singularity3 build "/home/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
-        sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+        echo "[DEBUG] docker run -v $HOME:/home $REGISTRY/singularity3 build $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif docker://$DOCKERHUB_ORG/$IMAGENAME"
+        docker run -v $HOME:/home $REGISTRY/singularity3 build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif" docker://$DOCKERHUB_ORG/$IMAGENAME
     fi
 
     echo "[DEBUG] Attempting upload to nectar swift ..."
