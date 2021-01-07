@@ -79,10 +79,7 @@ jobs:
     - name: Pull latest vnm build from Github Packages
       run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Push vnm to Dockerhub  
-      run: |
-        BUILDDATE=`date +%Y%m%d`
-        SHORT_SHA="latest"
-        /bin/bash .github/workflows/push_to_dockerhub.sh vnm
+      run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
   build_neurodesk:
     needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
