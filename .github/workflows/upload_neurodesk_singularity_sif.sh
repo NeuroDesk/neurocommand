@@ -16,9 +16,9 @@ export IMAGE_HOME="/home/runner"
 
 
 # Oracle Ashburn (with cloud mirror to Zurich) sif
-if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME}_${BUILDDATE}.sif"; then
-    echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif exists in ashburn oracle cloud"
-else
+# if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME}_${BUILDDATE}.sif"; then
+#     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif exists in ashburn oracle cloud"
+# else
     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif does not exist yet in nectar swift - building it!"
     if [[ ! -f $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif ]]; then
         REGISTRY=$(echo docker.pkg.github.com/$GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')
@@ -43,12 +43,12 @@ else
         echo "${IMAGENAME}_${BUILDDATE}.sif does not exist yet. Something is WRONG"
         exit 2
     fi
-fi
+# fi
 
 # Nectar Swift sif
-if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.sif"; then
-    echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif exists in swift storage"
-else
+# if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.sif"; then
+#     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif exists in swift storage"
+# else
     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif does not exist yet in nectar swift - building it!"
     if [[ ! -f $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.sif ]]; then
         REGISTRY=$(echo docker.pkg.github.com/$GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')
@@ -77,4 +77,4 @@ else
         echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.sif does not exist yet. Something is WRONG"
         exit 2
     fi
-fi
+# fi

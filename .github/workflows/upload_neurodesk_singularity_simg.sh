@@ -26,9 +26,9 @@ export IMAGE_HOME="/home/runner"
 
 
 # Oracle Ashburn (with cloud mirror to Zurich) simg
-if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME}_${BUILDDATE}.simg"; then
-    echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in ashburn oracle cloud"
-else
+# if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME}_${BUILDDATE}.simg"; then
+#     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in ashburn oracle cloud"
+# else
 
     # check if there is enough free disk space on the runner:
     FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
@@ -49,12 +49,12 @@ else
         echo "${IMAGENAME}_${BUILDDATE}.simg does not exist yet. Something is WRONG"
         exit 2
     fi
-fi
+# fi
 
 # Nectar Swift simg
-if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.simg"; then
-    echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in swift storage"
-else
+# if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.simg"; then
+#     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in swift storage"
+# else
     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet in nectar swift - building it!"
     if [[ ! -f $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg ]]; then
         sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
@@ -73,4 +73,4 @@ else
         echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet. Something is WRONG"
         exit 2
     fi
-fi
+# fi
