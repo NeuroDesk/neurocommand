@@ -53,20 +53,12 @@ jobs:
       run: /bin/bash .github/workflows/build_docker_image.sh vnm
     - name: Push vnm to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
-      run: |
-        # Push to GH Packages
-        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:$BUILDDATE
-        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:latest
-        docker push $IMAGEID:latest
-        docker push $IMAGEID:$BUILDDATE
+      run: /bin/bash .github/workflows/ push_to_gh_packages.sh
   test_vnm_image:
     needs: [build_vnm]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
@@ -75,16 +67,13 @@ jobs:
       # /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Test VNM container image
       run: |
-        echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
+        echo "[DEBUG] WORK IN PROGRESS"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   deploy_vnm_docker:
     needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
@@ -92,20 +81,12 @@ jobs:
     - name: Push vnm to Dockerhub  
       run: |
         BUILDDATE=`date +%Y%m%d`
-        echo "[DEBUG] docker IMAGEID: $IMAGEID"
-        echo "[DEBUG] docker BUILDDATE: $BUILDDATE"
-        docker tag $IMAGEID:latest $DOCKERHUB_ORG/vnm:$BUILDDATE
-        docker tag $IMAGEID:latest $DOCKERHUB_ORG/vnm:latest
-        docker push $DOCKERHUB_ORG/vnm:latest
-        docker push $DOCKERHUB_ORG/vnm:$BUILDDATE
+        /bin/bash .github/workflows/push_to_dockerhub.sh vnm
   build_neurodesk:
     needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
@@ -113,21 +94,9 @@ jobs:
     - name: Build new neurodesk image
       run: /bin/bash .github/workflows/build_docker_image.sh neurodesk
     - name: Push neurodesk to Github packages (if changes found)
-      if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
-      run: |
-        # Push to GH Packages
-        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:$BUILDDATE
-        docker tag $IMAGEID:$SHORT_SHA $IMAGEID:latest
-        docker push $IMAGEID:latest
-        docker push $IMAGEID:$BUILDDATE
+      run: /bin/bash .github/workflows/push_to_gh_packages.sh
     - name: Push neurodesk to Dockerhub  (if enabled & changes found)
-      if: env.GITHUB_REF != 'refs/heads/master' && env.DOCKERHUB_ORG != ''
-      run: |
-        # Push to GH Packages
-        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:$BUILDDATE
-        docker tag $IMAGEID:$SHORT_SHA $DOCKERHUB_ORG/neurodesk:latest
-        docker push $DOCKERHUB_ORG/neurodesk:latest
-        docker push $DOCKERHUB_ORG/neurodesk:$BUILDDATE
+      run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
   deploy_neurodesk_simg:
     needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
