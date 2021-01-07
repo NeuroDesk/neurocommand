@@ -53,7 +53,7 @@ jobs:
       run: /bin/bash .github/workflows/build_docker_image.sh vnm
     - name: Push vnm to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
-      run: /bin/bash .github/workflows/ push_to_gh_packages.sh
+      run: /bin/bash .github/workflows/push_to_gh_packages.sh
   test_vnm_image:
     needs: [build_vnm]
     runs-on: ubuntu-18.04
