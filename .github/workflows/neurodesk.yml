@@ -53,14 +53,7 @@ jobs:
     - name: Pull latest vnm build from Github Packages
       run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Build new vnm image
-      run: |
-        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
-        docker build . --file vnm/Dockerfile --tag $IMAGEID:$SHORT_SHA --cache-from $IMAGEID --label "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" --label "GITHUB_SHA=$GITHUB_SHA"
-        ROOTFS_NEW=$(docker inspect --format='{{.RootFS}}' $IMAGEID:$SHORT_SHA)
-        BUILDDATE=`date +%Y%m%d`
-        echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
-        echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
-        echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/build_docker_image.sh vnm
     - name: Push vnm to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
       run: |
@@ -80,7 +73,9 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
-      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
+      run: |
+        echo "[DEBUG] WORK IN PROGRESS"
+      # /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Test VNM container image
       run: |
         echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
@@ -119,14 +114,7 @@ jobs:
     - name: Pull latest neurodesk build from Github Packages
       run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
     - name: Build new neurodesk image
-      run: |
-        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
-        docker build . --file neurodesk/Dockerfile --tag $IMAGEID:$SHORT_SHA --cache-from $IMAGEID --label "GITHUB_REPOSITORY=$GITHUB_REPOSITORY" --label "GITHUB_SHA=$GITHUB_SHA"
-        ROOTFS_NEW=$(docker inspect --format='{{.RootFS}}' $IMAGEID:$SHORT_SHA)
-        BUILDDATE=`date +%Y%m%d`
-        echo "SHORT_SHA=$SHORT_SHA" >> $GITHUB_ENV
-        echo "ROOTFS_NEW=$ROOTFS_NEW" >> $GITHUB_ENV
-        echo "BUILDDATE=$BUILDDATE" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/build_docker_image.sh neurodesk
     - name: Push neurodesk to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
       run: |
