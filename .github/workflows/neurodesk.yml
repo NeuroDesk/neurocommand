@@ -1,4 +1,4 @@
-name: Neurodesk CI
+name: Neurodesk CI/CD
 
 on:
   push:
@@ -45,9 +45,6 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
