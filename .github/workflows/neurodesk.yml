@@ -31,11 +31,7 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
-      run: |
-        echo ${GITHUB_REF}
-        echo "ORACLE_USER=$ORACLE_USER" >> $GITHUB_ENV 
-        echo "ORACLE_NEURODESK_BUCKET=$ORACLE_NEURODESK_BUCKET" >> $GITHUB_ENV 
-        /bin/bash .github/workflows/upload_containers_oracle.sh
+      run: /bin/bash .github/workflows/upload_containers_oracle.sh
   test_neurodesk_cli:
     runs-on: ubuntu-18.04
     steps:
@@ -44,8 +40,7 @@ jobs:
       with:
         python-version: 3.8
     - name: Test neurodesk cli version
-      run: |
-        /bin/bash .github/workflows/test_neurodesk_cli.sh
+      run: /bin/bash .github/workflows/test_neurodesk_cli.sh
   build_vnm:
     runs-on: ubuntu-18.04
     steps:
@@ -56,15 +51,7 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
-      run: |
-        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
-        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
-        {
-          docker pull $IMAGEID \
-            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
-            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
-        } || echo "$IMAGEID not found. Resuming build..."
-        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Build new vnm image
       run: |
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
@@ -93,18 +80,9 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
-      run: |
-        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
-        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
-        {
-          docker pull $IMAGEID \
-            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
-            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
-        } || echo "$IMAGEID not found. Resuming build..."
-        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Test VNM container image
       run: |
-        SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
         echo "[DEBUG] docker run $IMAGEID:$SHORT_SHA ls /neurodesk/"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   deploy_vnm_docker:
@@ -118,16 +96,7 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest vnm build from Github Packages
-      run: |
-        echo "[DEBUG] docker GITHUB_REPOSITORY: $GITHUB_REPOSITORY"
-        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/vnm2
-        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
-        {
-          docker pull $IMAGEID \
-            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
-            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
-        } || echo "$IMAGEID not found. Resuming build..."
-        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Push vnm to Dockerhub  
       run: |
         BUILDDATE=`date +%Y%m%d`
@@ -148,15 +117,7 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name: Pull latest neurodesk build from Github Packages
-      run: |
-        IMAGEID=docker.pkg.github.com/$GITHUB_REPOSITORY/neurodesk
-        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
-        {
-          docker pull $IMAGEID \
-            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
-            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
-        } || echo "$IMAGEID not found. Resuming build..."
-        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
+      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
     - name: Build new neurodesk image
       run: |
         SHORT_SHA=$(git rev-parse --short $GITHUB_SHA)
