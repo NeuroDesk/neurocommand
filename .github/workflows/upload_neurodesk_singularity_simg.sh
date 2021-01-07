@@ -3,9 +3,12 @@ set -e
 
 echo "[DEBUG] Install singularity 2.6.1 from neurodebian"
 wget -O- http://neuro.debian.net/lists/bionic.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
+# echo "[DEBUG] Install key"
 # sudo apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
 # keyserver sometimes fails :( -> --allow-unauthenticated as a workaround?
-sudo apt-get update --allow-unauthenticated
+echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
+sudo apt-get update --allow-insecure-repositories
+echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
 sudo apt-get install --allow-unauthenticated singularity-container 
 
 echo "[DEBUG] Configure for SWIFT storage"

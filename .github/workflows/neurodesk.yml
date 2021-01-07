@@ -81,6 +81,7 @@ jobs:
     - name: Push vnm to Dockerhub  
       run: |
         BUILDDATE=`date +%Y%m%d`
+        SHORT_SHA="latest"
         /bin/bash .github/workflows/push_to_dockerhub.sh vnm
   build_neurodesk:
     needs: [test_neurodesk_cli]
