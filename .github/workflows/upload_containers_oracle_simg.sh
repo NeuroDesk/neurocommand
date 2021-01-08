@@ -57,7 +57,21 @@ do
             bash .github/workflows/free-up-space.sh
         fi;
 
+        echo "[DEBUG] singularity building docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE"
         sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
+
+        echo "[DEBUG] singularity building docker://vnmd/conn_20b/$IMAGENAME:$BUILDDATE"
+        sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/conn_20b/$IMAGENAME:$BUILDDATE
+
+        echo "[DEBUG] docker package to pull: $IMAGENAME:$BUILDDATE"
+        IMAGEID=docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
+        IMAGEID=$(echo $IMAGEID | tr '[A-Z]' '[a-z]')
+        {
+        docker pull $IMAGEID \
+            && ROOTFS_CACHE=$(docker inspect --format='{{.RootFS}}' $IMAGEID) \
+            && echo "ROOTFS_CACHE=$ROOTFS_CACHE" >> $GITHUB_ENV
+        } || echo "[DEBUG] $IMAGEID not found. Resuming build..."
+        echo "IMAGEID=$IMAGEID" >> $GITHUB_ENV
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
