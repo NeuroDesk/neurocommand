@@ -84,7 +84,7 @@ do
         fi;
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - building it!"
         if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
-            sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
+            sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://vnmd/$IMAGENAME:$BUILDDATE
         fi
 
         echo "[DEBUG] Attempting upload to nectar swift ..."
