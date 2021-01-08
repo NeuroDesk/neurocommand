@@ -70,7 +70,7 @@ jobs:
         echo "[DEBUG] WORK IN PROGRESS"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   deploy_vnm_docker:
-    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle]
+    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle_simg]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -96,7 +96,7 @@ jobs:
     - name: Push neurodesk to Dockerhub  (if enabled & changes found)
       run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
   deploy_neurodesk_simg:
-    needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
+    needs: [upload_containers_oracle_simg, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -110,7 +110,7 @@ jobs:
     - name: Upload Neurodesk Singularity Container simg
       run: /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
   deploy_neurodesk_sif:
-    needs: [upload_containers_oracle, test_neurodesk_cli, build_neurodesk]
+    needs: [upload_containers_oracle_simg, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
