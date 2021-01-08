@@ -35,6 +35,9 @@ export OS_REGION_NAME="Melbourne"
 
 export IMAGE_HOME="/home/runner"
 
+echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
+echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
+
 while IFS= read -r IMAGENAME_BUILDDATE
 do
     IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
@@ -54,7 +57,7 @@ do
             bash .github/workflows/free-up-space.sh
         fi;
 
-        sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+        sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
@@ -80,7 +83,7 @@ do
         fi;
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - building it!"
         if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
-            sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+            sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://docker.pkg.github.com/neurodesk/caid/$IMAGENAME:$BUILDDATE
         fi
 
         echo "[DEBUG] Attempting upload to nectar swift ..."
