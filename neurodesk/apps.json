@@ -38,11 +38,11 @@
     "conn": {
         "apps": {
             "connGUI-conn 20b": {
-                "version": "20210107",
+                "version": "20210108",
                 "exec": "conn"
             },
             "conn r7219": {
-                "version": "20210107",
+                "version": "20210108",
                 "exec": ""
             }
         }
