@@ -35,6 +35,18 @@
             }
         }
     },
+    "conn": {
+        "apps": {
+            "connGUI-conn 20b": {
+                "version": "20210107",
+                "exec": "conn"
+            },
+            "conn r7219": {
+                "version": "20210107",
+                "exec": ""
+            }
+        }
+    },
     "connectomeworkbench": {
         "apps": {
             "connectomeworkbench 1.4.2": {

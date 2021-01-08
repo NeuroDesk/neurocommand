@@ -21,7 +21,7 @@ env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
-  upload_containers_oracle:
+  upload_containers_oracle_simg:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -31,7 +31,7 @@ jobs:
     - name: login to docker hubs
       run: /bin/bash .github/workflows/login_registries.sh
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
-      run: /bin/bash .github/workflows/upload_containers_oracle.sh
+      run: /bin/bash .github/workflows/upload_containers_oracle_simg.sh
   test_neurodesk_cli:
     runs-on: ubuntu-18.04
     steps:
