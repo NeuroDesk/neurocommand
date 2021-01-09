@@ -69,7 +69,7 @@ if [ -f "${CONTAINER_FILE_NAME}" ]; then
     else 
         echo "Container ${IMG_NAME} seems to be fully downloaded and executable."        
     fi
-
+else
     echo "copying transparent singularity files from ${vnm_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
     cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
     cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
