@@ -21,7 +21,7 @@ env:
   DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
 
 jobs:
-  upload_containers_oracle_simg:
+  upload_containers_simg:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v2
@@ -29,7 +29,7 @@ jobs:
       with:
         python-version: 3.8
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
-      run: /bin/bash .github/workflows/upload_containers_oracle_simg.sh
+      run: /bin/bash .github/workflows/upload_containers_simg.sh
   test_neurodesk_cli:
     runs-on: ubuntu-18.04
     steps:
@@ -68,7 +68,7 @@ jobs:
         echo "[DEBUG] WORK IN PROGRESS"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   deploy_vnm_docker:
-    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_oracle_simg]
+    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_simg]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -94,7 +94,7 @@ jobs:
     - name: Push neurodesk to Dockerhub  (if enabled & changes found)
       run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
   deploy_neurodesk_simg:
-    needs: [upload_containers_oracle_simg, test_neurodesk_cli, build_neurodesk]
+    needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -108,7 +108,7 @@ jobs:
     - name: Upload Neurodesk Singularity Container simg
       run: /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
   deploy_neurodesk_sif:
-    needs: [upload_containers_oracle_simg, test_neurodesk_cli, build_neurodesk]
+    needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
