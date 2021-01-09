@@ -76,6 +76,10 @@
             "dsistudio 2020.10": {
                 "version": "20201125",
                 "exec": ""
+            },            
+            "dsistudioGUI-dsistudio 20b": {
+                "version": "20210109",
+                "exec": "conn"
             }
         }
     },
