@@ -74,11 +74,11 @@
     "dsistudio": {
         "apps": {
             "dsistudio 2020.10": {
-                "version": "20201125",
+                "version": "20210109",
                 "exec": ""
             },            
             "dsistudioGUI-dsistudio 2020.10": {
-                "version": "20201125",
+                "version": "20210109",
                 "exec": "dsi_studio"
             }
         }
