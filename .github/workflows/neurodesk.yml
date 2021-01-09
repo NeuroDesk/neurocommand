@@ -40,6 +40,7 @@ jobs:
     - name: Test neurodesk cli version
       run: /bin/bash .github/workflows/test_neurodesk_cli.sh
   build_vnm:
+    needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
@@ -52,30 +53,10 @@ jobs:
     - name: Push vnm to Github packages (if changes found)
       if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
       run: /bin/bash .github/workflows/push_to_gh_packages.sh
-  test_vnm_image:
-    needs: [build_vnm]
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: login to docker hubs
-      run: /bin/bash .github/workflows/login_registries.sh
-    - name: Pull latest vnm build from Github Packages
-      run: |
-        echo "[DEBUG] WORK IN PROGRESS"
-      # /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Test VNM container image
       run: |
         echo "[DEBUG] WORK IN PROGRESS"
         # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
-  deploy_vnm_docker:
-    needs: [test_vnm_image, test_neurodesk_cli, upload_containers_simg]
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: login to docker hubs
-      run: /bin/bash .github/workflows/login_registries.sh
-    - name: Pull latest vnm build from Github Packages
-      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
     - name: Push vnm to Dockerhub  
       run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
   build_neurodesk:
