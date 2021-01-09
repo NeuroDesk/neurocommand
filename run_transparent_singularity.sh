@@ -147,12 +147,12 @@ fi
 
 echo "checking which executables exist inside container"
 echo "executing: singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh"
-singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+qq=`singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh`
 if [[  ${#qq} -lt 1 ]]; then
    echo "Something went wrong when making the container executable."
    echo "trying again with Singularity bindpath set:"
    export SINGULARITY_BINDPATH=/vnm
-   singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+   qq=`singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh`
    if [[  ${#qq} -lt 1 ]]; then
       echo "This didn't work either."
       exit 2
