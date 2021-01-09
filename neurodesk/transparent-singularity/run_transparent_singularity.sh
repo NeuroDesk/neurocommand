@@ -11,7 +11,6 @@ echo "[DEBUG] This is the run_transparent_singularity.sh script"
 
 echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
 echo "Singularity bindpath should at least have vnm path!"
-[ -z "$SINGULARITY_BINDPATH" ] && exit 2
 
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
@@ -151,7 +150,13 @@ echo "executing: singularity exec --pwd $_base $container $_base/ts_binaryFinder
 singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
 if [[  ${#qq} -lt 1 ]]; then
    echo "Something went wrong when making the container executable."
-   exit 2
+   echo "trying again with Singularity bindpath set:"
+   export SINGULARITY_BINDPATH=/vnm
+   singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+   if [[  ${#qq} -lt 1 ]]; then
+      echo "This didn't work either."
+      exit 2
+   fi
 fi
 
 echo "create singularity executable for each regular executable in commands.txt"
