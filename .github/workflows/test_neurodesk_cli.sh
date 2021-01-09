@@ -17,16 +17,20 @@ bash build.sh --cli --lxde
 bash containers.sh
 bash /home/runner/work/neurodesk/neurodesk/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
 
-ls /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811
 
+# check if container file exists
 if [ -f /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.simg ]; then
-    echo "Container file exists (from test_neurodesk_cli.sh)"
-    exit 0
+    echo "[DEBUG: test_neurodesk_cli.sh] Container file exists"
 else 
-    echo "Container file does not exist!!!!!!!!! (from test_neurodesk_cli.sh)"
+    echo "[DEBUG: test_neurodesk_cli.sh] Container file does not exist! Something went wrong when downloading."
     exit 1
 fi
 
-# cleanup
-rm -rf /home/runner/work/neurodesk/neurodesk/local/
-rm /home/runner/work/neurodesk/neurodesk/all_execs.sh
+# check if transparent singularity generated executable output file:
+FILE="/home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap"
+if [ -f $FILE ];then
+    echo "[DEBUG: test_neurodesk_cli.sh] $FILE exists."
+else
+    echo "[DEBUG: test_neurodesk_cli.sh] $FILE doesn't exist. Something went wrong with transparent singularity. "
+    exit 1
+fi
