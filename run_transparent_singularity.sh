@@ -9,6 +9,11 @@
 
 echo "[DEBUG] This is the run_transparent_singularity.sh script"
 
+echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+echo "sourcing /etc/profile:"
+source /etc/profile
+echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
