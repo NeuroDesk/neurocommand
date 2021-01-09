@@ -10,9 +10,8 @@
 echo "[DEBUG] This is the run_transparent_singularity.sh script"
 
 echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
-echo "sourcing /etc/profile:"
-source /etc/profile
-echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+echo "Singularity bindpath should at least have vnm path!"
+[ -z "$SINGULARITY_BINDPATH" ] && exit 2
 
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
