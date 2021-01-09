@@ -20,13 +20,13 @@ source ${_base}/configparser.sh
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
 export PATH_PREFIX=${vnm_installdir}
 
-echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
-export SINGULARITY_BINDPATH=${vnm_installdir}
-echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
-echo "Sourcing /etc/profile:"
-source /etc/profile
-echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
-[ -z "$SINGULARITY_BINDPATH" ] && echo "SINGULARITY_BINDPATH is not set" && exit 2
+# echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+# export SINGULARITY_BINDPATH=${vnm_installdir}
+# echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+# echo "Sourcing /etc/profile:"
+# source /etc/profile
+# echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
+# [ -z "$SINGULARITY_BINDPATH" ] && echo "SINGULARITY_BINDPATH is not set" && exit 2
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
 export MODS_PATH=$CONTAINER_PATH/modules
