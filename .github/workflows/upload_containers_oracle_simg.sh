@@ -22,7 +22,7 @@ sed -i 's/ /_/g' log.txt
 wget -O- http://neuro.debian.net/lists/bionic.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
 sudo apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
 sudo apt-get update
-sudo apt-get install singularity-container 
+sudo apt-get install singularity-container
 
 echo "[DEBUG] Configure for SWIFT storage"
 sudo pip3 install wheel
@@ -75,6 +75,7 @@ do
     if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in swift storage"
     else
+        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - uploading it there as well!"
         # check if there is enough free disk space on the runner:
         FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
         echo "[DEBUG] This runner has ${FREE} free disk space"
@@ -82,9 +83,9 @@ do
             echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
             bash .github/workflows/free-up-space.sh
         fi;
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - building it!"
+        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist locally - pulling it from oracle cloud!"
         if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
-            sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" docker://vnmd/$IMAGENAME:$BUILDDATE
+            curl -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg -O $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
         fi
 
         echo "[DEBUG] Attempting upload to nectar swift ..."
