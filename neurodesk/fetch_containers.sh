@@ -79,7 +79,9 @@ else
     echo "copying transparent singularity files from ${vnm_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
     cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
     cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
-    cd ${IMG_NAME}
+    echo "changing directory to: ${CONTAINER_PATH}/${IMG_NAME}"
+    cd ${CONTAINER_PATH}/${IMG_NAME}
+    echo "executing run_transparent_singularity.sh --container ${IMG_NAME}.simg in $PWD"
     ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg
     # rm -rf .git* README.md run_transparent_singularity ts_*
 fi
