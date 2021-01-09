@@ -49,15 +49,6 @@ do
             sudo apt-get update
             sudo apt-get install singularity-container
 
-            echo "[DEBUG] Configure for SWIFT storage"
-            sudo pip3 install wheel
-            sudo pip3 install python-swiftclient python-keystoneclient
-            export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
-            export OS_AUTH_TYPE=v3applicationcredential
-            export OS_PROJECT_NAME="CAI_Container_Builder"
-            export OS_USER_DOMAIN_NAME="Default"
-            export OS_REGION_NAME="Melbourne"
-
             export IMAGE_HOME="/home/runner"
             export singularity_setup_done="true"
         fi
@@ -93,6 +84,7 @@ do
             echo "Setup already done. Skipping."
         else
             echo "[DEBUG] Configure for SWIFT storage"
+            sudo pip3 install setuptools
             sudo pip3 install wheel
             sudo pip3 install python-swiftclient python-keystoneclient
             export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
