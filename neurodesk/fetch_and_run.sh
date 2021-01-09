@@ -27,7 +27,6 @@ if [ $# -le 3 ]; then
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
     echo "looking for ${CONTAINER_FILE_NAME}"
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
-        clear
         cd 
         echo "Attempting to launch container ${IMG_NAME}"
         singularity exec ${CONTAINER_FILE_NAME} cat /README.md
