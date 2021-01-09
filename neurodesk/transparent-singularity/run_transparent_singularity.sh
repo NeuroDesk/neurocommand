@@ -97,6 +97,7 @@ qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
    echo "This script requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
    echo "If you are root try again as normal user"
+   exit 2
 fi
 
 echo "containerEnding: ${containerEnding}"
@@ -114,7 +115,6 @@ if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.a
    else 
       container_pull="aria2c https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
    fi
-
 else
    echo "$container does not exist in cache - loading from docker!"
    storage="docker"
@@ -122,7 +122,6 @@ fi
 
 if [ "$storage" = "docker" ]; then
    echo "pulling from docker cloud"
-
    container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
 fi
 
@@ -138,9 +137,18 @@ fi
 
 echo "making container executable"
 chmod a+x $container
+if [[  ${#qq} -lt 1 ]]; then
+   echo "Something went wrong when making the container executabel."
+   exit 2
+fi
 
 echo "checking which executables exist inside container"
+echo "executing: singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh"
 singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+if [[  ${#qq} -lt 1 ]]; then
+   echo "Something went wrong when making the container executable."
+   exit 2
+fi
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
