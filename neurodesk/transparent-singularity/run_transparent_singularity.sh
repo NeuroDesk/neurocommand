@@ -129,7 +129,7 @@ else
    qq=`which  aria2c`
    if [[  ${#qq} -lt 1 ]]; then
       echo "aria2 is not install. Defaulting to curl."
-      if  [[ "$swift_down" = "true" ]; then
+      if  [ "$swift_down" = "true" ]; then
          container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container -O"
       else
          container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
