@@ -279,6 +279,7 @@ def build_menu(installdir, appmenu, deskenv, sh_prefix, climode):
         if file.is_symlink():
             os.unlink(file)
 
+
 # if __name__ == "__main__":
 #     logging.basicConfig(level=logging.INFO, format='%(message)s')
 

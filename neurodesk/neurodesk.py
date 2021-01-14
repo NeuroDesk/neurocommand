@@ -11,7 +11,6 @@ import logging
 import shutil
 import stat
 import re
-import distutils.dir_util
 
 from neurodesk.build_menu import build_menu
 
@@ -32,6 +31,7 @@ DEFAULT_PATHS['lxde'] = {
     'appdir': '/usr/share/applications/',
     'deskdir': '/usr/share/desktop-directories/'
 }
+
 
 def get_args():
     parser = argparse.ArgumentParser()
