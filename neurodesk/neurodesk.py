@@ -171,13 +171,9 @@ def main():
     with open(CONFIG_FILE, 'w+') as fh:
         config.write(fh)
 
-    appmenu_template = Path('neurodesk/vnm-applications.menu.template').resolve(strict=True)
-    
-    vnm_appmenu = installdir/'vnm-applications.menu'
-    # vnm_deskdir = installdir/'desktop-directories'
-    
 
-    shutil.copy2(appmenu_template, vnm_appmenu)
+
+    shutil.copy2('neurodesk/vnm-applications.menu.template', installdir/'vnm-applications.menu')
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
