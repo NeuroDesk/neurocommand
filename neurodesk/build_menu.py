@@ -2,6 +2,7 @@
 import configparser
 import json
 import os
+import sys
 from pathlib import Path
 import re
 from typing import Text
@@ -9,6 +10,7 @@ import xml.etree.ElementTree as et
 from xml.dom import minidom
 import shutil
 import logging
+import distutils.dir_util
 
 def add_menu(installdir: Path, name: Text) -> None:
     """Add a submenu to 'VNM' menu.
@@ -194,6 +196,7 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
             if not cli:
                 app.add_app_menu()
 
+
 def add_vnm_menu(installdir: Path, name: Text) -> None:
     logging.info(f"Adding submenu for '{name}'")
     icon_path = installdir/"icons/vnm.png"
@@ -216,6 +219,65 @@ def add_vnm_menu(installdir: Path, name: Text) -> None:
     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
 
+
+def vnm_xml(xml: Path, newxml: Path) -> None:
+    oldtag = '<Menu>'
+    newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
+    tagcount = 0
+    replace = True
+    
+    with open(xml, "r") as fh:
+        lines = fh.readlines()
+        for line in lines:
+            if newtag in line:
+                replace = False
+                break
+
+    with open(newxml, "w") as fh:
+        for line in lines:
+            if replace and oldtag in line:
+                tagcount += 1
+                if tagcount == 2:
+                    fh.write(re.sub(f'{oldtag}', f'{newtag}\n\t{oldtag}', line))
+                else:
+                    fh.write(line)
+            else:
+                fh.write(line)
+    try:
+        et.parse(newxml)
+    except et.ParseError:
+        logging.error(f'InvalidXMLError with appmenu [{newxml}]')
+        logging.error('Exiting ...')
+        sys.exit()
+
+
+def build_menu(installdir, appmenu, deskenv, sh_prefix, climode):
+    shutil.copy2('neurodesk/vnm-applications.menu.template', installdir/'vnm-applications.menu')
+    shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
+    shutil.copy2('neurodesk/fetch_containers.sh', installdir)
+    shutil.copy2('neurodesk/configparser.sh', installdir)
+    shutil.copy2('neurodesk/config.ini', installdir)
+    distutils.dir_util.copy_tree('neurodesk/transparent-singularity', str(installdir/'transparent-singularity'))
+    os.chmod(installdir/'fetch_and_run.sh', 0o755)
+    os.chmod(installdir/'fetch_containers.sh', 0o755)
+    os.chmod(installdir/'configparser.sh', 0o755)
+
+    if not climode and appmenu:
+        new_appmenu = installdir/appmenu.name
+        vnm_xml(appmenu, new_appmenu)
+
+    appsjson = Path('neurodesk/apps.json').resolve(strict=True)
+    (installdir/'icons').mkdir(exist_ok=True)
+    apps_from_json(climode, deskenv, installdir, appsjson, sh_prefix)
+    if not climode:
+        add_vnm_menu(installdir, 'VNM Neuroimaging')
+
+    # Remove any symlinks from local appdir
+    # Prevents symlink recursion
+    vnm_appdir = installdir/'applications'
+    for file in vnm_appdir.glob('*'):
+        if file.is_symlink():
+            os.unlink(file)
 
 # if __name__ == "__main__":
 #     logging.basicConfig(level=logging.INFO, format='%(message)s')
