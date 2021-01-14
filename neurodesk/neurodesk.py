@@ -36,11 +36,29 @@ DEFAULT_PATHS['lxde'] = {
 def get_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('--init', action="store_true", default=False)
-    parser.add_argument('--lxde', action="store_true", default=False)
     parser.add_argument('--edit', action="store_true", default=False)
+    parser.add_argument('--lxde', action="store_true", default=False)
     parser.add_argument('--cli', action="store_true", default=False)
     args = parser.parse_args()
     return args
+
+
+def init(config):
+    while not config['vnm']['deskenv'] in ["cli", "lxde", "mate"]:
+        config['vnm']['deskenv'] = input(f'Desktop Env? [cli/lxde/mate]: ')
+        config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
+        if config['vnm']['deskenv'] == "":
+            logging.info('Defaulting to cli')
+            config['vnm']['deskenv'] = "cli"
+    config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
+    config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
+    config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
+    config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
+    while not config['vnm']['edit'] in ["y", "n"]:
+        config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
+        config['vnm']['edit'] = config['vnm']['edit'].lower()
+        if config['vnm']['edit'] == "":
+            config['vnm']['edit'] = "y"
 
 
 def main():
@@ -60,6 +78,12 @@ def main():
         'sh_prefix': ''
         }
     config.read(CONFIG_FILE)
+
+    if args.cli:
+        print('installing in command line mode without desktop menus')
+        config['vnm']['deskenv'] = 'cli'
+        config['vnm']['edit'] = 'y'
+
     if args.lxde:
         config['vnm']['deskenv'] = 'lxde'
         config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
@@ -70,26 +94,25 @@ def main():
     if args.edit:
         config['vnm']['edit'] = 'y'
 
-    if args.cli:
-        print('installing in command line mode without desktop menus')
-        config['vnm']['edit'] = 'y'
-
     if args.init:
-        while not config['vnm']['deskenv'] in ["lxde", "mate"]:
-            config['vnm']['deskenv'] = input(f'Desktop Env? [lxde/mate]: ')
-            config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
-            if config['vnm']['deskenv'] == "":
-                logging.info('Defaulting to lxde')
-                config['vnm']['deskenv'] = "lxde"
-        config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
-        config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
-        config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
-        config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
-        while not config['vnm']['edit'] in ["y", "n"]:
-            config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
-            config['vnm']['edit'] = config['vnm']['edit'].lower()
-            if config['vnm']['edit'] == "":
-                config['vnm']['edit'] = "y"
+        init(config)
+        # while not config['vnm']['deskenv'] in ["cli", "lxde", "mate"]:
+        #     config['vnm']['deskenv'] = input(f'Desktop Env? [cli/lxde/mate]: ')
+        #     config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
+        #     if config['vnm']['deskenv'] == "":
+        #         logging.info('Defaulting to cli')
+        #         config['vnm']['deskenv'] = "cli"
+        # config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
+        # config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
+        # config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
+        # config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
+        # while not config['vnm']['edit'] in ["y", "n"]:
+        #     config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
+        #     config['vnm']['edit'] = config['vnm']['edit'].lower()
+        #     if config['vnm']['edit'] == "":
+        #         config['vnm']['edit'] = "y"
+
+
 
     try:
         installdir = Path(config['vnm']['installdir']).expanduser().resolve(strict=False)
