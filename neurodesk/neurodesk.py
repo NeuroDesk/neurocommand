@@ -124,6 +124,7 @@ def main():
         logging.error('Exiting ...')
         sys.exit()
     
+    appmenu = ''
     if not args.cli:
         try:
             appmenu = Path(config['vnm']['appmenu']).expanduser()
