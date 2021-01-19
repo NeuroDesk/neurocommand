@@ -222,7 +222,7 @@
     "qsmxt": {
         "apps": {
             "qsmxt 1.0.0": {
-                "version": "20210113",
+                "version": "20210119",
                 "exec": ""
             }
         }
