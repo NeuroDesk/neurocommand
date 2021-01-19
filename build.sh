@@ -51,6 +51,11 @@ while [[ $# -gt 0 ]]
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
+if [ "$lxde" = true ]; then
+    appmenu=/etc/xdg/menus/lxde-applications.menu
+    appdir=/usr/share/applications/
+    deskdir=/usr/share/desktop-directories/
+fi
 
 if [ "$init" = true ]; then
     # Installation Directory [./local]
@@ -101,10 +106,12 @@ if [ "$init" = true ]; then
 fi
 
 # Test inputs
+echo "Checking appdir> $appdir"
 validfile=false
 for i in $appdir/*.desktop; do
     if [[ -e $i ]]; then
-        $validfile=true
+        echo " - contains *.desktop file(s)"
+        validfile=true
         break
     fi
 done
@@ -112,10 +119,12 @@ if [ "$validfile" = false ]; then
     echo "Invalid Applications Directory"
 fi
 
+echo "Checking deskdir> $deskdir"
 validfile=false
 for i in $appdir/*.directory; do
     if [[ -e $i ]]; then
-        $validfile=true
+        echo " - contains *.directory file(s)"
+        validfile=true
         break
     fi
 done
