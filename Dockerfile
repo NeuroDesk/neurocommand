@@ -1,9 +1,10 @@
 FROM python:3.9.1-slim-buster
 
-COPY neurodesk /neurodesk
+RUN mkdir -p /neurodesk
+COPY neurodesk/requirements.txt /neurodesk/
 WORKDIR /neurodesk
 
 RUN pip install -r requirements.txt
 
-WORKDIR /
-RUN python -m neurodesk --cli
+WORKDIR /neurodesk
+# RUN python -m neurodesk --cli
