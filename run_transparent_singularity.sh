@@ -16,6 +16,12 @@ echo "Singularity bindpath should at least have vnm path!"
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 
+echo "making sure this is not running in a symlinked directory (singularity bug)"
+echo "path: $_base"
+cd $_base
+_base=`pwd -P`
+echo "corrected path: $_base"
+
 POSITIONAL=()
 while [[ $# -gt 0 ]]
    do
