@@ -1,6 +1,7 @@
 #!/bin/bash
 
 source neurodesk/configparser.sh
+rm_symlink(){ [ ! -L "$1" ] || rm -v "$1"; }
 
 echo "WARNING: Will modify/replace system files!!!"
 # read -p "Press enter to continue ..."
