@@ -251,7 +251,11 @@ def vnm_xml(xml: Path, newxml: Path) -> None:
         sys.exit()
 
 
-def build_menu(installdir, appmenu, deskenv, sh_prefix, climode):
+def build_menu(installdir, deskenv, sh_prefix):
+    climode = False
+    if deskenv == 'cli':
+        climode = True
+
     shutil.copy2('neurodesk/vnm-applications.menu.template', installdir/'vnm-applications.menu')
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
@@ -262,9 +266,9 @@ def build_menu(installdir, appmenu, deskenv, sh_prefix, climode):
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
 
-    if not climode and appmenu:
-        new_appmenu = installdir/appmenu.name
-        vnm_xml(appmenu, new_appmenu)
+    # if not climode and appmenu:
+    #     new_appmenu = installdir/appmenu.name
+    #     vnm_xml(appmenu, new_appmenu)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
