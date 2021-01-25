@@ -3,20 +3,6 @@
 
 set -e
 
-# Functions
-resolve_abs_parentdir() {
-    path="${1/#\~/$HOME}"
-    parentdir=$(dirname "${path}")
-    name=$(basename "${path}")
-    echo "$(cd ${parentdir} && pwd -P)/${name}"
-}
-resolve_abs_path() {
-    path="${1/#\~/$HOME}"
-    name=$(basename "${path}")
-    echo "$(cd ${path} && pwd -P)"
-}
-
-
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 
