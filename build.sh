@@ -137,7 +137,7 @@ if [ $deskenv != "cli" ]; then
         echo "Applications Menu not found"
         exit 1
     fi
-
+    cp $appmenu $installdir/local-applications.menu.template
 
     # Test Applications Directory
     echo "Checking appdir> $appdir"
