@@ -44,9 +44,12 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$lxde" = true ]; then
+    deskenv=lxde
     appmenu=/etc/xdg/menus/lxde-applications.menu
     appdir=/usr/share/applications/
     deskdir=/usr/share/desktop-directories/
+    echo "deskenv> lxde preset" 
+    echo
 fi
 
 if [ "$init" = true ]; then
@@ -131,14 +134,16 @@ if [ $deskenv != "cli" ]; then
         fi
     done
     if [ "$validfile" = false ]; then
+        echo " - missing *.desktop file(s)"
         echo "Invalid Applications Directory"
         exit 1
     fi
+    echo
 
     # Test Desktop Directory
     echo "Checking deskdir> $deskdir"
     validfile=false
-    for i in $appdir/*.directory; do
+    for i in $deskdir/*.directory; do
         if [[ -e $i ]]; then
             echo " - contains *.directory file(s)"
             validfile=true
@@ -146,7 +151,9 @@ if [ $deskenv != "cli" ]; then
         fi
     done
     if [ "$validfile" = false ]; then
+        echo " - missing *.directory file(s)"
         echo "Invalid Desktop Directory"
         exit 1
     fi
+    echo
 fi
