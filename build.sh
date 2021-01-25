@@ -8,6 +8,8 @@ _base="$(dirname $_script)" ## Delete last component from $_script ##
 
 source ${_base}/neurodesk/configparser.sh
 
+args=""
+
 # Arguments
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -45,9 +47,11 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$lxde" = true ]; then
     deskenv=lxde
+    installdir="$(pwd -P)/local"
     appmenu=/etc/xdg/menus/lxde-applications.menu
     appdir=/usr/share/applications/
     deskdir=/usr/share/desktop-directories/
+    edit=y
     echo "deskenv> lxde preset" 
     echo
 fi
@@ -109,9 +113,21 @@ if [ "$init" = true ]; then
 
         # Edit mode [y/n]
         read -p "edit : " edit
+        case "$edit" in
+        y/n)
+            echo "Edit set to $edit"
+            ;;
+        *)
+            echo "Defaulting to no edit"
+            edit="n"
+            ;;
+        esac
+
     fi
 fi
 
+args="${args} --installdir=$installdir"
+args="${args} --deskenv=$deskenv"
 
 if [ $deskenv != "cli" ]; then
     # Test Applications Menu
@@ -156,4 +172,11 @@ if [ $deskenv != "cli" ]; then
         exit 1
     fi
     echo
+
+    args="${args} --appmenu=$appmenu"
+    args="${args} --appdir=$appdir"
+    args="${args} --deskdir=$deskdir"
+    args="${args} --edit=$edit"
 fi
+
+python -m neurodesk $args
