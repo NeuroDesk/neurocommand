@@ -16,6 +16,12 @@ resolve_abs_path() {
     echo "$(cd ${path} && pwd -P)"
 }
 
+
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+
+source ${_base}/neurodesk/configparser.sh
+
 # Arguments
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -61,16 +67,16 @@ if [ "$init" = true ]; then
     # Installation Directory [./local]
     echo "Enter Installation Directory. Blank for default [./local]"
     read -e -p "installdir> " installdir
+    installdir="${installdir/#\~/$HOME}"
     if [ -z "$installdir" ]; then
         installdir="$(pwd -P)"
     fi
-    installdir=$(resolve_abs_parentdir ${installdir})
     if [ ! -d "$installdir" ]; then
         echo "Installation directory does not exist"
         echo "Creating $installdir"
         mkdir -p $installdir
     fi
-    installdir=$(resolve_abs_path ${installdir})
+    installdir=$(readlink -f ${installdir})
     if [ "$installdir" == $(pwd -P) ]; then
         installdir="$(pwd -P)/local"
         mkdir -p $installdir
@@ -81,54 +87,80 @@ if [ "$init" = true ]; then
     # Desktop Environment [cli/lxde/mate]
     echo "Enter Desktop Environment [cli/lxde/mate]"
     read -p "deskenv> " deskenv
+    deskenv=$(echo "$deskenv" | tr '[:upper:]' '[:lower:]')
+    case "$deskenv" in
+      cli|lxde|mate)
+        echo "Environment set to $deskenv"
+        ;;
+      *)
+        echo "Defaulting to cli environment"
+        deskenv="cli"
+        ;;
+    esac
     echo
 
-    # Applications Menu
-    read -e -p "appmenu: " appmenu
-    appmenu=$(resolve_abs_path $appmenu)
-    echo "Applications Menu at $appmenu"
-    echo 
+    if [ $deskenv != "cli" ]; then
+        # Applications Menu
+        read -e -p "appmenu: " appmenu
+        appmenu=$(resolve_abs_path $appmenu)
+        echo "Applications Menu at $appmenu"
+        echo 
 
-    # Applications Directory
-    read -e -p "appdir: " appdir
-    appdir=$(resolve_abs_path $appdir)
-    echo "Installation directory at $installdir"
-    echo 
+        # Applications Directory
+        read -e -p "appdir: " appdir
+        appdir=$(resolve_abs_path $appdir)
+        echo "Installation directory at $installdir"
+        echo 
 
-    # Desktop Directories
-    read -e -p "deskdir: " deskdir
-    deskdir=$(resolve_abs_path $deskdir)
-    echo "Installation directory at $installdir"
-    echo 
+        # Desktop Directories
+        read -e -p "deskdir: " deskdir
+        deskdir=$(resolve_abs_path $deskdir)
+        echo "Installation directory at $installdir"
+        echo 
 
-    # Edit mode [y/n]
-    read -p "edit : " edit
-fi
-
-# Test inputs
-echo "Checking appdir> $appdir"
-validfile=false
-for i in $appdir/*.desktop; do
-    if [[ -e $i ]]; then
-        echo " - contains *.desktop file(s)"
-        validfile=true
-        break
+        # Edit mode [y/n]
+        read -p "edit : " edit
     fi
-done
-if [ "$validfile" = false ]; then
-    echo "Invalid Applications Directory"
 fi
 
-echo "Checking deskdir> $deskdir"
-validfile=false
-for i in $appdir/*.directory; do
-    if [[ -e $i ]]; then
-        echo " - contains *.directory file(s)"
-        validfile=true
-        break
+
+if [ $deskenv != "cli" ]; then
+    # Test Applications Menu
+    echo "Checking appmenu> $appmenu"
+    validfile=false
+    if [ ! -f "$appmenu" ]; then
+        echo "Applications Menu not found"
+        exit 1
     fi
-done
-if [ "$validfile" = false ]; then
-    echo "Invalid Desktop Directory"
-fi
 
+
+    # Test Applications Directory
+    echo "Checking appdir> $appdir"
+    validfile=false
+    for i in $appdir/*.desktop; do
+        if [[ -e $i ]]; then
+            echo " - contains *.desktop file(s)"
+            validfile=true
+            break
+        fi
+    done
+    if [ "$validfile" = false ]; then
+        echo "Invalid Applications Directory"
+        exit 1
+    fi
+
+    # Test Desktop Directory
+    echo "Checking deskdir> $deskdir"
+    validfile=false
+    for i in $appdir/*.directory; do
+        if [[ -e $i ]]; then
+            echo " - contains *.directory file(s)"
+            validfile=true
+            break
+        fi
+    done
+    if [ "$validfile" = false ]; then
+        echo "Invalid Desktop Directory"
+        exit 1
+    fi
+fi
