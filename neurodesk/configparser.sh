@@ -1,8 +1,12 @@
 #!/bin/bash
 
-_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
-_base="$(dirname $_script)" ## Delete last component from $_script ##
-filename="${_base}/config.ini"
+if [ $# -eq 0 ]; then
+    _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+    _base="$(dirname $_script)" ## Delete last component from $_script ##
+    filename="${_base}/config.ini"
+else
+    filename=$1
+fi
 
 if [ -f "$filename" ]; then
     echo $filename
