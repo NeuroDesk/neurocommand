@@ -12,7 +12,7 @@ import shutil
 import logging
 import distutils.dir_util
 
-def add_menu(installdir: Path, name: Text) -> None:
+def add_menu(installdir: Path, name: Text, category: Text) -> None:
     """Add a submenu to 'VNM' menu.
 
     Parameters
@@ -38,7 +38,7 @@ def add_menu(installdir: Path, name: Text) -> None:
         "Icon": icon_path,
         "Type": "Directory",
     }
-    directories_path = installdir/"desktop-directories"
+    directories_path = installdir/"desktop-directories"/"apps"
     if not os.path.exists(directories_path):
         os.makedirs(directories_path)
     directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
@@ -50,23 +50,27 @@ def add_menu(installdir: Path, name: Text) -> None:
         s = xml_file.read()
     s = re.sub(r"\s+(?=<)", "", s)
     root = et.fromstring(s)
-    menu_el = root.findall("./Menu")[0]
-    sub_el = et.SubElement(menu_el, "Menu")
-    name_el = et.SubElement(sub_el, "Name")
-    name_el.text = name.capitalize()
-    dir_el = et.SubElement(sub_el, "Directory")
-    dir_el.text = f'vnm/{directory_name}'
-    include_el = et.SubElement(sub_el, "Include")
-    and_el = et.SubElement(include_el, "And")
-    cat_el = et.SubElement(and_el, "Category")
-    cat_el.text = name.replace(" ", "-")
-    cat_el.text = f"vnm-{cat_el.text}"
-    xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
-    with open(menu_path, "w") as f:
-        f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
-        f.write('"http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">\n\n')
-        f.write(xmlstr[xmlstr.find("?>") + 3 :])
-    os.chmod(menu_path, 0o644)
+    category_name = f'vnm-{category.lower().replace(" ", "-")}'
+    for menu_el in root.findall(".//Menu/Menu"):
+        if menu_el[2][0][0].text == category_name:
+        # menu_el = root.findall("./Menu/Menu")[0]
+            sub_el = et.SubElement(menu_el, "Menu")
+            name_el = et.SubElement(sub_el, "Name")
+            name_el.text = name.capitalize()
+            dir_el = et.SubElement(sub_el, "Directory")
+            dir_el.text = f'vnm/apps/{directory_name}'
+            include_el = et.SubElement(sub_el, "Include")
+            and_el = et.SubElement(include_el, "And")
+            cat_el = et.SubElement(and_el, "Category")
+            cat_el.text = name.replace(" ", "-")
+            cat_el.text = f"vnm-{cat_el.text}"
+            xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
+            with open(menu_path, "w") as f:
+                f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
+                f.write('"http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">\n\n')
+                f.write(xmlstr[xmlstr.find("?>") + 3 :])
+            os.chmod(menu_path, 0o644)
+            break
 
 
 class VNMApp:
@@ -182,7 +186,9 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
     for menu_name, menu_data in menu_entries.items():
         # Add submenu
         if not cli:
-            add_menu(installdir, menu_name)
+            add_menu(installdir, menu_name, 'all applications')
+            for category in menu_data.get("categories") or []:
+                add_menu(installdir, menu_name, category)
         for app_name, app_data in menu_data.get("apps", {}).items():
             app = VNMApp(
                 deskenv=deskenv,
