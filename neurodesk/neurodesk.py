@@ -25,13 +25,13 @@ def signal_handler(signal, frame):
 signal.signal(signal.SIGINT, signal_handler)
 
 # Global settings
-CONFIG_FILE = 'neurodesk/config.ini'
-DEFAULT_PATHS = {}
-DEFAULT_PATHS['lxde'] = {
-    'appmenu': '/etc/xdg/menus/lxde-applications.menu',
-    'appdir': '/usr/share/applications/',
-    'deskdir': '/usr/share/desktop-directories/'
-}
+CONFIG_FILE = 'config.ini'
+# DEFAULT_PATHS = {}
+# DEFAULT_PATHS['lxde'] = {
+#     'appmenu': '/etc/xdg/menus/lxde-applications.menu',
+#     'appdir': '/usr/share/applications/',
+#     'deskdir': '/usr/share/desktop-directories/'
+# }
 
 
 def get_args():
@@ -48,24 +48,6 @@ def get_args():
 
     args = parser.parse_args()
     return args
-
-
-# def init(config):
-#     while not config['vnm']['deskenv'] in ["cli", "lxde", "mate"]:
-#         config['vnm']['deskenv'] = input(f'Desktop Env? [cli/lxde/mate]: ')
-#         config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
-#         if config['vnm']['deskenv'] == "":
-#             logging.info('Defaulting to cli')
-#             config['vnm']['deskenv'] = "cli"
-#     config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
-#     config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
-#     config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
-#     config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
-#     while not config['vnm']['edit'] in ["y", "n"]:
-#         config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
-#         config['vnm']['edit'] = config['vnm']['edit'].lower()
-#         if config['vnm']['edit'] == "":
-#             config['vnm']['edit'] = "y"
 
 
 def main():
@@ -111,6 +93,11 @@ def main():
         vnm_xml(appmenu_template, new_appmenu)
 
     build_menu(installdir, config['vnm']['deskenv'], config['vnm']['sh_prefix'])
+
+
+if __name__ == "__main__":
+    main()
+
 
     # if args.cli:
     #     print('installing in command line mode without desktop menus')
@@ -188,5 +175,19 @@ def main():
     # build_menu(config['vnm']['installdir'], config['vnm']['appmenu'], config['vnm']['deskenv'], config['vnm']['sh_prefix'], args.cli)
 
 
-if __name__ == "__main__":
-    main()
+# def init(config):
+#     while not config['vnm']['deskenv'] in ["cli", "lxde", "mate"]:
+#         config['vnm']['deskenv'] = input(f'Desktop Env? [cli/lxde/mate]: ')
+#         config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
+#         if config['vnm']['deskenv'] == "":
+#             logging.info('Defaulting to cli')
+#             config['vnm']['deskenv'] = "cli"
+#     config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
+#     config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
+#     config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
+#     config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
+#     while not config['vnm']['edit'] in ["y", "n"]:
+#         config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
+#         config['vnm']['edit'] = config['vnm']['edit'].lower()
+#         if config['vnm']['edit'] == "":
+#             config['vnm']['edit'] = "y"
