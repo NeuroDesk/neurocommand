@@ -6,7 +6,7 @@ set -e
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 
-source ${_base}/neurodesk/configparser.sh
+source ${_base}/neurodesk/configparser.sh ${_base}/config.ini
 
 args=""
 

@@ -260,7 +260,7 @@ def build_menu(installdir, deskenv, sh_prefix):
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
-    shutil.copy2('neurodesk/config.ini', installdir)
+    shutil.copy2('config.ini', installdir)
     distutils.dir_util.copy_tree('neurodesk/transparent-singularity', str(installdir/'transparent-singularity'))
     os.chmod(installdir/'fetch_and_run.sh', 0o755)
     os.chmod(installdir/'fetch_containers.sh', 0o755)
