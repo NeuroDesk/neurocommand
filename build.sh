@@ -138,6 +138,7 @@ if [ $deskenv != "cli" ]; then
         exit 1
     fi
     cp $appmenu $installdir/local-applications.menu.template
+    cp neurodesk/*.directory $installdir/desktop-directories
 
     # Test Applications Directory
     echo "Checking appdir> $appdir"
