@@ -9,7 +9,8 @@
                 "version": "20210104",
                 "exec": "suma"
             }
-        }
+        },
+        "categories": ["functional imaging"]
     },
     "ants": {
         "apps": {
@@ -129,7 +130,8 @@
                 "version": "20210105",
                 "exec": "fsleyes"
             }
-        }
+        },
+        "categories": ["functional imaging"]
     },
     "gimp": {
         "apps": {
