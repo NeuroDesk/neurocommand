@@ -14,7 +14,24 @@
 				<Category>VNM-Neuroimaging</Category>
 			</And>
 		</Include>
-
+		<Menu>
+			<Name>All Applications</Name>
+			<Directory>vnm/vnm-all-applications.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-all-applications</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Functional Imaging</Name>
+			<Directory>vnm/vnm-functional-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-functional-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
 	</Menu> <!-- End VNM Neuroimaging -->
 
 </Menu> <!-- End Applications -->
