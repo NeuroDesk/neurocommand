@@ -59,7 +59,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging"]
+        "categories": []
     },
     "convert3d": {
         "apps": {
@@ -67,7 +67,8 @@
                 "version": "20210104",
                 "exec": ""
             }
-        }
+        },
+        "categories": []
     },
     "datalad": {
         "apps": {
@@ -75,7 +76,8 @@
                 "version": "20201119",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["data organisation"]
     },
     "dsistudio": {
         "apps": {
@@ -87,7 +89,8 @@
                 "version": "20210109",
                 "exec": "dsi_studio"
             }
-        }
+        },
+        "categories": ["diffusion imaging"]
     },
     "fatsegnet": {
         "apps": {
@@ -95,7 +98,8 @@
                 "version": "20201212",
                 "exec": ""
             }
-        }
+        },
+        "categories": []
     },
     "fmriprep": {
         "apps": {
@@ -103,7 +107,8 @@
                 "version": "20201118",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["functional imaging", "image segmentation", "image registration"]
     },
     "freesurfer": {
         "apps": {
