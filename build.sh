@@ -45,13 +45,6 @@ while [[ $# -gt 0 ]]
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
-if [ "$cli" = true ]; then
-    deskenv=cli
-    installdir="$(pwd -P)/local"
-    echo "deskenv> cli preset" 
-    echo
-fi
-
 if [ "$lxde" = true ]; then
     deskenv=lxde
     installdir="$(pwd -P)/local"
@@ -60,6 +53,13 @@ if [ "$lxde" = true ]; then
     deskdir=/usr/share/desktop-directories/
     edit=y
     echo "deskenv> lxde preset" 
+    echo
+fi
+
+if [ "$cli" = true ]; then
+    deskenv=cli
+    installdir="$(pwd -P)/local"
+    echo "deskenv> cli preset" 
     echo
 fi
 
