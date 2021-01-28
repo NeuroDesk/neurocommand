@@ -38,6 +38,7 @@ def write_directory_file(name, file_dir, icon_dir):
     file_dir.mkdir(exist_ok=True)
     with open(Path(file_path), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
+    return file_path
 
 
 def add_menu(installdir: Path, name: Text, category: Text) -> None:
@@ -48,21 +49,11 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
     name : Text
         The name of the submenu.
     """
-    # logging.info(f"Adding submenu for '{name}'")
-    # icon_path = installdir/f"icons/{name.split()[0]}.png"
-    # icon_src = (Path(__file__).parent/'icons'/icon_path.name)
-    # try:
-    #     shutil.copy2(icon_src, icon_path)
-    # except FileNotFoundError:
-    #     logging.warning(f'{icon_src} not found')
-    #     icon_src = (Path(__file__).parent/'icons/vnm.png')
-    #     shutil.copy2(icon_src, icon_path)
 
     # Generate `.directory` file
     file_dir = installdir/"desktop-directories/apps"
-    file_path = file_dir/f"/vnm-{name.lower().replace(' ', '-')}.directory"
     icon_dir = installdir/f"icons"
-    write_directory_file(name, file_dir, icon_dir)
+    file_path = write_directory_file(name, file_dir, icon_dir)
 
     # Add entry to `.menu` file
     menu_path = installdir/"vnm-applications.menu"
