@@ -1,6 +1,10 @@
 #!/bin/bash
 
-source neurodesk/configparser.sh
+_script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+_base="$(dirname $_script)" ## Delete last component from $_script ##
+source neurodesk/configparser.sh ${_base}/config.ini
+
+rm_symlink(){ [ ! -L "$1" ] || rm -v "$1"; }
 
 echo "WARNING: Will modify/replace system files!!!"
 # read -p "Press enter to continue ..."

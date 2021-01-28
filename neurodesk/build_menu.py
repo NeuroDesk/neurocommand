@@ -2,6 +2,7 @@
 import configparser
 import json
 import os
+import sys
 from pathlib import Path
 import re
 from typing import Text
@@ -9,24 +10,22 @@ import xml.etree.ElementTree as et
 from xml.dom import minidom
 import shutil
 import logging
+import distutils.dir_util
 
-def add_menu(installdir: Path, name: Text) -> None:
-    """Add a submenu to 'VNM' menu.
 
-    Parameters
-    ----------
-    name : Text
-        The name of the submenu.
-    """
+def write_directory_file(name, file_dir, icon_dir):
     logging.info(f"Adding submenu for '{name}'")
-    icon_path = installdir/f"icons/{name.split()[0]}.png"
+    file_path = file_dir/f"vnm-{name.lower().replace(' ', '-')}.directory"
+    icon_path = icon_dir/f"{name.lower().split()[0]}.png"
     icon_src = (Path(__file__).parent/'icons'/icon_path.name)
+    # breakpoint()
     try:
         shutil.copy2(icon_src, icon_path)
     except FileNotFoundError:
         logging.warning(f'{icon_src} not found')
         icon_src = (Path(__file__).parent/'icons/vnm.png')
         shutil.copy2(icon_src, icon_path)
+
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
@@ -36,35 +35,53 @@ def add_menu(installdir: Path, name: Text) -> None:
         "Icon": icon_path,
         "Type": "Directory",
     }
-    directories_path = installdir/"desktop-directories"
-    if not os.path.exists(directories_path):
-        os.makedirs(directories_path)
-    directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
-    with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
+    file_dir.mkdir(exist_ok=True)
+    with open(Path(file_path), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
+    return file_path
+
+
+def add_menu(installdir: Path, name: Text, category: Text) -> None:
+    """Add a submenu to 'VNM' menu.
+
+    Parameters
+    ----------
+    name : Text
+        The name of the submenu.
+    """
+
+    # Generate `.directory` file
+    file_dir = installdir/"desktop-directories/apps"
+    icon_dir = installdir/f"icons"
+    file_path = write_directory_file(name, file_dir, icon_dir)
+
     # Add entry to `.menu` file
     menu_path = installdir/"vnm-applications.menu"
     with open(menu_path, "r") as xml_file:
         s = xml_file.read()
     s = re.sub(r"\s+(?=<)", "", s)
     root = et.fromstring(s)
-    menu_el = root.findall("./Menu")[0]
-    sub_el = et.SubElement(menu_el, "Menu")
-    name_el = et.SubElement(sub_el, "Name")
-    name_el.text = name.capitalize()
-    dir_el = et.SubElement(sub_el, "Directory")
-    dir_el.text = f'vnm/{directory_name}'
-    include_el = et.SubElement(sub_el, "Include")
-    and_el = et.SubElement(include_el, "And")
-    cat_el = et.SubElement(and_el, "Category")
-    cat_el.text = name.replace(" ", "-")
-    cat_el.text = f"vnm-{cat_el.text}"
-    xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
-    with open(menu_path, "w") as f:
-        f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
-        f.write('"http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">\n\n')
-        f.write(xmlstr[xmlstr.find("?>") + 3 :])
-    os.chmod(menu_path, 0o644)
+    category_name = f'vnm-{category.lower().replace(" ", "-")}'
+    for menu_el in root.findall(".//Menu/Menu"):
+        if menu_el[2][0][0].text == category_name:
+        # menu_el = root.findall("./Menu/Menu")[0]
+            sub_el = et.SubElement(menu_el, "Menu")
+            name_el = et.SubElement(sub_el, "Name")
+            name_el.text = name.capitalize()
+            dir_el = et.SubElement(sub_el, "Directory")
+            dir_el.text = f'vnm/apps/{file_path.name}'
+            include_el = et.SubElement(sub_el, "Include")
+            and_el = et.SubElement(include_el, "And")
+            cat_el = et.SubElement(and_el, "Category")
+            cat_el.text = name.replace(" ", "-")
+            cat_el.text = f"vnm-{cat_el.text}"
+            xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
+            with open(menu_path, "w") as f:
+                f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
+                f.write('"http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">\n\n')
+                f.write(xmlstr[xmlstr.find("?>") + 3 :])
+            os.chmod(menu_path, 0o644)
+            break
 
 
 class VNMApp:
@@ -180,7 +197,9 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
     for menu_name, menu_data in menu_entries.items():
         # Add submenu
         if not cli:
-            add_menu(installdir, menu_name)
+            add_menu(installdir, menu_name, 'all applications')
+            for category in menu_data.get("categories") or []:
+                add_menu(installdir, menu_name, category)
         for app_name, app_data in menu_data.get("apps", {}).items():
             app = VNMApp(
                 deskenv=deskenv,
@@ -194,35 +213,75 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
             if not cli:
                 app.add_app_menu()
 
-def add_vnm_menu(installdir: Path, name: Text) -> None:
-    logging.info(f"Adding submenu for '{name}'")
-    icon_path = installdir/"icons/vnm.png"
-    icon_src = Path(__file__).parent/'icons/vnm.png'
-    shutil.copy2(icon_src, icon_path)
 
-    # Generate `.directory` file
-    entry = configparser.ConfigParser()
-    entry.optionxform = str
-    entry["Desktop Entry"] = {
-        "Name": name,
-        "Comment": name,
-        "Icon": icon_path,
-        "Type": "Directory",
-    }
-    directories_path = installdir/"desktop-directories"
-    if not os.path.exists(directories_path):
-        os.makedirs(directories_path)
-    directory_name = f"{name.lower().replace(' ', '-')}.directory"
-    with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
-        entry.write(directory_file, space_around_delimiters=False)
-
-
-# if __name__ == "__main__":
-#     logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-#     installdir = Path.cwd().resolve(strict=True)
-#     appsjson = Path('apps.json').resolve(strict=True)
+def vnm_xml(xml: Path, newxml: Path) -> None:
+    oldtag = '<Menu>'
+    newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
+    tagcount = 0
+    replace = True
     
-#     add_vnm_menu(installdir, 'VNM Imaging')
-#     apps_from_json('lxde', installdir, appsjson)
- 
+    with open(xml, "r") as fh:
+        lines = fh.readlines()
+        for line in lines:
+            if newtag in line:
+                replace = False
+                break
+
+    with open(newxml, "w") as fh:
+        for line in lines:
+            if replace and oldtag in line:
+                tagcount += 1
+                if tagcount == 2:
+                    fh.write(re.sub(f'{oldtag}', f'{newtag}\n\t{oldtag}', line))
+                else:
+                    fh.write(line)
+            else:
+                fh.write(line)
+    try:
+        et.parse(newxml)
+    except et.ParseError:
+        logging.error(f'InvalidXMLError with appmenu [{newxml}]')
+        logging.error('Exiting ...')
+        sys.exit()
+
+
+def build_menu(installdir, deskenv, sh_prefix):
+    climode = False
+    if deskenv == 'cli':
+        climode = True
+
+    shutil.copy2('neurodesk/vnm-applications.menu.template', installdir/'vnm-applications.menu')
+    shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
+    shutil.copy2('neurodesk/fetch_containers.sh', installdir)
+    shutil.copy2('neurodesk/configparser.sh', installdir)
+    shutil.copy2('config.ini', installdir)
+    distutils.dir_util.copy_tree('neurodesk/transparent-singularity', str(installdir/'transparent-singularity'))
+    os.chmod(installdir/'fetch_and_run.sh', 0o755)
+    os.chmod(installdir/'fetch_containers.sh', 0o755)
+    os.chmod(installdir/'configparser.sh', 0o755)
+
+    if not climode:
+        # add_vnm_menu(installdir, 'VNM Neuroimaging')
+        directories_path = installdir/"desktop-directories"
+        icon_dir = installdir/"icons"
+        write_directory_file("VNM Neuroimaging", directories_path, icon_dir)
+        write_directory_file("All Applications", directories_path, icon_dir)
+        write_directory_file("Functional Imaging", directories_path, icon_dir)
+        write_directory_file("Data Organisation", directories_path, icon_dir)
+        write_directory_file("Diffusion Imaging", directories_path, icon_dir)
+        write_directory_file("Structural Imaging", directories_path, icon_dir)
+        write_directory_file("Quantitative Imaging", directories_path, icon_dir)
+        write_directory_file("Image Segmentation", directories_path, icon_dir)
+        write_directory_file("Image Registration", directories_path, icon_dir)
+        write_directory_file("Programming", directories_path, icon_dir)
+
+    appsjson = Path('neurodesk/apps.json').resolve(strict=True)
+    (installdir/'icons').mkdir(exist_ok=True)
+    apps_from_json(climode, deskenv, installdir, appsjson, sh_prefix)
+
+    # Remove any symlinks from local appdir
+    # Prevents symlink recursion
+    vnm_appdir = installdir/'applications'
+    for file in vnm_appdir.glob('*'):
+        if file.is_symlink():
+            os.unlink(file)

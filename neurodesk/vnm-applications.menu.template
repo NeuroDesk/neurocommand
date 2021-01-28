@@ -8,13 +8,93 @@
 	<!-- VNM Neuroimaging submenu -->
 	<Menu>
 		<Name>VNM Neuroimaging</Name>
-		<Directory>vnm/vnm-neuroimaging.directory</Directory>
+		<Directory>vnm/vnm-vnm-neuroimaging.directory</Directory>
 		<Include>
 			<And>
 				<Category>VNM-Neuroimaging</Category>
 			</And>
 		</Include>
-
+		<Menu>
+			<Name>All Applications</Name>
+			<Directory>vnm/vnm-all-applications.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-all-applications</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Functional Imaging</Name>
+			<Directory>vnm/vnm-functional-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-functional-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Data Organisation</Name>
+			<Directory>vnm/vnm-data-organisation.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-data-organisation</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Diffusion Imaging</Name>
+			<Directory>vnm/vnm-diffusion-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-diffusion-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Structural Imaging</Name>
+			<Directory>vnm/vnm-structural-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-structural-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Quantitative Imaging</Name>
+			<Directory>vnm/vnm-quantitative-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-quantitative-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Image Segmentation</Name>
+			<Directory>vnm/vnm-image-segmentation.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-image-segmentation</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Image Registration</Name>
+			<Directory>vnm/vnm-image-registration.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-image-registration</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Programming</Name>
+			<Directory>vnm/vnm-programming.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-programming</Category>
+				</And>
+			</Include>
+		</Menu>
 	</Menu> <!-- End VNM Neuroimaging -->
 
 </Menu> <!-- End Applications -->

@@ -5,3 +5,4 @@ log_*
 local
 __pycache__
 *.pyc
+*.sif
