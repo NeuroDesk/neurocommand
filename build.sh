@@ -45,6 +45,13 @@ while [[ $# -gt 0 ]]
 done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
+if [ "$cli" = true ]; then
+    deskenv=cli
+    installdir="$(pwd -P)/local"
+    echo "deskenv> cli preset" 
+    echo
+fi
+
 if [ "$lxde" = true ]; then
     deskenv=lxde
     installdir="$(pwd -P)/local"
@@ -128,6 +135,7 @@ fi
 
 args="${args} --installdir=$installdir"
 args="${args} --deskenv=$deskenv"
+mkdir -p $installdir
 
 if [ $deskenv != "cli" ]; then
     # Test Applications Menu
@@ -137,7 +145,6 @@ if [ $deskenv != "cli" ]; then
         echo "Applications Menu not found"
         exit 1
     fi
-    mkdir -p $installdir
     mkdir -p $installdir/desktop-directories
     mkdir -p $installdir/icons
     cp $appmenu $installdir/local-applications.menu.template
