@@ -214,29 +214,6 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
                 app.add_app_menu()
 
 
-# def add_vnm_menu(installdir: Path, name: Text) -> None:
-#     logging.info(f"Adding submenu for '{name}'")
-#     icon_path = installdir/"icons/vnm.png"
-#     icon_src = Path(__file__).parent/'icons/vnm.png'
-#     shutil.copy2(icon_src, icon_path)
-
-#     # Generate `.directory` file
-#     entry = configparser.ConfigParser()
-#     entry.optionxform = str
-#     entry["Desktop Entry"] = {
-#         "Name": name,
-#         "Comment": name,
-#         "Icon": icon_path,
-#         "Type": "Directory",
-#     }
-#     directories_path = installdir/"desktop-directories"
-#     if not os.path.exists(directories_path):
-#         os.makedirs(directories_path)
-#     directory_name = f"{name.lower().replace(' ', '-')}.directory"
-#     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
-#         entry.write(directory_file, space_around_delimiters=False)
-
-
 def vnm_xml(xml: Path, newxml: Path) -> None:
     oldtag = '<Menu>'
     newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
@@ -283,9 +260,6 @@ def build_menu(installdir, deskenv, sh_prefix):
     os.chmod(installdir/'fetch_containers.sh', 0o755)
     os.chmod(installdir/'configparser.sh', 0o755)
 
-    # if not climode and appmenu:
-    #     new_appmenu = installdir/appmenu.name
-    #     vnm_xml(appmenu, new_appmenu)
     if not climode:
         # add_vnm_menu(installdir, 'VNM Neuroimaging')
         directories_path = installdir/"desktop-directories"
@@ -311,14 +285,3 @@ def build_menu(installdir, deskenv, sh_prefix):
     for file in vnm_appdir.glob('*'):
         if file.is_symlink():
             os.unlink(file)
-
-
-# if __name__ == "__main__":
-#     logging.basicConfig(level=logging.INFO, format='%(message)s')
-
-#     installdir = Path.cwd().resolve(strict=True)
-#     appsjson = Path('apps.json').resolve(strict=True)
-    
-#     add_vnm_menu(installdir, 'VNM Imaging')
-#     apps_from_json('lxde', installdir, appsjson)
- 
