@@ -15,7 +15,7 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
-source ${_base}/configparser.sh
+source ${_base}/configparser.sh ${_base}/config.ini
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
 export PATH_PREFIX=${vnm_installdir}
