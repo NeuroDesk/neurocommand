@@ -18,7 +18,8 @@
                 "version": "20210104",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["image segmentation", "image registration"]
     },
     "ashs": {
         "apps": {
@@ -26,7 +27,8 @@
                 "version": "20210105",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["image segmentation"]
     },
     "bidstools": {
         "apps": {
@@ -34,7 +36,8 @@
                 "version": "20201208",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["data organisation"]
     },
     "conn": {
         "apps": {
@@ -46,7 +49,8 @@
                 "version": "20210109",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["functional imaging"]
     },
     "connectomeworkbench": {
         "apps": {
@@ -54,7 +58,8 @@
                 "version": "20201119",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["functional imaging"]
     },
     "convert3d": {
         "apps": {
@@ -131,7 +136,7 @@
                 "exec": "fsleyes"
             }
         },
-        "categories": ["functional imaging"]
+        "categories": ["functional imaging", "structural imaging"]
     },
     "gimp": {
         "apps": {
