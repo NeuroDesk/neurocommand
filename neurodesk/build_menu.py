@@ -12,23 +12,20 @@ import shutil
 import logging
 import distutils.dir_util
 
-def add_menu(installdir: Path, name: Text, category: Text) -> None:
-    """Add a submenu to 'VNM' menu.
 
-    Parameters
-    ----------
-    name : Text
-        The name of the submenu.
-    """
+def write_directory_file(name, file_dir, icon_dir):
     logging.info(f"Adding submenu for '{name}'")
-    icon_path = installdir/f"icons/{name.split()[0]}.png"
+    file_path = file_dir/f"vnm-{name.lower().replace(' ', '-')}.directory"
+    icon_path = icon_dir/f"{name.lower().split()[0]}.png"
     icon_src = (Path(__file__).parent/'icons'/icon_path.name)
+    # breakpoint()
     try:
         shutil.copy2(icon_src, icon_path)
     except FileNotFoundError:
         logging.warning(f'{icon_src} not found')
         icon_src = (Path(__file__).parent/'icons/vnm.png')
         shutil.copy2(icon_src, icon_path)
+
     # Generate `.directory` file
     entry = configparser.ConfigParser()
     entry.optionxform = str
@@ -38,12 +35,35 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
         "Icon": icon_path,
         "Type": "Directory",
     }
-    directories_path = installdir/"desktop-directories"/"apps"
-    if not os.path.exists(directories_path):
-        os.makedirs(directories_path)
-    directory_name = f"vnm-{name.lower().replace(' ', '-')}.directory"
-    with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
+    file_dir.mkdir(exist_ok=True)
+    with open(Path(file_path), "w",) as directory_file:
         entry.write(directory_file, space_around_delimiters=False)
+
+
+def add_menu(installdir: Path, name: Text, category: Text) -> None:
+    """Add a submenu to 'VNM' menu.
+
+    Parameters
+    ----------
+    name : Text
+        The name of the submenu.
+    """
+    # logging.info(f"Adding submenu for '{name}'")
+    # icon_path = installdir/f"icons/{name.split()[0]}.png"
+    # icon_src = (Path(__file__).parent/'icons'/icon_path.name)
+    # try:
+    #     shutil.copy2(icon_src, icon_path)
+    # except FileNotFoundError:
+    #     logging.warning(f'{icon_src} not found')
+    #     icon_src = (Path(__file__).parent/'icons/vnm.png')
+    #     shutil.copy2(icon_src, icon_path)
+
+    # Generate `.directory` file
+    file_dir = installdir/"desktop-directories/apps"
+    file_path = file_dir/f"/vnm-{name.lower().replace(' ', '-')}.directory"
+    icon_dir = installdir/f"icons"
+    write_directory_file(name, file_dir, icon_dir)
+
     # Add entry to `.menu` file
     menu_path = installdir/"vnm-applications.menu"
     with open(menu_path, "r") as xml_file:
@@ -58,7 +78,7 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
             name_el = et.SubElement(sub_el, "Name")
             name_el.text = name.capitalize()
             dir_el = et.SubElement(sub_el, "Directory")
-            dir_el.text = f'vnm/apps/{directory_name}'
+            dir_el.text = f'vnm/apps/{file_path.name}'
             include_el = et.SubElement(sub_el, "Include")
             and_el = et.SubElement(include_el, "And")
             cat_el = et.SubElement(and_el, "Category")
@@ -203,27 +223,27 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
                 app.add_app_menu()
 
 
-def add_vnm_menu(installdir: Path, name: Text) -> None:
-    logging.info(f"Adding submenu for '{name}'")
-    icon_path = installdir/"icons/vnm.png"
-    icon_src = Path(__file__).parent/'icons/vnm.png'
-    shutil.copy2(icon_src, icon_path)
+# def add_vnm_menu(installdir: Path, name: Text) -> None:
+#     logging.info(f"Adding submenu for '{name}'")
+#     icon_path = installdir/"icons/vnm.png"
+#     icon_src = Path(__file__).parent/'icons/vnm.png'
+#     shutil.copy2(icon_src, icon_path)
 
-    # Generate `.directory` file
-    entry = configparser.ConfigParser()
-    entry.optionxform = str
-    entry["Desktop Entry"] = {
-        "Name": name,
-        "Comment": name,
-        "Icon": icon_path,
-        "Type": "Directory",
-    }
-    directories_path = installdir/"desktop-directories"
-    if not os.path.exists(directories_path):
-        os.makedirs(directories_path)
-    directory_name = f"{name.lower().replace(' ', '-')}.directory"
-    with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
-        entry.write(directory_file, space_around_delimiters=False)
+#     # Generate `.directory` file
+#     entry = configparser.ConfigParser()
+#     entry.optionxform = str
+#     entry["Desktop Entry"] = {
+#         "Name": name,
+#         "Comment": name,
+#         "Icon": icon_path,
+#         "Type": "Directory",
+#     }
+#     directories_path = installdir/"desktop-directories"
+#     if not os.path.exists(directories_path):
+#         os.makedirs(directories_path)
+#     directory_name = f"{name.lower().replace(' ', '-')}.directory"
+#     with open(Path(f"{directories_path}/{directory_name}"), "w",) as directory_file:
+#         entry.write(directory_file, space_around_delimiters=False)
 
 
 def vnm_xml(xml: Path, newxml: Path) -> None:
@@ -275,12 +295,17 @@ def build_menu(installdir, deskenv, sh_prefix):
     # if not climode and appmenu:
     #     new_appmenu = installdir/appmenu.name
     #     vnm_xml(appmenu, new_appmenu)
+    if not climode:
+        # add_vnm_menu(installdir, 'VNM Neuroimaging')
+        directories_path = installdir/"desktop-directories"
+        icon_dir = installdir/"icons"
+        write_directory_file("VNM Neuroimaging", directories_path, icon_dir)
+        write_directory_file("All Applications", directories_path, icon_dir)
+        write_directory_file("Functional Imaging", directories_path, icon_dir)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
     apps_from_json(climode, deskenv, installdir, appsjson, sh_prefix)
-    if not climode:
-        add_vnm_menu(installdir, 'VNM Neuroimaging')
 
     # Remove any symlinks from local appdir
     # Prevents symlink recursion

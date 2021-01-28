@@ -1,0 +1,14 @@
+{
+    "All Applications": {
+        "apps": {
+            "afni 20.3.05": {
+                "version": "20210104",
+                "exec": ""
+            },
+            "sumaGUI-afni 20.3.05": {
+                "version": "20210104",
+                "exec": "suma"
+            }
+        }
+     },
+}
