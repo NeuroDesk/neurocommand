@@ -120,7 +120,8 @@
                 "version": "20210105",
                 "exec": "freeview"
             }
-        }
+        },
+        "categories": ["functional imaging", "image segmentation", "image registration"]
     },
     "fsl": {
         "apps": {
@@ -141,7 +142,7 @@
                 "exec": "fsleyes"
             }
         },
-        "categories": ["functional imaging", "structural imaging"]
+        "categories": ["functional imaging", "structural imaging", "diffusion imaging", "image segmentation", "image registration"]
     },
     "gimp": {
         "apps": {
@@ -153,7 +154,8 @@
                 "version": "20210104",
                 "exec": ""
             }
-        }
+        },
+        "categories": []
     },
     "itksnap": {
         "apps": {
@@ -165,7 +167,8 @@
                 "version": "20200811",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["image segmentation"]
     },
     "julia": {
         "apps": {
@@ -173,7 +176,8 @@
                 "version": "20210105",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["programming"]
     },
     "minc": {
         "apps": {
@@ -185,7 +189,8 @@
                 "version": "20210105",
                 "exec": "register"
             }
-        }
+        },
+        "categories": ["image segmentation", "image registration", "structural imaging"]
     },
     "mriqc": {
         "apps": {
@@ -193,7 +198,8 @@
                 "version": "20201104",
                 "exec": ""
             }
-        }
+        },
+        "categories": []
     },
     "mrtrix3": {
         "apps": {
@@ -213,7 +219,8 @@
                 "version": "20201125",
                 "exec": "mrview"
             }
-        }
+        },
+        "categories": ["diffusion imaging"]
     },
     "mrtrix3tissue": {
         "apps": {
@@ -221,7 +228,8 @@
                 "version": "20201111",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["diffusion imaging"]
     },
     "lashis": {
         "apps": {
@@ -229,7 +237,8 @@
                 "version": "20210105",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["image segmentation"]
     },
     "qsmxt": {
         "apps": {
@@ -237,7 +246,8 @@
                 "version": "20210113",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["quantitative imaging"]
     },
     "root": {
         "apps": {
@@ -245,7 +255,8 @@
                 "version": "20201104",
                 "exec": ""
             }
-        }
+        },
+        "categories": []
     },
     "slicer": {
         "apps": {
@@ -257,7 +268,8 @@
                 "version": "20201108",
                 "exec": "Slicer"
             }
-        }
+        },
+        "categories": ["image segmentation", "image registration"]
     },
     "spinalcordtoolbox": {
         "apps": {
@@ -265,7 +277,8 @@
                 "version": "20201108",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["image segmentation", "image registration"]
     },
     "spm12": {
         "apps": {
@@ -277,7 +290,8 @@
                 "version": "20201120",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["functional imaging"]
     },
     "tgvqsm": {
         "apps": {
@@ -285,6 +299,7 @@
                 "version": "20210105",
                 "exec": ""
             }
-        }
+        },
+        "categories": ["quantitative imaging"]
     }
 }
