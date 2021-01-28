@@ -137,8 +137,11 @@ if [ $deskenv != "cli" ]; then
         echo "Applications Menu not found"
         exit 1
     fi
+    mkdir -p $installdir
+    mkdir -p $installdir/desktop-directories
+    mkdir -p $installdir/icons
     cp $appmenu $installdir/local-applications.menu.template
-    cp neurodesk/*.directory $installdir/desktop-directories
+    cp neurodesk/icons/*.png $installdir/icons
 
     # Test Applications Directory
     echo "Checking appdir> $appdir"
