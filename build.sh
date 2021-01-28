@@ -56,6 +56,12 @@ if [ "$lxde" = true ]; then
     echo
 fi
 
+if [ "$edit" = true ]; then
+    edit=y
+    echo "edit> Yes" 
+    echo
+fi
+
 if [ "$cli" = true ]; then
     deskenv=cli
     installdir="$(pwd -P)/local"
