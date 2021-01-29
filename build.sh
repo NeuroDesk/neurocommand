@@ -51,7 +51,7 @@ if [ "$lxde" = true ]; then
     vnm_appmenu=/etc/xdg/menus/lxde-applications.menu
     vnm_appdir=/usr/share/applications/
     vnm_deskdir=/usr/share/desktop-directories/
-    vnm_edit=y
+    vnm_edit=n
     echo "deskenv> lxde preset" 
     echo
 fi
