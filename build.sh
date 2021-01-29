@@ -21,8 +21,8 @@ while [[ $# -gt 0 ]]
       init=true
       shift # past argument
       ;;
-      --edit)
-      edit=true
+      --vnm_edit)
+      vnm_edit=true
       shift # past argument
       ;;
       --lxde)
@@ -46,25 +46,25 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$lxde" = true ]; then
-    deskenv=lxde
-    installdir="$(pwd -P)/local"
-    appmenu=/etc/xdg/menus/lxde-applications.menu
-    appdir=/usr/share/applications/
-    deskdir=/usr/share/desktop-directories/
-    edit=y
+    vnm_deskenv=lxde
+    vnm_installdir="$(pwd -P)/local"
+    vnm_appmenu=/etc/xdg/menus/lxde-applications.menu
+    vnm_appdir=/usr/share/applications/
+    vnm_deskdir=/usr/share/desktop-directories/
+    vnm_edit=y
     echo "deskenv> lxde preset" 
     echo
 fi
 
-if [ "$edit" = true ]; then
-    edit=y
+if [ "$vnm_edit" = true ]; then
+    vnm_edit=y
     echo "edit> Yes" 
     echo
 fi
 
 if [ "$cli" = true ]; then
-    deskenv=cli
-    installdir="$(pwd -P)/local"
+    vnm_deskenv=cli
+    vnm_installdir="$(pwd -P)/local"
     echo "deskenv> cli preset" 
     echo
 fi
@@ -72,94 +72,94 @@ fi
 if [ "$init" = true ]; then
     # Installation Directory [./local]
     echo "Enter Installation Directory. Blank for default [./local]"
-    read -e -p "installdir> " installdir
-    installdir="${installdir/#\~/$HOME}"
-    if [ -z "$installdir" ]; then
-        installdir="$(pwd -P)"
+    read -e -p "installdir> " vnm_installdir
+    vnm_installdir="${vnm_installdir/#\~/$HOME}"
+    if [ -z "$vnm_installdir" ]; then
+        vnm_installdir="$(pwd -P)"
     fi
-    if [ ! -d "$installdir" ]; then
+    if [ ! -d "$vnm_installdir" ]; then
         echo "Installation directory does not exist"
-        echo "Creating $installdir"
-        mkdir -p $installdir
+        echo "Creating $vnm_installdir"
+        mkdir -p $vnm_installdir
     fi
-    installdir=$(readlink -f ${installdir})
-    if [ "$installdir" == $(pwd -P) ]; then
-        installdir="$(pwd -P)/local"
-        mkdir -p $installdir
+    vnm_installdir=$(readlink -f ${vnm_installdir})
+    if [ "$vnm_installdir" == $(pwd -P) ]; then
+        vnm_installdir="$(pwd -P)/local"
+        mkdir -p $vnm_installdir
     fi
-    echo "Installation directory at $installdir"
+    echo "Installation directory at $vnm_installdir"
     echo 
 
     # Desktop Environment [cli/lxde/mate]
     echo "Enter Desktop Environment [cli/lxde/mate]"
-    read -p "deskenv> " deskenv
-    deskenv=$(echo "$deskenv" | tr '[:upper:]' '[:lower:]')
-    case "$deskenv" in
+    read -p "deskenv> " vnm_deskenv
+    vnm_deskenv=$(echo "$vnm_deskenv" | tr '[:upper:]' '[:lower:]')
+    case "$vnm_deskenv" in
       cli|lxde|mate)
-        echo "Environment set to $deskenv"
+        echo "Environment set to $vnm_deskenv"
         ;;
       *)
         echo "Defaulting to cli environment"
-        deskenv="cli"
+        vnm_deskenv="cli"
         ;;
     esac
     echo
 
-    if [ $deskenv != "cli" ]; then
+    if [ $vnm_deskenv != "cli" ]; then
         # Applications Menu
-        read -e -p "appmenu: " appmenu
-        appmenu=$(resolve_abs_path $appmenu)
-        echo "Applications Menu at $appmenu"
+        read -e -p "appmenu: " vnm_appmenu
+        vnm_appmenu=$(resolve_abs_path $vnm_appmenu)
+        echo "Applications Menu at $vnm_appmenu"
         echo 
 
         # Applications Directory
-        read -e -p "appdir: " appdir
-        appdir=$(resolve_abs_path $appdir)
-        echo "Installation directory at $installdir"
+        read -e -p "appdir: " vnm_appdir
+        vnm_appdir=$(resolve_abs_path $vnm_appdir)
+        echo "Installation directory at $vnm_installdir"
         echo 
 
         # Desktop Directories
-        read -e -p "deskdir: " deskdir
-        deskdir=$(resolve_abs_path $deskdir)
-        echo "Installation directory at $installdir"
+        read -e -p "deskdir: " vnm_deskdir
+        vnm_deskdir=$(resolve_abs_path $vnm_deskdir)
+        echo "Installation directory at $vnm_installdir"
         echo 
 
-        # Edit mode [y/n]
-        read -p "edit : " edit
-        case "$edit" in
+        # vnm_edit mode [y/n]
+        read -p "edit : " vnm_edit
+        case "$vnm_edit" in
         y/n)
-            echo "Edit set to $edit"
+            echo "edit set to $vnm_edit"
             ;;
         *)
             echo "Defaulting to no edit"
-            edit="n"
+            vnm_edit="n"
             ;;
         esac
 
     fi
 fi
 
-args="${args} --installdir=$installdir"
-args="${args} --deskenv=$deskenv"
-mkdir -p $installdir
+args="${args} --installdir=$vnm_installdir"
+args="${args} --deskenv=$vnm_deskenv"
+mkdir -p $vnm_installdir
 
-if [ $deskenv != "cli" ]; then
+if [ $vnm_deskenv != "cli" ]; then
     # Test Applications Menu
-    echo "Checking appmenu> $appmenu"
+    echo "Checking appmenu> $vnm_appmenu"
     validfile=false
-    if [ ! -f "$appmenu" ]; then
+    if [ ! -f "$vnm_appmenu" ]; then
         echo "Applications Menu not found"
         exit 1
     fi
-    mkdir -p $installdir/desktop-directories
-    mkdir -p $installdir/icons
-    cp $appmenu $installdir/local-applications.menu.template
-    cp neurodesk/icons/*.png $installdir/icons
+    mkdir -p $vnm_installdir/desktop-directories
+    mkdir -p $vnm_installdir/icons
+    cp $vnm_appmenu $vnm_installdir/local-applications.menu.template
+    cp neurodesk/icons/*.png $vnm_installdir/icons
 
     # Test Applications Directory
-    echo "Checking appdir> $appdir"
+    echo "Checking appdir> $vnm_appdir"
     validfile=false
-    for i in $appdir/*.desktop; do
+    for i in $vnm_appdir/*.desktop; do
         if [[ -e $i ]]; then
             echo " - contains *.desktop file(s)"
             validfile=true
@@ -174,9 +174,9 @@ if [ $deskenv != "cli" ]; then
     echo
 
     # Test Desktop Directory
-    echo "Checking deskdir> $deskdir"
+    echo "Checking deskdir> $vnm_deskdir"
     validfile=false
-    for i in $deskdir/*.directory; do
+    for i in $vnm_deskdir/*.directory; do
         if [[ -e $i ]]; then
             echo " - contains *.directory file(s)"
             validfile=true
@@ -190,10 +190,10 @@ if [ $deskenv != "cli" ]; then
     fi
     echo
 
-    args="${args} --appmenu=$appmenu"
-    args="${args} --appdir=$appdir"
-    args="${args} --deskdir=$deskdir"
-    args="${args} --edit=$edit"
+    args="${args} --appmenu=$vnm_appmenu"
+    args="${args} --appdir=$vnm_appdir"
+    args="${args} --deskdir=$vnm_deskdir"
+    args="${args} --edit=$vnm_edit"
 fi
 
 python -m neurodesk $args
