@@ -11,6 +11,8 @@ echo "checking if neurodesk installs and a containers gets downloaded correctly"
 
 echo "python version is ... "
 python --version
+echo "singularity version is ... "
+singularity --version
 echo "where am I"
 pwd
 bash build.sh --cli --lxde

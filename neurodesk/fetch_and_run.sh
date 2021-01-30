@@ -6,6 +6,7 @@
 
 echo "fetching containers:"
 
+source ~/.bashrc
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 echo "Script name : $_script"
@@ -23,7 +24,6 @@ echo "Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module loa
 
 # If no additional command -> Give user a shell in the image
 if [ $# -le 3 ]; then
-    source ~/.bashrc
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
     echo "looking for ${CONTAINER_FILE_NAME}"
     if [ -f "${CONTAINER_FILE_NAME}" ]; then
