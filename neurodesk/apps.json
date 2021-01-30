@@ -160,11 +160,11 @@
     "itksnap": {
         "apps": {
             "itksnapGUI-itksnap 3.8.0": {
-                "version": "20200811",
+                "version": "20201208",
                 "exec": "itksnap /MRIcrop-orig.gipl"
             },
             "itksnap 3.8.0": {
-                "version": "20200811",
+                "version": "20201208",
                 "exec": ""
             }
         },
