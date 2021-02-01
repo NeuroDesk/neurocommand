@@ -70,7 +70,7 @@ _Run the remaining commands in the Bash shell_
 4. `sudo apt-get install xrdp` to install XRDP in WSL
 5. Open `/etc/xrdp/xrdp.ini`
 Change `port=3389` to `port=3390` and save
-6. echo startlxde > ~/.xsession
+6. Run `echo startlxde > ~/.xsession`
 
 #### Running
 1. `sudo service xrdp start` to start xrdp server
