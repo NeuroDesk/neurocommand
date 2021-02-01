@@ -70,12 +70,12 @@ _Run the remaining commands in the Bash shell_
 4. `sudo apt-get install xrdp` to install XRDP in WSL
 5. Open `/etc/xrdp/xrdp.ini`
 Change `port=3389` to `port=3390` and save
+6. echo startlxde > ~/.xsession
 
 #### Running
 1. `sudo service xrdp start` to start xrdp server
 2. Open Microsoft Remote Desktop Connection in Windows host
 3. Connect to `localhost:3390`  
-_An LXDE desktop should as a Microsoft Remote Desktop_  
 4. Follow Linux guide from here on
 
 ## Acknowledgments
