@@ -169,15 +169,15 @@ singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
 
 echo "checking if commands.txt exists now"
 if  [[ -f $_base/commands.txt ]]; then
-   echo "This worked!"
+   echo "[DEBUG] run_transparent_singularity: This worked!"
 else
-   echo "Trying again with Singularity Bindpath set:"
-   export SINGULARITY_BINDPATH=/vnm
+   echo "[DEBUG] run_transparent_singularity: Trying to set singularity bindpaths:"
+   export SINGULARITY_BINDPATH=/data
    singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
    if  [[ -f $_base/commands.txt ]]; then
-      echo "This worked!"
+      echo "[DEBUG] run_transparent_singularity: This worked!"
    else
-      echo "Something is wrong with the Singularity Bindpath."
+      echo "[DEBUG] run_transparent_singularity: Something is wrong with the Singularity Bindpath."
       exit 2
    fi
 fi
