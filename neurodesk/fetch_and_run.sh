@@ -4,14 +4,13 @@
 # Example:
 #   fetch_and_run.sh itksnap 3.8.0 20200505 itksnap-wt
 
-echo "[DEBUG] fetch_and_run.sh: fetching containers:"
-
 source ~/.bashrc
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 echo "[DEBUG] fetch_and_run.sh: Script name : $_script"
 echo "[DEBUG] fetch_and_run.sh: Current working dir : $PWD"
 echo "[DEBUG] fetch_and_run.sh: Script location path (dir) : $_base"
+echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 
 source ${_base}/configparser.sh ${_base}/config.ini
 source ${_base}/fetch_containers.sh $1 $2 $3

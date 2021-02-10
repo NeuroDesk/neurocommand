@@ -4,8 +4,6 @@
 # Example - downloads the container:
 #   fetch_and_run.sh itksnap 3.8.0 20200505
 
-echo "[DEBUG] This is fetch_containers.sh script"
-
 # Read arguments
 MOD_NAME=$1
 MOD_VERS=$2
@@ -13,6 +11,8 @@ MOD_DATE=$3
 
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 echo "[DEBUG] fetch_containers.sh: IMG_NAME=$IMG_NAME"
+echo "[DEBUG] fetch_containers.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
+
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
