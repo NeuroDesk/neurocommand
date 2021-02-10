@@ -12,6 +12,12 @@ echo "[DEBUG] fetch_and_run.sh: Current working dir : $PWD"
 echo "[DEBUG] fetch_and_run.sh: Script location path (dir) : $_base"
 echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 
+if [ -z "$SINGULARITY_BINDPATH" ]
+then
+      echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH is not set. Trying to source /etc/bash.bashrc"
+      source /etc/bash.bashrc
+fi
+
 source ${_base}/configparser.sh ${_base}/config.ini
 source ${_base}/fetch_containers.sh $1 $2 $3
 echo "[DEBUG] fetch_and_run.sh: fetching containers done."
