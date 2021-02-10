@@ -15,9 +15,7 @@ echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 if [ -z "$SINGULARITY_BINDPATH" ]
 then
       echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH is not set. Trying to set it"
-      directories=`curl https://raw.githubusercontent.com/NeuroDesk/caid/master/recipes/globalMountPointList.txt`
-      mounts=`echo $directories | sed 's/ /,/g'`
-      export SINGULARITY_BINDPATH=${mounts}
+      `cat /etc/bash.bashrc | grep SINGULARITY_BINDPATH`
 fi
 
 source ${_base}/configparser.sh ${_base}/config.ini
