@@ -97,9 +97,8 @@ do
             export swift_setup_done="true"
         fi
 
-
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist locally - pulling it from oracle cloud!"
         if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist locally - pulling it from oracle cloud!"
             curl -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg -o $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
         fi
 
