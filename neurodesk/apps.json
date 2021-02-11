@@ -236,6 +236,10 @@
             "lashis 1.0": {
                 "version": "20210105",
                 "exec": ""
+            },
+            "lashis 2.0": {
+                "version": "20210211",
+                "exec": ""
             }
         },
         "categories": ["image segmentation"]
