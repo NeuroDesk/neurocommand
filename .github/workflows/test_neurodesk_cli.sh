@@ -33,6 +33,12 @@ FILE="/home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200
 if [ -f $FILE ];then
     echo "[DEBUG]: test_neurodesk_cli.sh $FILE exists."
 else
-    echo "[DEBUG]: test_neurodesk_cli.sh $FILE doesn't exist. Something went wrong with transparent singularity. "
-    exit 1
+    echo "[DEBUG]: test_neurodesk_cli.sh $FILE doesn't exist. Something went wrong with transparent singularity. Trying again."
+    rm -rf /home/runner/work/neurodesk/neurodesk/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.simg
+    bash /home/runner/work/neurodesk/neurodesk/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
+    if [ -f $FILE ];then
+        echo "[DEBUG]: test_neurodesk_cli.sh $FILE exists."
+    else 
+        echo "[DEBUG]: test_neurodesk_cli.sh $FILE doesn't exist. Something went wrong with transparent singularity. Trying again."
+    fi
 fi
