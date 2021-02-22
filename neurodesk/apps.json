@@ -280,6 +280,10 @@
             "spinalcordtoolbox 4.3": {
                 "version": "20201108",
                 "exec": ""
+            },
+            "spinalcordtoolbox 5.1.0": {
+                "version": "20210222",
+                "exec": ""
             }
         },
         "categories": ["image segmentation", "image registration"]
