@@ -113,11 +113,11 @@
     "freesurfer": {
         "apps": {
             "freesurfer 7.1.1": {
-                "version": "20210105",
+                "version": "20210225",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 7.1.1": {
-                "version": "20210105",
+                "version": "20210225",
                 "exec": "freeview"
             }
         },
