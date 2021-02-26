@@ -18,6 +18,7 @@ sed -i -e 's/^[ \t]*//' -e 's/[ \t]*$//' log.txt
 # replace spaces with underscores
 sed -i 's/ /_/g' log.txt
 
+cp recipe_neurodesk_template.yaml recipe_neurodesk_auto.yaml
 
 while IFS= read -r IMAGENAME_BUILDDATE
 do
@@ -25,5 +26,5 @@ do
     BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
     echo "[DEBUG] IMAGENAME: $IMAGENAME"
     echo "[DEBUG] BUILDDATE: $BUILDDATE"
-    docker://vnmd/$IMAGENAME:$BUILDDATE
+    echo "- 'https://registry.hub.docker.com/vnmd/$IMAGENAME:$BUILDDATE'" >> recipe_neurodesk_auto.yaml
 done < log.txt
