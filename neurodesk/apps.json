@@ -275,6 +275,19 @@
         },
         "categories": ["image segmentation", "image registration"]
     },
+    "slicersalt": {
+        "apps": {
+            "slicersalt 3.0.0": {
+                "version": "20210301",
+                "exec": ""
+            },
+            "3DSlicerGUI-slicersalt 3.0.0": {
+                "version": "20210301",
+                "exec": "SlicerSALT"
+            }
+        },
+        "categories": ["image segmentation", "image registration"]
+    },
     "spinalcordtoolbox": {
         "apps": {
             "spinalcordtoolbox 4.3": {
