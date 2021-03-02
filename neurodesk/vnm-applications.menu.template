@@ -33,6 +33,24 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Image Reconstruction</Name>
+			<Directory>vnm/vnm-image-reconstruction.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-image-reconstruction</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Spectroscopy</Name>
+			<Directory>vnm/vnm-spectroscopy.directory</Directory>
+			<Include>
+				<And>
+					<Category>vnm-spectroscopy</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Data Organisation</Name>
 			<Directory>vnm/vnm-data-organisation.directory</Directory>
 			<Include>
