@@ -240,6 +240,15 @@
         },
         "categories": ["diffusion imaging"]
     },
+    "lcmodel": {
+        "apps": {
+            "lcmodel 6.3": {
+                "version": "20210302",
+                "exec": ""
+            }
+        },
+        "categories": ["spectroscopy"]
+    },
     "lashis": {
         "apps": {
             "lashis 1.0": {
