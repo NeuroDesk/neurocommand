@@ -166,6 +166,15 @@
         },
         "categories": []
     },
+    "hdbet": {
+        "apps": {
+            "hdbet 1.0.0": {
+                "version": "20210317",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "itksnap": {
         "apps": {
             "itksnapGUI-itksnap 3.8.0": {
@@ -339,7 +348,7 @@
     "tgvqsm": {
         "apps": {
             "tgvqsm 1.0.0": {
-                "version": "20210215",
+                "version": "20210317",
                 "exec": ""
             }
         },
