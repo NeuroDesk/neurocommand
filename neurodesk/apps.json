@@ -21,6 +21,15 @@
         },
         "categories": ["image segmentation", "image registration"]
     },
+    "aslprep": {
+        "apps": {
+            "aslprep 0.2.7": {
+                "version": "20210323",
+                "exec": ""
+            }
+        },
+        "categories": ["quantitative imaging", "functional imaging"]
+    },
     "ashs": {
         "apps": {
             "ashs 2.0.0": {
