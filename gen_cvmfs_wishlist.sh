@@ -4,6 +4,7 @@
 echo "building cvmfs wishlist"
 
 #creating logfile with available containers
+rm log.txt
 python3 neurodesk/write_log.py
 
 # remove empty lines
