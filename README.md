@@ -14,14 +14,14 @@ curl -s https://raw.githubusercontent.com/NeuroDesk/neurodesk/master/neurodesk/a
 
 ## Clone repo into a folder with the intented image name
 ```
-git clone https://github.com/NeuroDesk/transparent-singularity convert3d_1.0.0_20200701
+git clone https://github.com/NeuroDesk/transparent-singularity convert3d_1.0.0_20210104
 ```
 
 ## Install
 This will create scripts for every binary in the container located in the $DEPLOY_PATH inside the container. It will also create activate and deactivate scripts and module files for lmod (https://lmod.readthedocs.io/en/latest/)
 ```
-cd convert3d_1.0.0_20200701
-./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.sif
+cd convert3d_1.0.0_20210104
+./run_transparent_singularity.sh --container convert3d_1.0.0_20210104.sif
 ```
 
 # Use in module system LMOD
@@ -30,12 +30,12 @@ Add the module folder path to $MODULEPATH
 # Manual activation and deactivation (in case module system is not available). This will add the paths to the .bashrc
 ## Activate
 ```
-source activate_convert3d_1.0.0_20200701.sif.sh
+source activate_convert3d_1.0.0_20210104.sif.sh
 ```
 
 ## Deactivate
 ```
-source deactivate_convert3d_1.0.0_20200701.sif.sh
+source deactivate_convert3d_1.0.0_20210104.sif.sh
 ```
 
 ## Uninstall container and cleanup
