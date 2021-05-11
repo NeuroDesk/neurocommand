@@ -137,6 +137,7 @@ else
       storage="docker"
       container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
    fi
+fi
 
 
 echo "deploying in $_base"
