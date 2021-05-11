@@ -110,39 +110,30 @@ if [[  ${#qq} -lt 1 ]]; then
 fi
 
 echo "containerEnding: ${containerEnding}"
-echo "trying if $container exists in the cache"
 
-
-# check if image is available on singularity caches:
-# if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"; then
-#    echo "$container exists in the nectar cache"
-# else
+echo "checking if $container exists in the cvmfs cache ..."
+if [[ -d "/cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate}" ]]; then
+   echo "$container exists in cvmfs"
+   storage="cvmfs"
+   container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate} $container"
+else
+   echo "$container does not exists in cvmfs. Testing Oracle Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"; then
       echo "$container exists in the oracle cache"
-      # swift_down="true"
+      storage="oracle"
+      echo "check if aria2 is installed ..."
+      qq=`which  aria2c`
+      if [[  ${#qq} -lt 1 ]]; then
+         echo "aria2 is not installed. Defaulting to curl."
+         container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container -O"
+      else 
+         container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
+      fi
    else
+      # fallback to docker
       echo "$container does not exist in any cache - loading from docker!"
       storage="docker"
-   fi
-# fi
-
-
-if [ "$storage" = "docker" ]; then
-   echo "pulling from docker cloud"
-   container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
-else
-   echo "check if aria2 is installed ..."
-   qq=`which  aria2c`
-   if [[  ${#qq} -lt 1 ]]; then
-      echo "aria2 is not install. Defaulting to curl."
-      # if  [ "$swift_down" = "true" ]; then
-         container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container -O"
-      # else
-         # container_pull="curl -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container -O"
-      # fi
-   else 
-      container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
-      # container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container  https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/$container"
+      container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
    fi
 fi
 
@@ -152,15 +143,14 @@ echo "checking if container needs to be downloaded"
 if  [[ -f $container ]]; then
    echo "container downloaded already. Remove to re-download!"
 else
-   echo "pulling image now ... this will take some time!"
+   echo "pulling image now ..."
    $container_pull
 fi
 
 echo "making container executable"
 chmod a+x $container
 if [[  ${#qq} -lt 1 ]]; then
-   echo "Something went wrong when making the container executabel."
-   exit 2
+   echo "Something went wrong when making the container executable."
 fi
 
 echo "checking which executables exist inside container"
@@ -177,7 +167,7 @@ else
    if  [[ -f $_base/commands.txt ]]; then
       echo "[DEBUG] run_transparent_singularity: This worked!"
    else
-      echo "[DEBUG] run_transparent_singularity: Something is wrong with the Singularity Bindpath."
+      echo "[DEBUG] run_transparent_singularity: Something is wrong with the Singularity Bindpath. Please check!"
       exit 2
    fi
 fi
