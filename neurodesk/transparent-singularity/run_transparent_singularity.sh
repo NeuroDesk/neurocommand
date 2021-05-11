@@ -110,23 +110,21 @@ if [[  ${#qq} -lt 1 ]]; then
 fi
 
 echo "containerEnding: ${containerEnding}"
-echo "trying if $container exists in the cache"
 
-
-# check if image is available on cvmfs:
+echo "checking if $container exists in the cvmfs cache ..."
 if [[ -d "/cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate}" ]]; then
    echo "$container exists in cvmfs"
    storage="cvmfs"
    container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate} $container"
 else
-   # fallback to object storage:
+   echo "$container does not exists in cvmfs. Testing Oracle Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"; then
       echo "$container exists in the oracle cache"
       storage="oracle"
       echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
-         echo "aria2 is not install. Defaulting to curl."
+         echo "aria2 is not installed. Defaulting to curl."
          container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container -O"
       else 
          container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
@@ -153,7 +151,6 @@ echo "making container executable"
 chmod a+x $container
 if [[  ${#qq} -lt 1 ]]; then
    echo "Something went wrong when making the container executable."
-   exit 2
 fi
 
 echo "checking which executables exist inside container"
