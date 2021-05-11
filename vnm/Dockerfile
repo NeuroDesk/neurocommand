@@ -13,3 +13,5 @@ RUN bash build.sh --lxde --edit \
     && sed -i '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu
 
 RUN mkdir -p `curl https://raw.githubusercontent.com/NeuroDesk/caid/master/recipes/globalMountPointList.txt`
+
+#rebuild
