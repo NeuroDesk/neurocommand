@@ -31,7 +31,7 @@ echo "[DEBUG] fetch_and_run.sh: Module '${MOD_NAME}/${MOD_VERS}' is installed. U
 if [ $# -le 3 ]; then
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
     echo "[DEBUG] fetch_and_run.sh: looking for ${CONTAINER_FILE_NAME}"
-    if [ -f "${CONTAINER_FILE_NAME}" ]; then
+    if [ -e "${CONTAINER_FILE_NAME}" ]; then
         cd 
         echo "[DEBUG] fetch_and_run.sh: Attempting to launch container ${IMG_NAME}"
         singularity exec ${CONTAINER_FILE_NAME} cat /README.md
