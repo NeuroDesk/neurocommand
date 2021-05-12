@@ -1,5 +1,5 @@
 # start from our VNM base image
-FROM docker.pkg.github.com/neurodesk/vnm/vnm_base:20210511
+FROM docker.pkg.github.com/neurodesk/vnm/vnm_base:20210512
 
 COPY . /neurodesk/
 
@@ -13,5 +13,3 @@ RUN bash build.sh --lxde --edit \
     && sed -i '/DefaultMergeDirs/ a <MergeFile>vnm-applications.menu</MergeFile>' /etc/xdg/menus/lxde-applications.menu
 
 RUN mkdir -p `curl https://raw.githubusercontent.com/NeuroDesk/caid/master/recipes/globalMountPointList.txt`
-
-#rebuild
