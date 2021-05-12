@@ -140,7 +140,7 @@ fi
 
 echo "deploying in $_base"
 echo "checking if container needs to be downloaded"
-if  [[ -f $container ]]; then
+if  [[ -e $container ]]; then
    echo "container downloaded already. Remove to re-download!"
 else
    echo "pulling image now ..."
