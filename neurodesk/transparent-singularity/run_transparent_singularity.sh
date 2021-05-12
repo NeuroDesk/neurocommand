@@ -147,11 +147,11 @@ else
    $container_pull
 fi
 
-echo "making container executable"
-chmod a+x $container
-if [[  ${#qq} -lt 1 ]]; then
-   echo "Something went wrong when making the container executable."
-fi
+# echo "making container executable"
+# chmod a+x $container
+# if [[  ${#qq} -lt 1 ]]; then
+#    echo "Something went wrong when making the container executable."
+# fi
 
 echo "checking which executables exist inside container"
 echo "executing: singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh"
