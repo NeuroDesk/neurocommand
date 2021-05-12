@@ -47,7 +47,7 @@ mkdir -p ${IMG_NAME}
 echo "[DEBUG] fetch_containers.sh: Check if the container is there - if not this means we definetly need to install the container"
 
 CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
-if [ -f "${CONTAINER_FILE_NAME}" ]; then
+if [ -e "${CONTAINER_FILE_NAME}" ]; then
     echo "[DEBUG] fetch_containers.sh: found it. Container ${IMG_NAME} is there."
     echo "[DEBUG] fetch_containers.sh: now checking if container is fully downloaded and executable:"
     qq=`which  singularity`
