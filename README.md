@@ -81,13 +81,13 @@ Change `port=3389` to `port=3390` and save
 
 ## Funding
 Thank you to Oracle for Research for providing Oracle Cloud credits and related resources to support this project.
-![Oracle_forResearch_cmyk_36_55_70_75](https://user-images.githubusercontent.com/4021595/119061922-db877080-ba18-11eb-9882-d53a25ec88ee.png)
+<img src="https://user-images.githubusercontent.com/4021595/119061922-db877080-ba18-11eb-9882-d53a25ec88ee.png" width="250">
 
 
 This project is supported by an Australian Research Data Commons (ARDC) Platform project “Australian
 Electrophysiology Data Analytics PlaTform (AEDAPT)”.
-![ARDC-logo-CMYK](https://user-images.githubusercontent.com/4021595/119062104-3caf4400-ba19-11eb-8211-e2e9ce831a16.png)
- 
+<img src="https://user-images.githubusercontent.com/4021595/119062104-3caf4400-ba19-11eb-8211-e2e9ce831a16.png" width="250">
+
 
 
 ## Acknowledgments
