@@ -75,8 +75,22 @@ Change `port=3389` to `port=3390` and save
 #### Running
 1. `sudo service xrdp start` to start xrdp server
 2. Open Microsoft Remote Desktop Connection in Windows host
-3. Connect to `localhost:3390`  
-4. Follow Linux guide from here on
+3. Connect to `localhost:3390`
+4. In the next login page, leave Session as `Xorg`. Enter your WSL username and password and click `OK`
+5. This should open an LXDE Linux Desktop environment. Follow Linux guide from here on
+
+## Funding
+Thank you to Oracle for Research for providing Oracle Cloud credits and related resources to support this project.
+
+<img src="https://user-images.githubusercontent.com/4021595/119061922-db877080-ba18-11eb-9882-d53a25ec88ee.png" width="250">
+
+
+This project is supported by an Australian Research Data Commons (ARDC) Platform project “Australian
+Electrophysiology Data Analytics PlaTform (AEDAPT)”.
+
+<img src="https://user-images.githubusercontent.com/4021595/119062104-3caf4400-ba19-11eb-8211-e2e9ce831a16.png" width="250">
+
+
 
 ## Acknowledgments
 <img src="https://github.com/NeuroDesk/vnm/blob/master/nif.png" width="250">
