@@ -68,52 +68,52 @@ do
     fi
 
     # Nectar Swift
-    if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in swift storage"
-    else
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - uploading it there as well!"
-        # check if there is enough free disk space on the runner:
-        FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
-        echo "[DEBUG] This runner has ${FREE} free disk space"
-        if [[ $FREE -lt 10485760 ]]; then               # 10G = 10*1024*1024k
-            echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
-            bash .github/workflows/free-up-space.sh
-        fi;
+    # if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
+    #     echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in swift storage"
+    # else
+    #     echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet in nectar swift - uploading it there as well!"
+    #     # check if there is enough free disk space on the runner:
+    #     FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
+    #     echo "[DEBUG] This runner has ${FREE} free disk space"
+    #     if [[ $FREE -lt 10485760 ]]; then               # 10G = 10*1024*1024k
+    #         echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
+    #         bash .github/workflows/free-up-space.sh
+    #     fi;
 
-        if [ -n "$swift_setup_done" ]; then
-            echo "Setup already done. Skipping."
-        else
-            echo "[DEBUG] Configure for SWIFT storage"
-            sudo pip3 install setuptools
-            sudo pip3 install wheel
-            sudo pip3 install python-swiftclient python-keystoneclient
-            export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
-            export OS_AUTH_TYPE=v3applicationcredential
-            export OS_PROJECT_NAME="CAI_Container_Builder"
-            export OS_USER_DOMAIN_NAME="Default"
-            export OS_REGION_NAME="Melbourne"
+    #     if [ -n "$swift_setup_done" ]; then
+    #         echo "Setup already done. Skipping."
+    #     else
+    #         echo "[DEBUG] Configure for SWIFT storage"
+    #         sudo pip3 install setuptools
+    #         sudo pip3 install wheel
+    #         sudo pip3 install python-swiftclient python-keystoneclient
+    #         export OS_AUTH_URL=https://keystone.rc.nectar.org.au:5000/v3/
+    #         export OS_AUTH_TYPE=v3applicationcredential
+    #         export OS_PROJECT_NAME="CAI_Container_Builder"
+    #         export OS_USER_DOMAIN_NAME="Default"
+    #         export OS_REGION_NAME="Melbourne"
 
-            export IMAGE_HOME="/home/runner"
-            export swift_setup_done="true"
-        fi
+    #         export IMAGE_HOME="/home/runner"
+    #         export swift_setup_done="true"
+    #     fi
 
-        if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist locally - pulling it from oracle cloud!"
-            curl -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg -o $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
-        fi
+    #     if [[ ! -f $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg ]]; then
+    #         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist locally - pulling it from oracle cloud!"
+    #         curl -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg -o $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
+    #     fi
 
-        echo "[DEBUG] Attempting upload to nectar swift ..."
-        cd $IMAGE_HOME
-        swift upload singularityImages ${IMAGENAME_BUILDDATE}.simg --segment-size 1073741824
+    #     echo "[DEBUG] Attempting upload to nectar swift ..."
+    #     cd $IMAGE_HOME
+    #     swift upload singularityImages ${IMAGENAME_BUILDDATE}.simg --segment-size 1073741824
 
-        if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now. Cleaning UP! :)"
-            rm ${IMAGENAME_BUILDDATE}.simg
-            sudo rm -rf /root/.singularity/docker
-            df -h
-        else
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
-            exit 2
-        fi
-    fi
+    #     if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME_BUILDDATE}.simg"; then
+    #         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now. Cleaning UP! :)"
+    #         rm ${IMAGENAME_BUILDDATE}.simg
+    #         sudo rm -rf /root/.singularity/docker
+    #         df -h
+    #     else
+    #         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
+    #         exit 2
+    #     fi
+    # fi
 done < log.txt

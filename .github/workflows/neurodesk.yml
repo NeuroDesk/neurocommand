@@ -74,17 +74,17 @@ jobs:
       run: /bin/bash .github/workflows/push_to_gh_packages.sh
     - name: Push neurodesk to Dockerhub  (if enabled & changes found)
       run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
-  deploy_neurodesk_simg:
-    needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - uses: actions/setup-python@v2
-      with:
-        python-version: 3.8
-    - name: login to docker hubs
-      run: /bin/bash .github/workflows/login_registries.sh
-    - name: Pull latest neurodesk build from Github Packages
-      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
-    - name: Upload Neurodesk Singularity Container simg
-      run: /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
+  # deploy_neurodesk_simg:
+  #   needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - uses: actions/setup-python@v2
+  #     with:
+  #       python-version: 3.8
+  #   - name: login to docker hubs
+  #     run: /bin/bash .github/workflows/login_registries.sh
+  #   - name: Pull latest neurodesk build from Github Packages
+  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
+  #   - name: Upload Neurodesk Singularity Container simg
+  #     run: /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
