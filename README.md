@@ -3,6 +3,8 @@ A flexible, scalable, and easy to use data analysis environment for reproducible
 
 For inquiries, please click on the "Discussions" tab above. Alternatively, you may contact Steffen Bollmann (https://github.com/stebo85), Oren Civier (https://github.com/civier) or Aswin Narayanan (https://github.com/aswinnarayanan).
 
+More information on our website: https://neurodesk.github.io/
+
 2-minutes tutorial video from OHBM 2021: https://www.youtube.com/watch?v=JLv_5fycugw
 
 <img src="https://github.com/NeuroDesk/vnm/blob/master/Screenshot.png">
