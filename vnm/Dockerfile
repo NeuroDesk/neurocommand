@@ -1,5 +1,5 @@
 # start from our VNM base image
-FROM vnmd/vnm_base:20210512
+FROM vnmd/vnm_base:20210621
 
 COPY . /neurodesk/
 
