@@ -1,7 +1,7 @@
 # neurodesk
 A flexible, scalable, and easy to use data analysis environment for reproducible neuroimaging
 
-For inquiries, please click on the "Discussions" tab above. Alternatively, you may contact Steffen Bollmann (https://github.com/stebo85), Oren Civier (https://github.com/civier) or Aswin Narayanan (https://github.com/aswinnarayanan).
+To post an inquiry, please select the "Discussions" tab above (https://github.com/NeuroDesk/neurodesk/discussions), and press the "New Discussion" button. Alternatively, you may contact Steffen Bollmann (https://github.com/stebo85), Oren Civier (https://github.com/civier) or Aswin Narayanan (https://github.com/aswinnarayanan).
 
 2-minutes tutorial video from OHBM 2021: https://www.youtube.com/watch?v=JLv_5fycugw
 
