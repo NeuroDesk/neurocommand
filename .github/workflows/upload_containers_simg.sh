@@ -45,9 +45,11 @@ do
         else
             #setup singularity 2.6.1 from neurodebian
             wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-            sudo apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
-            sudo apt-get update
-            sudo apt-get install singularity-container
+            echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
+            sudo apt-get update --allow-insecure-repositories
+            echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
+            sudo apt-get install --allow-unauthenticated singularity-container 
+            sudo apt install singularity-container
 
             export IMAGE_HOME="/home/runner"
             export singularity_setup_done="true"
