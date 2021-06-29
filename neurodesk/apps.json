@@ -291,8 +291,8 @@
     },
     "qsmxt": {
         "apps": {
-            "qsmxt 1.1.5": {
-                "version": "20210621",
+            "qsmxt 1.1.6": {
+                "version": "20210623",
                 "exec": ""
             }
         },
