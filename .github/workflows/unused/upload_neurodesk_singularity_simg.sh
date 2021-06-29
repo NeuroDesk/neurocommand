@@ -55,22 +55,22 @@ export IMAGE_HOME="/home/runner"
 # if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.simg"; then
 #     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg exists in swift storage"
 # else
-    echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet in nectar swift - building it!"
-    if [[ ! -f $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg ]]; then
-        sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
-    fi
+    # echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet in nectar swift - building it!"
+    # if [[ ! -f $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg ]]; then
+    #     sudo singularity build "$IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg" docker://$DOCKERHUB_ORG/$IMAGENAME:$BUILDDATE
+    # fi
 
-    echo "[DEBUG] Attempting upload to nectar swift ..."
-    cd $IMAGE_HOME
-    swift upload singularityImages ${IMAGENAME}_${BUILDDATE}.simg --segment-size 1073741824
+    # echo "[DEBUG] Attempting upload to nectar swift ..."
+    # cd $IMAGE_HOME
+    # swift upload singularityImages ${IMAGENAME}_${BUILDDATE}.simg --segment-size 1073741824
 
-    if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.simg"; then
-        echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg was freshly build and exists now. Cleaning UP! :)"
-        rm $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg
-        sudo rm -rf /root/.singularity/docker
-        df -h
-    else
-        echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet. Something is WRONG"
-        exit 2
-    fi
+    # if curl --output /dev/null --silent --head --fail "https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages/${IMAGENAME}_${BUILDDATE}.simg"; then
+    #     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg was freshly build and exists now. Cleaning UP! :)"
+    #     rm $IMAGE_HOME/${IMAGENAME}_${BUILDDATE}.simg
+    #     sudo rm -rf /root/.singularity/docker
+    #     df -h
+    # else
+    #     echo "[DEBUG] ${IMAGENAME}_${BUILDDATE}.simg does not exist yet. Something is WRONG"
+    #     exit 2
+    # fi
 # fi

@@ -44,7 +44,7 @@ do
             echo "Setup already done. Skipping."
         else
             #setup singularity 2.6.1 from neurodebian
-            wget -O- http://neuro.debian.net/lists/bionic.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
+            wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
             sudo apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
             sudo apt-get update
             sudo apt-get install singularity-container
@@ -54,7 +54,7 @@ do
         fi
 
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
-        sudo singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
+        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
