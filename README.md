@@ -15,15 +15,17 @@ Quickstart: https://github.com/NeuroDesk/vnm/
 
 ## Linux 
 ### Requirements:
-- python (https://docs.conda.io/en/latest/miniconda.html#linux-installers)  
+- python3.6+ 
+  - Recommend using Miniconda (https://docs.conda.io/en/latest/miniconda.html#linux-installers)
+  - With virtual conda environments (https://conda.io/projects/conda/en/latest/user-guide/tasks/manage-environments.html)
 - singularity (https://sylabs.io/guides/3.5/user-guide/quick_start.html)  
 - lmod (https://lmod.readthedocs.io/en/latest/)
 - git
 
-### Inital install
+### Initial install
 - Run `git clone https://github.com/NeuroDesk/neurodesk.git` to clone the repository - make sure to clone this to a directory with enough storage, write permissions and NOT a symbolic link (to be sure run cd \`pwd -P\`)!
 - Run `cd neurodesk` to change into the directory
-- Run `pip install -r neurodesk/requirements.txt` to install pre-requisite python packages
+- Run `pip3 install -r neurodesk/requirements.txt` to install pre-requisite python packages
 
 #### [Option 1] command line mode - For non-desktop experience (e.g. running on an HPC)  
 If running on cli only ... 
