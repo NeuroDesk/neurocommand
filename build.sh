@@ -196,4 +196,4 @@ if [ $vnm_deskenv != "cli" ]; then
     args="${args} --edit=$vnm_edit"
 fi
 
-python -m neurodesk $args
+python3 -m neurodesk $args
