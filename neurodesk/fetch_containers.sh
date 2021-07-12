@@ -46,6 +46,7 @@ mkdir -p ${IMG_NAME}
 
 echo "[DEBUG] fetch_containers.sh: Check if the container is there - if not this means we definetly need to install the container"
 
+
 CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
 if [ -e "${CONTAINER_FILE_NAME}" ]; then
     echo "[DEBUG] fetch_containers.sh: found it. Container ${IMG_NAME} is there."
@@ -55,6 +56,10 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
         echo "[DEBUG] fetch_containers.sh: ERROR: This script requires singularity on your path. EXITING"
         exit 2
     fi
+
+    echo "[DEBUG] fetch_containers.sh: copying transparent singularity files from ${vnm_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
+    cp -u ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
+    cp -u ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
 
     echo "[DEBUG] fetch_containers.sh: testing if the container runs:"
     singularity exec ${vnm_singularity_opts} ${CONTAINER_FILE_NAME} ls
