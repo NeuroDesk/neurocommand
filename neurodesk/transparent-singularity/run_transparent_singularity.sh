@@ -38,6 +38,11 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
+      -o|--singularity-opts)
+      singularity_opts="$2"
+      shift # past argument
+      shift # past value
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -154,8 +159,8 @@ fi
 # fi
 
 echo "checking which executables exist inside container"
-echo "executing: singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh"
-singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
+singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
 
 echo "checking if commands.txt exists now"
 if  [[ -f $_base/commands.txt ]]; then
@@ -163,7 +168,7 @@ if  [[ -f $_base/commands.txt ]]; then
 else
    echo "[DEBUG] run_transparent_singularity: Trying to set singularity bindpaths:"
    export SINGULARITY_BINDPATH=/data
-   singularity exec --pwd $_base $container $_base/ts_binaryFinder.sh
+   singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
    if  [[ -f $_base/commands.txt ]]; then
       echo "[DEBUG] run_transparent_singularity: This worked!"
    else
@@ -179,7 +184,7 @@ while read executable; do \
    echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
    echo "export PWD=\`pwd -P\`" >> $executable
-   echo "singularity exec --pwd \$PWD $_base/$container $executable \$@" >> $executable
+   echo "singularity exec $singularity_opts --pwd \$PWD $_base/$container $executable \$@" >> $executable
    chmod a+x $executable
 done < $_base/commands.txt
 
