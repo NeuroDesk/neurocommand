@@ -64,7 +64,8 @@ def main():
         'appdir': '', 
         'deskdir': '', 
         'edit': '',
-        'sh_prefix': ''
+        'sh_prefix': '',
+        'singularity_opts': ''
         }
     config.read(CONFIG_FILE)
 
@@ -98,96 +99,3 @@ def main():
 if __name__ == "__main__":
     main()
 
-
-    # if args.cli:
-    #     print('installing in command line mode without desktop menus')
-    #     config['vnm']['deskenv'] = 'cli'
-    #     config['vnm']['edit'] = 'y'
-
-    # if args.lxde:
-    #     config['vnm']['deskenv'] = 'lxde'
-    #     config['vnm']['appmenu'] = DEFAULT_PATHS['lxde']['appmenu']
-    #     config['vnm']['appdir'] = DEFAULT_PATHS['lxde']['appdir']
-    #     config['vnm']['deskdir'] = DEFAULT_PATHS['lxde']['deskdir']
-    #     config['vnm']['edit'] = 'n'
-
-    # if args.edit:
-    #     config['vnm']['edit'] = 'y'
-
-    # if args.init:
-    #     init(config)
-
-    # try:
-    #     installdir = Path(config['vnm']['installdir']).expanduser().resolve(strict=False)
-    #     if installdir == Path.cwd():
-    #         installdir = Path.cwd()/'local'
-    #     installdir.mkdir(parents=True, exist_ok=True)
-    # except PermissionError:
-    #     logging.error(f'PermissionError creating installdir [{installdir}]')
-    #     logging.error('Exiting ...')
-    #     sys.exit()
-    
-    # appmenu = ''
-    # if not args.cli:
-    #     try:
-    #         appmenu = Path(config['vnm']['appmenu']).expanduser()
-    #         appmenu.resolve(strict=True)
-    #         et.parse(appmenu)
-    #     except et.ParseError:
-    #         logging.error(f'InvalidXMLError with appmenu [{appmenu}]')
-    #         logging.error('Exiting ...')
-    #         sys.exit()
-
-    #     try:
-    #         appdir = Path(config['vnm']['appdir']).expanduser()
-    #         appdir.resolve(strict=True)
-    #         next(appdir.glob("*.desktop"))
-    #     except StopIteration:
-    #         logging.error(f'.desktop files not found in appdir [{appdir}]')
-    #         logging.error('Exiting ...')
-    #         sys.exit()
-
-    #     try:
-    #         deskdir = Path(config['vnm']['deskdir']).expanduser()
-    #         deskdir.resolve(strict=True)
-    #         next(deskdir.glob("*.directory"))
-    #     except StopIteration:
-    #         logging.error(f'.directory files not found in deskdir [{deskdir}]')
-    #         logging.error('Exiting ...')
-    #         sys.exit()
-
-    #     config['vnm']['appmenu'] = str(appmenu)
-    #     config['vnm']['appdir'] = str(appdir)
-    #     config['vnm']['deskdir'] = str(deskdir)
-    
-    # config['vnm']['installdir'] = str(installdir)
-
-
-    # config['vnm']['installdir'] = args.installdir
-    # config['vnm']['appmenu'] = args.appmenu
-    # config['vnm']['appdir'] = args.appdir
-    # config['vnm']['deskdir'] = args.deskdir
-    # config['vnm']['edit'] = args.edit
-
-    # with open(CONFIG_FILE, 'w+') as fh:
-    #     config.write(fh)
-
-    # build_menu(config['vnm']['installdir'], config['vnm']['appmenu'], config['vnm']['deskenv'], config['vnm']['sh_prefix'], args.cli)
-
-
-# def init(config):
-#     while not config['vnm']['deskenv'] in ["cli", "lxde", "mate"]:
-#         config['vnm']['deskenv'] = input(f'Desktop Env? [cli/lxde/mate]: ')
-#         config['vnm']['deskenv'] = config['vnm']['deskenv'].lower()
-#         if config['vnm']['deskenv'] == "":
-#             logging.info('Defaulting to cli')
-#             config['vnm']['deskenv'] = "cli"
-#     config['vnm']['installdir'] = input('installdir: ') or config['vnm']['installdir']
-#     config['vnm']['appmenu'] = input('appmenu: ') or config['vnm']['appmenu']
-#     config['vnm']['appdir'] = input('appdir: ') or config['vnm']['appdir']
-#     config['vnm']['deskdir'] = input('deskdir: ') or config['vnm']['deskdir']
-#     while not config['vnm']['edit'] in ["y", "n"]:
-#         config['vnm']['edit'] = input(f'Edit system files? [Y/n]: ')
-#         config['vnm']['edit'] = config['vnm']['edit'].lower()
-#         if config['vnm']['edit'] == "":
-#             config['vnm']['edit'] = "y"

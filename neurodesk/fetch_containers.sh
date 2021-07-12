@@ -57,7 +57,7 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
     fi
 
     echo "[DEBUG] fetch_containers.sh: testing if the container runs:"
-    singularity exec ${CONTAINER_FILE_NAME} ls
+    singularity exec ${vnm_singularity_opts} ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "the container is incomplete and needs to be re-downloaded - run:"
