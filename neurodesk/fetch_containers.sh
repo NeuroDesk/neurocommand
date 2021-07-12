@@ -77,7 +77,7 @@ else
     echo "[DEBUG] fetch_containers.sh: changing directory to: ${CONTAINER_PATH}/${IMG_NAME}"
     cd ${CONTAINER_PATH}/${IMG_NAME}
     echo "[DEBUG] fetch_containers.sh: executing run_transparent_singularity.sh --container ${IMG_NAME}.simg in $PWD"
-    ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg
+   ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg --singularity-opts "${vnm_singularity_opts}"
     # rm -rf .git* README.md run_transparent_singularity ts_*
 fi
 
