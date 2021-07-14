@@ -184,7 +184,7 @@ while read executable; do \
    echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
    echo "export PWD=\`pwd -P\`" >> $executable
-   echo -e 'singularity exec $singularity_opts --pwd \$PWD $_base/$container $executable "\$@"' >> $executable
+   echo "singularity exec $singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
    chmod a+x $executable
 done < $_base/commands.txt
 
