@@ -1,12 +1,12 @@
 {
     "afni": {
         "apps": {
-            "afni 20.3.05": {
-                "version": "20210104",
+            "afni 21.2.00": {
+                "version": "20210714",
                 "exec": ""
             },
-            "sumaGUI-afni 20.3.05": {
-                "version": "20210104",
+            "sumaGUI-afni 21.2.00": {
+                "version": "20210714",
                 "exec": "suma"
             }
         },
