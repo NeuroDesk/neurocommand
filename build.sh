@@ -21,8 +21,8 @@ while [[ $# -gt 0 ]]
       init=true
       shift # past argument
       ;;
-      --vnm_edit)
-      vnm_edit=true
+      --edit)
+      edit=true
       shift # past argument
       ;;
       --lxde)
@@ -56,7 +56,7 @@ if [ "$lxde" = true ]; then
     echo
 fi
 
-if [ "$vnm_edit" = true ]; then
+if [ "$edit" = true ]; then
     vnm_edit=y
     echo "edit> Yes" 
     echo
