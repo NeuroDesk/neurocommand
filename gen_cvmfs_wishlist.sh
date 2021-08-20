@@ -28,4 +28,5 @@ do
     echo "[DEBUG] IMAGENAME: $IMAGENAME"
     echo "[DEBUG] BUILDDATE: $BUILDDATE"
     echo "- 'https://registry.hub.docker.com/vnmd/$IMAGENAME:$BUILDDATE'" >> recipe_neurodesk_auto.yaml
+    # echo "- 'https://registry.rc.nectar.org.au/docker/vnmd/$IMAGENAME:$BUILDDATE'" >> recipe_neurodesk_auto.yaml
 done < log.txt
