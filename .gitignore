@@ -6,7 +6,6 @@ local
 __pycache__
 *.pyc
 *.sif
-gen_cvmfs_wishlist.sh
 log.txt
 recipe_neurodesk_auto.yaml
 recipe_neurodesk_test.yaml
