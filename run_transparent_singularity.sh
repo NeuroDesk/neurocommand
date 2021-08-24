@@ -77,7 +77,7 @@ if [ -z "$container" ]; then
       echo "./run_transparent_singularity.sh CONTAINERNAME"
       echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20210104.simg --storage docker"
       echo "./run_transparent_singularity.sh convert3d_1.0.0_20210104.simg"
-      echo "./run_transparent_singularity.sh convert3d_1.0.0_20210104 --unpack true"
+      echo "./run_transparent_singularity.sh convert3d_1.0.0_20210104 --unpack true --singularity-opts '--bind /cvmfs'"
       echo "-----------------------------------------------"
       exit
    else
@@ -164,6 +164,7 @@ fi
 
 if [[ $unpack = "true" ]]
 then
+   echo "unpacking singularity file to sandbox directory:"
     singularity build --sandbox temp $container
     rm -rf $container
     mv temp $container
