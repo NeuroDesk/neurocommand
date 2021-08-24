@@ -38,6 +38,11 @@ while [[ $# -gt 0 ]]
       shift # past argument
       shift # past value
       ;;
+      -u|--unpack)
+      unpack="$2"
+      shift # past argument
+      shift # past value
+      ;;
       -o|--singularity-opts)
       singularity_opts="$2"
       shift # past argument
@@ -72,6 +77,7 @@ if [ -z "$container" ]; then
       echo "./run_transparent_singularity.sh CONTAINERNAME"
       echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.simg --storage docker"
       echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.simg"
+      echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701 --unpack true"
       echo "-----------------------------------------------"
       exit
    else
@@ -155,6 +161,13 @@ fi
 # if [[  ${#qq} -lt 1 ]]; then
 #    echo "Something went wrong when making the container executable."
 # fi
+
+if [[ $unpack = "true" ]]
+then
+    singularity build --sandbox temp $container
+    rm -rf $container
+    mv temp $container
+fi
 
 echo "checking which executables exist inside container"
 echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
