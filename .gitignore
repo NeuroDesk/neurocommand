@@ -6,6 +6,5 @@ local
 __pycache__
 *.pyc
 *.sif
-log.txt
 recipe_neurodesk_auto.yaml
 recipe_neurodesk_test.yaml
