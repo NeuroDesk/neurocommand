@@ -64,15 +64,13 @@ if [ -z "$container" ]; then
       echo "-----------------------------------------------"
       echo "Select the container you would like to install:"
       echo "-----------------------------------------------"
-      echo "singularity container cache list:"
-      # curl -s -S -X GET https://swift.rc.nectar.org.au:8888/v1/AUTH_d6165cc7b52841659ce8644df1884d5e/singularityImages
-      # curl -s -S -X GET https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/
-      curl -s -S -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/
+      echo "singularity container list:"
+      curl -s https://raw.githubusercontent.com/NeuroDesk/neurodesk/master/cvmfs/log.txt
       echo " "
       echo "-----------------------------------------------"
       echo "usage examples:"
       echo "./run_transparent_singularity.sh CONTAINERNAME"
-      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.sif --storage docker"
+      echo "./run_transparent_singularity.sh --container convert3d_1.0.0_20200701.simg --storage docker"
       echo "./run_transparent_singularity.sh convert3d_1.0.0_20200701.simg"
       echo "-----------------------------------------------"
       exit
@@ -117,10 +115,10 @@ fi
 echo "containerEnding: ${containerEnding}"
 
 echo "checking if $container exists in the cvmfs cache ..."
-if [[ -d "/cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate}" ]]; then
+if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}:${containerDate}" ]]; then
    echo "$container exists in cvmfs"
    storage="cvmfs"
-   container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/registry.hub.docker.com/vnmd/${containerName}_${containerVersion}:${containerDate} $container"
+   container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}:${containerDate} $container"
 else
    echo "$container does not exists in cvmfs. Testing Oracle Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"; then
@@ -132,7 +130,7 @@ else
          echo "aria2 is not installed. Defaulting to curl."
          container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container -O"
       else 
-         container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container"
+         container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://objectstorage.eu-zurich-1.oraclecloud.com/n/nrrir2sdpmdp/b/neurodesk/o/$container https://swift.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"
       fi
    else
       # fallback to docker
