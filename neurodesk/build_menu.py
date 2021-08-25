@@ -173,7 +173,7 @@ class VNMApp:
                 "Name": self.exec_name,
                 "GenericName": self.exec_name,
                 "Comment": self.name + " " + self.version,
-                "Exec": str(self.sh_path),
+                "Exec": f"/bin/bash -i {str(self.sh_path)}",
                 "Icon": icon_path,
                 "Type": "Application",
                 "Categories": self.category,
