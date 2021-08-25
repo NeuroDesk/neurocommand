@@ -1,0 +1,18 @@
+name: Neuromachine Build Initiator
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  initiate-neuromachine-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dispatch initiating repository event
+        run: |
+          curl -X POST https://api.github.com/repos/$GITHUB_ACTOR/neuromachine/dispatches \
+          -H 'Accept: application/vnd.github.v3+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "neurodesk update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
