@@ -211,7 +211,7 @@ chmod a+x deactivate_${container}.sh
 if [[ $unpack = "true" ]]
 then
    echo "unpacking singularity file to sandbox directory:"
-    singularity build --sandbox temp $container
+    sudo singularity build --sandbox temp $container
     rm -rf $container
     mv temp $container
 fi
