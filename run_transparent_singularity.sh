@@ -162,13 +162,6 @@ fi
 #    echo "Something went wrong when making the container executable."
 # fi
 
-if [[ $unpack = "true" ]]
-then
-   echo "unpacking singularity file to sandbox directory:"
-    singularity build --sandbox temp $container
-    rm -rf $container
-    mv temp $container
-fi
 
 echo "checking which executables exist inside container"
 echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
@@ -213,6 +206,15 @@ echo "deactivate script"
 echo  pathToRemove=$_base | cat - ts_deactivate_ > temp && mv temp deactivate_${container}.sh
 chmod a+x deactivate_${container}.sh
 
+
+
+if [[ $unpack = "true" ]]
+then
+   echo "unpacking singularity file to sandbox directory:"
+    singularity build --sandbox temp $container
+    rm -rf $container
+    mv temp $container
+fi
 
 
 echo "create module files one directory up"
