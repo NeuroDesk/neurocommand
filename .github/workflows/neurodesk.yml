@@ -27,16 +27,16 @@ jobs:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
-      run: /bin/bash .github/workflows/upload_containers_simg.sh
+      run: env && /bin/bash .github/workflows/upload_containers_simg.sh
   test_neurodesk_cli:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.9
     - name: Test neurodesk cli version
       run: /bin/bash .github/workflows/test_neurodesk_cli.sh
   build_vnm:
