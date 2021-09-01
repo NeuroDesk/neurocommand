@@ -1,39 +1,39 @@
-afni_21.2.00_20210714   | functional imaging
-aidmri_1.1_20210330   | image segmentation | image registration
-ants_2.3.4_20210104   | image segmentation | image registration
-aslprep_0.2.7_20210323   | quantitative imaging | functional imaging
-ashs_2.0.0_20210105   | image segmentation
-bart_0.7.00_20210302   | image reconstruction
-bidstools_1.0.0_20201208   | data organisation
-conn_20b_20210109   | functional imaging
-connectomeworkbench_1.4.2_20201119
-convert3d_1.0.0_20210104
-datalad_0.13.3_20201119   | data organisation
-dsistudio_2020.10_20210109   | diffusion imaging
-fatsegnet_1.0.gpu_20201212
-fmriprep_20.1.3_20201118   | functional imaging | image segmentation | image registration
-freesurfer_7.1.1_20210225   | functional imaging | image segmentation | image registration
-fsl_6.0.3_20200905   | functional imaging | structural imaging | diffusion imaging | image segmentation | image registration
-fsl_6.0.4_20210105   | functional imaging | structural imaging | diffusion imaging | image segmentation | image registration
-gimp_2.10.18_20210104
-hdbet_1.0.0_20210318   | image segmentation
-itksnap_3.8.0_20201208   | image segmentation
-julia_1.4.1_20210105   | programming
-minc_1.9.17_20210105   | image segmentation | image registration | structural imaging
-mriqc_0.15.2_20201104
-mrtrix3_3.0.1_20200908   | diffusion imaging
-mrtrix3_3.0.2_20201125   | diffusion imaging
-mrtrix3tissue_5.2.8_20201111   | diffusion imaging
-lcmodel_6.3_20210302   | spectroscopy
-lashis_1.0_20210105   | image segmentation
-lashis_2.0_20210211   | image segmentation
-qsmxt_1.1.6_20210623   | quantitative imaging
-root_6.22.02_20201104
-slicer_4.11.20200930_20201108   | image segmentation | image registration
-slicersalt_3.0.0_20210301   | image segmentation | image registration
-spinalcordtoolbox_4.3_20201108   | image segmentation | image registration
-spinalcordtoolbox_5.1.0_20210222   | image segmentation | image registration
-spinalcordtoolbox_5.2.0_20210226   | image segmentation | image registration
-spinalcordtoolbox_5.3.0_20210614   | image segmentation | image registration
-spm12_r7219_20201120   | functional imaging
-tgvqsm_1.0.0_20210629   | quantitative imaging
+afni_21.2.00_20210714 categories:   | functional imaging
+aidmri_1.1_20210330 categories:   | image segmentation | image registration
+ants_2.3.4_20210104 categories:   | image segmentation | image registration
+aslprep_0.2.7_20210323 categories:   | quantitative imaging | functional imaging
+ashs_2.0.0_20210105 categories:   | image segmentation
+bart_0.7.00_20210302 categories:   | image reconstruction
+bidstools_1.0.0_20201208 categories:   | data organisation
+conn_20b_20210109 categories:   | functional imaging
+connectomeworkbench_1.4.2_20201119 categories:
+convert3d_1.0.0_20210104 categories:
+datalad_0.13.3_20201119 categories:   | data organisation
+dsistudio_2020.10_20210109 categories:   | diffusion imaging
+fatsegnet_1.0.gpu_20201212 categories:
+fmriprep_20.1.3_20201118 categories:   | functional imaging | image segmentation | image registration
+freesurfer_7.1.1_20210225 categories:   | functional imaging | image segmentation | image registration
+fsl_6.0.3_20200905 categories:   | functional imaging | structural imaging | diffusion imaging | image segmentation | image registration
+fsl_6.0.4_20210105 categories:   | functional imaging | structural imaging | diffusion imaging | image segmentation | image registration
+gimp_2.10.18_20210104 categories:
+hdbet_1.0.0_20210318 categories:   | image segmentation
+itksnap_3.8.0_20201208 categories:   | image segmentation
+julia_1.4.1_20210105 categories:   | programming
+minc_1.9.17_20210105 categories:   | image segmentation | image registration | structural imaging
+mriqc_0.15.2_20201104 categories:
+mrtrix3_3.0.1_20200908 categories:   | diffusion imaging
+mrtrix3_3.0.2_20201125 categories:   | diffusion imaging
+mrtrix3tissue_5.2.8_20201111 categories:   | diffusion imaging
+lcmodel_6.3_20210302 categories:   | spectroscopy
+lashis_1.0_20210105 categories:   | image segmentation
+lashis_2.0_20210211 categories:   | image segmentation
+qsmxt_1.1.6_20210623 categories:   | quantitative imaging
+root_6.22.02_20201104 categories:
+slicer_4.11.20200930_20201108 categories:   | image segmentation | image registration
+slicersalt_3.0.0_20210301 categories:   | image segmentation | image registration
+spinalcordtoolbox_4.3_20201108 categories:   | image segmentation | image registration
+spinalcordtoolbox_5.1.0_20210222 categories:   | image segmentation | image registration
+spinalcordtoolbox_5.2.0_20210226 categories:   | image segmentation | image registration
+spinalcordtoolbox_5.3.0_20210614 categories:   | image segmentation | image registration
+spm12_r7219_20201120 categories:   | functional imaging
+tgvqsm_1.0.0_20210629 categories:   | quantitative imaging
