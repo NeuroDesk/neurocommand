@@ -32,7 +32,7 @@ def add_app(
     """
     log = configparser.ConfigParser()
     log.optionxform = str
-    log[" " + name.replace(" ", "_") + "_" + version + " " + category] = { }
+    log[" " + name.replace(" ", "_") + "_" + version + " categories: " + category] = { }
     with open('log.txt', "a",) as log_file:
         log.write(log_file, space_around_delimiters=False)
 
