@@ -18,7 +18,7 @@ sed -i 's/[][]//g' log.txt
 sed -i -e 's/^[ \t]*//' -e 's/[ \t]*$//' log.txt
 
 # replace spaces with underscores
-sed -i 's/ /_/g' log.txt
+# sed -i 's/ /_/g' log.txt
 
 mv log.txt cvmfs
 cd cvmfs
