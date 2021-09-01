@@ -21,8 +21,12 @@ sed -i 's/ /_/g' log.txt
 echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
-while IFS= read -r IMAGENAME_BUILDDATE
+while IFS= read -r LINE
 do
+    echo "LINE: $LINE"
+    IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
+    echo "IMAGENAME_BUILDDATE: $IMAGENAME_BUILDDATE"
+
     IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
     BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
     echo "[DEBUG] IMAGENAME: $IMAGENAME"
