@@ -16,7 +16,7 @@ sed -i 's/[][]//g' log.txt
 sed -i -e 's/^[ \t]*//' -e 's/[ \t]*$//' log.txt
 
 # replace spaces with underscores
-sed -i 's/ /_/g' log.txt
+# sed -i 's/ /_/g' log.txt
 
 echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
