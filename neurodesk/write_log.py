@@ -32,18 +32,22 @@ def add_app(
     """
     log = configparser.ConfigParser()
     log.optionxform = str
-    log[" " + name + " " + version + " "] = { }
+    log[" " + name + " " + version + " " + category] = { }
     with open('log.txt', "a",) as log_file:
         log.write(log_file, space_around_delimiters=False)
 
 
 if __name__ == "__main__":
     # Read applications file
-    with open(Path("./neurodesk/apps.json"), "r") as json_file:
+    # with open(Path("./neurodesk/apps.json"), "r") as json_file:
+    with open(Path("/home/ec2-user/neurodesk/neurodesk/apps.json"), "r") as json_file:
         menu_entries = json.load(json_file)
 
     for menu_name, menu_data in menu_entries.items():
         for app_name, app_data in menu_data.get("apps", {}).items():
+            category_list = ' '
+            for category in menu_data.get("categories") or []:
+                category_list = category_list + ' | ' + category
             # Add application, but only if it's not a sub-program of a main container - indicated by dash in program name
             if not "-" in (app_name):
-                add_app(app_name, category=menu_name.replace(" ", "-"), **app_data)
+                add_app(app_name, category=category_list, **app_data)
