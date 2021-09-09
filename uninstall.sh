@@ -13,11 +13,11 @@ if [ "${vnm_edit}" == "y" ]; then
     rm_symlink ${vnm_appmenu}
     mv -vn ${vnm_appmenu}.BAK ${vnm_appmenu}
 else 
-    echo "!!! Remove <MergeFile>vnm-applications.menu</MergeFile> from ${vnm_appmenu} !!!"
+    echo "!!! Remove <MergeFile>neurodesk-applications.menu</MergeFile> from ${vnm_appmenu} !!!"
 fi
-rm_symlink ${vnm_appmenudir}/vnm-applications.menu
-rm_symlink ${vnm_appdir}/vnm
-rm_symlink ${vnm_deskdir}/vnm
+rm_symlink ${vnm_appmenudir}/neurodesk-applications.menu
+rm_symlink ${vnm_appdir}/neurodesk
+rm_symlink ${vnm_deskdir}/neurodesk
 
 #for file in ${vnm_appdir}/vnm-*.desktop; do
 #    rm_symlink $file

@@ -15,7 +15,7 @@ import distutils.dir_util
 
 def write_directory_file(name, file_dir, icon_dir):
     logging.info(f"Adding submenu for '{name}'")
-    file_path = file_dir/f"vnm-{name.lower().replace(' ', '-')}.directory"
+    file_path = file_dir/f"{name.lower().replace(' ', '-')}.directory"
     icon_path = icon_dir/f"{name.lower().split()[0]}.png"
     icon_src = (Path(__file__).parent/'icons'/icon_path.name)
     # breakpoint()
@@ -56,12 +56,12 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
     file_path = write_directory_file(name, file_dir, icon_dir)
 
     # Add entry to `.menu` file
-    menu_path = installdir/"vnm-applications.menu"
+    menu_path = installdir/"neurodesk-applications.menu"
     with open(menu_path, "r") as xml_file:
         s = xml_file.read()
     s = re.sub(r"\s+(?=<)", "", s)
     root = et.fromstring(s)
-    category_name = f'vnm-{category.lower().replace(" ", "-")}'
+    category_name = f'{category.lower().replace(" ", "-")}'
     for menu_el in root.findall(".//Menu/Menu"):
         if menu_el[2][0][0].text == category_name:
         # menu_el = root.findall("./Menu/Menu")[0]
@@ -74,7 +74,7 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
             and_el = et.SubElement(include_el, "And")
             cat_el = et.SubElement(and_el, "Category")
             cat_el.text = name.replace(" ", "-")
-            cat_el.text = f"vnm-{cat_el.text}"
+            cat_el.text = f"{cat_el.text}"
             xmlstr = minidom.parseString(et.tostring(root)).toprettyxml(indent="\t")
             with open(menu_path, "w") as f:
                 f.write('<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"\n ')
@@ -121,8 +121,8 @@ class VNMApp:
         self.terminal = terminal
 
     def app_names(self):
-        self.basename = f"vnm-{self.name.lower().replace(' ', '-').replace('.', '_')}"
-        self.category = f"vnm-{self.category}"
+        self.basename = f"{self.name.lower().replace(' ', '-').replace('.', '_')}"
+        self.category = f"{self.category}"
         if self.exec:
             # assumes that executable name is before the dash and after the dash the normal container name and version
             self.container_name = self.name.split("-")[1]
@@ -216,7 +216,7 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
 
 def vnm_xml(xml: Path, newxml: Path) -> None:
     oldtag = '<Menu>'
-    newtag = '<MergeFile>vnm-applications.menu</MergeFile>'
+    newtag = '<MergeFile>neurodesk-applications.menu</MergeFile>'
     tagcount = 0
     replace = True
     
@@ -250,7 +250,7 @@ def build_menu(installdir, deskenv, sh_prefix):
     if deskenv == 'cli':
         climode = True
 
-    shutil.copy2('neurodesk/vnm-applications.menu.template', installdir/'vnm-applications.menu')
+    shutil.copy2('neurodesk/neurodesk-applications.menu.template', installdir/'neurodesk-applications.menu')
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
@@ -264,7 +264,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         # add_vnm_menu(installdir, 'VNM Neuroimaging')
         directories_path = installdir/"desktop-directories"
         icon_dir = installdir/"icons"
-        write_directory_file("VNM Neuroimaging", directories_path, icon_dir)
+        write_directory_file("Neurodesk", directories_path, icon_dir)
         write_directory_file("All Applications", directories_path, icon_dir)
         write_directory_file("Functional Imaging", directories_path, icon_dir)
         write_directory_file("Data Organisation", directories_path, icon_dir)

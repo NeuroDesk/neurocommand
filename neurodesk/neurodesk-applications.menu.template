@@ -1,0 +1,118 @@
+<!DOCTYPE Menu PUBLIC "-//freedesktop//DTD Menu 1.0//EN"
+ "http://www.freedesktop.org/standards/menu-spec/1.0/menu.dtd">
+
+<Menu>
+
+	<Name>Applications</Name>
+
+	<!-- Neurodesk submenu -->
+	<Menu>
+		<Name>Neurodesk</Name>
+		<Directory>neurodesk/neurodesk.directory</Directory>
+		<Include>
+			<And>
+				<Category>Neurodesk</Category>
+			</And>
+		</Include>
+		<Menu>
+			<Name>All Applications</Name>
+			<Directory>neurodesk/all-applications.directory</Directory>
+			<Include>
+				<And>
+					<Category>all-applications</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Functional Imaging</Name>
+			<Directory>neurodesk/functional-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>functional-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Image Reconstruction</Name>
+			<Directory>neurodesk/image-reconstruction.directory</Directory>
+			<Include>
+				<And>
+					<Category>image-reconstruction</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Spectroscopy</Name>
+			<Directory>neurodesk/spectroscopy.directory</Directory>
+			<Include>
+				<And>
+					<Category>spectroscopy</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Data Organisation</Name>
+			<Directory>neurodesk/data-organisation.directory</Directory>
+			<Include>
+				<And>
+					<Category>data-organisation</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Diffusion Imaging</Name>
+			<Directory>neurodesk/diffusion-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>diffusion-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Structural Imaging</Name>
+			<Directory>neurodesk/structural-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>structural-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Quantitative Imaging</Name>
+			<Directory>neurodesk/quantitative-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>quantitative-imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Image Segmentation</Name>
+			<Directory>neurodesk/image-segmentation.directory</Directory>
+			<Include>
+				<And>
+					<Category>image-segmentation</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Image Registration</Name>
+			<Directory>neurodesk/image-registration.directory</Directory>
+			<Include>
+				<And>
+					<Category>image-registration</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Programming</Name>
+			<Directory>neurodesk/programming.directory</Directory>
+			<Include>
+				<And>
+					<Category>programming</Category>
+				</And>
+			</Include>
+		</Menu>
+	</Menu> <!-- End Neurodesk -->
+
+</Menu> <!-- End Applications -->
