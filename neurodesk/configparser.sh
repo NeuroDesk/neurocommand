@@ -22,6 +22,6 @@ if [ -f "$filename" ]; then
         fi
     done < $filename
 
-    vnm_appmenudir="$(dirname "${vnm_appmenu}")"
-    vnm_appmenufile="$(basename "${vnm_appmenu}")"
+    neurodesk_appmenudir="$(dirname "${neurodesk_appmenu}")"
+    neurodesk_appmenufile="$(basename "${neurodesk_appmenu}")"
 fi
