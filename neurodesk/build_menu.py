@@ -23,7 +23,7 @@ def write_directory_file(name, file_dir, icon_dir):
         shutil.copy2(icon_src, icon_path)
     except FileNotFoundError:
         logging.warning(f'{icon_src} not found')
-        icon_src = (Path(__file__).parent/'icons/vnm.png')
+        icon_src = (Path(__file__).parent/'icons/neurodesk.png')
         shutil.copy2(icon_src, icon_path)
 
     # Generate `.directory` file
@@ -42,7 +42,7 @@ def write_directory_file(name, file_dir, icon_dir):
 
 
 def add_menu(installdir: Path, name: Text, category: Text) -> None:
-    """Add a submenu to 'VNM' menu.
+    """Add a submenu to 'Neurodesk' menu.
 
     Parameters
     ----------
@@ -84,7 +84,7 @@ def add_menu(installdir: Path, name: Text, category: Text) -> None:
             break
 
 
-class VNMApp:
+class NeurodeskApp:
     def __init__(
         self,
         deskenv: Text,
@@ -153,7 +153,7 @@ class VNMApp:
             shutil.copy2(icon_src, icon_path)
         except FileNotFoundError:
             logging.warning(f'{icon_src} not found')
-            icon_src = (Path(__file__).parent/'icons/vnm.png')
+            icon_src = (Path(__file__).parent/'icons/neurodesk.png')
             shutil.copy2(icon_src, icon_path)
         entry = configparser.ConfigParser()
         entry.optionxform = str
@@ -201,7 +201,7 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
             for category in menu_data.get("categories") or []:
                 add_menu(installdir, menu_name, category)
         for app_name, app_data in menu_data.get("apps", {}).items():
-            app = VNMApp(
+            app = NeurodeskApp(
                 deskenv=deskenv,
                 installdir=installdir,
                 sh_prefix=sh_prefix,
@@ -214,7 +214,7 @@ def apps_from_json(cli, deskenv: Text, installdir: Path, appsjson: Path, sh_pref
                 app.add_app_menu()
 
 
-def vnm_xml(xml: Path, newxml: Path) -> None:
+def neurodesk_xml(xml: Path, newxml: Path) -> None:
     oldtag = '<Menu>'
     newtag = '<MergeFile>neurodesk-applications.menu</MergeFile>'
     tagcount = 0
@@ -261,7 +261,6 @@ def build_menu(installdir, deskenv, sh_prefix):
     os.chmod(installdir/'configparser.sh', 0o755)
 
     if not climode:
-        # add_vnm_menu(installdir, 'VNM Neuroimaging')
         directories_path = installdir/"desktop-directories"
         icon_dir = installdir/"icons"
         write_directory_file("Neurodesk", directories_path, icon_dir)
@@ -283,7 +282,7 @@ def build_menu(installdir, deskenv, sh_prefix):
 
     # Remove any symlinks from local appdir
     # Prevents symlink recursion
-    vnm_appdir = installdir/'applications'
-    for file in vnm_appdir.glob('*'):
+    neurodesk_appdir = installdir/'applications'
+    for file in neurodesk_appdir.glob('*'):
         if file.is_symlink():
             os.unlink(file)

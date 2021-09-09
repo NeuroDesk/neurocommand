@@ -13,7 +13,7 @@ import stat
 import re
 
 from neurodesk.build_menu import build_menu
-from neurodesk.build_menu import vnm_xml
+from neurodesk.build_menu import neurodesk_xml
 
 logging.basicConfig(level=logging.INFO, format='%(levelname)s | %(message)s')
 logger = logging.getLogger(__name__)
@@ -91,7 +91,7 @@ def main():
         appmenu = Path(config['neurodesk']['appmenu'])
         appmenu_template = installdir/'local-applications.menu.template'
         new_appmenu = installdir/appmenu.name
-        vnm_xml(appmenu_template, new_appmenu)
+        neurodesk_xml(appmenu_template, new_appmenu)
 
     build_menu(installdir, config['neurodesk']['deskenv'], config['neurodesk']['sh_prefix'])
 

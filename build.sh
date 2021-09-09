@@ -46,25 +46,25 @@ done
 set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [ "$lxde" = true ]; then
-    vnm_deskenv=lxde
-    vnm_installdir="$(pwd -P)/local"
-    vnm_appmenu=/etc/xdg/menus/lxde-applications.menu
-    vnm_appdir=/usr/share/applications/
-    vnm_deskdir=/usr/share/desktop-directories/
-    vnm_edit=n
+    neurodesk_deskenv=lxde
+    neurodesk_installdir="$(pwd -P)/local"
+    neurodesk_appmenu=/etc/xdg/menus/lxde-applications.menu
+    neurodesk_appdir=/usr/share/applications/
+    neurodesk_deskdir=/usr/share/desktop-directories/
+    neurodesk_edit=n
     echo "deskenv> lxde preset" 
     echo
 fi
 
 if [ "$edit" = true ]; then
-    vnm_edit=y
+    neurodesk_edit=y
     echo "edit> Yes" 
     echo
 fi
 
 if [ "$cli" = true ]; then
-    vnm_deskenv=cli
-    vnm_installdir="$(pwd -P)/local"
+    neurodesk_deskenv=cli
+    neurodesk_installdir="$(pwd -P)/local"
     echo "deskenv> cli preset" 
     echo
 fi
@@ -72,94 +72,94 @@ fi
 if [ "$init" = true ]; then
     # Installation Directory [./local]
     echo "Enter Installation Directory. Blank for default [./local]"
-    read -e -p "installdir> " vnm_installdir
-    vnm_installdir="${vnm_installdir/#\~/$HOME}"
-    if [ -z "$vnm_installdir" ]; then
-        vnm_installdir="$(pwd -P)"
+    read -e -p "installdir> " neurodesk_installdir
+    neurodesk_installdir="${neurodesk_installdir/#\~/$HOME}"
+    if [ -z "$neurodesk_installdir" ]; then
+        neurodesk_installdir="$(pwd -P)"
     fi
-    if [ ! -d "$vnm_installdir" ]; then
+    if [ ! -d "$neurodesk_installdir" ]; then
         echo "Installation directory does not exist"
-        echo "Creating $vnm_installdir"
-        mkdir -p $vnm_installdir
+        echo "Creating $neurodesk_installdir"
+        mkdir -p $neurodesk_installdir
     fi
-    vnm_installdir=$(readlink -f ${vnm_installdir})
-    if [ "$vnm_installdir" == $(pwd -P) ]; then
-        vnm_installdir="$(pwd -P)/local"
-        mkdir -p $vnm_installdir
+    neurodesk_installdir=$(readlink -f ${neurodesk_installdir})
+    if [ "$neurodesk_installdir" == $(pwd -P) ]; then
+        neurodesk_installdir="$(pwd -P)/local"
+        mkdir -p $neurodesk_installdir
     fi
-    echo "Installation directory at $vnm_installdir"
+    echo "Installation directory at $neurodesk_installdir"
     echo 
 
     # Desktop Environment [cli/lxde/mate]
     echo "Enter Desktop Environment [cli/lxde/mate]"
-    read -p "deskenv> " vnm_deskenv
-    vnm_deskenv=$(echo "$vnm_deskenv" | tr '[:upper:]' '[:lower:]')
-    case "$vnm_deskenv" in
+    read -p "deskenv> " neurodesk_deskenv
+    neurodesk_deskenv=$(echo "$neurodesk_deskenv" | tr '[:upper:]' '[:lower:]')
+    case "$neurodesk_deskenv" in
       cli|lxde|mate)
-        echo "Environment set to $vnm_deskenv"
+        echo "Environment set to $neurodesk_deskenv"
         ;;
       *)
         echo "Defaulting to cli environment"
-        vnm_deskenv="cli"
+        neurodesk_deskenv="cli"
         ;;
     esac
     echo
 
-    if [ $vnm_deskenv != "cli" ]; then
+    if [ $neurodesk_deskenv != "cli" ]; then
         # Applications Menu
-        read -e -p "appmenu: " vnm_appmenu
-        vnm_appmenu=$(resolve_abs_path $vnm_appmenu)
-        echo "Applications Menu at $vnm_appmenu"
+        read -e -p "appmenu: " neurodesk_appmenu
+        neurodesk_appmenu=$(resolve_abs_path $neurodesk_appmenu)
+        echo "Applications Menu at $neurodesk_appmenu"
         echo 
 
         # Applications Directory
-        read -e -p "appdir: " vnm_appdir
-        vnm_appdir=$(resolve_abs_path $vnm_appdir)
-        echo "Installation directory at $vnm_installdir"
+        read -e -p "appdir: " neurodesk_appdir
+        neurodesk_appdir=$(resolve_abs_path $neurodesk_appdir)
+        echo "Installation directory at $neurodesk_installdir"
         echo 
 
         # Desktop Directories
-        read -e -p "deskdir: " vnm_deskdir
-        vnm_deskdir=$(resolve_abs_path $vnm_deskdir)
-        echo "Installation directory at $vnm_installdir"
+        read -e -p "deskdir: " neurodesk_deskdir
+        neurodesk_deskdir=$(resolve_abs_path $neurodesk_deskdir)
+        echo "Installation directory at $neurodesk_installdir"
         echo 
 
-        # vnm_edit mode [y/n]
-        read -p "edit : " vnm_edit
-        case "$vnm_edit" in
+        # neurodesk_edit mode [y/n]
+        read -p "edit : " neurodesk_edit
+        case "$neurodesk_edit" in
         y/n)
-            echo "edit set to $vnm_edit"
+            echo "edit set to $neurodesk_edit"
             ;;
         *)
             echo "Defaulting to no edit"
-            vnm_edit="n"
+            neurodesk_edit="n"
             ;;
         esac
 
     fi
 fi
 
-args="${args} --installdir=$vnm_installdir"
-args="${args} --deskenv=$vnm_deskenv"
-mkdir -p $vnm_installdir
+args="${args} --installdir=$neurodesk_installdir"
+args="${args} --deskenv=$neurodesk_deskenv"
+mkdir -p $neurodesk_installdir
 
-if [ $vnm_deskenv != "cli" ]; then
+if [ $neurodesk_deskenv != "cli" ]; then
     # Test Applications Menu
-    echo "Checking appmenu> $vnm_appmenu"
+    echo "Checking appmenu> $neurodesk_appmenu"
     validfile=false
-    if [ ! -f "$vnm_appmenu" ]; then
+    if [ ! -f "$neurodesk_appmenu" ]; then
         echo "Applications Menu not found"
         exit 1
     fi
-    mkdir -p $vnm_installdir/desktop-directories
-    mkdir -p $vnm_installdir/icons
-    cp $vnm_appmenu $vnm_installdir/local-applications.menu.template
-    cp neurodesk/icons/*.png $vnm_installdir/icons
+    mkdir -p $neurodesk_installdir/desktop-directories
+    mkdir -p $neurodesk_installdir/icons
+    cp $neurodesk_appmenu $neurodesk_installdir/local-applications.menu.template
+    cp neurodesk/icons/*.png $neurodesk_installdir/icons
 
     # Test Applications Directory
-    echo "Checking appdir> $vnm_appdir"
+    echo "Checking appdir> $neurodesk_appdir"
     validfile=false
-    for i in $vnm_appdir/*.desktop; do
+    for i in $neurodesk_appdir/*.desktop; do
         if [[ -e $i ]]; then
             echo " - contains *.desktop file(s)"
             validfile=true
@@ -174,9 +174,9 @@ if [ $vnm_deskenv != "cli" ]; then
     echo
 
     # Test Desktop Directory
-    echo "Checking deskdir> $vnm_deskdir"
+    echo "Checking deskdir> $neurodesk_deskdir"
     validfile=false
-    for i in $vnm_deskdir/*.directory; do
+    for i in $neurodesk_deskdir/*.directory; do
         if [[ -e $i ]]; then
             echo " - contains *.directory file(s)"
             validfile=true
@@ -190,10 +190,10 @@ if [ $vnm_deskenv != "cli" ]; then
     fi
     echo
 
-    args="${args} --appmenu=$vnm_appmenu"
-    args="${args} --appdir=$vnm_appdir"
-    args="${args} --deskdir=$vnm_deskdir"
-    args="${args} --edit=$vnm_edit"
+    args="${args} --appmenu=$neurodesk_appmenu"
+    args="${args} --appdir=$neurodesk_appdir"
+    args="${args} --deskdir=$neurodesk_deskdir"
+    args="${args} --edit=$neurodesk_edit"
 fi
 
 python3 -m neurodesk $args

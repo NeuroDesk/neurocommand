@@ -17,10 +17,3 @@ ln -sfn ${neurodesk_installdir}/neurodesk-applications.menu ${neurodesk_appmenud
 
 ln -sfn ${neurodesk_installdir}/applications ${neurodesk_appdir}/neurodesk
 ln -sfn ${neurodesk_installdir}/desktop-directories ${neurodesk_deskdir}/neurodesk
-
-#for file in ${neurodesk_installdir}/applications/vnm-*.desktop; do
-#    ln -s $file ${neurodesk_appdir}
-#done
-#for file in ${neurodesk_installdir}/desktop-directories/vnm-*.directory; do
-#    ln -s $file ${neurodesk_deskdir}
-#done

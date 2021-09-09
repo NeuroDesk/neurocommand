@@ -18,10 +18,3 @@ fi
 rm_symlink ${neurodesk_appmenudir}/neurodesk-applications.menu
 rm_symlink ${neurodesk_appdir}/neurodesk
 rm_symlink ${neurodesk_deskdir}/neurodesk
-
-#for file in ${neurodesk_appdir}/vnm-*.desktop; do
-#    rm_symlink $file
-#done
-#for file in ${neurodesk_deskdir}/vnm-*.directory; do
-#    rm_symlink $file
-#done

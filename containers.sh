@@ -16,7 +16,7 @@ echo "to install ALL containers, run:"
 echo "bash containers.sh --all"
 echo "------------------------------------"
 echo "to install individual containers, run:"
-for appsh in ${vnm_installdir}/bin/vnm-*.sh; do
+for appsh in ${neurodesk_installdir}/bin/*.sh; do
     appfetch=$(sed -n 's/fetch_and_run.sh/fetch_containers.sh/p' $appsh)
     echo $appfetch
     if [ "$install_all_containers" = "true" ]; then
