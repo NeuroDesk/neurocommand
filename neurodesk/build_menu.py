@@ -250,7 +250,7 @@ def build_menu(installdir, deskenv, sh_prefix):
     if deskenv == 'cli':
         climode = True
 
-    shutil.copy2('neurodesk/neurodesk-applications.menu.template', installdir/'neurodesk-applications.menu')
+    shutil.copy2('neurodesk/neurodesk-applications.menu', installdir/'neurodesk-applications.menu')
     shutil.copy2('neurodesk/fetch_and_run.sh', installdir)
     shutil.copy2('neurodesk/fetch_containers.sh', installdir)
     shutil.copy2('neurodesk/configparser.sh', installdir)
