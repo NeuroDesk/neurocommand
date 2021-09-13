@@ -42,6 +42,7 @@ jobs:
     - name: Test neurodesk cli version
       run: /bin/bash .github/workflows/test_neurodesk_cli.sh
   initiate-neuromachine-build:
+    needs: [test_neurodesk_cli]
     runs-on: ubuntu-20.04
     steps:
       - name: Dispatch initiating repository event
