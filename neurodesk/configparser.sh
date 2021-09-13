@@ -18,7 +18,7 @@ if [ -f "$filename" ]; then
             section=${section%]*}
         elif [[ $value ]]
         then
-            declare "${section}_${key}=$value"
+            declare "neurodesk_${key}=$value"
         fi
     done < $filename
 
