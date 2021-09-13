@@ -70,21 +70,21 @@ jobs:
   #       # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
   #   - name: Push vnm to Dockerhub  
   #     run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
-  build_neurodesk:
-    needs: [test_neurodesk_cli]
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v2
-    - name: login to docker hubs
-      run: /bin/bash .github/workflows/login_registries.sh
-    - name: Pull latest neurodesk build from Github Packages
-      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
-    - name: Build new neurodesk image
-      run: /bin/bash .github/workflows/build_docker_image.sh neurodesk
-    - name: Push neurodesk to Github packages (if changes found)
-      run: /bin/bash .github/workflows/push_to_gh_packages.sh
-    - name: Push neurodesk to Dockerhub  (if enabled & changes found)
-      run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
+  # build_neurodesk:
+  #   needs: [test_neurodesk_cli]
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: login to docker hubs
+  #     run: /bin/bash .github/workflows/login_registries.sh
+  #   - name: Pull latest neurodesk build from Github Packages
+  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
+  #   - name: Build new neurodesk image
+  #     run: /bin/bash .github/workflows/build_docker_image.sh neurodesk
+  #   - name: Push neurodesk to Github packages (if changes found)
+  #     run: /bin/bash .github/workflows/push_to_gh_packages.sh
+  #   - name: Push neurodesk to Dockerhub  (if enabled & changes found)
+  #     run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
   # deploy_neurodesk_simg:
   #   needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
   #   runs-on: ubuntu-18.04
