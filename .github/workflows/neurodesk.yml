@@ -2,7 +2,9 @@ name: Neurodesk CI/CD
 
 on:
   push:
-    branches: [ master ]
+    branches: 
+      - master
+      - neurocommand
     paths-ignore: [ '**/README.md' ]  
   pull_request:
     paths-ignore: [ '**/README.md' ] 
@@ -39,26 +41,35 @@ jobs:
         python-version: 3.8
     - name: Test neurodesk cli version
       run: /bin/bash .github/workflows/test_neurodesk_cli.sh
-  build_vnm:
-    needs: [test_neurodesk_cli]
-    runs-on: ubuntu-18.04
+  initiate-neuromachine-build:
+    runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v2
-    - name: login to docker hubs
-      run: /bin/bash .github/workflows/login_registries.sh
-    - name: Pull latest vnm build from Github Packages
-      run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
-    - name: Build new vnm image
-      run: /bin/bash .github/workflows/build_docker_image.sh vnm
-    - name: Push vnm to Github packages (if changes found)
-      if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
-      run: /bin/bash .github/workflows/push_to_gh_packages.sh
-    - name: Test VNM container image
-      run: |
-        echo "[DEBUG] WORK IN PROGRESS"
-        # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
-    - name: Push vnm to Dockerhub  
-      run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
+      - name: Dispatch initiating repository event
+        run: |
+          curl -X POST https://api.github.com/repos/NeuroDesk/neuromachine/dispatches \
+          -H 'Accept: application/vnd.github.v3+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "neurodesk update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
+  # build_vnm:
+  #   needs: [test_neurodesk_cli]
+  #   runs-on: ubuntu-18.04
+  #   steps:
+  #   - uses: actions/checkout@v2
+  #   - name: login to docker hubs
+  #     run: /bin/bash .github/workflows/login_registries.sh
+  #   - name: Pull latest vnm build from Github Packages
+  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
+  #   - name: Build new vnm image
+  #     run: /bin/bash .github/workflows/build_docker_image.sh vnm
+  #   - name: Push vnm to Github packages (if changes found)
+  #     if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
+  #     run: /bin/bash .github/workflows/push_to_gh_packages.sh
+  #   - name: Test VNM container image
+  #     run: |
+  #       echo "[DEBUG] WORK IN PROGRESS"
+  #       # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
+  #   - name: Push vnm to Dockerhub  
+  #     run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
   build_neurodesk:
     needs: [test_neurodesk_cli]
     runs-on: ubuntu-18.04
