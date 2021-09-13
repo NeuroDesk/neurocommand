@@ -18,10 +18,10 @@ if [ -f "$filename" ]; then
             section=${section%]*}
         elif [[ $value ]]
         then
-            declare "${section}_${key}=$value"
+            declare "neurodesk_${key}=$value"
         fi
     done < $filename
 
-    vnm_appmenudir="$(dirname "${vnm_appmenu}")"
-    vnm_appmenufile="$(basename "${vnm_appmenu}")"
+    neurodesk_appmenudir="$(dirname "${neurodesk_appmenu}")"
+    neurodesk_appmenufile="$(basename "${neurodesk_appmenu}")"
 fi

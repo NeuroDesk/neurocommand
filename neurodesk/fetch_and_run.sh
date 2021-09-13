@@ -34,8 +34,8 @@ if [ $# -le 3 ]; then
     if [ -e "${CONTAINER_FILE_NAME}" ]; then
         cd 
         echo "[DEBUG] fetch_and_run.sh: Attempting to launch container ${IMG_NAME}"
-        singularity exec  ${vnm_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
-        singularity shell  ${vnm_singularity_opts} ${CONTAINER_FILE_NAME}
+        singularity exec  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
+        singularity shell  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME}
         if [ $? -eq 0 ]; then
             echo "[DEBUG] fetch_and_run.sh: Container ran OK"
         else

@@ -19,7 +19,7 @@ _base="$(dirname $_script)" ## Delete last component from $_script ##
 source ${_base}/configparser.sh ${_base}/config.ini
 
 # default path is in the home directory of the user executing the call - except if there is a system wide install:
-export PATH_PREFIX=${vnm_installdir}
+export PATH_PREFIX=${neurodesk_installdir}
 
 export CONTAINER_PATH=$PATH_PREFIX/containers
 export MODS_PATH=$CONTAINER_PATH/modules
@@ -57,12 +57,12 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
         exit 2
     fi
 
-    echo "[DEBUG] fetch_containers.sh: copying transparent singularity files from ${vnm_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
-    cp -u ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
-    cp -u ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
+    echo "[DEBUG] fetch_containers.sh: copying transparent singularity files from ${neurodesk_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
+    cp -u ${neurodesk_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
+    cp -u ${neurodesk_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
 
     echo "[DEBUG] fetch_containers.sh: testing if the container runs:"
-    singularity exec ${vnm_singularity_opts} ${CONTAINER_FILE_NAME} ls
+    singularity exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "the container is incomplete and needs to be re-downloaded - run:"
@@ -76,13 +76,13 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
         echo "[DEBUG] fetch_containers.sh: Container ${IMG_NAME} seems to be fully downloaded and executable."        
     fi
 else
-    echo "[DEBUG] fetch_containers.sh: copying transparent singularity files from ${vnm_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
-    cp ${vnm_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
-    cp ${vnm_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
+    echo "[DEBUG] fetch_containers.sh: copying transparent singularity files from ${neurodesk_installdir} to ${CONTAINER_PATH}/${IMG_NAME} ..."
+    cp ${neurodesk_installdir}/transparent-singularity/*.sh ${CONTAINER_PATH}/${IMG_NAME}/
+    cp ${neurodesk_installdir}/transparent-singularity/ts_* ${CONTAINER_PATH}/${IMG_NAME}/
     echo "[DEBUG] fetch_containers.sh: changing directory to: ${CONTAINER_PATH}/${IMG_NAME}"
     cd ${CONTAINER_PATH}/${IMG_NAME}
     echo "[DEBUG] fetch_containers.sh: executing run_transparent_singularity.sh --container ${IMG_NAME}.simg in $PWD"
-   ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg --singularity-opts "${vnm_singularity_opts}"
+   ${CONTAINER_PATH}/${IMG_NAME}/run_transparent_singularity.sh --container ${IMG_NAME}.simg --singularity-opts "${neurodesk_singularity_opts}"
     # rm -rf .git* README.md run_transparent_singularity ts_*
 fi
 
