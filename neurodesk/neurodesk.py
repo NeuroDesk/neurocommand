@@ -56,7 +56,7 @@ def main():
 
     args = get_args()
     config = configparser.ConfigParser()
-
+    
     config['neurodesk'] = {
         'deskenv': '', 
         'installdir': '',
@@ -68,6 +68,14 @@ def main():
         'singularity_opts': ''
         }
     config.read(CONFIG_FILE)
+
+    sections = iter(config.sections())
+    next(sections)
+    for section in sections:
+        items = config.items(section)
+        for item in items:
+            config.set('neurodesk', item[0], item[1])
+        config.remove_section(section)
 
     if args.installdir:
         config['neurodesk']['installdir'] = str(args.installdir)
