@@ -41,16 +41,17 @@ jobs:
         python-version: 3.8
     - name: Test neurodesk cli version
       run: /bin/bash .github/workflows/test_neurodesk_cli.sh
-  initiate-neuromachine-build:
+  initiate-neurodesktop-build:
     needs: [test_neurodesk_cli]
     runs-on: ubuntu-20.04
     steps:
       - name: Dispatch initiating repository event
         run: |
-          curl -X POST https://api.github.com/repos/NeuroDesk/neuromachine/dispatches \
+          curl -X POST https://api.github.com/repos/NeuroDesk/neurodesktop/dispatches \
           -H 'Accept: application/vnd.github.v3+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "neurodesk update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
+
   # build_vnm:
   #   needs: [test_neurodesk_cli]
   #   runs-on: ubuntu-18.04
