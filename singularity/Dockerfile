@@ -33,6 +33,7 @@ RUN mkdir -p /usr/local/var/singularity/mnt && \
     cd $GOPATH/src/github.com/sylabs && \
     wget -qO- https://github.com/sylabs/singularity/archive/refs/tags/v${SINGULARITY_VERSION}.tar.gz | \
     tar xzv && \
+    mv singularity-${SINGULARITY_VERSION} singularity && \
     cd singularity && \
     ./mconfig -p /usr/local/singularity && \
     make -C builddir && \
