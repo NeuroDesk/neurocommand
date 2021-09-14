@@ -1,4 +1,4 @@
-name: Neurodesk CI/CD
+name: Neurocommand CI/CD
 
 on:
   push:
@@ -31,17 +31,17 @@ jobs:
         python-version: 3.8
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
       run: /bin/bash .github/workflows/upload_containers_simg.sh
-  test_neurodesk_cli:
+  test_neurocommand:
     runs-on: ubuntu-18.04
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-python@v2
       with:
         python-version: 3.8
-    - name: Test neurodesk cli version
-      run: /bin/bash .github/workflows/test_neurodesk_cli.sh
+    - name: Test neurocommand version
+      run: /bin/bash .github/workflows/test_neurocommand.sh
   initiate-neurodesktop-build:
-    needs: [test_neurodesk_cli]
+    needs: [test_neurocommand]
     runs-on: ubuntu-20.04
     steps:
       - name: Dispatch initiating repository event
@@ -49,54 +49,4 @@ jobs:
           curl -X POST https://api.github.com/repos/NeuroDesk/neurodesktop/dispatches \
           -H 'Accept: application/vnd.github.v3+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "neurodesk update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
-
-  # build_vnm:
-  #   needs: [test_neurodesk_cli]
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: login to docker hubs
-  #     run: /bin/bash .github/workflows/login_registries.sh
-  #   - name: Pull latest vnm build from Github Packages
-  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh vnm2
-  #   - name: Build new vnm image
-  #     run: /bin/bash .github/workflows/build_docker_image.sh vnm
-  #   - name: Push vnm to Github packages (if changes found)
-  #     if: env.GITHUB_REF != 'refs/heads/master' && env.ROOTFS_NEW != env.ROOTFS_CACHE
-  #     run: /bin/bash .github/workflows/push_to_gh_packages.sh
-  #   - name: Test VNM container image
-  #     run: |
-  #       echo "[DEBUG] WORK IN PROGRESS"
-  #       # docker run $IMAGEID:$SHORT_SHA ls /neurodesk/
-  #   - name: Push vnm to Dockerhub  
-  #     run: /bin/bash .github/workflows/push_to_dockerhub.sh vnm
-  # build_neurodesk:
-  #   needs: [test_neurodesk_cli]
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - name: login to docker hubs
-  #     run: /bin/bash .github/workflows/login_registries.sh
-  #   - name: Pull latest neurodesk build from Github Packages
-  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
-  #   - name: Build new neurodesk image
-  #     run: /bin/bash .github/workflows/build_docker_image.sh neurodesk
-  #   - name: Push neurodesk to Github packages (if changes found)
-  #     run: /bin/bash .github/workflows/push_to_gh_packages.sh
-  #   - name: Push neurodesk to Dockerhub  (if enabled & changes found)
-  #     run: /bin/bash .github/workflows/push_to_dockerhub.sh neurodesk
-  # deploy_neurodesk_simg:
-  #   needs: [upload_containers_simg, test_neurodesk_cli, build_neurodesk]
-  #   runs-on: ubuntu-18.04
-  #   steps:
-  #   - uses: actions/checkout@v2
-  #   - uses: actions/setup-python@v2
-  #     with:
-  #       python-version: 3.8
-  #   - name: login to docker hubs
-  #     run: /bin/bash .github/workflows/login_registries.sh
-  #   - name: Pull latest neurodesk build from Github Packages
-  #     run: /bin/bash .github/workflows/pull_latest_container_from_gh_packages.sh neurodesk
-  #   - name: Upload Neurodesk Singularity Container simg
-  #     run: /bin/bash .github/workflows/upload_neurodesk_singularity_simg.sh
+          --data '{"event_type": "neurocommand update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
