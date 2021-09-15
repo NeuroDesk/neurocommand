@@ -12,6 +12,7 @@ echo "[DEBUG] fetch_and_run.sh: Current working dir : $PWD"
 echo "[DEBUG] fetch_and_run.sh: Script location path (dir) : $_base"
 echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 
+# -z checks if SINGULARITY_BINDPATH is not set
 if [ -z "$SINGULARITY_BINDPATH" ]
 then
       echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH is not set. Trying to set it"
@@ -19,7 +20,34 @@ then
 fi
 
 source ${_base}/configparser.sh ${_base}/config.ini
-source ${_base}/fetch_containers.sh $1 $2 $3
+
+# -z checks if a CVMFS_DISABLE is NOT set
+if [ -z "$CVMFS_DISABLE" ]; then
+    if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers" ]]; then
+        echo "CVMFS detected"
+    else
+        echo "CVMFS does not seem to work"
+        CVMFS_DISABLE=true
+    fi
+fi
+
+# -z checks if a variable is NOT set
+if [ -z "$CVMFS_DISABLE" ] 
+then
+        echo "Mounting containers from CVMFS directly."
+        MOD_NAME=$1
+        MOD_VERS=$2
+        MOD_DATE=$3
+        IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
+        CONTAINER_PATH=/cvmfs/neurodesk.ardc.edu.au/containers
+        MODS_PATH=$CONTAINER_PATH/modules
+        module use ${MODS_PATH}
+else
+        echo "CVMFS not enabled. Downloading containers from object store."
+        source ${_base}/fetch_containers.sh $1 $2 $3
+fi
+
+
 echo "[DEBUG] fetch_and_run.sh: fetching containers done."
 echo "[DEBUG] fetch_and_run.sh: MOD_NAME: " $MOD_NAME
 echo "[DEBUG] fetch_and_run.sh: MOD_VERS: " $MOD_VERS
