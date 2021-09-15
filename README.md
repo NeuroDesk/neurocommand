@@ -1,4 +1,6 @@
-# Neurocommand
-Neurocommand is our command line interface for advanced users. To get an overview of the project refer to the website and documentation: https://neurodesk.github.io/
+Neurocommand is a command line interface for advanced users.
 
-The documentation for Neurocommand can be found here: https://neurodesk.github.io/docs/neurocommand/getting-started/
+
+_Information on the **Neurodesk** project is available at [neurodesk.github.io](https://neurodesk.github.io)_
+
+_Information on **Neurocommand** is available at [neurodesk.github.io/docs/neurocommand](https://neurodesk.github.io/docs/neurocommand)_
