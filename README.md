@@ -23,7 +23,7 @@ If running on cli only ...
 - make sure the current directory is not a symlink (singularity bug): `pwd -P` and then cd there
 - export singularity bindpaths: `export SINGULARITY_BINDPATH=$PWD,$SINGULARITY_BINDPATH` 
 - Run `bash build.sh --cli` to install in cli mode  
-- Run `bash containers.sh` for installing indiviual containers or `bash containers.sh --all` for installing all containers
+- Run `bash containers.sh` for installing individual containers or `bash containers.sh --all` for installing all containers
 - Run `module use $PWD/local/containers/modules/` to add the containers to your module search path. Add this to your .bashrc if working.
 - Run `module avail` to see the installed containers at the top of the list (neurodesk containers will take preference over system modules with the same name). If a container is not yet there run `ml --ignore_cache avail`
 
