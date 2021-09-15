@@ -14,7 +14,7 @@ Neurocommand is our command line interface for advanced users. To get an overvie
 ### Initial install
 - Run `git clone https://github.com/NeuroDesk/neurocommand.git` to clone the repository - make sure to clone this to a directory with enough storage, write permissions and NOT a symbolic link (to be sure run cd \`pwd -P\`)!
 - Run `cd neurocommand` to change into the directory
-- Run `pip3 install -r neurodesk/requirements.txt` to install pre-requisite python packages
+- Run `pip3 install -r neurodesk/requirements.txt --user` to install pre-requisite python packages
 
 #### [Option 1] command line mode - For non-desktop experience (e.g. running on an HPC)  
 If running on cli only ... 
