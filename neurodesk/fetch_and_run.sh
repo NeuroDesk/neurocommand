@@ -26,14 +26,13 @@ if [ -z "$CVMFS_DISABLE" ]; then
     if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers" ]]; then
         echo "CVMFS detected"
     else
-        echo "CVMFS does not seem to work"
+        echo "CVMFS does not seem to work or is disabled."
         CVMFS_DISABLE=true
     fi
 fi
 
 # -z checks if a variable is NOT set
-if [ -z "$CVMFS_DISABLE" ] 
-then
+if [ -z "$CVMFS_DISABLE" ]; then
         echo "Mounting containers from CVMFS directly."
         MOD_NAME=$1
         MOD_VERS=$2
