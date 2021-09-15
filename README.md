@@ -19,10 +19,13 @@ Neurocommand is our command line interface for advanced users. To get an overvie
 #### [Option 1] command line mode - For non-desktop experience (e.g. running on an HPC)  
 If running on cli only ... 
 - Load singularity and for best performance it should be 3.x e.g. `module load singularity/3.5.0` 
+- Load or install aria2 to optimize the download performance of our containers e.g. `module load aria2c`
+- make sure the current directory is not a symlink (singularity bug): `pwd -P` and then cd there
+- export singularity bindpaths: `export SINGULARITY_BINDPATH=$PWD,$SINGULARITY_BINDPATH` 
 - Run `bash build.sh --cli` to install in cli mode  
 - Run `bash containers.sh` for installing indiviual containers or `bash containers.sh --all` for installing all containers
 - Run `module use $PWD/local/containers/modules/` to add the containers to your module search path. Add this to your .bashrc if working.
-- Run `ml avail` to see the installed containers at the top of the list (neurodesk containers will take preference over system modules with the same name). If a container is not yet there run `ml --ignore_cache avail`
+- Run `module avail` to see the installed containers at the top of the list (neurodesk containers will take preference over system modules with the same name). If a container is not yet there run `ml --ignore_cache avail`
 
 #### [Option 2] For Lxde desktops
 If running on an lxde desktop...
