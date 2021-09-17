@@ -18,6 +18,22 @@ sed -i -e 's/^[ \t]*//' -e 's/[ \t]*$//' log.txt
 # replace spaces with underscores
 # sed -i 's/ /_/g' log.txt
 
+
+if [ -n "$singularity_setup_done" ]; then
+    echo "Setup already done. Skipping."
+else
+    #setup singularity 2.6.1 from neurodebian
+    wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
+    echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
+    sudo apt-get update --allow-insecure-repositories
+    echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
+    sudo apt-get install --allow-unauthenticated singularity-container 
+    sudo apt install singularity-container
+
+    export IMAGE_HOME="/home/runner"
+    export singularity_setup_done="true"
+fi
+
 echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
@@ -47,21 +63,6 @@ do
             bash .github/workflows/free-up-space.sh
         fi;
 
-        if [ -n "$singularity_setup_done" ]; then
-            echo "Setup already done. Skipping."
-        else
-            #setup singularity 2.6.1 from neurodebian
-            wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-            echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
-            sudo apt-get update --allow-insecure-repositories
-            echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
-            sudo apt-get install --allow-unauthenticated singularity-container 
-            sudo apt install singularity-container
-
-            export IMAGE_HOME="/home/runner"
-            export singularity_setup_done="true"
-        fi
-
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
         singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
 
@@ -69,9 +70,13 @@ do
         curl -v -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-            echo "${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+            echo "[DEBUG] DONE WITH"
+            echo "[DEBUG] LINE: $LINE"
+            echo "[DEBUG] PROCEEDING TO NEXT LINE:"
+            echo "[DEBUG] PROCEEDING TO NEXT LINE:"
         else
-            echo "${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
             exit 2
         fi
     fi 
