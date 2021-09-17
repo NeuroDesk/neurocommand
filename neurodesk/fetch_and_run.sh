@@ -67,21 +67,13 @@ if [ $# -le 3 ]; then
             echo "[DEBUG] fetch_and_run.sh: Container ran OK"
         else
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "the container ${CONTAINER_FILE_NAME} experienced an error. If you want to trigger a reinstall, run:"
+            echo "the container ${CONTAINER_FILE_NAME} experienced an error."
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
-            echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
-            read -p "Would you like me to do this for you (Y for yes)? " choice 
-            [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
         fi
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "the container ${CONTAINER_FILE_NAME} needs to be updated on your system. To trigger a reinstall, run:"
+        echo "the container ${CONTAINER_FILE_NAME} experienced an error."
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
-        echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
-        read -p "Would you like me to do this for you (Y for yes)? " choice 
-        [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
     fi
 fi
 

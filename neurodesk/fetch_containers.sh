@@ -65,12 +65,10 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
     singularity exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} ls
     if [ $? -ne 0 ]; then
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "the container is incomplete and needs to be re-downloaded - run:"
+        echo "the container is incomplete and needs to be re-downloaded. You could try:"
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         echo "rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_*" 
         echo "rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}" 
-        read -p "Would you like me to do this for you (Y for yes)? " choice 
-        [[ "$choice" == [Yy]* ]] && rm -rf ${CONTAINER_PATH}/${MOD_NAME}_${MOD_VERS}_* && rm -rf ${MODS_PATH}/${MOD_NAME}/${MOD_VERS}
         exit 2
     else 
         echo "[DEBUG] fetch_containers.sh: Container ${IMG_NAME} seems to be fully downloaded and executable."        
