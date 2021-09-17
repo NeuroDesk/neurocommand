@@ -105,6 +105,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Visualization</Name>
+			<Directory>neurodesk/visualization.directory</Directory>
+			<Include>
+				<And>
+					<Category>visualization</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Programming</Name>
 			<Directory>neurodesk/programming.directory</Directory>
 			<Include>

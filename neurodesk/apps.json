@@ -86,7 +86,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["functional imaging", "structural imaging"]
     },
     "convert3d": {
         "apps": {
@@ -95,7 +95,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["data organisation"]
     },
     "datalad": {
         "apps": {
@@ -126,7 +126,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["image segmentation"]
     },
     "fmriprep": {
         "apps": {
@@ -135,7 +135,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging", "image segmentation", "image registration"]
+        "categories": ["functional imaging"]
     },
     "freesurfer": {
         "apps": {
@@ -148,7 +148,7 @@
                 "exec": "freeview"
             }
         },
-        "categories": ["functional imaging", "image segmentation", "image registration"]
+        "categories": ["image segmentation", "image registration"]
     },
     "fsl": {
         "apps": {
@@ -182,7 +182,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["visualization"]
     },
     "hdbet": {
         "apps": {
@@ -204,7 +204,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["image segmentation","visualization"]
     },
     "julia": {
         "apps": {
@@ -235,7 +235,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["data organisation", "functional imaging"]
     },
     "mrtrix3": {
         "apps": {
@@ -305,7 +305,7 @@
                 "exec": ""
             }
         },
-        "categories": []
+        "categories": ["programming"]
     },
     "slicer": {
         "apps": {
