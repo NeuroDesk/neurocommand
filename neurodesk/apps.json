@@ -233,6 +233,10 @@
             "mriqc 0.15.2": {
                 "version": "20201104",
                 "exec": ""
+            },
+            "mriqc 0.16.1": {
+                "version": "20210917",
+                "exec": ""
             }
         },
         "categories": ["data organisation", "functional imaging"]
