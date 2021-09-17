@@ -4,12 +4,9 @@
 #This script runs on the CVMFS STRATUM 0 server
 
 #sudo vi /etc/cron.d/sync_containers_to_cvmfs
-#*/5* * * * ec2-user cd ~ && bash /home/ec2-user/neurodesk/cvmfs/sync_containers_to_cvmfs.sh
+#*/5* * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
 
-cd ~/neurodesk/
-
-# change to ssh
-# git remote set-url origin git@github.com:NeuroDesk/neurodesk.git
+cd ~/neurocommand/
 
 
 # update application list:
@@ -27,7 +24,7 @@ if [[ $FREE -lt 400000000 ]]; then               # 400GB =
 fi;
 
 # download and unpack containers on cvmfs
-# curl -s https://raw.githubusercontent.com/NeuroDesk/neurodesk/master/cvmfs/log.txt
+# curl -s https://raw.githubusercontent.com/NeuroDesk/neurocommand/master/cvmfs/log.txt
 # export IMAGENAME_BUILDDATE=fsl_6.0.3_20200905
 # export IMAGENAME_BUILDDATE=mrtrix3_3.0.1_20200908
 # export IMAGENAME_BUILDDATE=spm12_r7219_20201120
@@ -98,17 +95,15 @@ do
     
     IFS=$Field_Separator
 
-done < /home/ec2-user/neurodesk/cvmfs/log.txt
+done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 
-# check if catalog is OK
-cvmfs_server list-catalogs -e
-
-# export DUCC_DOCKER_REGISTRY_PASS=0xlu08JW33gz
-# cvmfs_ducc convert recipe_neurodesk_auto.yaml
+# check if catalog is OK:
+# cvmfs_server list-catalogs -e
 
 
-# garbage collection
+# garbage collection:
 # sudo cvmfs_server gc neurodesk.ardc.edu.au
+
+# Display tags
 cvmfs_server tag -l
-# cvmfs_server tag -r spm12_r7219_20201120
