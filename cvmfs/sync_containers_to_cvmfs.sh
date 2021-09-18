@@ -57,15 +57,20 @@ do
         echo "$IMAGENAME_BUILDDATE exists on cvmfs"
     else
         echo "$IMAGENAME_BUILDDATE is not yet on cvmfs. Downloading now!"
-        cvmfs_server transaction neurodesk.ardc.edu.au
 
-        cd /cvmfs/neurodesk.ardc.edu.au/containers/
-        git clone https://github.com/NeuroDesk/transparent-singularity $IMAGENAME_BUILDDATE
-        cd $IMAGENAME_BUILDDATE
-        export SINGULARITY_BINDPATH=/cvmfs
-        ./run_transparent_singularity.sh $IMAGENAME_BUILDDATE --unpack true
+        # check if singularity image is already in object storage
+        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
+            cvmfs_server transaction neurodesk.ardc.edu.au
 
-        cd && cvmfs_server publish -m "added $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            cd /cvmfs/neurodesk.ardc.edu.au/containers/
+            git clone https://github.com/NeuroDesk/transparent-singularity $IMAGENAME_BUILDDATE
+            cd $IMAGENAME_BUILDDATE
+            export SINGULARITY_BINDPATH=/cvmfs
+            ./run_transparent_singularity.sh $IMAGENAME_BUILDDATE --unpack true
+
+            cd && cvmfs_server publish -m "added $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+        fi
     fi
 
     # set internal field separator for the string list
