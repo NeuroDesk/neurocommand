@@ -4,7 +4,7 @@
 #This script runs on the CVMFS STRATUM 0 server
 
 #sudo vi /etc/cron.d/sync_containers_to_cvmfs
-#*/5* * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
+#*/5 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
 
 cd ~/neurocommand/
 
