@@ -37,8 +37,9 @@ fi
 echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
 echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
 
-echo "debug logfile:"
+echo "[debug] logfile:"
 cat log.txt
+echo "[debug] logfile is at: $PWD"
 
 while IFS= read -r LINE
 do
