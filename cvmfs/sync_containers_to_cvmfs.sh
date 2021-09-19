@@ -8,13 +8,9 @@
 
 cd ~/neurocommand/
 
-
-# update application list:
+# update application list (the log.txt file get's build in the neurocommand action once all containers are uploaded.):
 git pull
 cd cvmfs
-# ./gen_cvmfs_wishlist.sh
-# git commit -am 'auto commit after CVMFS'
-# git push
 
 # check if there is enough free space - otherwise don't do anything:
 FREE=`df -k --output=avail /storage | tail -n1`
