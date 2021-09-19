@@ -32,6 +32,7 @@ jobs:
         python-version: 3.8
     - name : Check if singularity cache files exist in oracle cloud and swift storage and build if not there
       run: /bin/bash .github/workflows/upload_containers_simg.sh
+    - uses: stefanzweifel/git-auto-commit-action@v4
   test_neurocommand:
     runs-on: ubuntu-18.04
     steps:

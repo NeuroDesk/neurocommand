@@ -83,4 +83,5 @@ done < log.txt
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 mv log.txt cvmfs
-git commit -am 'commit container log file after successfull run'
+# git commit -am 'commit container log file after successfull run'
+# this file will be committed via uses: stefanzweifel/git-auto-commit-action@v4
