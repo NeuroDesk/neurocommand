@@ -12,9 +12,9 @@ cd ~/neurocommand/
 # update application list:
 git pull
 cd cvmfs
-./gen_cvmfs_wishlist.sh
-git commit -am 'auto commit after CVMFS'
-git push
+# ./gen_cvmfs_wishlist.sh
+# git commit -am 'auto commit after CVMFS'
+# git push
 
 # check if there is enough free space - otherwise don't do anything:
 FREE=`df -k --output=avail /storage | tail -n1`
@@ -52,12 +52,12 @@ do
     echo "[DEBUG] BUILDDATE: $BUILDDATE"
 
     echo "check if $IMAGENAME_BUILDDATE is already on cvmfs:"
-    if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/$IMAGENAME_BUILDDATE" ]]
+    if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMAGENAME_BUILDDATE/commands.txt" ]]
     then
         echo "$IMAGENAME_BUILDDATE exists on cvmfs"
     else
         echo "$IMAGENAME_BUILDDATE is not yet on cvmfs. Downloading now!"
-        
+
         #sync object storages:
         rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
         rclone sync oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
