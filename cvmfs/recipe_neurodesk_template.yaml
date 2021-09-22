@@ -1,5 +1,0 @@
-version: 1
-user: vnmc
-cvmfs_repo: neurodesk.ardc.edu.au
-output_format: '$(scheme)://registry.hub.docker.com/$(image)_thin'
-input:
