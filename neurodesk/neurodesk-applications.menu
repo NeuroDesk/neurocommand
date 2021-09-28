@@ -51,6 +51,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Rodent Imaging</Name>
+			<Directory>neurodesk/rodent-imaging.directory</Directory>
+			<Include>
+				<And>
+					<Category>Rodent Imaging</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Data Organisation</Name>
 			<Directory>neurodesk/data-organisation.directory</Directory>
 			<Include>

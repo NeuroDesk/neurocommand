@@ -12,14 +12,14 @@
         },
         "categories": ["functional imaging"]
     },
-    "aidmri": {
+    "aidamri": {
         "apps": {
-            "aidmri 1.1": {
-                "version": "20210330",
+            "aidamri 1.1": {
+                "version": "20210708",
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["image segmentation", "image registration", "rodent imaging"]
     },
     "ants": {
         "apps": {
