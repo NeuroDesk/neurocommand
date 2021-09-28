@@ -48,7 +48,7 @@ do
         echo "[DEBUG] This runner has ${FREE} free disk space"
         if [[ $FREE -lt 30485760 ]]; then               # 30G = 10*1024*1024k
             echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
-            bash .github/workflows/free-up-space.sh
+            bash .github/workflows/free-up-space.sh > /dev/null 2>&1
         fi;
 
 
@@ -68,7 +68,7 @@ do
         fi
 
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
-        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
+        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE > /dev/null 2>&1
 
         echo "[DEBUG] Attempting upload to Oracle ..."
         curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET > /dev/null 2>&1
