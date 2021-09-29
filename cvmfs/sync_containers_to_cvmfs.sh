@@ -61,6 +61,9 @@ do
         # check if singularity image is already in object storage
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
+            # in case of problems:
+            # cvmfs_server check
+            # If you get bad whitelist error, check if the repository is signed: sudo /usr/bin/cvmfs_server resign neurodesk.ardc.edu.au
             cvmfs_server transaction neurodesk.ardc.edu.au
 
             cd /cvmfs/neurodesk.ardc.edu.au/containers/
