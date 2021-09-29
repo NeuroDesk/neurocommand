@@ -55,7 +55,7 @@
 			<Directory>neurodesk/rodent-imaging.directory</Directory>
 			<Include>
 				<And>
-					<Category>Rodent Imaging</Category>
+					<Category>rodent imaging</Category>
 				</And>
 			</Include>
 		</Menu>
