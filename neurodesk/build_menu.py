@@ -17,8 +17,9 @@ def write_directory_file(name, file_dir, icon_dir):
     logging.info(f"Adding submenu for '{name}'")
     file_path = file_dir/f"{name.lower().replace(' ', '-')}.directory"
     icon_path = icon_dir/f"{name.lower().split()[0]}.png"
+    if name == 'Neurodesk':
+        icon_path = icon_dir/f"aedapt.png"
     icon_src = (Path(__file__).parent/'icons'/icon_path.name)
-    # breakpoint()
     try:
         shutil.copy2(icon_src, icon_path)
     except FileNotFoundError:
