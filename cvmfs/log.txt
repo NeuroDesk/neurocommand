@@ -1,5 +1,5 @@
 afni_21.2.00_20210714 categories:functional imaging,
-aidamri_1.1_20210708 categories:image segmentation,image registration,rodent imaging,
+aidamri_1.1_20210708 categories:image segmentation,image registration,
 ants_2.3.4_20210104 categories:image segmentation,image registration,
 aslprep_0.2.7_20210323 categories:quantitative imaging,functional imaging,
 ashs_2.0.0_20210105 categories:image segmentation,
