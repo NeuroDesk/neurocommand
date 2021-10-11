@@ -19,7 +19,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["image segmentation", "image registration", "rodent imaging"]
     },
     "ants": {
         "apps": {
@@ -73,7 +73,7 @@
                 "exec": ""
             }
         },
-        "categories": ["data organisation"]
+        "categories": ["programming"]
     },
     "conn": {
         "apps": {
