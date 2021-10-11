@@ -66,6 +66,15 @@
         },
         "categories": ["data organisation"]
     },
+    "condaenvs 1.0.0": {
+        "apps": {
+            "condaenvs 1.0.0": {
+                "version": "20211011",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "conn": {
         "apps": {
             "connGUI-conn 20b": {
