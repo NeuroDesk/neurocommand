@@ -19,7 +19,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration", "rodent imaging"]
+        "categories": ["image segmentation", "image registration"]
     },
     "ants": {
         "apps": {
