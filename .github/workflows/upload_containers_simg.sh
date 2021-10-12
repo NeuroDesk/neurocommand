@@ -77,6 +77,7 @@ do
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
             echo "[DEBUG] DONE WITH LINE: $LINE"
             echo "[DEBUG] PROCEEDING TO NEXT LINE:"
+            clear
         else
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
             exit 2
