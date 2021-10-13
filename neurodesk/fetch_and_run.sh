@@ -21,6 +21,11 @@ fi
 
 source ${_base}/configparser.sh ${_base}/config.ini
 
+MOD_NAME=$1
+MOD_VERS=$2
+MOD_DATE=$3
+IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
+
 # -z checks if a CVMFS_DISABLE is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
     if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMG_NAME/commands.txt" ]]; then
@@ -34,10 +39,6 @@ fi
 # -z checks if a variable is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
         echo "Mounting containers from CVMFS directly."
-        MOD_NAME=$1
-        MOD_VERS=$2
-        MOD_DATE=$3
-        IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
         CONTAINER_PATH=/cvmfs/neurodesk.ardc.edu.au/containers
         MODS_PATH=$CONTAINER_PATH/modules
         module use ${MODS_PATH}
