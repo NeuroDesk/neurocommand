@@ -23,10 +23,10 @@ source ${_base}/configparser.sh ${_base}/config.ini
 
 # -z checks if a CVMFS_DISABLE is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
-    if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers" ]]; then
-        echo "CVMFS detected"
+    if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMG_NAME/commands.txt" ]]; then
+        echo "CVMFS detected and Container seems to be available"
     else
-        echo "CVMFS does not seem to work or is disabled."
+        echo "CVMFS does not seem to work or is disabled or the container is not available."
         CVMFS_DISABLE=true
     fi
 fi
@@ -42,7 +42,7 @@ if [ -z "$CVMFS_DISABLE" ]; then
         MODS_PATH=$CONTAINER_PATH/modules
         module use ${MODS_PATH}
 else
-        echo "CVMFS not enabled. Downloading containers from object store."
+        echo "Not using CVMFS! Downloading containers fully!"
         source ${_base}/fetch_containers.sh $1 $2 $3
 fi
 
