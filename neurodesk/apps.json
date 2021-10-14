@@ -328,6 +328,15 @@
         },
         "categories": ["programming"]
     },
+    "rstudio": {
+        "apps": {
+            "rstudio 1.4.1106": {
+                "version": "20211014",
+                "exec": ""
+            }
+        },
+        "categories": ["statistics"]
+    },
     "slicer": {
         "apps": {
             "slicer 4.11.20200930": {

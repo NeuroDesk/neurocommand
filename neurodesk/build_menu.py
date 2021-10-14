@@ -278,6 +278,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         write_directory_file("Image Reconstruction", directories_path, icon_dir)
         write_directory_file("Visualization", directories_path, icon_dir)
         write_directory_file("Programming", directories_path, icon_dir)
+        write_directory_file("Statistics", directories_path, icon_dir)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)

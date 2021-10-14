@@ -123,6 +123,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Statistics</Name>
+			<Directory>neurodesk/statistics.directory</Directory>
+			<Include>
+				<And>
+					<Category>statistics</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Programming</Name>
 			<Directory>neurodesk/programming.directory</Directory>
 			<Include>
