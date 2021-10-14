@@ -56,12 +56,12 @@ do
             echo "Setup already done. Skipping."
         else
             #setup singularity 2.6.1 from neurodebian
-            wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
+            wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list > /dev/null 2>&1
             echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
-            sudo apt-get update --allow-insecure-repositories
+            sudo apt-get update --allow-insecure-repositories > /dev/null 2>&1
             echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
-            sudo apt-get install --allow-unauthenticated singularity-container 
-            sudo apt install singularity-container
+            sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
+            sudo apt install singularity-container > /dev/null 2>&1
 
             export IMAGE_HOME="/home/runner"
             export singularity_setup_done="true"
@@ -77,7 +77,6 @@ do
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
             echo "[DEBUG] DONE WITH LINE: $LINE"
             echo "[DEBUG] PROCEEDING TO NEXT LINE:"
-            clear
         else
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
             exit 2
