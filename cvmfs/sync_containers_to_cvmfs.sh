@@ -87,6 +87,17 @@ do
         if [[ -a "/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION" ]]
         then
             echo "$IMAGENAME_BUILDDATE exists in module $CATEGORY"
+            echo "Checking if files are up-to-date:"
+            FILE1=/cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION
+            FILE2=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION
+            if cmp --silent -- "$FILE1" "$FILE2"; then
+                echo "files contents are identical"
+            else
+                echo "files differ - copy again:"
+                cvmfs_server transaction neurodesk.ardc.edu.au
+                cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION
+                cd && cvmfs_server publish -m "updating modules for $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            fi
         else
             cvmfs_server transaction neurodesk.ardc.edu.au
             mkdir -p /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/
