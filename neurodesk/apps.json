@@ -69,7 +69,7 @@
     "clearswi": {
         "apps": {
             "clearswi 1.0.0": {
-                "version": "20211014",
+                "version": "20211015",
                 "exec": ""
             }
         },
@@ -331,7 +331,7 @@
     "romeo": {
         "apps": {
             "romeo 3.2.4": {
-                "version": "20211014",
+                "version": "20211015",
                 "exec": ""
             }
         },
