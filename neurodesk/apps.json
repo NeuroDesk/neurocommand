@@ -82,7 +82,7 @@
                 "exec": ""
             }
         },
-        "categories": ["programming"]
+        "categories": ["programming", "electrophysiology"]
     },
     "conn": {
         "apps": {

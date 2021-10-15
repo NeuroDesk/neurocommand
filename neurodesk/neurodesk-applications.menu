@@ -150,6 +150,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Electrophysiology</Name>
+			<Directory>neurodesk/electrophysiology.directory</Directory>
+			<Include>
+				<And>
+					<Category>electrophysiology</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Phase Processing</Name>
 			<Directory>neurodesk/phase-processing.directory</Directory>
 			<Include>
