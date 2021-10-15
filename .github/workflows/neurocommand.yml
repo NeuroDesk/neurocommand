@@ -42,13 +42,13 @@ jobs:
         python-version: 3.8
     - name: Test neurocommand version
       run: /bin/bash .github/workflows/test_neurocommand.sh
-  initiate-neurodesktop-build:
-    needs: [test_neurocommand]
-    runs-on: ubuntu-20.04
-    steps:
-      - name: Dispatch initiating repository event
-        run: |
-          curl -X POST https://api.github.com/repos/NeuroDesk/neurodesktop/dispatches \
-          -H 'Accept: application/vnd.github.v3+json' \
-          -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "neurocommand update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
+#   initiate-neurodesktop-build:
+#     needs: [test_neurocommand]
+#     runs-on: ubuntu-20.04
+#     steps:
+#       - name: Dispatch initiating repository event
+#         run: |
+#           curl -X POST https://api.github.com/repos/NeuroDesk/neurodesktop/dispatches \
+#           -H 'Accept: application/vnd.github.v3+json' \
+#           -u ${{ secrets.ACCESS_TOKEN }} \
+#           --data '{"event_type": "neurocommand update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
