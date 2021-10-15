@@ -132,6 +132,60 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Quality Control</Name>
+			<Directory>neurodesk/quality-control.directory</Directory>
+			<Include>
+				<And>
+					<Category>quality-control</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Spine</Name>
+			<Directory>neurodesk/spine.directory</Directory>
+			<Include>
+				<And>
+					<Category>spine</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Phase Processing</Name>
+			<Directory>neurodesk/phase-processing.directory</Directory>
+			<Include>
+				<And>
+					<Category>phase-processing</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Hippocampus</Name>
+			<Directory>neurodesk/hippocampus.directory</Directory>
+			<Include>
+				<And>
+					<Category>hippocampus</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Body</Name>
+			<Directory>neurodesk/body.directory</Directory>
+			<Include>
+				<And>
+					<Category>body</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
+			<Name>Shape Analysis</Name>
+			<Directory>neurodesk/shape-analysis.directory</Directory>
+			<Include>
+				<And>
+					<Category>shape-analysis</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Programming</Name>
 			<Directory>neurodesk/programming.directory</Directory>
 			<Include>

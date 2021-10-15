@@ -19,7 +19,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration", "rodent imaging"]
+        "categories": ["rodent imaging"]
     },
     "ants": {
         "apps": {
@@ -28,7 +28,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["image registration"]
     },
     "aslprep": {
         "apps": {
@@ -37,7 +37,7 @@
                 "exec": ""
             }
         },
-        "categories": ["quantitative imaging", "functional imaging"]
+        "categories": ["quantitative imaging"]
     },
     "ashs": {
         "apps": {
@@ -46,7 +46,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["hippocampus"]
     },
     "bart": {
         "apps": {
@@ -95,7 +95,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging", "structural imaging"]
+        "categories": ["functional imaging", "data organisation"]
     },
     "convert3d": {
         "apps": {
@@ -135,7 +135,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["body"]
     },
     "fmriprep": {
         "apps": {
@@ -161,7 +161,7 @@
                 "exec": "freeview"
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["image segmentation"]
     },
     "fsl": {
         "apps": {
@@ -248,7 +248,7 @@
                 "exec": ""
             }
         },
-        "categories": ["data organisation", "functional imaging"]
+        "categories": ["data organisation", "functional imaging", "quality control"]
     },
     "mrtrix3": {
         "apps": {
@@ -308,7 +308,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["hippocampus"]
     },
     "qsmxt": {
         "apps": {
@@ -317,7 +317,7 @@
                 "exec": ""
             }
         },
-        "categories": ["quantitative imaging"]
+        "categories": ["phase processing", "quantitative imaging"]
     },
     "root": {
         "apps": {
@@ -365,7 +365,7 @@
                 "exec": "SlicerSALT"
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["shape analysis"]
     },
     "spinalcordtoolbox": {
         "apps": {
@@ -386,7 +386,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["spine"]
     },
     "spm12": {
         "apps": {
@@ -408,6 +408,6 @@
                 "exec": ""
             }
         },
-        "categories": ["quantitative imaging"]
+        "categories": ["quantitative imaging", "phase processing"]
     }
 }
