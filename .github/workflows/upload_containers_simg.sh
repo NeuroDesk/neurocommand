@@ -73,13 +73,13 @@ do
         # echo "[DEBUG] Attempting upload to Oracle ..."
         curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET > /dev/null 2>&1
 
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-            # echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
-            # echo "[DEBUG] PROCEEDING TO NEXT LINE"
-        else
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
-            exit 2
-        fi
+        # if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
+        #     # echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+        #     # echo "[DEBUG] PROCEEDING TO NEXT LINE"
+        # else
+        #     echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
+        #     exit 2
+        # fi
     fi 
 done < log.txt
 
