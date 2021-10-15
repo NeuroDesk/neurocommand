@@ -28,6 +28,22 @@ echo "[debug] logfile:"
 cat log.txt
 echo "[debug] logfile is at: $PWD"
 
+
+if [ -n "$singularity_setup_done" ]; then
+    echo "Setup already done. Skipping."
+else
+    #setup singularity 2.6.1 from neurodebian
+    wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list > /dev/null 2>&1
+    echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
+    sudo apt-get update --allow-insecure-repositories > /dev/null 2>&1
+    echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
+    sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
+    sudo apt install singularity-container > /dev/null 2>&1
+
+    export IMAGE_HOME="/home/runner"
+    export singularity_setup_done="true"
+fi
+
 while IFS= read -r LINE
 do
     echo "LINE: $LINE"
@@ -50,22 +66,6 @@ do
             echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
             bash .github/workflows/free-up-space.sh > /dev/null 2>&1
         fi;
-
-
-        if [ -n "$singularity_setup_done" ]; then
-            echo "Setup already done. Skipping."
-        else
-            #setup singularity 2.6.1 from neurodebian
-            wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list > /dev/null 2>&1
-            echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
-            sudo apt-get update --allow-insecure-repositories > /dev/null 2>&1
-            echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
-            sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
-            sudo apt install singularity-container > /dev/null 2>&1
-
-            export IMAGE_HOME="/home/runner"
-            export singularity_setup_done="true"
-        fi
 
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
         singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE > /dev/null 2>&1
