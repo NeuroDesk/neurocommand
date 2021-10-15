@@ -75,7 +75,6 @@ do
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
-            echo "[DEBUG] DONE WITH LINE: $LINE"
             echo "[DEBUG] PROCEEDING TO NEXT LINE:"
         else
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
@@ -85,6 +84,6 @@ do
 done < log.txt
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
-echo "[Debug] mv logfiel to cvmfs directory"
+echo "[Debug] mv logfile to cvmfs directory"
 mv log.txt cvmfs
 # this file will be committed via uses: stefanzweifel/git-auto-commit-action@v4
