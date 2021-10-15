@@ -66,6 +66,15 @@
         },
         "categories": ["data organisation"]
     },
+    "clearswi": {
+        "apps": {
+            "clearswi 1.0.0": {
+                "version": "20211014",
+                "exec": ""
+            }
+        },
+        "categories": ["phase processing"]
+    },
     "condaenvs 1.0.0": {
         "apps": {
             "condaenvs 1.0.0": {
@@ -318,6 +327,15 @@
             }
         },
         "categories": ["phase processing", "quantitative imaging"]
+    },
+    "romeo": {
+        "apps": {
+            "romeo 3.2.4": {
+                "version": "20211014",
+                "exec": ""
+            }
+        },
+        "categories": ["phase processing"]
     },
     "root": {
         "apps": {
