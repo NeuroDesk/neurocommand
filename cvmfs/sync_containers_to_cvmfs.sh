@@ -70,9 +70,17 @@ do
             git clone https://github.com/NeuroDesk/transparent-singularity $IMAGENAME_BUILDDATE
             cd $IMAGENAME_BUILDDATE
             export SINGULARITY_BINDPATH=/cvmfs
+            echo $PATH
+            export PATH=$PATH:/usr/sbin/
             ./run_transparent_singularity.sh $IMAGENAME_BUILDDATE --unpack true
-
-            cd && cvmfs_server publish -m "added $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            
+            retVal=$?
+            if [ $retVal -ne 0 ]; then
+                echo "Error in Transparent singularity. Check the log. Aborting!"
+                cd && cvmfs_server abort 
+            else
+                cd && cvmfs_server publish -m "added $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            fi
         fi
     fi
 
