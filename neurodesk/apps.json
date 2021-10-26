@@ -140,11 +140,11 @@
     "eeglab": {
         "apps": {
             "eeglab 2020.0": {
-                "version": "20211023",
+                "version": "20211026",
                 "exec": ""
             },            
             "eeglabGUI-eeglab 2020.0": {
-                "version": "20211023",
+                "version": "20211026",
                 "exec": "EEGLAB"
             }
         },

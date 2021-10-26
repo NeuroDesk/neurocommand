@@ -62,16 +62,16 @@ do
         # check if there is enough free disk space on the runner:
         FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
         echo "[DEBUG] This runner has ${FREE} free disk space"
-        if [[ $FREE -lt 30485760 ]]; then               # 30G = 10*1024*1024k
+        if [[ $FREE -lt 50485760 ]]; then               # 50G = 10*1024*1024k
             echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
-            bash .github/workflows/free-up-space.sh > /dev/null 2>&1
+            bash .github/workflows/free-up-space.sh
         fi;
 
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
-        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE > /dev/null 2>&1
+        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
 
         echo "[DEBUG] Attempting upload to Oracle ..."
-        curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET > /dev/null 2>&1
+        curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
 
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
