@@ -12,6 +12,7 @@ connectomeworkbench_1.4.2_20201119 categories:functional imaging,data organisati
 convert3d_1.0.0_20210104 categories:data organisation,
 datalad_0.13.3_20201119 categories:data organisation,
 dsistudio_2020.10_20210109 categories:diffusion imaging,
+eeglab_2020.0_20211026 categories:electrophysiology,
 fatsegnet_1.0.gpu_20201212 categories:body,
 fmriprep_20.1.3_20201118 categories:functional imaging,
 fmriprep_20.2.3_20210917 categories:functional imaging,
