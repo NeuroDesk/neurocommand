@@ -44,7 +44,8 @@ else
     export singularity_setup_done="true"
 fi
 
-while IFS= read -r LINE
+LINES=$(cat log.txt)
+for LINE in $LINES
 do
     echo "LINE: $LINE"
     IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
@@ -83,7 +84,7 @@ do
             exit 2
         fi
     fi 
-done <<< $(cat log.txt )
+done
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
