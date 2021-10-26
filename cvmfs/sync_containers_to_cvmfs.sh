@@ -6,6 +6,10 @@
 #sudo vi /etc/cron.d/sync_containers_to_cvmfs
 #*/60 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
 
+#The cronjob logfile get's cleared every week
+#sudo vi /etc/cron.d/clear_cronjob_log
+#5 4 * * sun ec2-user cd ~ && rm /home/ec2-user/cronjob.log
+
 cd ~/neurocommand/
 
 # update application list (the log.txt file get's build in the neurocommand action once all containers are uploaded.):
@@ -133,4 +137,4 @@ done < /home/ec2-user/neurocommand/cvmfs/log.txt
 # sudo cvmfs_server gc neurodesk.ardc.edu.au
 
 # Display tags
-cvmfs_server tag -l
+# cvmfs_server tag -l
