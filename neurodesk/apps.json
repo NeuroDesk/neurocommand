@@ -137,6 +137,19 @@
         },
         "categories": ["diffusion imaging"]
     },
+    "eeglab": {
+        "apps": {
+            "eeglab 2020.0": {
+                "version": "20211023",
+                "exec": ""
+            },            
+            "eeglabGUI-eeglab 2020.0": {
+                "version": "20211023",
+                "exec": "EEGLAB"
+            }
+        },
+        "categories": ["electrophysiology"]
+    },
     "fatsegnet": {
         "apps": {
             "fatsegnet 1.0.gpu": {
