@@ -44,8 +44,7 @@ else
     export singularity_setup_done="true"
 fi
 
-LINES=$(cat log.txt)
-for LINE in $LINES
+cat log.txt | while read LINE
 do
     echo "LINE: $LINE"
     IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
