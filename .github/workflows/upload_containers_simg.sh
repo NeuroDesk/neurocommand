@@ -65,6 +65,8 @@ do
         if [[ $FREE -lt 50485760 ]]; then               # 50G = 10*1024*1024k
             echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
             bash .github/workflows/free-up-space.sh
+            FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
+            echo "[DEBUG] This runner has ${FREE} free disk space after cleanup"
         fi;
 
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
