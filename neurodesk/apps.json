@@ -181,6 +181,14 @@
             "freeviewGUI-freesurfer 7.1.1": {
                 "version": "20210225",
                 "exec": "freeview"
+            },
+            "freesurfer 7.2.0": {
+                "version": "20211130",
+                "exec": ""
+            },
+            "freeviewGUI-freesurfer 7.2.0": {
+                "version": "20211130",
+                "exec": "freeview"
             }
         },
         "categories": ["image segmentation"]
