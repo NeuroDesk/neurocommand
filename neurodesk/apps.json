@@ -117,8 +117,8 @@
     },
     "datalad": {
         "apps": {
-            "datalad 0.13.3": {
-                "version": "20201119",
+            "datalad 0.15.3": {
+                "version": "20211130",
                 "exec": ""
             }
         },
