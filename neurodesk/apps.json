@@ -438,7 +438,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging"]
+        "categories": ["functional imaging", "image segmentation", "image registration", "structural imaging"]
     },
     "tgvqsm": {
         "apps": {
@@ -448,5 +448,14 @@
             }
         },
         "categories": ["quantitative imaging", "phase processing"]
+    },
+    "oshyx": {
+        "apps": {
+            "oshyx 0.2": {
+                "version": "20211201",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
     }
 }
