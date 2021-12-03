@@ -66,6 +66,19 @@
         },
         "categories": ["data organisation"]
     },
+    "brainstorm": {
+        "apps": {
+            "brainstorm 3.211130": {
+                "version": "20211202",
+                "exec": ""
+            },            
+            "brainstormGUI-brainstorm 3.211130": {
+                "version": "20211202",
+                "exec": "brainstorm3.command"
+            }
+        },
+        "categories": ["electrophysiology"]
+    },
     "clearswi": {
         "apps": {
             "clearswi 1.0.0": {
