@@ -88,15 +88,6 @@
         },
         "categories": ["phase processing"]
     },
-    "condaenvs 1.0.0": {
-        "apps": {
-            "condaenvs 1.0.0": {
-                "version": "20211011",
-                "exec": ""
-            }
-        },
-        "categories": ["programming", "electrophysiology"]
-    },
     "conn": {
         "apps": {
             "connGUI-conn 20b": {
