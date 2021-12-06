@@ -78,7 +78,7 @@
             },            
             "brainstormGUI-brainstorm 3.211130": {
                 "version": "20211202",
-                "exec": "brainstorm3.command"
+                "exec": "./brainstorm3.command /opt/MCR/v98/"
             }
         },
         "categories": ["electrophysiology"]
