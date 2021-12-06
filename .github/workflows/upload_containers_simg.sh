@@ -44,6 +44,11 @@ else
     export singularity_setup_done="true"
 fi
 
+# another option:
+# while IFS="" read -r p || [ -n "$p" ]
+# do
+#   printf '%s\n' "$p"
+# done < peptides.txt
 cat log.txt | while read LINE
 do
     echo "LINE: $LINE"
