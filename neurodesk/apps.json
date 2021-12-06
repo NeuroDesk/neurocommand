@@ -167,6 +167,15 @@
         },
         "categories": ["body"]
     },
+    "fieldtrip": {
+        "apps": {
+            "fieldtrip 20211114": {
+                "version": "20211206",
+                "exec": ""
+            }
+        },
+        "categories": ["electrophysiology"]
+    },
     "fmriprep": {
         "apps": {
             "fmriprep 20.1.3": {
