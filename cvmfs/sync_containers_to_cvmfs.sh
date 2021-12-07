@@ -56,8 +56,9 @@ do
     then
         echo "$IMAGENAME_BUILDDATE exists on cvmfs"
     else
-        echo "$IMAGENAME_BUILDDATE is not yet on cvmfs. Downloading now!"
+        echo "$IMAGENAME_BUILDDATE is not yet on cvmfs."
 
+        echo "Syncing object storages:"
         #sync object storages:
         rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
         rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
@@ -85,7 +86,12 @@ do
             else
                 cd && cvmfs_server publish -m "added $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
             fi
+        else
+            echo "[WARNING] ========================================================="
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist in oracle cloud"
+            echo "[WARNING] ========================================================="
         fi
+        
     fi
 
     # set internal field separator for the string list
