@@ -44,7 +44,8 @@ else
     export singularity_setup_done="true"
 fi
 
-while IFS=" " read -r p || [ -n "$LINE" ]
+mapfile -t arr < log.txt
+for LINE in "${arr[@]}";
 do
     echo "LINE: $LINE"
     IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
