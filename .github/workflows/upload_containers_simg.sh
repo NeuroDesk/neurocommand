@@ -44,12 +44,7 @@ else
     export singularity_setup_done="true"
 fi
 
-# another option:
-# while IFS="" read -r p || [ -n "$p" ]
-# do
-#   printf '%s\n' "$p"
-# done < peptides.txt
-cat log.txt | while read LINE
+while IFS="" read -r p || [ -n "$LINE" ]
 do
     echo "LINE: $LINE"
     IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
@@ -88,7 +83,8 @@ do
             exit 2
         fi
     fi 
-done
+done < log.txt
+
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
