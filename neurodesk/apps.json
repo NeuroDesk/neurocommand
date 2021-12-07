@@ -78,7 +78,7 @@
             },            
             "brainstormGUI-brainstorm 3.211130": {
                 "version": "20211202",
-                "exec": "./brainstorm3.command /opt/MCR/v98/"
+                "exec": "/opt/brainstorm-3.211130/brainstorm3.command /opt/MCR/v98/"
             }
         },
         "categories": ["electrophysiology"]
@@ -361,7 +361,7 @@
         "apps": {
             "physioGUI-physio r7771": {
                 "version": "20211206",
-                "exec": "bash run_spm12.sh /opt/mcr/v97/"
+                "exec": "bash run_spm12.sh /opt/mcr/v99/"
             },
             "physio r7771": {
                 "version": "20211206",
