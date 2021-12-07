@@ -73,12 +73,12 @@
     "brainstorm": {
         "apps": {
             "brainstorm 3.211130": {
-                "version": "20211202",
+                "version": "20211207",
                 "exec": ""
             },            
             "brainstormGUI-brainstorm 3.211130": {
-                "version": "20211202",
-                "exec": "bash /opt/brainstorm-3.211130/brainstorm3.command /opt/MCR/v98/"
+                "version": "20211207",
+                "exec": "brainstorm3.command /opt/MCR/v98/"
             }
         },
         "categories": ["electrophysiology"]
