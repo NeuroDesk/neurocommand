@@ -44,7 +44,7 @@ else
     export singularity_setup_done="true"
 fi
 
-while IFS="" read -r p || [ -n "$LINE" ]
+while IFS=" " read -r p || [ -n "$LINE" ]
 do
     echo "LINE: $LINE"
     IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
