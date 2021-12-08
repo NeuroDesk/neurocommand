@@ -372,8 +372,8 @@
     },
     "qsmxt": {
         "apps": {
-            "qsmxt 1.1.6": {
-                "version": "20210623",
+            "qsmxt 1.1.8": {
+                "version": "20211208",
                 "exec": ""
             }
         },
@@ -438,20 +438,8 @@
     },
     "spinalcordtoolbox": {
         "apps": {
-            "spinalcordtoolbox 4.3": {
-                "version": "20201108",
-                "exec": ""
-            },
-            "spinalcordtoolbox 5.1.0": {
-                "version": "20210222",
-                "exec": ""
-            },
-            "spinalcordtoolbox 5.2.0": {
-                "version": "20210226",
-                "exec": ""
-            },
-            "spinalcordtoolbox 5.3.0": {
-                "version": "20210614",
+            "spinalcordtoolbox 5.4": {
+                "version": "20211208",
                 "exec": ""
             }
         },
