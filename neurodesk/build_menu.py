@@ -90,10 +90,10 @@ class NeurodeskApp:
         self,
         deskenv: Text,
         installdir: Path,
-        sh_prefix: Text,
         name: Text,
-        version: Text,
-        category: Text,
+        sh_prefix: Text = "",
+        version: Text = "",
+        category: Text = "",
         exec: Text = "",
         terminal: bool = True
         ):
@@ -114,8 +114,8 @@ class NeurodeskApp:
         """
         self.deskenv = deskenv
         self.installdir = installdir
-        self.sh_prefix = sh_prefix
         self.name = name
+        self.sh_prefix = sh_prefix
         self.version= version
         self.category = category
         self.exec = exec #TODO change exec to safer variable name
@@ -132,7 +132,7 @@ class NeurodeskApp:
             self.container_name = self.name
             self.exec_name = self.name
 
-    def add_app_sh(self):
+    def add_app_sh(self, sh_exec=""):
         fetch_and_run_sh = self.installdir/"fetch_and_run.sh"
         self.bin_path = self.installdir/"bin"
         self.bin_path.mkdir(exist_ok=True)
@@ -140,7 +140,9 @@ class NeurodeskApp:
         with open(self.sh_path, "w",) as self.sh_file:
             self.sh_file.write("#!/usr/bin/env bash\n")
             self.sh_file.write(f"{self.sh_prefix} ")
-            if self.deskenv == 'mate':
+            if sh_exec:
+                self.sh_file.write(f"{sh_exec}")
+            elif self.deskenv == 'mate':
                 self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec}")
             else:
                 self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec}")
@@ -290,6 +292,16 @@ def build_menu(installdir, deskenv, sh_prefix):
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)
     (installdir/'icons').mkdir(exist_ok=True)
     apps_from_json(climode, deskenv, installdir, appsjson, sh_prefix)
+
+    help_app = NeurodeskApp(
+        deskenv=deskenv,
+        installdir=installdir,
+        name="Help",
+        category="Neurodesk")
+    help_app.app_names()
+    help_app.add_app_sh("firefox https://neurodesk.github.io/docs/neurodesktop")
+    if not climode:
+        help_app.add_app_menu()
 
     # Remove any symlinks from local appdir
     # Prevents symlink recursion
