@@ -377,7 +377,7 @@
                 "exec": ""
             }
         },
-        "categories": ["phase processing", "quantitative imaging"]
+        "categories": ["phase processing", "quantitative imaging", "structural imaging"]
     },
     "romeo": {
         "apps": {
