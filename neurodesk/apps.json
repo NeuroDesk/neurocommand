@@ -176,6 +176,10 @@
             "fmriprep 20.2.3": {
                 "version": "20210917",
                 "exec": ""
+            },
+            "fmriprep 20.2.6": {
+                "version": "20211209",
+                "exec": ""
             }
         },
         "categories": ["functional imaging"]
