@@ -123,15 +123,6 @@
         },
         "categories": ["data organisation"]
     },
-    "datalad": {
-        "apps": {
-            "datalad 0.15.3": {
-                "version": "20211130",
-                "exec": ""
-            }
-        },
-        "categories": ["data organisation"]
-    },
     "dsistudio": {
         "apps": {
             "dsistudio 2020.10": {
