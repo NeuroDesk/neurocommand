@@ -30,6 +30,10 @@
             "ants 2.3.4": {
                 "version": "20210104",
                 "exec": ""
+            },
+            "ants 2.3.5": {
+                "version": "20211210",
+                "exec": ""
             }
         },
         "categories": ["image registration"]
