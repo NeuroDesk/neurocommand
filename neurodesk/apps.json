@@ -36,7 +36,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image registration"]
+        "categories": ["image registration", "structural imaging", "image segmentation"]
     },
     "aslprep": {
         "apps": {
@@ -207,7 +207,7 @@
                 "exec": "freeview"
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["image segmentation", "structural imaging"]
     },
     "fsl": {
         "apps": {
@@ -367,7 +367,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging", "image segmentation", "image registration", "structural imaging"]
+        "categories": ["functional imaging"]
     },
     "qsmxt": {
         "apps": {
@@ -420,7 +420,7 @@
                 "exec": "Slicer"
             }
         },
-        "categories": ["image segmentation", "image registration"]
+        "categories": ["image segmentation", "image registration", "structural imaging"]
     },
     "slicersalt": {
         "apps": {
