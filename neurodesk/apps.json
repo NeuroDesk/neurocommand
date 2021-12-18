@@ -291,10 +291,10 @@
         "apps": {
             "mricrogl 1.2.20211006": {
                 "version": "20211218",
-                "exec": ""
+                "exec": "MRIcroGL"
             }
         },
-        "categories": ["data organisation", "functional imaging", "quality control"]
+        "categories": ["visualization"]
     },
     "mriqc": {
         "apps": {
@@ -465,6 +465,15 @@
             }
         },
         "categories": ["functional imaging", "image segmentation", "image registration", "structural imaging"]
+    },
+    "surfice": {
+        "apps": {
+            "surfice 1.0.20210730": {
+                "version": "20211218",
+                "exec": "surfice"
+            }
+        },
+        "categories": ["visualization"]
     },
     "tgvqsm": {
         "apps": {
