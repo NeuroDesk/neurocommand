@@ -287,6 +287,15 @@
         },
         "categories": ["image segmentation", "image registration", "structural imaging"]
     },
+    "mricrogl": {
+        "apps": {
+            "mricrogl 1.2.20211006": {
+                "version": "20211218",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation", "functional imaging", "quality control"]
+    },
     "mriqc": {
         "apps": {
             "mriqc 0.16.1": {
