@@ -291,6 +291,10 @@
         "apps": {
             "mricrogl 1.2.20211006": {
                 "version": "20211218",
+                "exec": ""
+            },
+            "mricroglGUI-mricrogl 1.2.20211006": {
+                "version": "20211218",
                 "exec": "MRIcroGL"
             }
         },
@@ -469,6 +473,10 @@
     "surfice": {
         "apps": {
             "surfice 1.0.20210730": {
+                "version": "20211218",
+                "exec": ""
+            },
+            "surficeGUI-surfice 1.0.20210730": {
                 "version": "20211218",
                 "exec": "surfice"
             }
