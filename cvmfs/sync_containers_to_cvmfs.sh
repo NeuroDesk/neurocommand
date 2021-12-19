@@ -10,6 +10,16 @@
 #sudo vi /etc/cron.d/clear_cronjob_log
 #5 4 * * sun ec2-user cd ~ && rm /home/ec2-user/cronjob.log
 
+
+LOCKFILE=~/ISRUNNING.lock
+if [[ -s $LOCKFILE ]]; then
+    echo "there is currently a process running already."
+    exit 2
+else
+    touch $LOCKFILE
+    echo "running" >> $LOCKFILE
+fi
+
 cd ~/neurocommand/
 
 # update application list (the log.txt file get's build in the neurocommand action once all containers are uploaded.):
@@ -134,6 +144,7 @@ do
 
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
+rm -rf $LOCKFILE
 
 # check if catalog is OK:
 # cvmfs_server list-catalogs -e
