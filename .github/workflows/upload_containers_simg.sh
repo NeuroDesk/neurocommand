@@ -92,4 +92,7 @@ done < log.txt
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
 mv log.txt cvmfs
-# this file will be committed via uses: stefanzweifel/git-auto-commit-action@v4
+
+cd cvmfs
+python3 json_gen.py #this generates the applist.json for the website
+# these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4

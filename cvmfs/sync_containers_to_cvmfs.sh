@@ -1,14 +1,12 @@
 #!/usr/bin/env bash
 # set -e
 
-#This script runs on the CVMFS STRATUM 0 server every 60 minutes
+#This script runs on the CVMFS STRATUM 0 server every 1 minute
 
 #sudo vi /etc/cron.d/sync_containers_to_cvmfs
-#*/60 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
+#*/1 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
 
-#The cronjob logfile get's cleared every week
-#sudo vi /etc/cron.d/clear_cronjob_log
-#5 4 * * sun ec2-user cd ~ && rm /home/ec2-user/cronjob.log
+#The cronjob logfile gets cleared after every week successful run
 
 
 LOCKFILE=~/ISRUNNING.lock
@@ -145,6 +143,7 @@ do
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 rm -rf $LOCKFILE
+rm -rf cronjob.log
 
 # check if catalog is OK:
 # cvmfs_server list-catalogs -e
