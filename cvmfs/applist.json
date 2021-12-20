@@ -257,6 +257,12 @@
             ]
         },
         {
+            "application": "palm_alpha119_20211220",
+            "categories": [
+                "functional imaging"
+            ]
+        },
+        {
             "application": "physio_r7771_20211206",
             "categories": [
                 "functional imaging"
