@@ -369,6 +369,15 @@
         },
         "categories": ["hippocampus"]
     },
+    "palm": {
+        "apps": {
+            "palm alpha119": {
+                "version": "20211220",
+                "exec": ""
+            }
+        },
+        "categories": ["functional imaging"]
+    },
     "physio": {
         "apps": {
             "physioGUI-physio r7771": {
