@@ -400,6 +400,15 @@
         },
         "categories": ["phase processing", "quantitative imaging", "structural imaging"]
     },
+    "rabies": {
+        "apps": {
+            "rabies 0.3.5": {
+                "version": "20220111",
+                "exec": ""
+            }
+        },
+        "categories": ["rodent imaging"]
+    },
     "romeo": {
         "apps": {
             "romeo 3.2.4": {
