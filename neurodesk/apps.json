@@ -533,12 +533,8 @@
             "vesselapp 0.3.1": {
                 "version": "20211216",
                 "exec": ""
-            },
-            "vesselappGUI-vesselapp 0.3.1": {
-                "version": "20211216",
-                "exec": "cd /opt/vessel-app/ && bash app.sh"
             }
         },
-        "categories": ["segmentation"]
+        "categories": ["image segmentation"]
     }
 }
