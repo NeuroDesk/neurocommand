@@ -503,8 +503,8 @@
     },
     "oshyx": {
         "apps": {
-            "oshyx 0.2": {
-                "version": "20211201",
+            "oshyx 0.3": {
+                "version": "20220110",
                 "exec": ""
             }
         },
