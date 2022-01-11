@@ -201,7 +201,7 @@
             ]
         }, 
         {
-            "application": "mricrogl_1.2.20211006_20211218", 
+            "application": "mricrogl_1.2.20211006_20220111", 
             "categories": [
                 "visualization"
             ]
@@ -239,6 +239,12 @@
             ]
         }, 
         {
+            "application": "niistat_1.0.20191216_20220111", 
+            "categories": [
+                "functional imaging"
+            ]
+        }, 
+        {
             "application": "lcmodel_6.3_20210302", 
             "categories": [
                 "spectroscopy"
@@ -254,6 +260,12 @@
             "application": "lashis_2.0_20210211", 
             "categories": [
                 "hippocampus"
+            ]
+        }, 
+        {
+            "application": "oshyx_0.3_20220110", 
+            "categories": [
+                "image segmentation"
             ]
         }, 
         {
@@ -343,9 +355,9 @@
             ]
         }, 
         {
-            "application": "oshyx_0.3_20220110", 
+            "application": "vesselapp_0.3.1_20211216", 
             "categories": [
-                "image segmentation"
+                "segmentation"
             ]
         }
     ]
