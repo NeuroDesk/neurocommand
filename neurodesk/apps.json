@@ -369,6 +369,15 @@
         },
         "categories": ["hippocampus"]
     },
+    "oshyx": {
+        "apps": {
+            "oshyx 0.3": {
+                "version": "20220110",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "palm": {
         "apps": {
             "palm alpha119": {
@@ -510,13 +519,17 @@
         },
         "categories": ["quantitative imaging", "phase processing"]
     },
-    "oshyx": {
+    "vesselapp": {
         "apps": {
-            "oshyx 0.3": {
-                "version": "20220110",
+            "vesselapp 0.3.1": {
+                "version": "20211216",
                 "exec": ""
+            },
+            "vesselappGUI-vesselapp 0.3.1": {
+                "version": "20211216",
+                "exec": "cd /opt/vessel-app/ && bash app.sh"
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["segmentation"]
     }
 }
