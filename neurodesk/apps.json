@@ -274,6 +274,28 @@
         },
         "categories": ["programming"]
     },
+    "lcmodel": {
+        "apps": {
+            "lcmodel 6.3": {
+                "version": "20210302",
+                "exec": ""
+            }
+        },
+        "categories": ["spectroscopy"]
+    },
+    "lashis": {
+        "apps": {
+            "lashis 1.0": {
+                "version": "20210105",
+                "exec": ""
+            },
+            "lashis 2.0": {
+                "version": "20210211",
+                "exec": ""
+            }
+        },
+        "categories": ["hippocampus"]
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
@@ -286,6 +308,19 @@
             }
         },
         "categories": ["image segmentation", "image registration", "structural imaging"]
+    },
+    "mne": {
+        "apps": {
+            "mne 0.23.4": {
+                "version": "20220117",
+                "exec": ""
+            },
+            "mneGUI-mne 0.23.4": {
+                "version": "20220117",
+                "exec": "code"
+            }
+        },
+        "categories": ["electrophysiology"]
     },
     "mricrogl": {
         "apps": {
@@ -355,28 +390,6 @@
             }
         },
         "categories": ["functional imaging"]
-    },
-    "lcmodel": {
-        "apps": {
-            "lcmodel 6.3": {
-                "version": "20210302",
-                "exec": ""
-            }
-        },
-        "categories": ["spectroscopy"]
-    },
-    "lashis": {
-        "apps": {
-            "lashis 1.0": {
-                "version": "20210105",
-                "exec": ""
-            },
-            "lashis 2.0": {
-                "version": "20210211",
-                "exec": ""
-            }
-        },
-        "categories": ["hippocampus"]
     },
     "oshyx": {
         "apps": {
