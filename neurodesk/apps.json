@@ -96,6 +96,19 @@
         },
         "categories": ["phase processing"]
     },
+    "code": {
+        "apps": {
+            "vscodeGUI-code 220114": {
+                "version": "20220117",
+                "exec": "code"
+            },
+            "code 220114": {
+                "version": "20220117",
+                "exec": ""
+            }
+        },
+        "categories": ["programming"]
+    },
     "conn": {
         "apps": {
             "connGUI-conn 20b": {
