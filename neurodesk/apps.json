@@ -87,6 +87,19 @@
         },
         "categories": ["electrophysiology"]
     },
+    "cat12": {
+        "apps": {
+            "cat12GUI-cat12 r1904": {
+                "version": "20220121",
+                "exec": "bash run_spm12.sh /opt/mcr/v93/"
+            },
+            "cat12 r1904": {
+                "version": "20220121",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation", "image registration", "structural imaging"]
+    },
     "clearswi": {
         "apps": {
             "clearswi 1.0.0": {
