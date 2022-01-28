@@ -89,12 +89,12 @@
     },
     "cat12": {
         "apps": {
-            "cat12GUI-cat12 r1904": {
-                "version": "20220121",
+            "cat12GUI-cat12 r1933": {
+                "version": "20220128",
                 "exec": "bash run_spm12.sh /opt/mcr/v93/"
             },
-            "cat12 r1904": {
-                "version": "20220121",
+            "cat12 r1933": {
+                "version": "20220128",
                 "exec": ""
             }
         },
