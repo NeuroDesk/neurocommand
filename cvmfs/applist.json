@@ -67,7 +67,7 @@
             ]
         }, 
         {
-            "application": "cat12_r1904_20220121", 
+            "application": "cat12_r1933_20220128", 
             "categories": [
                 "image segmentation", 
                 "image registration", 
