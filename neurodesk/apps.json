@@ -447,10 +447,18 @@
         "apps": {
             "physioGUI-physio r7771": {
                 "version": "20211206",
-                "exec": "bash run_spm12.sh /opt/mcr/v99/"
+                "exec": "bash run_spm12.sh /opt/mcr/v99/ fmri"
             },
             "physio r7771": {
                 "version": "20211206",
+                "exec": ""
+            },
+            "physioGUI-physio r2021a": {
+                "version": "20220220",
+                "exec": "bash run_spm12.sh /opt/mcr/v99/ fmri"
+            },
+            "physio r2021a": {
+                "version": "20220220",
                 "exec": ""
             }
         },
