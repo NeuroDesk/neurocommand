@@ -99,8 +99,20 @@ do
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist in oracle cloud"
             echo "[WARNING] ========================================================="
         fi
-        
     fi
+
+    # echo "check if custom promt exists for singularity:"
+    # if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/${IMAGENAME_BUILDDATE}/${IMAGENAME_BUILDDATE}.simg/.singularity.d/env/99-zz_custom_env.sh" ]]
+    # then
+    #     echo "99-zz_custom_env exists for ${IMAGENAME_BUILDDATE} on cvmfs"
+    # else
+    #     echo "99-zz_custom_env does not exist for ${IMAGENAME_BUILDDATE} on cvmfs. Creating it."
+    #     CUSTOM_ENV=/.singularity.d/env/99-zz_custom_env.sh
+    #     echo "#!/bin/bash" >> $CUSTOM_ENV
+    #     PS1="[my_container]\w \$"
+    #     EOF
+    #         chmod 755 $CUSTOM_ENV
+    # fi
 
     # set internal field separator for the string list
     echo $CATEGORIES
