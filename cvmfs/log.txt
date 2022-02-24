@@ -50,6 +50,7 @@ qsmxt_1.1.9_20211219 categories:phase processing,quantitative imaging,structural
 rabies_0.3.5_20220111 categories:rodent imaging,
 romeo_3.2.4_20211015 categories:phase processing,
 romeo_3.2.7_20220224 categories:phase processing,
+romeo_3.2.8_20220224 categories:phase processing,
 root_6.22.02_20201104 categories:programming,
 rstudio_1.4.1106_20211014 categories:statistics,
 slicer_4.11.20200930_20201108 categories:image segmentation,image registration,structural imaging,
