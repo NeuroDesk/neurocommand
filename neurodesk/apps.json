@@ -487,8 +487,12 @@
             "romeo 3.2.4": {
                 "version": "20211015",
                 "exec": ""
+            },
+            "romeo 3.2.7": {
+                "version": "20220224",
+                "exec": ""
             }
-        },
+        }, 
         "categories": ["phase processing"]
     },
     "root": {
