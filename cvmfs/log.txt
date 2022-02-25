@@ -37,6 +37,7 @@ minc_1.9.17_20210105 categories:image segmentation,image registration,structural
 mne_0.23.4_20220121 categories:electrophysiology,
 mricrogl_1.2.20211006_20220111 categories:visualization,
 mriqc_0.16.1_20210917 categories:data organisation,functional imaging,quality control,
+mritools_3.3.0_20220224 categories:phase processing,
 mrtrix3_3.0.1_20200908 categories:diffusion imaging,
 mrtrix3_3.0.2_20201125 categories:diffusion imaging,
 mrtrix3_3.0.3_20210917 categories:diffusion imaging,

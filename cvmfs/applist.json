@@ -263,6 +263,12 @@
             ]
         }, 
         {
+            "application": "mritools_3.3.0_20220224", 
+            "categories": [
+                "phase processing"
+            ]
+        }, 
+        {
             "application": "mrtrix3_3.0.1_20200908", 
             "categories": [
                 "diffusion imaging"
