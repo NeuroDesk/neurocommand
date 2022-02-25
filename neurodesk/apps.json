@@ -378,6 +378,15 @@
         },
         "categories": ["data organisation", "functional imaging", "quality control"]
     },
+    "mritools": {
+        "apps": {
+            "mritools 3.3.0": {
+                "version": "20220224",
+                "exec": ""
+            }
+        },
+        "categories": ["phase processing"]
+    },
     "mrtrix3": {
         "apps": {
             "mrtrix3 3.0.1": {
