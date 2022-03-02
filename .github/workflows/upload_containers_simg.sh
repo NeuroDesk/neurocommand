@@ -73,27 +73,35 @@ do
         echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
         singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
 
-        echo "[DEBUG] Attempting upload to Oracle ..."
-        curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
+        if [ -n "${ORACLE_USER}" ]; then
+            echo "[DEBUG] Attempting upload to Oracle ..."
+            curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
 
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
-            echo "[DEBUG] PROCEEDING TO NEXT LINE"
-            echo "[DEBUG] Cleaning up ..."
-            rm -rf /home/runner/.singularity/docker
+            if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
+                echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+                echo "[DEBUG] PROCEEDING TO NEXT LINE"
+                echo "[DEBUG] Cleaning up ..."
+                rm -rf /home/runner/.singularity/docker
+            else
+                echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
+                exit 2
+            fi
         else
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
-            exit 2
+            echo "Upload credentials not set. NOT uploading. This is OK, if it is an external pull request. Otherwise check credentials."
         fi
     fi 
 done < log.txt
 
 
-#once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
-echo "[Debug] mv logfile to cvmfs directory"
-mv log.txt cvmfs
+if [ -n "${ORACLE_USER}" ]; then
+    #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
+    echo "[Debug] mv logfile to cvmfs directory"
+    mv log.txt cvmfs
 
-cd cvmfs
-echo "[Debug] generate applist.json file for website"
-python json_gen.py #this generates the applist.json for the website
-# these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
+    cd cvmfs
+    echo "[Debug] generate applist.json file for website"
+    python json_gen.py #this generates the applist.json for the website
+    # these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
+else
+    echo "Upload credentials not set. NOT saving logfile. This is OK, if it is an external pull request. Otherwise check credentials."
+fi
