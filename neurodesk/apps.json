@@ -65,6 +65,15 @@
         },
         "categories": ["image reconstruction"]
     },
+    "bidscoin": {
+        "apps": {
+            "bidscoin 3.7.0": {
+                "version": "20220302",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
