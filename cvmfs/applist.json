@@ -112,6 +112,12 @@
             ]
         }, 
         {
+            "application": "diffusiontoolkit_0.6.4.1_20220303", 
+            "categories": [
+                "diffusion imaging"
+            ]
+        }, 
+        {
             "application": "dsistudio_2020.10_20210109", 
             "categories": [
                 "diffusion imaging"
