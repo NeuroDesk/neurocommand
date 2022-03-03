@@ -626,6 +626,15 @@
         },
         "categories": ["quantitative imaging", "phase processing"]
     },
+    "trackvis": {
+        "apps": {
+            "trackvis 0.6.1": {
+                "version": "20220303",
+                "exec": ""
+            }
+        },
+        "categories": ["diffusion imaging"]
+    },
     "vesselapp": {
         "apps": {
             "vesselapp 0.3.1": {
