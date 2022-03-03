@@ -162,6 +162,15 @@
         },
         "categories": ["data organisation"]
     },
+    "diffusiontoolkit": {
+        "apps": {
+            "diffusiontoolkit 0.6.4.1": {
+                "version": "20220303",
+                "exec": ""
+            }
+        },
+        "categories": ["diffusion imaging"]
+    },
     "dsistudio": {
         "apps": {
             "dsistudio 2020.10": {
