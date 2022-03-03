@@ -435,6 +435,12 @@
             ]
         }, 
         {
+            "application": "trackvis_0.6.1_20220303", 
+            "categories": [
+                "diffusion imaging"
+            ]
+        }, 
+        {
             "application": "vesselapp_0.3.1_20211216", 
             "categories": [
                 "image segmentation"
