@@ -387,6 +387,19 @@
         },
         "categories": ["visualization"]
     },
+    "mricron": {
+        "apps": {
+            "mricron 1.0.20190902": {
+                "version": "20220311",
+                "exec": ""
+            },
+            "mricronGUI-mricron 1.0.20190902": {
+                "version": "20220311",
+                "exec": "MRIcron"
+            }
+        },
+        "categories": ["visualization"]
+    },
     "mriqc": {
         "apps": {
             "mriqc 0.16.1": {
