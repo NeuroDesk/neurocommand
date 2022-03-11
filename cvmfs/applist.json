@@ -267,6 +267,12 @@
             ]
         }, 
         {
+            "application": "mricron_1.0.20190902_20220311", 
+            "categories": [
+                "visualization"
+            ]
+        }, 
+        {
             "application": "mriqc_0.16.1_20210917", 
             "categories": [
                 "data organisation", 
