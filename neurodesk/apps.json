@@ -568,11 +568,11 @@
     "sigviewer": {
         "apps": {
             "sigviewer 0.6.4-1": {
-                "version": "20220311",
+                "version": "20220312",
                 "exec": ""
             },
             "sigviewerGUI-sigviewer 0.6.4-1": {
-                "version": "20220311",
+                "version": "20220312",
                 "exec": "sigviewer"
             }
         },
