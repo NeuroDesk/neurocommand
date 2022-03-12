@@ -565,6 +565,19 @@
         },
         "categories": ["statistics"]
     },
+    "sigviewer": {
+        "apps": {
+            "sigviewer 0.6.4-1": {
+                "version": "20220312",
+                "exec": ""
+            },
+            "sigviewerGUI-sigviewer 0.6.4-1": {
+                "version": "20220312",
+                "exec": "sigviewer"
+            }
+        },
+        "categories": ["electrophysiology"]
+    },
     "slicer": {
         "apps": {
             "slicer 4.11.20200930": {
