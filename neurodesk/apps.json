@@ -567,12 +567,12 @@
     },
     "sigviewer": {
         "apps": {
-            "sigviewer 0.6.4-1": {
-                "version": "20220312",
+            "sigviewer 0.6.4": {
+                "version": "20220315",
                 "exec": ""
             },
-            "sigviewerGUI-sigviewer 0.6.4-1": {
-                "version": "20220312",
+            "sigviewerGUI-sigviewer 0.6.4": {
+                "version": "20220315",
                 "exec": "sigviewer"
             }
         },
