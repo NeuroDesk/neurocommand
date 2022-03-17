@@ -311,6 +311,12 @@
             ]
         }, 
         {
+            "application": "niftyreg_1.4.0_20220317", 
+            "categories": [
+                "image registration"
+            ]
+        }, 
+        {
             "application": "niistat_1.0.20191216_20220111", 
             "categories": [
                 "functional imaging"
