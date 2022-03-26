@@ -370,6 +370,14 @@
             "vscodeGUI-mne 0.23.4": {
                 "version": "20220121",
                 "exec": "code"
+            },
+            "mne 1.0.0": {
+                "version": "20220325",
+                "exec": ""
+            },
+            "vscodeGUI-mne 1.0.0": {
+                "version": "20220325",
+                "exec": "code"
             }
         },
         "categories": ["electrophysiology"]
