@@ -6,7 +6,7 @@ ants_2.3.5_20211212 categories:image registration,structural imaging,image segme
 aslprep_0.2.7_20210323 categories:quantitative imaging,
 ashs_2.0.0_20210105 categories:hippocampus,
 bart_0.7.00_20210302 categories:image reconstruction,
-bidscoin_3.7.0_20220302 categories:data organisation,
+bidscoin_3.7.0_20220329 categories:data organisation,
 bidstools_1.0.0_20201208 categories:data organisation,
 brainstorm_3.211130_20211207 categories:electrophysiology,
 cat12_r1933_20220128 categories:image segmentation,image registration,structural imaging,
