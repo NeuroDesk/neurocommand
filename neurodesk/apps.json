@@ -68,7 +68,7 @@
     "bidscoin": {
         "apps": {
             "bidscoin 3.7.0": {
-                "version": "20220302",
+                "version": "20220329",
                 "exec": ""
             }
         },
