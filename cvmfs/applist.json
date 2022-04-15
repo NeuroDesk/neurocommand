@@ -112,6 +112,12 @@
             ]
         }, 
         {
+            "application": "delphi_0.0.1_20220413", 
+            "categories": [
+                "machine learning"
+            ]
+        }, 
+        {
             "application": "diffusiontoolkit_0.6.4.1_20220303", 
             "categories": [
                 "diffusion imaging"
