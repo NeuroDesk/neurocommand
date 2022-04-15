@@ -159,6 +159,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Machine Learning</Name>
+			<Directory>neurodesk/machine-learning.directory</Directory>
+			<Include>
+				<And>
+					<Category>Machine Learning</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Phase Processing</Name>
 			<Directory>neurodesk/phase-processing.directory</Directory>
 			<Include>

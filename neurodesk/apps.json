@@ -162,6 +162,15 @@
         },
         "categories": ["data organisation"]
     },
+    "delphi": {
+        "apps": {
+            "delphi 0.0.1": {
+                "version": "20220413",
+                "exec": ""
+            }
+        },
+        "categories": ["machine learning"]
+    },
     "diffusiontoolkit": {
         "apps": {
             "diffusiontoolkit 0.6.4.1": {
