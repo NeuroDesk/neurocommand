@@ -163,7 +163,7 @@
 			<Directory>neurodesk/machine-learning.directory</Directory>
 			<Include>
 				<And>
-					<Category>Machine Learning</Category>
+					<Category>machine-learning</Category>
 				</And>
 			</Include>
 		</Menu>
