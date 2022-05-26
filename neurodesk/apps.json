@@ -167,6 +167,10 @@
             "delphi 0.0.1": {
                 "version": "20220413",
                 "exec": ""
+            },
+            "delphi 0.0.2": {
+                "version": "20220526",
+                "exec": ""
             }
         },
         "categories": ["machine learning"]
