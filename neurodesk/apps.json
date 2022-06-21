@@ -262,10 +262,6 @@
             "freesurfer 7.2.0": {
                 "version": "20211206",
                 "exec": ""
-            },
-            "freeviewGUI-freesurfer 7.2.0": {
-                "version": "20211206",
-                "exec": "freeview"
             }
         },
         "categories": ["image segmentation", "structural imaging"]
