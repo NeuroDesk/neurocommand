@@ -339,15 +339,6 @@
         },
         "categories": ["programming"]
     },
-    "lcmodel": {
-        "apps": {
-            "lcmodel 6.3": {
-                "version": "20220222",
-                "exec": ""
-            }
-        },
-        "categories": ["spectroscopy"]
-    },
     "lashis": {
         "apps": {
             "lashis 1.0": {
@@ -360,6 +351,24 @@
             }
         },
         "categories": ["hippocampus"]
+    },
+    "laynii": { 
+        "apps": {
+            "laynii 2.2.1": {
+                "version": "20220623",
+                "exec": ""
+            }
+        },
+        "categories": ["functional imaging"]
+    },
+    "lcmodel": {
+        "apps": {
+            "lcmodel 6.3": {
+                "version": "20220222",
+                "exec": ""
+            }
+        },
+        "categories": ["spectroscopy"]
     },
     "minc": {
         "apps": {
