@@ -36,13 +36,13 @@ jobs:
     - name: Auto commit changes to applist.json
       uses: stefanzweifel/git-auto-commit-action@v4
       id: auto-commit-action
-    - name: "Run if changes have been detected"
+    - name: "Run if changes found to applist.json"
       if: steps.auto-commit-action.outputs.changes_detected == 'false'
       run: |
           curl -X POST https://api.github.com/repos/NeuroDesk/neurodesk.github.io/dispatches \
           -H 'Accept: application/vnd.github.v3+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
-          --data '{"event_type": "applist update", "client_payload": { "GITHUB_REPOSITORY": "'"$GITHUB_REPOSITORY"'", "GITHUB_REPOSITORY_NAME": "'"${{ github.event.repository.name }}"'", "GITHUB_SHA": "'"$GITHUB_SHA"'" }}'
+          --data '{"event_type": "NeuroDesk/neurocommand applist.json update"}'
   test_neurocommand:
     runs-on: ubuntu-18.04
     steps:
