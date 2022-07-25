@@ -33,7 +33,16 @@ jobs:
         python-version: 3.8
     - name : Check if singularity container files exist in oracle cloud and build & upload if not there
       run: /bin/bash .github/workflows/upload_containers_simg.sh
-    - uses: stefanzweifel/git-auto-commit-action@v4
+    - name: Auto commit changes to applist.json
+      uses: stefanzweifel/git-auto-commit-action@v4
+      id: auto-commit-action
+    - name: "Run if changes found to applist.json"
+      if: steps.auto-commit-action.outputs.changes_detected == 'true'
+      run: |
+          curl -X POST https://api.github.com/repos/NeuroDesk/neurodesk.github.io/dispatches \
+          -H 'Accept: application/vnd.github.v3+json' \
+          -u ${{ secrets.ACCESS_TOKEN }} \
+          --data '{"event_type": "NeuroDesk/neurocommand applist.json update"}'
   test_neurocommand:
     runs-on: ubuntu-18.04
     steps:
