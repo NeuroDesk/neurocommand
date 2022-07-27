@@ -393,7 +393,7 @@
                 "exec": "matlab"
             }
         },
-        "categories": ["image segmentation", "image registration", "structural imaging"]
+        "categories": ["programming", "visualization"]
     },
     "minc": {
         "apps": {
