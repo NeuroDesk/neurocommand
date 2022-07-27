@@ -382,6 +382,19 @@
         },
         "categories": ["spectroscopy"]
     },
+    "matlab": {
+        "apps": {
+            "matlab 2022a": {
+                "version": "20220727",
+                "exec": ""
+            },
+            "matlabGUI 2022a": {
+                "version": "20220727",
+                "exec": "matlab"
+            }
+        },
+        "categories": ["programming", "visualization"]
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
