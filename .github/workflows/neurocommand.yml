@@ -7,8 +7,6 @@ on:
       - main
       - neurocommand
     paths-ignore: [ '**/README.md' ]  
-  pull_request:
-    paths-ignore: [ '**/README.md' ] 
     
 env:
   DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
