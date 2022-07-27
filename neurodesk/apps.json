@@ -382,6 +382,19 @@
         },
         "categories": ["spectroscopy"]
     },
+    "matlab": {
+        "apps": {
+            "matlab 2022a": {
+                "version": "20220727",
+                "exec": ""
+            },
+            "matlabGUI 2022a": {
+                "version": "20220727",
+                "exec": "matlab"
+            }
+        },
+        "categories": ["image segmentation", "image registration", "structural imaging"]
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
