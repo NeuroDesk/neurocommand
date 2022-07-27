@@ -283,6 +283,13 @@
             ]
         },
         {
+            "application": "matlab_2022a_20220727",
+            "categories": [
+                "programming",
+                "visualization"
+            ]
+        },
+        {
             "application": "minc_1.9.17_20210105",
             "categories": [
                 "image segmentation",
