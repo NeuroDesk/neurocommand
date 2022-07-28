@@ -650,7 +650,7 @@
         },
         "categories": ["electrophysiology"]
     },
-    "slicer": {
+    "slicer": {  
         "apps": {
             "slicer 4.11.20200930": {
                 "version": "20201108",
@@ -659,9 +659,18 @@
             "3DSlicerGUI-slicer 4.11.20200930": {
                 "version": "20201108",
                 "exec": "Slicer"
+            },
+    {
+            "slicer 5.0.3": {
+                "version": "20220728",
+                "exec": ""
+            },
+            "3DSlicerGUI-slicer 5.0.3": {
+                "version": "20220728",
+                "exec": "Slicer"
             }
         },
-        "categories": ["image segmentation", "image registration", "structural imaging"]
+        "categories": ["image segmentation", "image registration", "structural imaging", "visualization"]
     },
     "slicersalt": {
         "apps": {
