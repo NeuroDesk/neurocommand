@@ -660,7 +660,6 @@
                 "version": "20201108",
                 "exec": "Slicer"
             },
-    {
             "slicer 5.0.3": {
                 "version": "20220728",
                 "exec": ""
