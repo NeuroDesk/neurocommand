@@ -464,7 +464,17 @@
             "categories": [
                 "image segmentation",
                 "image registration",
-                "structural imaging"
+                "structural imaging",
+                "visualization"
+            ]
+        },
+        {
+            "application": "slicer_5.0.3_20220728",
+            "categories": [
+                "image segmentation",
+                "image registration",
+                "structural imaging",
+                "visualization"
             ]
         },
         {
