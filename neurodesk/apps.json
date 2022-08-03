@@ -697,6 +697,10 @@
             "spinalcordtoolbox 5.6": {
                 "version": "20220503",
                 "exec": ""
+            },
+            "spinalcordtoolbox 5.7": {
+                "version": "20220803",
+                "exec": ""
             }
         },
         "categories": ["spine"]
