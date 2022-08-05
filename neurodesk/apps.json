@@ -542,6 +542,10 @@
             "oshyx 0.3": {
                 "version": "20220110",
                 "exec": ""
+            },
+            "oshyx 0.4": {
+                "version": "20220614",
+                "exec": ""
             }
         },
         "categories": ["image segmentation"]
