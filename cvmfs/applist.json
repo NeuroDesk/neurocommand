@@ -384,6 +384,12 @@
             ]
         }, 
         {
+            "application": "oshyx_0.4_20220620", 
+            "categories": [
+                "image segmentation"
+            ]
+        }, 
+        {
             "application": "palm_alpha119_20211220", 
             "categories": [
                 "functional imaging"
