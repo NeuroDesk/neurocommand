@@ -589,6 +589,10 @@
             "qsmxt 1.1.10": {
                 "version": "20220302",
                 "exec": ""
+            },
+            "qsmxt 1.1.12": {
+                "version": "20220808",
+                "exec": ""
             }
         },
         "categories": ["phase processing", "quantitative imaging", "structural imaging"]
