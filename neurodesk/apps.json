@@ -673,7 +673,7 @@
                 "exec": ""
             },
             "3DSlicerGUI-slicer 5.0.3": {
-                "version": "20220729",
+                "version": "20220809",
                 "exec": "Slicer"
             }
         },
