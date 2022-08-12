@@ -490,7 +490,7 @@
             ]
         }, 
         {
-            "application": "slicer_5.0.3_20220729", 
+            "application": "slicer_5.0.3_20220809", 
             "categories": [
                 "image segmentation", 
                 "image registration", 
