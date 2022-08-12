@@ -282,7 +282,7 @@
             "freeviewGUI-freesurfer 7.3.2": {
                 "version": "20220812",
                 "exec": "freeview"
-            },
+            }
         },
         "categories": ["image segmentation", "structural imaging"]
     },
