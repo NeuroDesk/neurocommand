@@ -323,6 +323,12 @@
             ]
         }, 
         {
+            "application": "mneextended_1.1.0_20220819", 
+            "categories": [
+                "electrophysiology"
+            ]
+        }, 
+        {
             "application": "mricrogl_1.2.20211006_20220111", 
             "categories": [
                 "visualization"

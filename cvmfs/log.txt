@@ -47,6 +47,7 @@ minc_1.9.17_20210105 categories:image segmentation,image registration,structural
 mne_0.23.4_20220121 categories:electrophysiology,
 mne_1.0.0_20220325 categories:electrophysiology,
 mne_1.0.3_20220607 categories:electrophysiology,
+mneextended_1.1.0_20220819 categories:electrophysiology,
 mricrogl_1.2.20211006_20220111 categories:visualization,
 mricron_1.0.20190902_20220311 categories:visualization,
 mriqc_0.16.1_20210917 categories:data organisation,functional imaging,quality control,
