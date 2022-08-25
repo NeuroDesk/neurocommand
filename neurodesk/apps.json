@@ -53,7 +53,7 @@
                 "exec": ""
             }
         },
-        "categories": ["quantitative imaging"]
+        "categories": ["quantitative imaging", "workflows"]
     },
     "ashs": {
         "apps": {
@@ -259,7 +259,7 @@
                 "exec": ""
             }
         },
-        "categories": ["functional imaging"]
+        "categories": ["functional imaging", "workflows"]
     },
     "freesurfer": {
         "apps": {
@@ -486,7 +486,7 @@
                 "exec": ""
             }
         },
-        "categories": ["data organisation", "functional imaging", "quality control"]
+        "categories": ["data organisation", "functional imaging", "quality control", "workflows"]
     },
     "mritools": {
         "apps": {
@@ -553,6 +553,19 @@
         },
         "categories": ["functional imaging"]
     },
+    "nipype": {
+        "apps": {
+            "vscode-nipype 1.8.3": {
+                "version": "20220825",
+                "exec": "code"
+            },
+            "nipype 1.8.3": {
+                "version": "20220825",
+                "exec": ""
+            }
+        },
+        "categories": ["workflows"]
+    },
     "oshyx": {
         "apps": {
             "oshyx 0.3": {
@@ -611,7 +624,7 @@
                 "exec": ""
             }
         },
-        "categories": ["phase processing", "quantitative imaging", "structural imaging"]
+        "categories": ["phase processing", "quantitative imaging", "structural imaging", "workflows"]
     },
     "rabies": {
         "apps": {

@@ -269,6 +269,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         write_directory_file("Neurodesk", directories_path, icon_dir)
         write_directory_file("All Applications", directories_path, icon_dir)
         write_directory_file("Functional Imaging", directories_path, icon_dir)
+        write_directory_file("Workflows", directories_path, icon_dir)
         write_directory_file("Data Organisation", directories_path, icon_dir)
         write_directory_file("Diffusion Imaging", directories_path, icon_dir)
         write_directory_file("Structural Imaging", directories_path, icon_dir)

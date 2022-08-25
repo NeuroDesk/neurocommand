@@ -212,6 +212,15 @@
 				</And>
 			</Include>
 		</Menu>
+		<Menu>
+			<Name>Workflows</Name>
+			<Directory>neurodesk/workflows.directory</Directory>
+			<Include>
+				<And>
+					<Category>workflows</Category>
+				</And>
+			</Include>
+		</Menu>
 	</Menu> <!-- End Neurodesk -->
 
 </Menu> <!-- End Applications -->
