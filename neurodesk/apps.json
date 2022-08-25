@@ -422,7 +422,7 @@
                 "version": "20220121",
                 "exec": ""
             },
-            "vscodeGUI-mne 0.23.4": {
+            "code-mne 0.23.4": {
                 "version": "20220121",
                 "exec": "code"
             },
@@ -430,7 +430,7 @@
                 "version": "20220325",
                 "exec": ""
             },
-            "vscodeGUI-mne 1.0.0": {
+            "code-mne 1.0.0": {
                 "version": "20220325",
                 "exec": "code"
             },
@@ -438,7 +438,7 @@
                 "version": "20220607",
                 "exec": ""
             },
-            "vscodeGUI-mne 1.0.3": {
+            "code-mne 1.0.3": {
                 "version": "20220607",
                 "exec": "code"
             },
@@ -446,7 +446,7 @@
                 "version": "20220819",
                 "exec": ""
             },
-            "vscodeGUI-mneextended 1.1.0": {
+            "code-mneextended 1.1.0": {
                 "version": "20220819",
                 "exec": "code"
             }
@@ -555,7 +555,7 @@
     },
     "nipype": {
         "apps": {
-            "code_nipype-nipype 1.8.3": {
+            "code-nipype 1.8.3": {
                 "version": "20220825",
                 "exec": "code"
             },
