@@ -143,9 +143,9 @@ class NeurodeskApp:
             if sh_exec:
                 self.sh_file.write(f"{sh_exec}")
             elif self.deskenv == 'mate':
-                self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec}")
+                self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec} $@")
             else:
-                self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec}")
+                self.sh_file.write(f"{str(fetch_and_run_sh)} {self.container_name} {self.version} {self.exec} $@")
             self.sh_file.write('\n')
         os.chmod(self.sh_path, 0o755)
 
