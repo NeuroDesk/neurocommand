@@ -442,6 +442,14 @@
                 "version": "20220607",
                 "exec": "code"
             },
+            "mne 1.1.1": {
+                "version": "20220912",
+                "exec": ""
+            },
+            "code-mne 1.1.1": {
+                "version": "20220912",
+                "exec": "code"
+            },
             "mneextended 1.1.0": {
                 "version": "20220819",
                 "exec": ""
