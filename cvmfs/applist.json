@@ -328,6 +328,12 @@
             ]
         }, 
         {
+            "application": "mne_1.1.1_20220912", 
+            "categories": [
+                "electrophysiology"
+            ]
+        }, 
+        {
             "application": "mneextended_1.1.0_20220819", 
             "categories": [
                 "electrophysiology"
