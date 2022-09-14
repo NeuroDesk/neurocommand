@@ -113,6 +113,13 @@
             ]
         }, 
         {
+            "application": "connectomeworkbench_1.5.0_20220914", 
+            "categories": [
+                "functional imaging", 
+                "data organisation"
+            ]
+        }, 
+        {
             "application": "convert3d_1.0.0_20210104", 
             "categories": [
                 "data organisation"
