@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           repository: NeuroDesk/neurocommand
-          token: ${{secrets.VNM_NEURODESK}}
+          token: ${{secrets.AUTOCOMMIT_FOR_NEUROCOMMAND}}
           persist-credentials: false
           fetch-depth: 0
       - name: Setup git config
@@ -23,8 +23,8 @@ jobs:
           git config pull.ff only
       - name: Setup git remotes
         run: |
-          git remote add subtree https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/transparent-singularity.git
-          git remote add upstream https://vnm-neurodesk:${{secrets.VNM_NEURODESK}}@github.com/NeuroDesk/neurocommand.git
+          git remote add subtree https://stebo85:${{secrets.AUTOCOMMIT_FOR_NEUROCOMMAND}}@github.com/NeuroDesk/transparent-singularity.git
+          git remote add upstream https://stebo85:${{secrets.AUTOCOMMIT_FOR_NEUROCOMMAND}}@github.com/NeuroDesk/neurocommand.git
       - name: Pull transparent-singularity into subtree
         run:  git subtree pull --prefix neurodesk/transparent-singularity subtree master --squash
       - name: Push to neurodesk
