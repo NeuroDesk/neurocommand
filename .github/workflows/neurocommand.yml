@@ -30,9 +30,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
       with:
-        token: ${{ secrets.AUTOCOMMIT_FOR_NEUROCOMMAND }}
-      # This token is from my (stebo85) account -> it allows the action to skip the branch protection so we can commit from here
-      # https://github.com/stefanzweifel/git-auto-commit-action#commits-made-by-this-action-do-not-trigger-new-workflow-runs
+        token: ${{ secrets.ACCESS_TOKEN }}
     - uses: actions/setup-python@v2
       with:
         python-version: 3.8
