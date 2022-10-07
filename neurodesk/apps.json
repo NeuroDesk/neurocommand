@@ -397,11 +397,11 @@
     "matlab": {
         "apps": {
             "matlab 2022a": {
-                "version": "20220902",
+                "version": "20221007",
                 "exec": ""
             },
             "matlabGUI-matlab 2022a": {
-                "version": "20220902",
+                "version": "20221007",
                 "exec": "matlab"
             }
         },
