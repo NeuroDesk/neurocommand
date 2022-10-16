@@ -309,11 +309,11 @@
                 "exec": "fsleyes"
             },
             "fsl 6.0.5.1": {  
-                "version": "20220917",
+                "version": "20221016",
                 "exec": ""
             },
             "fsleyesGUI-fsl 6.0.5.1": {
-                "version": "20220917",
+                "version": "20221016",
                 "exec": "fsleyes"
             }
         },
