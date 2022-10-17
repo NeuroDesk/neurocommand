@@ -2,19 +2,15 @@ name: Neurocommand CI/CD
 
 on:
   workflow_dispatch:
-  push:
-    branches: 
-      - main
-      - neurocommand
-  pull_request:
-    branches: 
-      - main
-      - neurocommand
+  workflow_run:
+    workflows: ["Tests"]
+    types:
+      - completed
     
 env:
-  # DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
   ORACLE_USER: ${{ secrets.ORACLE_USER }}
   ORACLE_NEURODESK_BUCKET: ${{ secrets.ORACLE_NEURODESK_BUCKET }}
+  # DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
   # OS_PASSWORD: ${{ secrets.SWIFT_OS_PASSWORD }}
   # OS_PROJECT_ID: ${{ secrets.SWIFT_OS_PROJECT_ID }}
   # OS_USERNAME: ${{ secrets.SWIFT_OS_USERNAME }}
@@ -46,12 +42,3 @@ jobs:
           -H 'Accept: application/vnd.github.v3+json' \
           -u ${{ secrets.ACCESS_TOKEN }} \
           --data '{"event_type": "NeuroDesk/neurocommand applist.json update"}'
-  test_neurocommand:
-    runs-on: ubuntu-18.04
-    steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with:
-        python-version: 3.8
-    - name: Test neurocommand version
-      run: /bin/bash .github/workflows/test_neurocommand.sh
