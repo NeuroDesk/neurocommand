@@ -3,11 +3,19 @@ name: Update neurocontainers
 on:
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - main
+    paths:
+      - './neurodesk/apps.json'
+      - './neurodesk/write_log.py'
   pull_request_target:
     types:
       - closed
+    branches: 
+      - main
+    paths:
+      - './neurodesk/apps.json'
+      - './neurodesk/write_log.py'
     
 env:
   ORACLE_USER: ${{ secrets.ORACLE_USER }}
