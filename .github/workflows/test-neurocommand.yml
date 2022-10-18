@@ -1,0 +1,21 @@
+name: Test neurocommand
+
+on:
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+  pull_request:
+    branches: 
+      - main
+    
+jobs:
+  test_neurocommand:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
+    - name: Test neurocommand version
+      run: /bin/bash .github/workflows/test_neurocommand.sh
