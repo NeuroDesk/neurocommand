@@ -1,11 +1,13 @@
-name: Neurocommand CI/CD
+name: Update neurocontainers
 
 on:
   workflow_dispatch:
-  workflow_run:
-    workflows: ["Tests"]
+  push:
+    branches: 
+      - main
+  pull_request_target:
     types:
-      - completed
+      - closed
     
 env:
   ORACLE_USER: ${{ secrets.ORACLE_USER }}
@@ -22,6 +24,7 @@ env:
 
 jobs:
   upload_containers_simg:
+    if: github.event_name == 'workflow_dispatch' || github.event_name == 'push' || github.event.pull_request.merged == true 
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
