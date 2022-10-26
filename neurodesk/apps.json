@@ -509,6 +509,15 @@
         },
         "categories": ["phase processing"]
     },
+    "mrsiproc":{
+        "apps":{
+            "mrsiproc 0.0.1": {
+                "version": "20221026",
+                "exec": ""
+            }
+        },
+        "categories": ["spectroscopy"]
+    },
     "mrtrix3": {
         "apps": {
             "mrtrix3 3.0.1": {
