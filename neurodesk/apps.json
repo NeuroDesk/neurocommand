@@ -719,11 +719,11 @@
                 "exec": "Slicer"
             },
             "slicer 5.0.3": {
-                "version": "20220903",
+                "version": "20221025",
                 "exec": ""
             },
             "3DSlicerGUI-slicer 5.0.3": {
-                "version": "20220903",
+                "version": "20221025",
                 "exec": "Slicer"
             }
         },
