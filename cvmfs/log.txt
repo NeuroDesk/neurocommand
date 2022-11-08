@@ -56,7 +56,7 @@ mriqc_0.16.1_20210917 categories:data organisation,functional imaging,quality co
 mritools_3.3.0_20220224 categories:phase processing,
 mrsiproc_0.0.1_20221026 categories:spectroscopy,
 mrtrix3_3.0.1_20200908 categories:diffusion imaging,
-mrtrix3_3.0.2_20221107 categories:diffusion imaging,
+mrtrix3_3.0.2_20221108 categories:diffusion imaging,
 mrtrix3_3.0.3_20210917 categories:diffusion imaging,
 mrtrix3tissue_5.2.8_20201111 categories:diffusion imaging,
 niftyreg_1.4.0_20220317 categories:image registration,
