@@ -529,11 +529,11 @@
                 "exec": "mrview"
             },
             "mrtrix3 3.0.2": {
-                "version": "20221107",
+                "version": "20221108",
                 "exec": ""
             },
             "mrviewGUI-mrtrix3 3.0.2": {
-                "version": "20221107",
+                "version": "20221108",
                 "exec": "mrview"
             },
             "mrtrix3 3.0.3": {
