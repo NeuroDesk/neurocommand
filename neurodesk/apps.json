@@ -691,7 +691,15 @@
             "rstudioGUI-rstudio 1.4.1106": {
                 "version": "20211014",
                 "exec": "rstudio"
-            } 
+            },
+            "rstudio 2022.07.2-576": {
+                "version": "20221124",
+                "exec": ""
+            },
+            "rstudioGUI-rstudio 2022.07.2-576": {
+                "version": "20221124",
+                "exec": "rstudio"
+            }
         },
         "categories": ["statistics"]
     },
