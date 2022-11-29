@@ -700,12 +700,12 @@
                 "version": "20211014",
                 "exec": "rstudio"
             },
-            "rstudio 2022.07.2-576": {
-                "version": "20221124",
+            "rstudio 2022.07.2": {
+                "version": "20221128",
                 "exec": ""
             },
-            "rstudioGUI-rstudio 2022.07.2-576": {
-                "version": "20221124",
+            "rstudioGUI-rstudio 2022.07.2": {
+                "version": "20221128",
                 "exec": "rstudio"
             }
         },
