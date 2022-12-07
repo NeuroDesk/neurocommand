@@ -1,6 +1,7 @@
 afni_21.2.00_20210714 categories:functional imaging,
 afni_22.1.14_20220713 categories:functional imaging,
 afni_22.3.06_20221128 categories:functional imaging,
+afni_22.3.07_20221206 categories:functional imaging,
 aidamri_1.1_20210708 categories:rodent imaging,
 ants_2.3.1_20211204 categories:image registration,structural imaging,image segmentation,
 ants_2.3.4_20211212 categories:image registration,structural imaging,image segmentation,
