@@ -190,6 +190,15 @@
         },
         "categories": ["data organisation"]
     },
+    "deepretinotopy": {
+        "apps": {
+            "deepretinotopy 1.0.0": {
+                "version": "20221201",
+                "exec": ""
+            }
+        },
+        "categories": ["machine learning"]
+    },
     "delphi": {
         "apps": {
             "delphi 0.0.1": {
