@@ -138,6 +138,12 @@
             ]
         }, 
         {
+            "application": "deepretinotopy_1.0.0_20221201", 
+            "categories": [
+                "machine learning"
+            ]
+        }, 
+        {
             "application": "delphi_0.0.1_20220413", 
             "categories": [
                 "machine learning"
