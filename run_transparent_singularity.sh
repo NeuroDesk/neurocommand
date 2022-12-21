@@ -197,8 +197,9 @@ while read executable; do \
    echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
    echo "export PWD=\`pwd -P\`" >> $executable
-   echo "singularity exec $singularity_opts \$neurodesk_singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
+   echo "singularity --silent exec $singularity_opts \$neurodesk_singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
    # neurodesk_singularity_opts is a global variable that can be set in neurodesk for example --nv for gpu support
+   # --silent is required to suppress bind mound warnings (e.g. for /etc/localtime)
    chmod a+x $executable
 done < $_base/commands.txt
 
