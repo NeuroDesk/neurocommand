@@ -63,8 +63,8 @@ if [ $# -le 3 ]; then
         cd 
         echo "[DEBUG] fetch_and_run.sh: Attempting to launch container ${IMG_NAME}"
         export SINGULARITYENV_PS1="${MOD_NAME}-${MOD_VERS}:\w$ "
-        singularity exec  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
-        singularity shell  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME}
+        singularity --silent exec  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
+        singularity --silent shell  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME}
         if [ $? -eq 0 ]; then
             echo "[DEBUG] fetch_and_run.sh: Container ran OK"
         else
@@ -79,7 +79,7 @@ if [ $# -le 3 ]; then
     fi
 fi
 
-# If additional command -> Run it
+# If additional command -> Run it via module system
 echo "[DEBUG] fetch_and_run.sh: module load ${MOD_NAME}/${MOD_VERS}"
 module load ${MOD_NAME}/${MOD_VERS}
 echo "[DEBUG] fetch_and_run.sh: Running command '${@:4}'."
