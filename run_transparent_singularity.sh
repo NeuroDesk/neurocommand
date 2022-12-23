@@ -133,8 +133,50 @@ else
       echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
-         echo "aria2 is not installed. Defaulting to curl."
-         container_pull="curl -X GET https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container -O"
+             echo "aria2 is not installed. Defaulting to curl."
+137          urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+138          urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+139          urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+140          urlBRISBANE="https://swift.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/"
+142          urls=($urlUS $urlEUROPE $urlSYDNEY $urlBRISBANE)
+143          declare -a speeds   
+144              
+145          echo "testing which server is fastest."
+146          for url in "${urls[@]}";          
+147          do  
+148             echo testing $url
+149             if avg_speed=$(curl -s -w %{time_total}\\n -o /dev/null "$url")
+150                then          
+151                   echo ResponseTime: "$avg_speed"
+152                   speeds+=($avg_speed)     
+153             fi               
+154          done
+155              
+156          count=0             
+157          for speed in "${speeds[@]}";      
+158          do 
+159             #echo comparing $speed with $avg_speed
+160             #echo currenlty fastest server is: $url
+161             #echo count: $count
+162             if (( $(echo "$speed < $avg_speed" |bc -l) )); then
+163                #echo found a new min: $speed
+164                avg_speed=$speed
+165                url=${urls[$count]}
+166                #echo setting URL to $url
+167             fi
+168             count=$((count+1))                                                                                                                                  
+169          done
+170          echo using server $url
+171              
+172          container_pull="curl -X GET ${url}${container} -O"
+173       else 
+174          container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.eu-frankfurt-1.    oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://swift.    rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"
+175       fi
+176    else      
+177       # fallback to docker
+178       echo "$container does not exist in any cache - loading from docker!"
+179       storage="docker"
+180       container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
       else 
          container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://swift.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"
       fi
