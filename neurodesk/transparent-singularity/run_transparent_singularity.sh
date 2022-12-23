@@ -172,14 +172,6 @@ else
        else 
           container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.eu-frankfurt-1.    oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://swift.    rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"
        fi
-    else      
-       # fallback to docker
-       echo "$container does not exist in any cache - loading from docker!"
-       storage="docker"
-       container_pull="singularity pull --name $container docker://vnmd/${containerName}_${containerVersion}:${containerDate}"
-      else 
-         container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://swift.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"
-      fi
    else
       # fallback to docker
       echo "$container does not exist in any cache - loading from docker!"
