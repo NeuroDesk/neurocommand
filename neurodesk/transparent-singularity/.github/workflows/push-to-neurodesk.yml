@@ -7,6 +7,12 @@ on:
     branches: [ master ]
 
 jobs:
+  test_transparent_singularity:
+    runs-on: ubuntu-18.04
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test transparent singularity before pushing to neurocommand
+      run: /bin/bash .github/workflows/test_transparent_singularity.sh
   build:
     runs-on: ubuntu-latest
     steps:
