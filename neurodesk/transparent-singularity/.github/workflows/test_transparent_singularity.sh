@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+set -e
+
 echo "checking if neurodesk installs and a containers gets downloaded correctly"
 
 echo "python version is ... "
