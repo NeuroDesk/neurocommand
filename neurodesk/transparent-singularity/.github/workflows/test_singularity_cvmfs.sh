@@ -15,6 +15,7 @@ sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012
 # sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
 
 sudo apt-get update
+sudo apt-get remove aria2
 sudo apt-get install singularity-container 
 
-bash /home/runner/work/transparent-singularity/transparent-singularity/.github/workflows/test_transparent_singularity_download.sh
+bash /home/runner/work/transparent-singularity/transparent-singularity/.github/workflows/test_transparent_singularity_cvmfs.sh
