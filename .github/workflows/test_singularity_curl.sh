@@ -15,32 +15,7 @@ sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012
 # sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
 
 sudo apt-get update
+sudo apt-get remove aria2
 sudo apt-get install singularity-container 
 
-echo "checking if neurodesk installs and a containers gets downloaded correctly"
-
-echo "python version is ... "
-python --version
-echo "singularity version is ... "
-singularity --version
-echo "where am I"
-pwd
-bash run_transparent_singularity.sh --container itksnap_3.8.0_20200811.simg
-
-
-# check if container file exists
-if [ -f /home/runner/work/transparent-singularity/transparent-singularity/itksnap_3.8.0_20200811.simg ]; then
-    echo "[DEBUG]: Container file exists"
-else 
-    echo "[DEBUG]: Container file does not exist! Something went wrong when downloading."
-    exit 1
-fi
-
-# check if transparent singularity generated executable output file:
-FILE="/home/runner/work/transparent-singularity/transparent-singularity/itksnap"
-if [ -f $FILE ];then
-    echo "[DEBUG]: $FILE exists."
-else
-    echo "[DEBUG]: $FILE doesn't exist. Something went wrong with transparent singularity. "
-    exit 1
-fi
+bash /home/runner/work/transparent-singularity/transparent-singularity/.github/workflows/test_transparent_singularity.sh
