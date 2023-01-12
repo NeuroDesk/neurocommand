@@ -113,7 +113,7 @@ fi
 echo "checking for singularity ..."
 qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
-   echo "This script requires singularity on your path. E.g. add module load singularity/2.4.2 to your .bashrc"
+   echo "This script requires singularity or apptainer on your path. E.g. add 'module load singularity' to your .bashrc"
    echo "If you are root try again as normal user"
    exit 2
 fi

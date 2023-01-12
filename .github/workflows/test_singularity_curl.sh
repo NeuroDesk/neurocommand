@@ -18,4 +18,4 @@ sudo apt-get update
 sudo apt-get remove aria2
 sudo apt-get install singularity-container 
 
-bash /home/runner/work/transparent-singularity/transparent-singularity/.github/workflows/test_transparent_singularity.sh
+bash /home/runner/work/transparent-singularity/transparent-singularity/.github/workflows/test_transparent_singularity_download.sh
