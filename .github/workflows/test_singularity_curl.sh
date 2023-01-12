@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# set -e
+set -e
 
 #setup singularity 2.6.1 from neurodebian
 # This is for 18.04
