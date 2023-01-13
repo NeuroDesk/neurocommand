@@ -121,10 +121,10 @@ fi
 echo "containerEnding: ${containerEnding}"
 
 echo "checking if $container exists in the cvmfs cache ..."
-if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}:${containerDate}" ]]; then
+if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}" ]]; then
    echo "$container exists in cvmfs"
    storage="cvmfs"
-   container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}:${containerDate} $container"
+   container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg $container"
 else
    echo "$container does not exists in cvmfs. Testing Oracle Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container"; then
@@ -187,6 +187,8 @@ if  [[ -e $container ]]; then
    echo "container downloaded already. Remove to re-download!"
 else
    echo "pulling image now ..."
+   echo "where am I: pwd"
+   echo "running: $container_pull"
    $container_pull
 fi
 
@@ -213,7 +215,7 @@ if  [[ -f $_base/commands.txt ]]; then
    echo "[DEBUG] run_transparent_singularity: This worked!"
 else
    echo "[DEBUG] run_transparent_singularity: Trying to guess singularity bindpaths:"
-   export SINGULARITY_BINDPATH=$PWD
+   export SINGULARITY_BINDPATH=$PWD,/cvmfs
    echo "SINGULARITY_BINDPATH: $SINGULARITY_BINDPATH"
    singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
    if  [[ -f $_base/commands.txt ]]; then

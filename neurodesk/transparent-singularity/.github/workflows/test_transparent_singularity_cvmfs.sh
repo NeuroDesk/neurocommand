@@ -39,18 +39,26 @@ echo "CVMFS_QUOTA_LIMIT=5000" | sudo tee -a  /etc/cvmfs/default.local
 sudo cvmfs_config setup
 sudo cvmfs_config chksetup
 
-ls /cvmfs/neurodesk.ardc.edu.au
+ls /cvmfs/neurodesk.ardc.edu.au/containers
 
 cvmfs_config stat -v neurodesk.ardc.edu.au
 
-bash run_transparent_singularity.sh --container itksnap_3.8.0_20200811.simg
+bash run_transparent_singularity.sh --container itksnap_3.8.0_20201208.simg
 
+# check if container exists on cvmfs
 
-# check if container file exists
-if [ -f /home/runner/work/transparent-singularity/transparent-singularity/itksnap_3.8.0_20200811.simg ]; then
-    echo "[DEBUG]: Container file exists"
+if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/itksnap_3.8.0_20201208" ]]; then
+   echo "Container exists in cvmfs"
+else
+   echo "Container does NOT exist!"
+   exit 1
+fi
+
+# check if container link exists
+if [ -L /home/runner/work/transparent-singularity/transparent-singularity/itksnap_3.8.0_20201208.simg ]; then
+    echo "[DEBUG]: Container file link exists"
 else 
-    echo "[DEBUG]: Container file does not exist! Something went wrong when downloading."
+    echo "[DEBUG]: Container file does not exist! Something went wrong."
     exit 1
 fi
 
