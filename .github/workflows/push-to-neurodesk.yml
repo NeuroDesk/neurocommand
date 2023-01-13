@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-    - name: Test singularity and curl before pushing to neurocommand
+    - name: Test singularity and cvmfs before pushing to neurocommand
       run: /bin/bash .github/workflows/test_singularity_cvmfs.sh
   test_apptainer_curl:
     runs-on: ubuntu-20.04
@@ -35,7 +35,7 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
     - uses: actions/checkout@v3
-    - name: Test apptainer and curl before pushing to neurocommand
+    - name: Test apptainer and cvmfs before pushing to neurocommand
       run: /bin/bash .github/workflows/test_apptainer_cvmfs.sh
   test_apptainer_aria2:
     runs-on: ubuntu-20.04
