@@ -121,7 +121,7 @@ fi
 echo "containerEnding: ${containerEnding}"
 
 echo "checking if $container exists in the cvmfs cache ..."
-if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}" ]]; then
+if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg" ]]; then
    echo "$container exists in cvmfs"
    storage="cvmfs"
    container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg $container"
