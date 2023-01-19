@@ -32,6 +32,14 @@
             "sumaGUI-afni 22.3.07": {
                     "version": "20221206",
                     "exec": "suma"
+            },
+            "afni 23.0.00": {
+                    "version": "20230118",
+                    "exec": ""
+            },
+            "sumaGUI-afni 23.0.00": {
+                    "version": "20230118",
+                    "exec": "suma"
             }
         },
         "categories": ["functional imaging"]
