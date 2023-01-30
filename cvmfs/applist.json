@@ -575,6 +575,12 @@
             ]
         }, 
         {
+            "application": "sovabids_0.3.1a0_20221202", 
+            "categories": [
+                "data organisation"
+            ]
+        }, 
+        {
             "application": "spinalcordtoolbox_5.4_20211208", 
             "categories": [
                 "spine"
