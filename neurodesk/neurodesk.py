@@ -4,7 +4,6 @@ import configparser
 from pathlib import Path
 import os
 import signal
-import sys
 import tempfile
 import xml.etree.ElementTree as et
 import logging
