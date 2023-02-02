@@ -1,39 +1,19 @@
-# install CVMFS packages for ubuntu:
+# install CVMFS, apptainer and lmod packages for ubuntu:
 sudo apt-get install lsb-release
 wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
 
-echo "[DEBUG]: adding cfms repo"
-sudo dpkg -i cvmfs-release-latest_all.deb >> /dev/null
-echo "[DEBUG]: apt-get update"
-sudo apt-get update --allow-unauthenticated >> /dev/null
-echo "[DEBUG]: apt-get install cvmfs"
-sudo apt-get install cvmfs tree --allow-unauthenticated >> /dev/null
-
-# install apptainer for ubuntu:
-sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository -y ppa:apptainer/ppa
-sudo apt update
-sudo apt install -y apptainer
-sudo apt install -y apptainer-suid
-sudo apptainer config fakeroot --add root
-apt install lmod
+
+sudo dpkg -i cvmfs-release-latest_all.deb >> /dev/null
+sudo apt-get update --allow-unauthenticated >> /dev/null
+
+sudo apt-get install cvmfs tree apptainer lmod --allow-unauthenticated >> /dev/null
+
 pip install jupyterlmod
 
-# this just suppresses a few unessary messages
-LD_PRELOAD=''
-
-#this makes the /content directory available to the software containers
-APPTAINER_BINDPATH='/content'
-
-# this is required for lmod
-LMOD_CMD='/usr/share/lmod/lmod/libexec/lmod'
-MODULEPATH='/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/workflows:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/visualization:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/structural_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/statistics:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/spine:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/spectroscopy:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/shape_analysis:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/segmentation:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/rodent_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/quantitative_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/quality_control:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/programming:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/phase_processing:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/machine_learning:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_segmentation:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_registration:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/image_reconstruction:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/hippocampus:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/functional_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/electrophysiology:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/diffusion_imaging:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/data_organisation:/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/body'
-
-echo 'unshare -r apptainer "$@"' > /usr/bin/singularity_test
-chmod +x /usr/bin/singularity_test
-mv /usr/bin/singularity /usr/bin/singularity_backup
-mv /usr/bin/singularity_test /usr/bin/singularity
+echo 'unshare -r apptainer "$@"' > /usr/bin/singularity
+chmod +x /usr/bin/singularity
 
 #setup cvmfs
 mkdir -p /etc/cvmfs/keys/ardc.edu.au/
@@ -61,7 +41,6 @@ sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
 
 cvmfs_config chksetup
 cvmfs_config probe neurodesk.ardc.edu.au
-ls /cvmfs/neurodesk.ardc.edu.au/
 cvmfs_config stat -v neurodesk.ardc.edu.au
 cvmfs_talk -i neurodesk.ardc.edu.au host probe
 cvmfs_talk -i neurodesk.ardc.edu.au host info
