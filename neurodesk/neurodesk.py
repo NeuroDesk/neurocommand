@@ -4,13 +4,7 @@ import configparser
 from pathlib import Path
 import os
 import signal
-import sys
-import tempfile
-import xml.etree.ElementTree as et
 import logging
-import shutil
-import stat
-import re
 
 from neurodesk.build_menu import build_menu
 from neurodesk.build_menu import neurodesk_xml

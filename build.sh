@@ -196,4 +196,8 @@ if [ $neurodesk_deskenv != "cli" ]; then
     args="${args} --edit=$neurodesk_edit"
 fi
 
+# Symlink neurocommand directory into installdir
+# Used for neurocommand updater
+ln -vfns ${_base} $neurodesk_installdir/neurocommand
+
 python3 -m neurodesk $args

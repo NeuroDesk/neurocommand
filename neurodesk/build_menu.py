@@ -295,6 +295,7 @@ def build_menu(installdir, deskenv, sh_prefix):
     (installdir/'icons').mkdir(exist_ok=True)
     apps_from_json(climode, deskenv, installdir, appsjson, sh_prefix)
 
+    # Neurodesk help app
     help_app = NeurodeskApp(
         deskenv=deskenv,
         installdir=installdir,
@@ -304,6 +305,18 @@ def build_menu(installdir, deskenv, sh_prefix):
     help_app.add_app_sh("firefox https://neurodesk.github.io/docs/neurodesktop")
     if not climode:
         help_app.add_app_menu()
+
+    # Update Neurocommand app
+    update_app = NeurodeskApp(
+        deskenv=deskenv,
+        installdir=installdir,
+        name="Update",
+        category="Neurodesk")
+    update_app.app_names()
+    update_msg = "\nNeurocommand has been updated\nPress enter to continue ..."
+    update_app.add_app_sh(f"cd {installdir}/neurocommand; bash build.sh; read -p \"{update_msg}\"")
+    if not climode:
+        update_app.add_app_menu()
 
     # Remove any symlinks from local appdir
     # Prevents symlink recursion

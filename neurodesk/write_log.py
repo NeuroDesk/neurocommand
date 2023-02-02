@@ -1,12 +1,8 @@
 """Generate the menu items."""
 import configparser
 import json
-import os
 from pathlib import Path
-import re
 from typing import Text
-import xml.etree.ElementTree as et
-from xml.dom import minidom
 
 def add_app(
     name: Text,
