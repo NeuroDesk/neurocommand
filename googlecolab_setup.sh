@@ -14,6 +14,8 @@ pip install jupyterlmod
 
 echo 'unshare -r apptainer "$@"' > /usr/bin/singularity
 chmod +x /usr/bin/singularity
+mv /usr/bin/singularity /usr/bin/singularity_backup
+mv /usr/bin/singularity_test /usr/bin/singularity
 
 #setup cvmfs
 mkdir -p /etc/cvmfs/keys/ardc.edu.au/
