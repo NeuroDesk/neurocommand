@@ -1,19 +1,27 @@
-# install CVMFS, apptainer and lmod packages for ubuntu:
+# install CVMFS packages for ubuntu:
 sudo apt-get install lsb-release
 wget https://ecsft.cern.ch/dist/cvmfs/cvmfs-release/cvmfs-release-latest_all.deb
 
+echo "[DEBUG]: adding cfms repo"
+sudo dpkg -i cvmfs-release-latest_all.deb >> /dev/null
+echo "[DEBUG]: apt-get update"
+sudo apt-get update --allow-unauthenticated >> /dev/null
+echo "[DEBUG]: apt-get install cvmfs"
+sudo apt-get install cvmfs tree --allow-unauthenticated >> /dev/null
+
+# install apptainer for ubuntu:
+sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository -y ppa:apptainer/ppa
-
-sudo dpkg -i cvmfs-release-latest_all.deb >> /dev/null
-sudo apt-get update --allow-unauthenticated >> /dev/null
-
-sudo apt-get install cvmfs tree apptainer lmod --allow-unauthenticated >> /dev/null
-
+sudo apt update
+sudo apt install -y apptainer
+sudo apt install -y apptainer-suid
+sudo apptainer config fakeroot --add root
+apt install lmod
 pip install jupyterlmod
 
-echo 'unshare -r apptainer "$@"' > /usr/bin/singularity
-chmod +x /usr/bin/singularity
+echo 'unshare -r apptainer "$@"' > /usr/bin/singularity_test
+chmod +x /usr/bin/singularity_test
 mv /usr/bin/singularity /usr/bin/singularity_backup
 mv /usr/bin/singularity_test /usr/bin/singularity
 
@@ -43,6 +51,7 @@ sudo mount -t cvmfs neurodesk.ardc.edu.au /cvmfs/neurodesk.ardc.edu.au
 
 cvmfs_config chksetup
 cvmfs_config probe neurodesk.ardc.edu.au
+ls /cvmfs/neurodesk.ardc.edu.au/
 cvmfs_config stat -v neurodesk.ardc.edu.au
 cvmfs_talk -i neurodesk.ardc.edu.au host probe
 cvmfs_talk -i neurodesk.ardc.edu.au host info
