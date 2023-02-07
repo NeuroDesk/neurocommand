@@ -313,8 +313,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         name="Update",
         category="Neurodesk")
     update_app.app_names()
-    update_msg = "\nNeurocommand has been updated\nPress enter to continue ..."
-    update_app.add_app_sh(f"cd {installdir}/neurocommand; bash build.sh; read -p \"{update_msg}\"")
+    update_app.add_app_sh(f"cd {installdir}/neurocommand; bash build.sh; read -p \"Press enter to close this window ...\"")
     if not climode:
         update_app.add_app_menu()
 
