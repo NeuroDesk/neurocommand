@@ -143,61 +143,98 @@ args="${args} --installdir=$neurodesk_installdir"
 args="${args} --deskenv=$neurodesk_deskenv"
 mkdir -p $neurodesk_installdir
 
-if [ $neurodesk_deskenv != "cli" ]; then
-    # Test Applications Menu
-    echo "Checking appmenu> $neurodesk_appmenu"
-    validfile=false
-    if [ ! -f "$neurodesk_appmenu" ]; then
-        echo "Applications Menu not found"
-        exit 1
-    fi
-    mkdir -p $neurodesk_installdir/desktop-directories
-    mkdir -p $neurodesk_installdir/icons
-    cp $neurodesk_appmenu $neurodesk_installdir/local-applications.menu.template
-    cp neurodesk/icons/*.png $neurodesk_installdir/icons
+function build_apps () {
+    _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
+    _base="$(dirname $_script)" ## Delete last component from $_script ##
+    source ${_base}/neurodesk/configparser.sh ${_base}/config.ini
 
-    # Test Applications Directory
-    echo "Checking appdir> $neurodesk_appdir"
-    validfile=false
-    for i in $neurodesk_appdir/*.desktop; do
-        if [[ -e $i ]]; then
-            echo " - contains *.desktop file(s)"
-            validfile=true
-            break
+    if [ $neurodesk_deskenv != "cli" ]; then
+        # Test Applications Menu
+        echo "Checking appmenu> $neurodesk_appmenu"
+        validfile=false
+        if [ ! -f "$neurodesk_appmenu" ]; then
+            echo "Applications Menu not found"
+            exit 1
         fi
-    done
-    if [ "$validfile" = false ]; then
-        echo " - missing *.desktop file(s)"
-        echo "Invalid Applications Directory"
-        exit 1
-    fi
-    echo
+        mkdir -p $neurodesk_installdir/desktop-directories
+        mkdir -p $neurodesk_installdir/icons
+        cp $neurodesk_appmenu $neurodesk_installdir/local-applications.menu.template
+        cp neurodesk/icons/*.png $neurodesk_installdir/icons
 
-    # Test Desktop Directory
-    echo "Checking deskdir> $neurodesk_deskdir"
-    validfile=false
-    for i in $neurodesk_deskdir/*.directory; do
-        if [[ -e $i ]]; then
-            echo " - contains *.directory file(s)"
-            validfile=true
-            break
+        # Test Applications Directory
+        echo "Checking appdir> $neurodesk_appdir"
+        validfile=false
+        for i in $neurodesk_appdir/*.desktop; do
+            if [[ -e $i ]]; then
+                echo " - contains *.desktop file(s)"
+                validfile=true
+                break
+            fi
+        done
+        if [ "$validfile" = false ]; then
+            echo " - missing *.desktop file(s)"
+            echo "Invalid Applications Directory"
+            exit 1
         fi
-    done
-    if [ "$validfile" = false ]; then
-        echo " - missing *.directory file(s)"
-        echo "Invalid Desktop Directory"
-        exit 1
-    fi
-    echo
+        echo
 
-    args="${args} --appmenu=$neurodesk_appmenu"
-    args="${args} --appdir=$neurodesk_appdir"
-    args="${args} --deskdir=$neurodesk_deskdir"
-    args="${args} --edit=$neurodesk_edit"
+        # Test Desktop Directory
+        echo "Checking deskdir> $neurodesk_deskdir"
+        validfile=false
+        for i in $neurodesk_deskdir/*.directory; do
+            if [[ -e $i ]]; then
+                echo " - contains *.directory file(s)"
+                validfile=true
+                break
+            fi
+        done
+        if [ "$validfile" = false ]; then
+            echo " - missing *.directory file(s)"
+            echo "Invalid Desktop Directory"
+            exit 1
+        fi
+        echo
+
+        args="${args} --appmenu=$neurodesk_appmenu"
+        args="${args} --appdir=$neurodesk_appdir"
+        args="${args} --deskdir=$neurodesk_deskdir"
+        args="${args} --edit=$neurodesk_edit"
+    fi
+
+    # Symlink neurocommand directory into installdir
+    # Used for neurocommand updater
+    ln -vfns ${_base} $neurodesk_installdir/neurocommand
+
+    python3 -m neurodesk $args
+    err=$?
+    if [ $err -eq 0 ] ; then
+        echo "-----------------------------------------"
+        echo "| Neurocommand has updated successfully |"
+        echo "-----------------------------------------"
+    fi
+}
+
+if [ -w "$neurodesk_installdir" ]; then
+    runsudo="n"
+else
+    echo
+    echo "[WARNING]"
+    echo "Installation directory is not writable by current user"
+    echo "($neurodesk_installdir)"
+    echo
+    read -r -p "Run app builder as sudo? [Y/n] " runsudo
 fi
+echo
 
-# Symlink neurocommand directory into installdir
-# Used for neurocommand updater
-ln -vfns ${_base} $neurodesk_installdir/neurocommand
-
-python3 -m neurodesk $args
+case "$runsudo" in
+    [nN][eE][sS]|[nN])
+        echo $neurodesk_installdir
+        build_apps
+        ;;
+    *)  
+        echo $neurodesk_installdir
+        # sudo build_apps
+        # build_apps
+        sudo bash -c "$(declare -f build_apps); build_apps"
+        ;;
+esac
