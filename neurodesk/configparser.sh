@@ -9,7 +9,7 @@ else
 fi
 
 if [ -f "$filename" ]; then
-    echo $filename
+    echo "Reading config from $filename"
     while IFS='= ' read key value
     do
         if [[ $key == \[*] ]]
