@@ -19,8 +19,9 @@ echo "to install individual containers, run:"
 echo
 while read appsh; do
       arrayIn=(${appsh//_/ })
-      appcat=$(echo ${arrayIn[3]} | cut -c 12-)
-      apphead="| ${arrayIn[0]} | ${arrayIn[1]} | ${arrayIn[2]} | ${appcat} | Run:"
+      appcat=${arrayIn[@]:3}
+      appcat_clean=${appcat:11:-1}                                                                                                                                                           
+      apphead="| ${arrayIn[0]} | ${arrayIn[1]} | ${arrayIn[2]} | ${appcat_clean} | Run:"
       appfetch="./local/fetch_containers.sh ${arrayIn[0]} ${arrayIn[1]} ${arrayIn[2]}"
 
     eval $(echo printf '"%.0s-"' {1..${#apphead}})
