@@ -16,23 +16,50 @@ echo "to install ALL containers, run:"
 echo "bash containers.sh --all"
 echo "------------------------------------"
 echo "to install individual containers, run:"
-for appsh in ${neurodesk_installdir}/bin/*.sh; do
-    appfetch=$(sed -n 's/fetch_and_run.sh/fetch_containers.sh/p' $appsh)
+echo
+while read appsh; do
+      arrayIn=(${appsh//_/ })
+      appcat=$(echo ${arrayIn[3]} | cut -c 12-)
+      apphead="| ${arrayIn[0]} | ${arrayIn[1]} | ${arrayIn[2]} | ${appcat} | Run:"
+      appfetch="./local/fetch_containers.sh ${arrayIn[0]} ${arrayIn[1]} ${arrayIn[2]}"
+
+    eval $(echo printf '"%.0s-"' {1..${#apphead}})
+    echo
+    echo $apphead
+    eval $(echo printf '"%.0s-"' {1..${#apphead}})
+    echo
     echo $appfetch
-    if [ "$install_all_containers" = "true" ]; then
-         eval $appfetch
+    echo
+
+ if [ "$install_all_containers" = "true" ]; then
+        eval $appfetch
         err=$?
         if [ $err -eq 0 ] ; then
-            echo "Container successfully installed"
-            echo "-------------------------------------------------------------------------------------"
-            date
+            installmsg="| SUCCESS | ${arrayIn[0]} ${arrayIn[1]} ${arrayIn[2]} | $(date)"
+            eval $(echo printf '"%.0s-"' {1..${#installmsg}})
+            echo
+            echo $installmsg
+            eval $(echo printf '"%.0s-"' {1..${#installmsg}})
+            echo
+            echo
+            echo
         else
-            echo "======================================="
-            echo "!!!!!!! Container install failed !!!!!!"
-            echo "======================================="
-            date
+            installmsg="| FAILED | ${arrayIn[0]} ${arrayIn[1]} ${arrayIn[2]} | $(date)"
+            eval $(echo printf '"%.0s-"' {1..${#installmsg}})
+            echo
+            echo $installmsg
+            eval $(echo printf '"%.0s-"' {1..${#installmsg}})
+            echo
+            echo
+            echo "Existing due to install error(s) ..."
+            echo
             exit
         fi
-        
     fi
-done
+done < cvmfs/log.txt
+
+echo "------------------------------------"
+echo "to install ALL containers, run:"
+echo "bash containers.sh --all"
+echo "------------------------------------"
+echo "to install individual containers, run the above listed commands for each application"
