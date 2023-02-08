@@ -449,6 +449,14 @@
             "registerGUI-minc 1.9.17": {
                 "version": "20210105",
                 "exec": "register"
+            },
+            "minc 1.9.18": {
+                "version": "20230208",
+                "exec": ""
+            },
+            "registerGUI-minc 1.9.18": {
+                "version": "20230208",
+                "exec": "register"
             }
         },
         "categories": ["image segmentation", "image registration", "structural imaging"]
