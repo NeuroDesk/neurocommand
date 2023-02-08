@@ -341,6 +341,14 @@
             ]
         }, 
         {
+            "application": "minc_1.9.18_20230208", 
+            "categories": [
+                "image segmentation", 
+                "image registration", 
+                "structural imaging"
+            ]
+        }, 
+        {
             "application": "mne_0.23.4_20220121", 
             "categories": [
                 "electrophysiology"
