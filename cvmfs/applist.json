@@ -339,6 +339,13 @@
             ]
         }, 
         {
+            "application": "mfcsc_1.0_20230216", 
+            "categories": [
+                "functional imaging", 
+                "diffusion imaging"
+            ]
+        }, 
+        {
             "application": "minc_1.9.17_20210105", 
             "categories": [
                 "image segmentation", 
