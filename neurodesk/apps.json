@@ -448,6 +448,15 @@
         },
         "categories": ["programming", "visualization"]
     },
+    "mfcsc": {
+        "apps": {
+            "mfcsc 1.0": {
+                "version": "20230216",
+                "exec": ""
+            }
+        },
+        "categories": ["functional imaging", "diffusion imaging"]
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
