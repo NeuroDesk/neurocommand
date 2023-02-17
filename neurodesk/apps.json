@@ -42,11 +42,11 @@
                     "exec": "suma"
             },
             "afni 23.0.04": {
-                    "version": "20230215",
+                    "version": "20230216",
                     "exec": ""
             },
             "sumaGUI-afni 23.0.04": {
-                    "version": "20230215",
+                    "version": "20230216",
                     "exec": "suma"
             }
         },
