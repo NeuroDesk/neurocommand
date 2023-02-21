@@ -461,6 +461,15 @@
         },
         "categories": ["functional imaging", "diffusion imaging"]
     },
+    "mgltools": {
+        "apps": {
+            "mgltools 1.5.7": {
+                "version": "20230221",
+                "exec": ""
+            }
+        },
+        "categories": ["molecular biology"]
+    },
     "minc": {
         "apps": {
             "minc 1.9.17": {
