@@ -289,6 +289,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         write_directory_file("Body", directories_path, icon_dir)
         write_directory_file("Hippocampus", directories_path, icon_dir)
         write_directory_file("Phase Processing", directories_path, icon_dir)
+        write_directory_file("Molecular Biology", directories_path, icon_dir)
         write_directory_file("Statistics", directories_path, icon_dir)
 
     appsjson = Path('neurodesk/apps.json').resolve(strict=True)

@@ -177,6 +177,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Molecular Biology</Name>
+			<Directory>neurodesk/molecular-biology.directory</Directory>
+			<Include>
+				<And>
+					<Category>molecular-biology</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Hippocampus</Name>
 			<Directory>neurodesk/hippocampus.directory</Directory>
 			<Include>
