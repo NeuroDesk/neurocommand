@@ -906,5 +906,14 @@
             }
         },
         "categories": ["image segmentation"]
+    },
+    "vina": {
+        "apps": {
+            "vina 1.2.3": {
+                "version": "20230221",
+                "exec": ""
+            }
+        },
+        "categories": ["molecular biology"]
     }
 }
