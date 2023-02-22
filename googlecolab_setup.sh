@@ -10,14 +10,11 @@ echo "[DEBUG]: apt-get install cvmfs"
 sudo apt-get install cvmfs tree --allow-unauthenticated >> /dev/null
 
 # install apptainer for ubuntu:
-sudo apt update
 sudo apt install -y software-properties-common
 sudo add-apt-repository -y ppa:apptainer/ppa
 sudo apt update
-sudo apt install -y apptainer
-sudo apt install -y apptainer-suid
+sudo apt install -y apptainer datalad apptainer-suid lmod
 sudo apptainer config fakeroot --add root
-apt install lmod
 pip install jupyterlmod
 
 echo 'unshare -r apptainer "$@"' > /usr/bin/singularity_test
@@ -43,7 +40,7 @@ echo "CVMFS_HTTP_PROXY=DIRECT" | sudo tee  /etc/cvmfs/default.local
 echo "CVMFS_QUOTA_LIMIT=5000" | sudo tee -a  /etc/cvmfs/default.local
 cvmfs_config setup
 
-# Disabling autofs is needed, otherwise autofs is not fast enough to mount CVMFS for new pods to start and these new pods will complain about it with "too many symbolic errors"
+# Disabling autofs is needed, otherwise autofs is not fast enough to mount CVMFS and it will complain about it with "too many symbolic errors"
 sudo cvmfs_config umount
 sudo service autofs stop
 sudo mkdir /cvmfs/neurodesk.ardc.edu.au
