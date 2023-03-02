@@ -17,14 +17,6 @@
                     "version": "20220713",
                     "exec": "suma"
             },
-            "afni 22.3.06": {
-                    "version": "20221128",
-                    "exec": ""
-            },
-            "sumaGUI-afni 22.3.06": {
-                    "version": "20221128",
-                    "exec": "suma"
-            },
             "afni 22.3.07": {
                     "version": "20221206",
                     "exec": ""
@@ -33,20 +25,20 @@
                     "version": "20221206",
                     "exec": "suma"
             },
-            "afni 23.0.00": {
-                    "version": "20230118",
-                    "exec": ""
-            },
-            "sumaGUI-afni 23.0.00": {
-                    "version": "20230118",
-                    "exec": "suma"
-            },
             "afni 23.0.04": {
                     "version": "20230216",
                     "exec": ""
             },
             "sumaGUI-afni 23.0.04": {
                     "version": "20230216",
+                    "exec": "suma"
+            },
+            "afni 23.0.07": {
+                    "version": "20230302",
+                    "exec": ""
+            },
+            "sumaGUI-afni 23.0.07": {
+                    "version": "20230302",
                     "exec": "suma"
             }
         },
