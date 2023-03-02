@@ -16,7 +16,7 @@
             "sumaGUI-afni 22.1.14": {
                     "version": "20220713",
                     "exec": "suma"
-            }
+            },
             "afni 22.3.07": {
                     "version": "20221206",
                     "exec": ""
