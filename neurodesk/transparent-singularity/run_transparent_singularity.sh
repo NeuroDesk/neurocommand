@@ -142,8 +142,7 @@ else
       urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
    fi
 
-
-   if [[ -z "${urlUS}" ]]; then
+   if [[ -v urlUS ]]; then
       echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
