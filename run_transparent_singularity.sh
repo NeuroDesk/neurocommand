@@ -126,18 +126,29 @@ if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVe
    storage="cvmfs"
    container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg $container"
 else
-   echo "$container does not exists in cvmfs. Testing Oracle Object storage next: "
+   echo "$container does not exists in cvmfs. Testing Oracle temporary Object storage next: "
+   if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/$container"; then
+      echo "$container exists in the temporary builds oracle cache"
+      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
+      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
+      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
+   fi
+
+   echo "Testing standard Oracle Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container"; then
-      echo "$container exists in the oracle cache"
-      storage="oracle"
+      echo "$container exists in the oracle object storage"
+      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+   fi
+
+
+   if [[ -z "${urlUS}" ]]; then
       echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
           echo "aria2 is not installed. Defaulting to curl."
-          urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
-          urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
-          urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
-#           urlBRISBANE="https://swift.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/"
+         
           urls=($urlUS $urlEUROPE $urlSYDNEY)
           declare -a speeds   
               
@@ -149,8 +160,8 @@ else
                 then          
                    echo ResponseTime: "$avg_speed"
                    speeds+=($avg_speed)     
-             fi               
-          done
+             fi  # of speed test            
+          done # end of URL for loop
               
           count=0             
           for speed in "${speeds[@]}";      
@@ -165,14 +176,14 @@ else
                 #echo setting URL to $url
              fi
              count=$((count+1))                                                                                                                                  
-          done
+          done  # ed of Speed for loop
           echo using server $url
               
           container_pull="curl -X GET ${url}${container} -O"
-       else 
-          container_pull="aria2c https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container"
-       fi
-   else
+       else # if aria2c does not exist:
+          container_pull="aria2c ${urlUS}${container} ${urlEUROPE}${container} ${urlSYDNEY}${container}"
+       fi # end of aria2c check
+   else # end of check if files exist in object storage
       # fallback to docker
       echo "$container does not exist in any cache - loading from docker!"
       storage="docker"
