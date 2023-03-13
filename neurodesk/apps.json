@@ -456,7 +456,7 @@
     "mgltools": {
         "apps": {
             "mgltools 1.5.7": {
-                "version": "20230221",
+                "version": "20230313",
                 "exec": ""
             }
         },
