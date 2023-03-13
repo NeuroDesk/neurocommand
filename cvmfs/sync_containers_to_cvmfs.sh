@@ -70,6 +70,8 @@ do
         #sync object storages:
         rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
         rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
+        rclone copy oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
+
         
         # check if singularity image is already in object storage
         if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
