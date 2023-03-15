@@ -233,6 +233,13 @@
             ]
         }, 
         {
+            "application": "fmriprep_23.0.0_20230315", 
+            "categories": [
+                "functional imaging", 
+                "workflows"
+            ]
+        }, 
+        {
             "application": "freesurfer_7.1.1_20211216", 
             "categories": [
                 "image segmentation", 
