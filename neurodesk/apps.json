@@ -152,12 +152,12 @@
     },
     "code": {
         "apps": {
-            "vscodeGUI-code 220114": {
-                "version": "20220121",
+            "vscodeGUI-code 230315": {
+                "version": "20230315",
                 "exec": "code"
             },
-            "code 220114": {
-                "version": "20220121",
+            "code 230315": {
+                "version": "20230315",
                 "exec": ""
             }
         },
