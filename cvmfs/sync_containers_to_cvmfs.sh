@@ -18,6 +18,11 @@ else
     echo "running" >> $LOCKFILE
 fi
 
+echo "Syncing object storages:"
+rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
+rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
+rclone copy oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
+
 cd ~/neurocommand/
 
 # update application list (the log.txt file get's build in the neurocommand action once all containers are uploaded.):
@@ -66,11 +71,7 @@ do
     else
         echo "$IMAGENAME_BUILDDATE is not yet on cvmfs."
 
-        echo "Syncing object storages:"
-        #sync object storages:
-        rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
-        rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
-        rclone copy oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
+
 
         
         # check if singularity image is already in object storage
