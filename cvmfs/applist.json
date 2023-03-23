@@ -354,6 +354,13 @@
             ]
         }, 
         {
+            "application": "mfcsc_1.1_20230321", 
+            "categories": [
+                "functional imaging", 
+                "diffusion imaging"
+            ]
+        }, 
+        {
             "application": "mgltools_1.5.7_20230313", 
             "categories": [
                 "molecular biology"
