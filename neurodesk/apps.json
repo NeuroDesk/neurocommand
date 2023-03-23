@@ -453,6 +453,10 @@
             "mfcsc 1.0": {
                 "version": "20230306",
                 "exec": ""
+            },
+            "mfcsc 1.1": {
+                "version": "20230321",
+                "exec": ""
             }
         },
         "categories": ["functional imaging", "diffusion imaging"]
