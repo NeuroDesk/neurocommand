@@ -901,6 +901,15 @@
         },
         "categories": ["visualization"]
     },
+    "template": {
+        "apps": {
+            "template 1.0": {
+                "version": "20230331",
+                "exec": ""
+            }
+        },
+        "categories": ["neurodesk development"]
+    },
     "tgvqsm": {
         "apps": {
             "tgvqsm 1.0.0": {
