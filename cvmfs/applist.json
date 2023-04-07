@@ -180,6 +180,12 @@
             ]
         }, 
         {
+            "application": "elastix_5.1.0_20230407", 
+            "categories": [
+                "image registration"
+            ]
+        }, 
+        {
             "application": "fatsegnet_1.0.gpu_20201212", 
             "categories": [
                 "body"
