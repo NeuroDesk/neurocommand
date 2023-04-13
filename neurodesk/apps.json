@@ -207,6 +207,15 @@
         },
         "categories": ["machine learning"]
     },
+    "deepretinotopy": {
+        "apps": {
+            "deepretinotopy 1.0.1": {
+                "version": "20230413",
+                "exec": ""
+            }
+        },
+        "categories": ["machine learning"]
+    }
     "delphi": {
         "apps": {
             "delphi 0.0.1": {
