@@ -723,6 +723,12 @@
             ]
         }, 
         {
+            "application": "vesselvio_1.1.2_20230428", 
+            "categories": [
+                "visualization"
+            ]
+        }, 
+        {
             "application": "vina_1.2.3_20230221", 
             "categories": [
                 "molecular biology"
