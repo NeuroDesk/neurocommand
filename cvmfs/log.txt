@@ -44,6 +44,7 @@ fsl_6.0.3_20200905 categories:functional imaging,structural imaging,diffusion im
 fsl_6.0.4_20210105 categories:functional imaging,structural imaging,diffusion imaging,image segmentation,image registration,
 fsl_6.0.5.1_20221016 categories:functional imaging,structural imaging,diffusion imaging,image segmentation,image registration,
 gimp_2.10.18_20210104 categories:visualization,
+globus_3.2.0_20230428 categories:data organisation,
 hdbet_1.0.0_20210318 categories:image segmentation,
 itksnap_3.8.0_20201208 categories:image segmentation,visualization,
 julia_1.4.1_20210105 categories:programming,
