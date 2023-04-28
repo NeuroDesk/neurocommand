@@ -954,6 +954,19 @@
         },
         "categories": ["image segmentation"]
     },
+    "vesselvio": {
+        "apps": {
+            "vesselvio 1.1.2": {
+                "version": "20230428",
+                "exec": ""
+            },
+            "vesselvioGUI-vesselvio 1.1.2": {
+                "version": "20230428",
+                "exec": "vesselvio"
+            }
+        },
+        "categories": ["visualization"]
+    },
     "vina": {
         "apps": {
             "vina 1.2.3": {
