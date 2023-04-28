@@ -386,6 +386,19 @@
         },
         "categories": ["visualization"]
     },
+    "globus": {
+        "apps": {
+            "globusGUI-globus 3.2.0": {
+                "version": "20230428",
+                "exec": "globusconnectpersonal -gui"
+            },
+            "globus 3.2.0": {
+                "version": "20230428",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "hdbet": {
         "apps": {
             "hdbet 1.0.0": {
