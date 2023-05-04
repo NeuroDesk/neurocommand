@@ -625,7 +625,7 @@
     "mrsiproc":{
         "apps":{
             "mrsiproc 0.0.1": {
-                "version": "20221129",
+                "version": "20230503",
                 "exec": ""
             }
         },
