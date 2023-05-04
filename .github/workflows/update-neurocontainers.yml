@@ -44,14 +44,14 @@ jobs:
       with:
         python-version: 3.8
     - name: Free up space
-        uses: easimon/maximize-build-space@master
-        with:
-          root-reserve-mb: 40000
-          swap-size-mb: 1024
-          remove-dotnet: 'true'
-          remove-android: 'true'
-          remove-haskell: 'true'
-          overprovision-lvm: 'true'
+      uses: easimon/maximize-build-space@master
+      with:
+        root-reserve-mb: 40000
+        swap-size-mb: 1024
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        overprovision-lvm: 'true'
     - name : Check if singularity container files exist in oracle cloud and build & upload if not there
       run: /bin/bash .github/workflows/upload_containers_simg.sh
     - name: Auto commit changes to applist.json
