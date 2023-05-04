@@ -8,3 +8,4 @@ __pycache__
 *.sif
 recipe_neurodesk_auto.yaml
 recipe_neurodesk_test.yaml
+.DS_Store
