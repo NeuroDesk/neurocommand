@@ -19,6 +19,8 @@ echo "[debug] logfile:"
 cat log.txt
 echo "[debug] logfile is at: $PWD"
 
+export IMAGE_HOME="/home/runner"
+
 mapfile -t arr < log.txt
 for LINE in "${arr[@]}";
 do
@@ -63,7 +65,6 @@ do
                 sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
                 sudo apt install singularity-container > /dev/null 2>&1
 
-                export IMAGE_HOME="/home/runner"
                 export singularity_setup_done="true"
             fi
 
