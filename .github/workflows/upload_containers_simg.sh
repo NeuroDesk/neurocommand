@@ -60,18 +60,25 @@ do
     if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
     else
-        # check if there is enough free disk space on the runner:
-        FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
-        echo "[DEBUG] This runner has ${FREE} free disk space"
-        if [[ $FREE -lt 50485760 ]]; then               # 50G = 10*1024*1024k
-            echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
-            bash .github/workflows/free-up-space.sh
+        # if image is not in Ashburn cloud then check if the image is in the temporary cache:
+        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/${IMAGENAME_BUILDDATE}.simg"; then
+            # download simg file from cache:
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on ashburn oracle cloud"
+            curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/${IMAGENAME_BUILDDATE}.simg"
+        else
+            # image was not released previously and is not in cache - rebuild from docker:
+            # check if there is enough free disk space on the runner:
             FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
-            echo "[DEBUG] This runner has ${FREE} free disk space after cleanup"
-        fi;
+            echo "[DEBUG] This runner has ${FREE} free disk space"
+            if [[ $FREE -lt 20485760 ]]; then               # 20G = 10*1024*1024k
+                echo "[DEBUG] This runner has not enough free disk space .. cleaning up!"
+                bash .github/workflows/free-up-space.sh
+                FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
+                echo "[DEBUG] This runner has ${FREE} free disk space after cleanup"
+            fi;
 
-        echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
-        singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
+            echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
+            singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
 
         if [ -n "${ORACLE_USER}" ]; then
             echo "[DEBUG] Attempting upload to Oracle ..."
@@ -82,6 +89,7 @@ do
                 echo "[DEBUG] PROCEEDING TO NEXT LINE"
                 echo "[DEBUG] Cleaning up ..."
                 rm -rf /home/runner/.singularity/docker
+                rm -rf $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
             else
                 echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
                 exit 2
