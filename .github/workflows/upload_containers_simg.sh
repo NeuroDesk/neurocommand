@@ -15,34 +15,9 @@ sed -i 's/[][]//g' log.txt
 # remove spaces around
 sed -i -e 's/^[ \t]*//' -e 's/[ \t]*$//' log.txt
 
-# replace spaces with underscores
-# sed -i 's/ /_/g' log.txt
-
-
-
-
-#echo "$GITHUB_TOKEN" | docker login docker.pkg.github.com -u $GITHUB_ACTOR --password-stdin
-#echo "$DOCKERHUB_PASSWORD" | docker login -u $DOCKERHUB_USERNAME --password-stdin
-
 echo "[debug] logfile:"
 cat log.txt
 echo "[debug] logfile is at: $PWD"
-
-
-if [ -n "$singularity_setup_done" ]; then
-    echo "Setup already done. Skipping."
-else
-    #setup singularity 2.6.1 from neurodebian
-    wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list > /dev/null 2>&1
-    echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
-    sudo apt-get update --allow-insecure-repositories > /dev/null 2>&1
-    echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
-    sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
-    sudo apt install singularity-container > /dev/null 2>&1
-
-    export IMAGE_HOME="/home/runner"
-    export singularity_setup_done="true"
-fi
 
 mapfile -t arr < log.txt
 for LINE in "${arr[@]}";
@@ -75,10 +50,26 @@ do
                 bash .github/workflows/free-up-space.sh
                 FREE=`df -k --output=avail "$PWD" | tail -n1`   # df -k not df -h
                 echo "[DEBUG] This runner has ${FREE} free disk space after cleanup"
-            fi;
+            fi
+
+            if [ -n "$singularity_setup_done" ]; then
+                echo "Setup already done. Skipping."
+            else
+                #setup singularity 2.6.1 from neurodebian
+                wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list > /dev/null 2>&1
+                echo "[DEBUG] sudo apt-get update --allow-insecure-repositories"
+                sudo apt-get update --allow-insecure-repositories > /dev/null 2>&1
+                echo "[DEBUG] sudo apt-get update --allow-unauthenticated"
+                sudo apt-get install --allow-unauthenticated singularity-container  > /dev/null 2>&1
+                sudo apt install singularity-container > /dev/null 2>&1
+
+                export IMAGE_HOME="/home/runner"
+                export singularity_setup_done="true"
+            fi
 
             echo "[DEBUG] singularity building docker://vnmd/$IMAGENAME:$BUILDDATE"
             singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
+        fi
 
         if [ -n "${ORACLE_USER}" ]; then
             echo "[DEBUG] Attempting upload to Oracle ..."
