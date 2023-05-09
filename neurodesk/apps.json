@@ -764,6 +764,10 @@
             "qsmxt 2.0.0": {
                 "version": "20230503",
                 "exec": ""
+            },
+            "qsmxt 2.1.0": {
+                "version": "20230509",
+                "exec": ""
             }
         },
         "categories": ["phase processing", "quantitative imaging", "structural imaging", "workflows"]
