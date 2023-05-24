@@ -159,6 +159,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>BIDS Apps</Name>
+			<Directory>neurodesk/bids-apps.directory</Directory>
+			<Include>
+				<And>
+					<Category>bids-apps</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Machine Learning</Name>
 			<Directory>neurodesk/machine-learning.directory</Directory>
 			<Include>

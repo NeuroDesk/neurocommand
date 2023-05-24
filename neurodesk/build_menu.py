@@ -285,6 +285,7 @@ def build_menu(installdir, deskenv, sh_prefix):
         write_directory_file("Shape Analysis", directories_path, icon_dir)
         write_directory_file("Spine", directories_path, icon_dir)
         write_directory_file("Electrophysiology", directories_path, icon_dir)
+        write_directory_file("BIDS Apps", directories_path, icon_dir)
         write_directory_file("Machine Learning", directories_path, icon_dir)
         write_directory_file("Body", directories_path, icon_dir)
         write_directory_file("Hippocampus", directories_path, icon_dir)

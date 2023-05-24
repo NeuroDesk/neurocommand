@@ -106,6 +106,15 @@
         },
         "categories": ["data organisation"]
     },
+    "bidsapphcppipelines": {
+        "apps": {
+            "bidsapphcppipelines 4.3.0": {
+                "version": "20230524",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
