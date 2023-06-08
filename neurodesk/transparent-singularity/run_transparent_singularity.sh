@@ -251,9 +251,20 @@ echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
 
 echo "create environment variables for module file"
 while read envvariable; do \
-   # replace BASEPATH with the actual path to the container
-   envvariable="${envvariable//BASEPATH/${_base}/${container}}"    
-   echo "setenv ${envvariable#*DEPLOY_ENV_}" >> ${modulePath}/${moduleName}
+   # envvariable="DEPLOY_ENV_SPMMCRCMD=BASEPATH/opt/spm12/run_spm12.sh BASEPATH/opt/mcr/v97/ script"
+   value=${envvariable#*=}
+   # echo $value #BASEPATH/opt/spm12/run_spm12.sh BASEPATH/opt/mcr/v97/ script"
+
+   value_with_basepath="${value//BASEPATH/${_base}/${container}}"
+   # echo $value_with_basepath
+
+   completeVariableName=${envvariable%=*}
+   # echo $completeVariableName
+
+   variableName=${completeVariableName#*DEPLOY_ENV_}
+   # echo $variableName
+
+   echo "setenv ${variableName} '${value_with_basepath}'" >> ${modulePath}/${moduleName}
 done < $_base/env.txt
 
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
