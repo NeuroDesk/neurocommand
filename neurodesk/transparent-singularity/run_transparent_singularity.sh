@@ -9,18 +9,16 @@
 
 echo "[DEBUG] This is the run_transparent_singularity.sh script"
 
-echo "Singularity bindpath is: $SINGULARITY_BINDPATH"
-echo "Singularity bindpath should at least have vnm path!"
-
+export SINGULARITY_BINDPATH=$SINGULARITY_BINDPATH,$PWD
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 
-echo "making sure this is not running in a symlinked directory (singularity bug)"
-echo "path: $_base"
+# echo "making sure this is not running in a symlinked directory (singularity bug)"
+# echo "path: $_base"
 cd $_base
 _base=`pwd -P`
-echo "corrected path: $_base"
+# echo "corrected path: $_base"
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -109,16 +107,16 @@ if [ "$containerEnding" = "$containerDate" ]; then
    containerEnding="simg"
    container=${containerName}_${containerVersion}_${containerDate}.${containerEnding}
 fi
+echo "containerEnding: ${containerEnding}"
 
-echo "checking for singularity ..."
+
+# echo "checking for singularity ..."
 qq=`which  singularity`
 if [[  ${#qq} -lt 1 ]]; then
    echo "This script requires singularity or apptainer on your path. E.g. add 'module load singularity' to your .bashrc"
    echo "If you are root try again as normal user"
    exit 2
 fi
-
-echo "containerEnding: ${containerEnding}"
 
 echo "checking if $container exists in the cvmfs cache ..."
 if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg" ]]; then
@@ -143,7 +141,7 @@ else
    fi
 
    if [[ -v urlUS ]]; then
-      echo "check if aria2 is installed ..."
+      # echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
           echo "aria2 is not installed. Defaulting to curl."
@@ -192,21 +190,15 @@ fi
 
 
 echo "deploying in $_base"
-echo "checking if container needs to be downloaded"
+# echo "checking if container needs to be downloaded"
 if  [[ -e $container ]]; then
    echo "container downloaded already. Remove to re-download!"
 else
    echo "pulling image now ..."
-   echo "where am I: pwd"
+   echo "where am I: $PWD"
    echo "running: $container_pull"
    $container_pull
 fi
-
-# echo "making container executable"
-# chmod a+x $container
-# if [[  ${#qq} -lt 1 ]]; then
-#    echo "Something went wrong when making the container executable."
-# fi
 
 if [[ $unpack = "true" ]]
 then
@@ -219,22 +211,6 @@ fi
 echo "checking which executables exist inside container"
 echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
 singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
-
-echo "checking if commands.txt exists now"
-if  [[ -f $_base/commands.txt ]]; then
-   echo "[DEBUG] run_transparent_singularity: This worked!"
-else
-   echo "[DEBUG] run_transparent_singularity: Trying to guess singularity bindpaths:"
-   export SINGULARITY_BINDPATH=$PWD,/cvmfs
-   echo "SINGULARITY_BINDPATH: $SINGULARITY_BINDPATH"
-   singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
-   if  [[ -f $_base/commands.txt ]]; then
-      echo "[DEBUG] run_transparent_singularity: This worked!"
-   else
-      echo "[DEBUG] run_transparent_singularity: Something is wrong with the Singularity Bindpath. Please check!"
-      exit 2
-   fi
-fi
 
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
@@ -272,4 +248,18 @@ moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
+
+echo "create environment variables for module file"
+while read envvariable; do \
+   echo "setenv ${envvariable#*DEPLOY_ENVVAR_}" >> ${modulePath}/${moduleName}
+done < $_base/envvar.txt
+
+echo "create environment path variables for module file"
+while read envvariable; do \
+   absolutePath=${_base}${envvariable#*=}
+   completeVariableName=${envvariable%=*}
+   variableName=${completeVariableName#*DEPLOY_ENVPATH_}
+   echo "setenv $variableName=$absolutePath" >> ${modulePath}/${moduleName}
+done < $_base/envpath.txt
+
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh

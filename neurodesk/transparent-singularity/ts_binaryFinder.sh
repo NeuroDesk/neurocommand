@@ -5,5 +5,8 @@ for i in $DEPLOY_PATH; \
 for i in $DEPLOY_BINS; \
    do echo "$i"; done >> commands.txt
 
+touch envvar.txt envpath.txt
+env | grep DEPLOY_ENVVAR_ > envvar.txt
+env | grep DEPLOY_ENVPATH_ > envpath.txt
 
 
