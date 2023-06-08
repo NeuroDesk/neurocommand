@@ -342,6 +342,13 @@
             ]
         },
         {
+            "application": "itksnap_4.0.1_20230608",
+            "categories": [
+                "image segmentation",
+                "visualization"
+            ]
+        },
+        {
             "application": "julia_1.4.1_20210105",
             "categories": [
                 "programming"
