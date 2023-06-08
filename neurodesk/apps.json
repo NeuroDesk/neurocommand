@@ -435,7 +435,6 @@
                 "version": "20201208",
                 "exec": ""
             },
-            {
             "itksnapGUI-itksnap 4.0.1": {
                 "version": "20230608",
                 "exec": "itksnap /MRIcrop-orig.gipl"
