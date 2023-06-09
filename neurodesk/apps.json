@@ -945,11 +945,11 @@
     "spm12": {
         "apps": {
             "spm12GUI-spm12 r7771": {
-                "version": "20211206",
+                "version": "20230609",
                 "exec": "bash run_spm12.sh /opt/mcr/v97/"
             },
             "spm12 r7771": {
-                "version": "20211206",
+                "version": "20230609",
                 "exec": ""
             }
         },
