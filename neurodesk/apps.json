@@ -386,7 +386,7 @@
             "fsleyesGUI-fsl 6.0.5.1": {
                 "version": "20221016",
                 "exec": "fsleyes"
-            }
+            },
             "fsl 6.0.6.4": {  
                 "version": "20230608",
                 "exec": ""
