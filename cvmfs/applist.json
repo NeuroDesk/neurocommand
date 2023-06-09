@@ -342,7 +342,7 @@
             ]
         },
         {
-            "application": "itksnap_4.0.1_20230608",
+            "application": "itksnap_4.0.1_20230609",
             "categories": [
                 "image segmentation",
                 "visualization"
