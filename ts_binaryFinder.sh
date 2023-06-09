@@ -5,8 +5,10 @@ for i in $DEPLOY_PATH; \
 for i in $DEPLOY_BINS; \
    do echo "$i"; done >> commands.txt
 
-# export DEPLOY_ENV_FSLDIR="BASEPATH/opt/fsl-5.0.2"
-# export DEPLOY_ENV_SPMMCRCMD="BASEPATH/opt/spm12/run_spm12.sh BASEPATH/opt/mcr/v97/ script"
+if $DEBUG
+   # export DEPLOY_ENV_FSLDIR="BASEPATH/opt/fsl-5.0.2"
+   # export DEPLOY_ENV_SPMMCRCMD="BASEPATH/opt/spm12/run_spm12.sh BASEPATH/opt/mcr/v97/ script"
+fi
 
 touch env.txt
 env | grep DEPLOY_ENV_ > env.txt
