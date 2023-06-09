@@ -264,7 +264,7 @@ while read envvariable; do \
    variableName=${completeVariableName#*DEPLOY_ENV_}
    # echo $variableName
 
-   echo "setenv ${variableName} '${value_with_basepath}'" >> ${modulePath}/${moduleName}
+   echo "setenv ${variableName} \"${value_with_basepath}\"" >> ${modulePath}/${moduleName}
 done < $_base/env.txt
 
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
