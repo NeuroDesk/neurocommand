@@ -106,6 +106,24 @@
         },
         "categories": ["data organisation"]
     },
+    "bidsappaa": {
+        "apps": {
+            "bidsappaa 0.2.0": {
+                "version": "20230612",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
+    "bidsappbaracus": {
+        "apps": {
+            "bidsappbaracus 1.1.4": {
+                "version": "20230612",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidsapphcppipelines": {
         "apps": {
             "bidsapphcppipelines 4.3.0": {
