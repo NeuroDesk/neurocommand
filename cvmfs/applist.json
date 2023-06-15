@@ -98,6 +98,12 @@
             ]
         },
         {
+            "application": "bidsappbrainsuite_21a_20230615",
+            "categories": [
+                "bids apps"
+            ]
+        },
+        {
             "application": "bidsapphcppipelines_4.3.0_20230524",
             "categories": [
                 "bids apps"
