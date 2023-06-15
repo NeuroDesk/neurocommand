@@ -124,6 +124,15 @@
         },
         "categories": ["bids apps"]
     },
+     "bidsappbrainsuite": {
+        "apps": {
+            "bidsappbrainsuite 21a": {
+                "version": "20230615",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidsapphcppipelines": {
         "apps": {
             "bidsapphcppipelines 4.3.0": {
