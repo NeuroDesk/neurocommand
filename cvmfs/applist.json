@@ -335,7 +335,7 @@
             ]
         },
         {
-            "application": "fsl_6.0.6.4_20230608",
+            "application": "fsl_6.0.6.4_20230615",
             "categories": [
                 "functional imaging",
                 "structural imaging",
