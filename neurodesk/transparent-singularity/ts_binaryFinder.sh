@@ -14,7 +14,7 @@ for i in $DEPLOY_BINS; \
 
 # Remove system applications from commands.txt, because they cause problems:
 getListOfSystemCommandsToBeDeleted() {
-  printf '%s\n' bash cat chmod cp cut date echo env find grep head ln ls mkdir mv pwd rm sed sort tail touch tr uname uniq wc
+  printf '%s\n' conda bash cat chmod cp cut date echo env find grep head ln ls mkdir mv pwd rm sed sort tail touch tr uname uniq wc
 }
 
 sed -E 's/\<('"$(tr '\n' '|' < <(getListOfSystemCommandsToBeDeleted) )"')\>//gI' < commands_raw.txt > commands.txt
