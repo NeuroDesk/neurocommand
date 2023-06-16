@@ -1,4 +1,5 @@
 *.simg
 commands.txt
+commands_raw.txt
 *.mnc
 *.sif
