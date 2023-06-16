@@ -11,9 +11,15 @@ for i in $DEPLOY_BINS; \
 #    export DEPLOY_ENV_SPMMCRCMD="BASEPATH/opt/spm12/run_spm12.sh BASEPATH/opt/mcr/v97/ script"
 # fi
 
+
+# Find system applications in Neurodesktop:
 # IFS=':'; \
 # for i in $PATH; \
 #    do find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; done > system_commands_raw.txt
+
+# Find binaries in FSL image:
+# comm -12 <( sort commands_raw.txt ) <( sort system_commands_raw.txt ) > overlap.txt
+
 
 # Remove system applications from commands.txt, because they cause problems:
 getListOfSystemCommandsToBeDeleted() {
