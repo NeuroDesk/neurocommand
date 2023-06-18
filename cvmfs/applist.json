@@ -110,6 +110,12 @@
             ]
         },
         {
+            "application": "bidsappmrtrix3connectome_0.5.3_20230615",
+            "categories": [
+                "bids apps"
+            ]
+        },
+        {
             "application": "bidstools_1.0.0_20201208",
             "categories": [
                 "data organisation"
