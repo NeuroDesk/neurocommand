@@ -142,6 +142,15 @@
         },
         "categories": ["bids apps"]
     },
+    "bidsappmrtrix3connectome": {
+        "apps": {
+            "bidsappmrtrix3connectome 0.5.3": {
+                "version": "20230615",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
