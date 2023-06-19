@@ -18,7 +18,7 @@ def add_app(
     name : Text
         The name of the application.
     version : Text
-        The version of the applciation.
+        The version of the application.
     exec : Text
         The command to run when clicking on the application item.
     category : Text
