@@ -25,7 +25,7 @@ rclone copy oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney
 
 cd ~/neurocommand/
 
-# update application list (the log.txt file get's build in the neurocommand action once all containers are uploaded.):
+# update application list (the log.txt file gets build in the neurocommand action once all containers are uploaded.):
 git pull
 cd cvmfs
 
@@ -104,7 +104,7 @@ do
         fi
     fi
 
-    # echo "check if custom promt exists for singularity:"
+    # echo "check if custom prompt exists for singularity:"
     # if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/${IMAGENAME_BUILDDATE}/${IMAGENAME_BUILDDATE}.simg/.singularity.d/env/99-zz_custom_env.sh" ]]
     # then
     #     echo "99-zz_custom_env exists for ${IMAGENAME_BUILDDATE} on cvmfs"

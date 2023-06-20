@@ -44,7 +44,7 @@ fi
 cd ${CONTAINER_PATH}
 mkdir -p ${IMG_NAME}
 
-echo "[DEBUG] fetch_containers.sh: Check if the container is there - if not this means we definetly need to install the container"
+echo "[DEBUG] fetch_containers.sh: Check if the container is there - if not this means we definitely need to install the container"
 
 
 CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
