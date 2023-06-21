@@ -424,11 +424,11 @@
                 "exec": "fsleyes"
             },
             "fsl 6.0.6.4": {  
-                "version": "20230615",
+                "version": "20230618",
                 "exec": ""
             },
             "fsleyesGUI-fsl 6.0.6.4": {
-                "version": "20230615",
+                "version": "20230618",
                 "exec": "fsleyes"
             }
         },
