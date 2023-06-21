@@ -15,7 +15,7 @@ sudo add-apt-repository -y ppa:apptainer/ppa
 sudo apt update
 sudo apt install -y apptainer datalad apptainer-suid lmod
 sudo apptainer config fakeroot --add root
-pip install jupyterlmod
+pip install jupyterlmod pandas nilearn matplotlib nipype 
 
 echo 'unshare -r apptainer "$@"' > /usr/bin/singularity_test
 chmod +x /usr/bin/singularity_test
