@@ -37,6 +37,10 @@ while [[ $# -gt 0 ]]
       update=true
       shift # past argument
       ;;
+      --runsudo)
+      runsudo=true
+      shift # past argument
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -218,7 +222,9 @@ function build_apps () {
     fi
 }
 
-if [ -w "$neurodesk_installdir" ]; then
+if [ $runsudo == "true" ]; then
+    runsudo="y"
+elif [ -w "$neurodesk_installdir" ]; then
     runsudo="n"
 else
     echo
@@ -231,7 +237,7 @@ fi
 echo
 
 case "$runsudo" in
-    [nN][eE][sS]|[nN])
+    [nN][oO]|[nN])
         echo $neurodesk_installdir
         if [ "$update" = true ]; then
             git pull
