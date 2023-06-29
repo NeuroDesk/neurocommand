@@ -236,7 +236,7 @@ case "$runsudo" in
         if [ "$update" = true ]; then
             git pull
         fi
-        # build_apps
+        build_apps
         ;;
     *)  
         echo $neurodesk_installdir
