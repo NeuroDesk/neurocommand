@@ -33,6 +33,10 @@ while [[ $# -gt 0 ]]
       cli=true
       shift # past argument
       ;;
+      --update)
+      update=true
+      shift # past argument
+      ;;
       --default)
       DEFAULT=YES
       shift # past argument
@@ -229,12 +233,16 @@ echo
 case "$runsudo" in
     [nN][eE][sS]|[nN])
         echo $neurodesk_installdir
-        build_apps
+        if [ "$update" = true ]; then
+            git pull
+        fi
+        # build_apps
         ;;
     *)  
         echo $neurodesk_installdir
-        # sudo build_apps
-        # build_apps
+        if [ "$update" = true ]; then
+            sudo git pull
+        fi
         sudo bash -c "$(declare -f build_apps); build_apps"
         ;;
 esac
