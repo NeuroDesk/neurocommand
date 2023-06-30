@@ -122,6 +122,12 @@
             ]
         },
         {
+            "application": "bidsapppymvpa_2.0.2_20230629",
+            "categories": [
+                "bids apps"
+            ]
+        },
+        {
             "application": "bidstools_1.0.0_20201208",
             "categories": [
                 "data organisation"
