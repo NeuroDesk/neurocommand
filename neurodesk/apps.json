@@ -151,6 +151,15 @@
         },
         "categories": ["bids apps"]
     },
+    "bidsappspm": {
+        "apps": {
+            "bidsappspm 0.0.20": {
+                "version": "20230629",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
