@@ -160,6 +160,15 @@
         },
         "categories": ["bids apps"]
     },
+      "bidsapppymvpa": {
+        "apps": {
+            "bidsapppymvpa 2.0.2": {
+                "version": "20230629",
+                "exec": ""
+            }
+        },
+        "categories": ["bids apps"]
+    },
     "bidstools": {
         "apps": {
             "bidstools 1.0.0": {
