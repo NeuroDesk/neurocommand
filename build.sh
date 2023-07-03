@@ -222,7 +222,7 @@ function build_apps () {
     fi
 }
 
-if [ $runsudo == "true" ]; then
+if [ "$runsudo" := "true" ]; then
     runsudo="y"
 elif [ -w "$neurodesk_installdir" ]; then
     runsudo="n"
