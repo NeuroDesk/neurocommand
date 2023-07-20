@@ -464,6 +464,12 @@
             ]
         },
         {
+            "application": "mitkdiffusion_1.2.0_20230720",
+            "categories": [
+                "diffusion imaging"
+            ]
+        },
+        {
             "application": "minc_1.9.17_20210105",
             "categories": [
                 "image segmentation",
