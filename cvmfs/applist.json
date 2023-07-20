@@ -387,6 +387,12 @@
             ]
         },
         {
+            "application": "ilastik_1.4.0_20230720",
+            "categories": [
+                "image segmentation"
+            ]
+        },
+        {
             "application": "itksnap_3.8.0_20201208",
             "categories": [
                 "image segmentation",
