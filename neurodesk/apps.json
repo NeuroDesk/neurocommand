@@ -495,6 +495,19 @@
         },
         "categories": ["image segmentation"]
     },
+    "ilastik": {
+        "apps": {
+            "ilastik 1.4.0": {
+                "version": "20230720",
+                "exec": ""
+            },
+            "ilastikGUI-ilastik 1.4.0": {
+                "version": "20230720",
+                "exec": "run_ilastik.sh"
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "itksnap": {
         "apps": {
             "itksnapGUI-itksnap 3.8.0": {
