@@ -893,6 +893,10 @@
             "qsmxt 3.0.0": {
                 "version": "20230628",
                 "exec": ""
+            },
+            "qsmxt 3.2.1": {
+                "version": "20230724",
+                "exec": ""
             }
         },
         "categories": ["phase processing", "quantitative imaging", "structural imaging", "workflows"]
