@@ -101,6 +101,7 @@ qsmxt_1.3.5_20230227 categories:phase processing,quantitative imaging,structural
 qsmxt_2.0.0_20230503 categories:phase processing,quantitative imaging,structural imaging,workflows,
 qsmxt_2.1.0_20230509 categories:phase processing,quantitative imaging,structural imaging,workflows,
 qsmxt_3.0.0_20230628 categories:phase processing,quantitative imaging,structural imaging,workflows,
+qsmxt_3.2.1_20230724 categories:phase processing,quantitative imaging,structural imaging,workflows,
 rabies_0.3.5_20220111 categories:rodent imaging,
 romeo_3.2.4_20211015 categories:phase processing,
 romeo_3.2.7_20220224 categories:phase processing,
