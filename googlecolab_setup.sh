@@ -10,17 +10,24 @@ echo "[DEBUG]: apt-get install cvmfs"
 sudo apt-get install cvmfs tree --allow-unauthenticated >> /dev/null
 
 # install apptainer for ubuntu:
-sudo apt install -y software-properties-common
-sudo add-apt-repository -y ppa:apptainer/ppa
-sudo apt update
-sudo apt install -y apptainer datalad apptainer-suid lmod
+wget https://github.com/apptainer/apptainer/releases/download/v1.2.0/apptainer_1.2.0_amd64.deb
+sudo apt install -y ./apptainer_1.2.0_amd64.deb
+
+wget https://github.com/apptainer/apptainer/releases/download/v1.2.0/apptainer-suid_1.2.0_amd64.deb
+sudo dpkg -i ./apptainer-suid_1.2.0_amd64.deb
+
 sudo apptainer config fakeroot --add root
-pip install jupyterlmod pandas nilearn matplotlib nipype 
 
 echo 'unshare -r apptainer "$@"' > /usr/bin/singularity_test
 chmod +x /usr/bin/singularity_test
 mv /usr/bin/singularity /usr/bin/singularity_backup
 mv /usr/bin/singularity_test /usr/bin/singularity
+
+#install datalad and lmod
+sudo apt install -y datalad lmod
+
+#install pip packages
+pip install jupyterlmod pandas nilearn matplotlib nipype 
 
 #setup cvmfs
 mkdir -p /etc/cvmfs/keys/ardc.edu.au/
