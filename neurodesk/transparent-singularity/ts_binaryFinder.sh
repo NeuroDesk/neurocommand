@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 IFS=':'; \
 for i in $DEPLOY_PATH; \
-   do find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; done > commands_raw.txt
+   do find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; 
+   find "$i" -maxdepth 1 -executable -type l -exec basename {} \;;
+   done > commands_raw.txt
 
 for i in $DEPLOY_BINS; \
    do echo "$i"; done >> commands_raw.txt
