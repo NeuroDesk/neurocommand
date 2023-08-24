@@ -894,20 +894,12 @@
                 "version": "20230227",
                 "exec": ""
             },
-            "qsmxt 2.0.0": {
-                "version": "20230503",
-                "exec": ""
-            },
             "qsmxt 2.1.0": {
                 "version": "20230509",
                 "exec": ""
             },
-            "qsmxt 3.0.0": {
-                "version": "20230628",
-                "exec": ""
-            },
-            "qsmxt 3.2.1": {
-                "version": "20230724",
+            "qsmxt 4.0.0.post2": {
+                "version": "20230824",
                 "exec": ""
             }
         },
