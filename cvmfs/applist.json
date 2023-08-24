@@ -647,24 +647,6 @@
             ]
         },
         {
-            "application": "qsmxt_1.1.9_20211219",
-            "categories": [
-                "phase processing",
-                "quantitative imaging",
-                "structural imaging",
-                "workflows"
-            ]
-        },
-        {
-            "application": "qsmxt_1.1.10_20220302",
-            "categories": [
-                "phase processing",
-                "quantitative imaging",
-                "structural imaging",
-                "workflows"
-            ]
-        },
-        {
             "application": "qsmxt_1.1.13_20221018",
             "categories": [
                 "phase processing",
@@ -683,15 +665,6 @@
             ]
         },
         {
-            "application": "qsmxt_2.0.0_20230503",
-            "categories": [
-                "phase processing",
-                "quantitative imaging",
-                "structural imaging",
-                "workflows"
-            ]
-        },
-        {
             "application": "qsmxt_2.1.0_20230509",
             "categories": [
                 "phase processing",
@@ -701,16 +674,7 @@
             ]
         },
         {
-            "application": "qsmxt_3.0.0_20230628",
-            "categories": [
-                "phase processing",
-                "quantitative imaging",
-                "structural imaging",
-                "workflows"
-            ]
-        },
-        {
-            "application": "qsmxt_3.2.1_20230724",
+            "application": "qsmxt_4.0.1_20230824",
             "categories": [
                 "phase processing",
                 "quantitative imaging",
