@@ -404,6 +404,13 @@
             ]
         },
         {
+            "application": "hmri_0.6.0_20230901",
+            "categories": [
+                "quantitative imaging",
+                "structural imaging"
+            ]
+        },
+        {
             "application": "ilastik_1.4.0_20230720",
             "categories": [
                 "image segmentation"
