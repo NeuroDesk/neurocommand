@@ -9,28 +9,12 @@
                 "version": "20210714",
                 "exec": "suma"
             },
-            "afni 22.1.14": {
-                    "version": "20220713",
-                    "exec": ""
-            },
-            "sumaGUI-afni 22.1.14": {
-                    "version": "20220713",
-                    "exec": "suma"
-            },
             "afni 22.3.07": {
                     "version": "20221206",
                     "exec": ""
             },
             "sumaGUI-afni 22.3.07": {
                     "version": "20221206",
-                    "exec": "suma"
-            },
-            "afni 23.0.04": {
-                    "version": "20230216",
-                    "exec": ""
-            },
-            "sumaGUI-afni 23.0.04": {
-                    "version": "20230216",
                     "exec": "suma"
             },
             "afni 23.0.07": {
@@ -57,10 +41,6 @@
         "apps": {
             "ants 2.3.1": {
                 "version": "20211204",
-                "exec": ""
-            },
-            "ants 2.3.4": {
-                "version": "20211212",
                 "exec": ""
             },
             "ants 2.3.5": {
@@ -286,19 +266,6 @@
         },
         "categories": ["machine learning"]
     },
-    "delphi": {
-        "apps": {
-            "delphi 0.0.1": {
-                "version": "20220413",
-                "exec": ""
-            },
-            "delphi 0.0.2": {
-                "version": "20220526",
-                "exec": ""
-            }
-        },
-        "categories": ["machine learning"]
-    },
     "diffusiontoolkit": {
         "apps": {
             "diffusiontoolkit 0.6.4.1": {
@@ -371,16 +338,8 @@
                 "version": "20201118",
                 "exec": ""
             },
-            "fmriprep 20.2.3": {
-                "version": "20210917",
-                "exec": ""
-            },
             "fmriprep 20.2.6": {
                 "version": "20211209",
-                "exec": ""
-            },
-            "fmriprep 21.0.1": {
-                "version": "20220329",
                 "exec": ""
             },
             "fmriprep 22.1.1": {
@@ -479,14 +438,6 @@
     },
     "globus": {
         "apps": {
-            "globusGUI-globus 3.2.0": {
-                "version": "20230428",
-                "exec": "globusconnectpersonal -gui"
-            },
-            "globus 3.2.0": {
-                "version": "20230428",
-                "exec": ""
-            },
             "globusGUI-globus 3.2.2": {
                 "version": "20230620",
                 "exec": "globusconnectpersonal -gui"
@@ -848,10 +799,6 @@
     },
     "oshyx": {
         "apps": {
-            "oshyx 0.3": {
-                "version": "20220110",
-                "exec": ""
-            },
             "oshyx 0.4": {
                 "version": "20220620",
                 "exec": ""
@@ -870,14 +817,6 @@
     },
     "physio": {
         "apps": {
-            "physioGUI-physio r7771": {
-                "version": "20211206",
-                "exec": "bash run_spm12.sh /opt/mcr/v99/ fmri"
-            },
-            "physio r7771": {
-                "version": "20211206",
-                "exec": ""
-            },
             "physioGUI-physio r2021a": {
                 "version": "20220220",
                 "exec": "bash run_spm12.sh /opt/mcr/v99/ fmri"
@@ -923,10 +862,6 @@
         "apps": {
             "romeo 3.2.4": {
                 "version": "20211015",
-                "exec": ""
-            },
-            "romeo 3.2.7": {
-                "version": "20220224",
                 "exec": ""
             },
             "romeo 3.2.8": {
