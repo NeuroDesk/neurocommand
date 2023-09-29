@@ -24,12 +24,16 @@ for i in $DEPLOY_BINS; \
 
 
 # Remove system applications from commands.txt, because they cause problems:
-getListOfSystemCommandsToBeDeleted() {
-  printf '%s\n' `cat ts_binaryFinderExcludes.txt`
-}
+# THIS CURRENTLY DOESNT WORK. It also removes commands that have system commands as subsets. E.g. dicom-sort will be removed because it contains sort.
+# getListOfSystemCommandsToBeDeleted() {
+#   printf '%s\n' `cat ts_binaryFinderExcludes.txt`
+# }
 
-sed -E 's/\<('"$(tr '\n' '|' < <(getListOfSystemCommandsToBeDeleted) )"')\>//gI' < commands_raw.txt > commands.txt
-sed -i '/^\s*$/d' commands.txt
+# sed -E 's/\<('"$(tr '\n' '|' < <(getListOfSystemCommandsToBeDeleted) )"')\>//gI' < commands_raw.txt > commands.txt
+# sed -i '/^\s*$/d' commands.txt
+
+# This is a temporary fix:
+cp commands_raw.txt commands.txt
 
 touch env.txt
 env | grep DEPLOY_ENV_ > env.txt
