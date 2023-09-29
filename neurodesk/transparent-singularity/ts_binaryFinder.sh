@@ -24,7 +24,7 @@ for i in $DEPLOY_BINS; \
 
 
 # Remove system applications from commands.txt, because they cause problems:
-# THIS CURRENTLY DOESNT WORK. It also removes commands that have system commands as subsets. E.g. dicom-sort will be removed because it contains sort.
+# THIS CURRENTLY DOESN'T WORK. It also removes commands that have system commands as subsets. E.g. dicom-sort will be removed because it contains sort.
 # getListOfSystemCommandsToBeDeleted() {
 #   printf '%s\n' `cat ts_binaryFinderExcludes.txt`
 # }
