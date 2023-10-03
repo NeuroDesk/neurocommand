@@ -27,7 +27,7 @@ connectomeworkbench_1.4.2_20201119 categories:functional imaging,data organisati
 connectomeworkbench_1.5.0_20220919 categories:functional imaging,data organisation,
 convert3d_1.0.0_20210104 categories:data organisation,
 deepretinotopy_1.0.0_20221201 categories:machine learning,
-deepretinotopy_1.0.1_20230922 categories:machine learning,
+deepretinotopy_1.0.1_20231003 categories:machine learning,
 diffusiontoolkit_0.6.4.1_20220303 categories:diffusion imaging,
 dsistudio_2020.10_20210109 categories:diffusion imaging,
 eeglab_2020.0_20211026 categories:electrophysiology,
