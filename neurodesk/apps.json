@@ -740,6 +740,10 @@
             "mrsiproc 0.0.1": {
                 "version": "20230503",
                 "exec": ""
+            },
+            "mrsiproc 0.1.0": {
+                "version": "20231005",
+                "exec": ""
             }
         },
         "categories": ["spectroscopy"]
