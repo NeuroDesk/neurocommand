@@ -14,7 +14,7 @@ for i in $DEPLOY_BINS; \
 # fi
 
 
-# Find system applications in Neurodesktop:
+# This is what I ran to get an initial list of system commands for exclusion:
 # IFS=':'; \
 # for i in $PATH; \
 #    do find "$i" -maxdepth 1 -executable -type f -exec basename {} \;; done > system_commands_raw.txt
@@ -23,18 +23,10 @@ for i in $DEPLOY_BINS; \
 # comm -12 <( sort commands_raw.txt ) <( sort system_commands_raw.txt ) > overlap.txt
 
 
-# Remove system applications from commands.txt, because they cause problems:
-# THIS CURRENTLY DOESN'T WORK. It also removes commands that have system commands as subsets. E.g. dicom-sort will be removed because it contains sort.
-# getListOfSystemCommandsToBeDeleted() {
-#   printf '%s\n' `cat ts_binaryFinderExcludes.txt`
-# }
-
-# sed -E 's/\<('"$(tr '\n' '|' < <(getListOfSystemCommandsToBeDeleted) )"')\>//gI' < commands_raw.txt > commands.txt
-# sed -i '/^\s*$/d' commands.txt
-
-# This is a temporary fix:
-cp commands_raw.txt commands.txt
+# Remove system applications, because they cause problems:
+grep -vxf ts_binaryFinderExcludes.txt commands_raw.txt > commands.txt
 
 touch env.txt
 env | grep DEPLOY_ENV_ > env.txt
+
 
