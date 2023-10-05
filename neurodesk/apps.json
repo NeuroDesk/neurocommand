@@ -2,7 +2,7 @@
     "afni": {
         "apps": {
             "afni 21.2.00": {
-                "version": "20210714",
+                "version": "20210714", 
                 "exec": ""
             },
             "sumaGUI-afni 21.2.00": {
@@ -426,6 +426,14 @@
             },
             "fsleyesGUI-fsl 6.0.7.1": {
                 "version": "20230809",
+                "exec": "fsleyes"
+            },
+            "fsl 6.0.7.4": {  
+                "version": "20231005",
+                "exec": ""
+            },
+            "fsleyesGUI-fsl 6.0.7.4": {
+                "version": "20231005",
                 "exec": "fsleyes"
             }
         },
