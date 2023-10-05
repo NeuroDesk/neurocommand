@@ -547,6 +547,12 @@
             ]
         },
         {
+            "application": "mrsiproc_0.1.0_20231005",
+            "categories": [
+                "spectroscopy"
+            ]
+        },
+        {
             "application": "mrtrix3_3.0.1_20200908",
             "categories": [
                 "diffusion imaging"
