@@ -37,12 +37,6 @@ jobs:
   upload_containers_simg:
     runs-on: ubuntu-20.04
     steps:
-    - uses: actions/checkout@v3
-      with:
-        token: ${{ secrets.ACCESS_TOKEN }}
-    - uses: actions/setup-python@v4
-      with:
-        python-version: 3.8
     - name: Maximize build space
       uses: easimon/maximize-build-space@master
       with:
@@ -54,6 +48,12 @@ jobs:
         remove-haskell: 'true'
         remove-codeql: 'true'
         remove-docker-images: 'true'
+    - uses: actions/checkout@v3
+      with:
+        token: ${{ secrets.ACCESS_TOKEN }}
+    - uses: actions/setup-python@v4
+      with:
+        python-version: 3.8
     - name : Check if singularity container files exist in oracle cloud and build & upload if not there
       run: /bin/bash .github/workflows/upload_containers_simg.sh
     - name: Auto commit changes to applist.json
