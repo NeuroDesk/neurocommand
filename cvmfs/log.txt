@@ -79,7 +79,7 @@ mriqc_0.16.1_20210917 categories:data organisation,functional imaging,quality co
 mriqc_22.0.6_20230215 categories:data organisation,functional imaging,quality control,workflows,
 mritools_3.3.0_20220224 categories:phase processing,
 mrsiproc_0.0.1_20230503 categories:spectroscopy,
-mrsiproc_0.1.0_20231005 categories:spectroscopy,
+mrsiproc_0.1.0_20231006 categories:spectroscopy,
 mrtrix3_3.0.1_20200908 categories:diffusion imaging,
 mrtrix3_3.0.2_20221108 categories:diffusion imaging,
 mrtrix3_3.0.3_20210917 categories:diffusion imaging,
