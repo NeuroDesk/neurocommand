@@ -613,15 +613,6 @@
             ]
         },
         {
-            "application": "qsmxt_1.3.5_20230227",
-            "categories": [
-                "phase processing",
-                "quantitative imaging",
-                "structural imaging",
-                "workflows"
-            ]
-        },
-        {
             "application": "qsmxt_2.1.0_20230509",
             "categories": [
                 "phase processing",
@@ -650,6 +641,15 @@
         },
         {
             "application": "qsmxt_6.1.0_20231004",
+            "categories": [
+                "phase processing",
+                "quantitative imaging",
+                "structural imaging",
+                "workflows"
+            ]
+        },
+        {
+            "application": "qsmxt_6.2.0_20231012",
             "categories": [
                 "phase processing",
                 "quantitative imaging",
