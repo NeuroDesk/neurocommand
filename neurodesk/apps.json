@@ -86,6 +86,10 @@
             "bidscoin 3.7.0": {
                 "version": "20220329",
                 "exec": ""
+            },
+            "bidscoin 4.2.0": {
+                "version": "20231017",
+                "exec": ""
             }
         },
         "categories": ["data organisation"]
@@ -157,6 +161,10 @@
         "apps": {
             "bidstools 1.0.1": {
                 "version": "20230905",
+                "exec": ""
+            },
+            "bidstools 1.0.2": {
+                "version": "20231017",
                 "exec": ""
             }
         },
