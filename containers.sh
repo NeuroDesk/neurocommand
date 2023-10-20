@@ -14,7 +14,7 @@ if [[ -z "$1" ]] || [ "$1" = "-h" ] || [ "$1" = "--help" ] ; then
     echo "  $0 diffusion"
     echo "  $0 --bidscoin"
     echo
-    exit 1
+    exit 0
 fi
 
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
