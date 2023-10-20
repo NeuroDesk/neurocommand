@@ -22,7 +22,7 @@ singularity --version
 echo "where am I"
 pwd
 bash build.sh --cli --lxde
-bash containers.sh
+bash containers.sh all
 bash /home/runner/work/neurocommand/neurocommand/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
 
 
