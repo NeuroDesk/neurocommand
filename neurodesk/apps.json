@@ -98,6 +98,10 @@
             "bidscoin 4.2.0": {
                 "version": "20231017",
                 "exec": ""
+            },
+            "bidscoin 4.2.1": {
+                "version": "20231030",
+                "exec": ""
             }
         },
         "categories": ["data organisation"]
@@ -173,6 +177,10 @@
             },
             "bidstools 1.0.2": {
                 "version": "20231017",
+                "exec": ""
+            },
+            "bidstools 1.0.3": {
+                "version": "20231030",
                 "exec": ""
             }
         },
