@@ -815,6 +815,12 @@
             ]
         },
         {
+            "application": "vesselboost_0.9.1_20231031",
+            "categories": [
+                "image segmentation"
+            ]
+        },
+        {
             "application": "vesselvio_1.1.2_20230428",
             "categories": [
                 "visualization"
