@@ -1081,7 +1081,7 @@
     },
     "vesselboost": {
         "apps": {
-            "vesselboost '0.9.1": {
+            "vesselboost 0.9.1": {
                 "version": "20231031",
                 "exec": ""
             }
