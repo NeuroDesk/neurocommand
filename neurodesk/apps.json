@@ -498,7 +498,7 @@
         },
         "categories": ["image segmentation"]
     },
-        "hmri": {
+    "hmri": {
         "apps": {
             "hmriGUI-hmri 0.6.0": {
                 "version": "20230901",
@@ -506,6 +506,14 @@
             },
             "hmri 0.6.0": {
                 "version": "20230901",
+                "exec": ""
+            },
+            "hmriGUI-hmri 0.6.1": {
+                "version": "20231107",
+                "exec": "bash run_spm12.sh /opt/mcr/R2023a fmri"
+            },
+            "hmri 0.6.1": {
+                "version": "20231107",
                 "exec": ""
             }
         },
