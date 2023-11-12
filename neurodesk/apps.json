@@ -498,6 +498,15 @@
         },
         "categories": ["image segmentation"]
     },
+    "hnncore": {
+        "apps": {
+            "hnncore 0.3": {
+                "version": "20231112",
+                "exec": ""
+            }
+        },
+        "categories": ["electrophysiology"]
+    },
     "hmri": {
         "apps": {
             "hmriGUI-hmri 0.6.0": {
