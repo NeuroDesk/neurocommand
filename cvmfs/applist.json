@@ -399,6 +399,12 @@
             ]
         },
         {
+            "application": "hnncore_0.3_20231112",
+            "categories": [
+                "electrophysiology"
+            ]
+        },
+        {
             "application": "hmri_0.6.0_20230901",
             "categories": [
                 "quantitative imaging",
