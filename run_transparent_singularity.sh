@@ -215,14 +215,25 @@ singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinde
 echo "create singularity executable for each regular executable in commands.txt"
 # $@ parses command line options.
 #test   executable="fslmaths"
+singularity_version=$(singularity version | cut -d'-' -f1)
+required_version="3.6"
 while read executable; do \
    echo $executable > $_base/${executable}; \
    echo "#!/usr/bin/env bash" > $executable
    echo "export PWD=\`pwd -P\`" >> $executable
-   echo "singularity --silent exec --cleanenv \$neurodesk_singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
    # neurodesk_singularity_opts is a global variable that can be set in neurodesk for example --nv for gpu support
    # --silent is required to suppress bind mound warnings (e.g. for /etc/localtime)
-   # --cleanenv is required to prevent environment variables on the host to affect the containers (e.g. Julia and R packages)
+   # --cleanenv is required to prevent environment variables on the host to affect the containers (e.g. Julia and R packages), but to work 
+   # correctly with GUIs, the DISPLAY variable needs to be set as well. This only works in singularity >= 3.6.0
+
+   if printf '%s\n' "$required_version" "$singularity_version" | sort -V | head -n1 | grep -q "$required_version"; then
+      echo "Singularity version is equal to or newer than $required_version. All features should work."
+      echo "singularity --silent exec --cleanenv --env DISPLAY=\$DISPLAY \$neurodesk_singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
+   else
+      echo "Singularity version is older than $required_version. GUIs will not work correctly!"
+      echo "singularity --silent exec --cleanenv \$neurodesk_singularity_opts --pwd \$PWD $_base/$container $executable \"\$@\"" >> $executable
+   fi
+
    chmod a+x $executable
 done < $_base/commands.txt
 
