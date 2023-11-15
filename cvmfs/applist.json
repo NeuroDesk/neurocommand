@@ -191,6 +191,12 @@
             ]
         },
         {
+            "application": "conn_22a_20231115",
+            "categories": [
+                "functional imaging"
+            ]
+        },
+        {
             "application": "connectomeworkbench_1.4.2_20201119",
             "categories": [
                 "functional imaging",
