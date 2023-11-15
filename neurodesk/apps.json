@@ -251,6 +251,14 @@
             "conn 20b": {
                 "version": "20210109",
                 "exec": ""
+            },   
+            "connGUI-conn 22a": {
+                "version": "20231115",
+                "exec": "conn"
+            },
+            "conn 22a": {
+                "version": "20231115",
+                "exec": ""
             }
         },
         "categories": ["functional imaging"]
