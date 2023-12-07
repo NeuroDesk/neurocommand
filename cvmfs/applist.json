@@ -741,6 +741,12 @@
             ]
         },
         {
+            "application": "rstudio_2023.09.1_20231207",
+            "categories": [
+                "statistics"
+            ]
+        },
+        {
             "application": "sigviewer_0.6.4_20220315",
             "categories": [
                 "electrophysiology"
