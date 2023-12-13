@@ -19,9 +19,9 @@ else
 fi
 
 echo "Syncing object storages:"
-rclone sync oracle-2021-us-bucket:/neurodesk nectar:/neurodesk/
 rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
-rclone copy oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
+rclone sync oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
+rclone copy oracle-2021-sydney-bucket:/neurodesk nectar:/neurodesk/
 
 cd ~/neurocommand/
 
