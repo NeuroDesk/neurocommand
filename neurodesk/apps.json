@@ -355,6 +355,15 @@
         },
         "categories": ["body"]
     },
+    "fastcsr": {
+        "apps": {
+            "fastcsr 1.0": {
+                "version": "20231213",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "fieldtrip": {
         "apps": {
             "fieldtrip 20211114": {
