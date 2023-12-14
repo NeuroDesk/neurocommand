@@ -16,9 +16,12 @@ if [[ -s $LOCKFILE ]]; then
 else
     touch $LOCKFILE
     echo "running" >> $LOCKFILE
+    cp ~/cronjob.log ~/cronjob_previous_run.log
+    rm ~/cronjob.log
 fi
 
 echo "Syncing object storages:"
+export RCLONE_VERBOSE=2
 rclone copy oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
 rclone sync oracle-2021-us-bucket:/neurodesk/temporary-builds oracle-2021-sydney-bucket:/neurodesk/temporary-builds
 rclone copy oracle-2021-sydney-bucket:/neurodesk nectar:/neurodesk/
@@ -158,7 +161,6 @@ do
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 rm -rf $LOCKFILE
-rm -rf cronjob.log
 
 # check if catalog is OK:
 # cvmfs_server list-catalogs -e
