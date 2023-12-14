@@ -16,7 +16,6 @@ if [[ -s $LOCKFILE ]]; then
 else
     touch $LOCKFILE
     echo "running" >> $LOCKFILE
-    cp ~/cronjob.log ~/cronjob_previous_run.log
     rm ~/cronjob.log
 fi
 
@@ -161,6 +160,8 @@ do
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 rm -rf $LOCKFILE
+cp ~/cronjob.log ~/cronjob_previous_run.log
+rm ~/cronjob.log
 
 # check if catalog is OK:
 # cvmfs_server list-catalogs -e
