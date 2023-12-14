@@ -16,7 +16,6 @@ if [[ -s $LOCKFILE ]]; then
 else
     touch $LOCKFILE
     echo "running" >> $LOCKFILE
-    rm ~/cronjob.log
 fi
 
 # echo "Syncing object storages:"
@@ -160,8 +159,7 @@ do
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 rm -rf $LOCKFILE
-cp ~/cronjob.log ~/cronjob_previous_run.log
-rm ~/cronjob.log
+mv ~/cronjob.log ~/cronjob_previous_run.log
 
 # check if catalog is OK:
 # cvmfs_server list-catalogs -e
