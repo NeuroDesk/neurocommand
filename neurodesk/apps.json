@@ -421,11 +421,11 @@
                 "exec": "freeview"
             },
             "freesurfer 7.4.1": {
-                "version": "20230920",
+                "version": "20231214",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 7.4.1": {
-                "version": "20230920",
+                "version": "20231214",
                 "exec": "freeview"
             }
         },
