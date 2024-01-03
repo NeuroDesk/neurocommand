@@ -298,6 +298,10 @@
             "deepretinotopy 1.0.1": {
                 "version": "20231011",
                 "exec": ""
+            },
+            "deepretinotopy 1.0.2": {
+                "version": "20231223",
+                "exec": ""
             }
         },
         "categories": ["machine learning"]
