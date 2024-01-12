@@ -125,11 +125,11 @@ if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVe
    container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg $container"
 else
    echo "$container does not exists in cvmfs. Testing Oracle temporary Object storage next: "
-   if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/$container"; then
+   if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/$container"; then
       echo "$container exists in the temporary builds oracle cache"
-      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
-      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
-      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/"
+      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
+      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
+      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
    fi
 
    echo "Testing standard Oracle Object storage next: "
