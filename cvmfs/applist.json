@@ -171,6 +171,12 @@
             ]
         }, 
         {
+            "application": "bidstools_1.0.4_20240221", 
+            "categories": [
+                "data organisation"
+            ]
+        }, 
+        {
             "application": "brainstorm_3.211130_20211207", 
             "categories": [
                 "electrophysiology"
