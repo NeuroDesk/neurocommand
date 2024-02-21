@@ -194,6 +194,10 @@
             "bidstools 1.0.3": {
                 "version": "20231030",
                 "exec": ""
+            },
+            "bidstools 1.0.4": {
+                "version": "20240221",
+                "exec": ""
             }
         },
         "categories": ["data organisation"]
