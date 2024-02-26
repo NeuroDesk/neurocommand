@@ -183,6 +183,12 @@
             ]
         }, 
         {
+            "application": "brkraw_0.3.11_20240223", 
+            "categories": [
+                "data organisation"
+            ]
+        }, 
+        {
             "application": "cat12_r1933_20220128", 
             "categories": [
                 "image segmentation", 
