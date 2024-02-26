@@ -215,6 +215,19 @@
         },
         "categories": ["electrophysiology"]
     },
+     "brkraw": {
+        "apps": {
+            "brkraw 0.3.11": {
+                "version": "20240223",
+                "exec": ""
+            },            
+            "brkrawGUI-brkraw 0.3.11": {
+                "version": "20240223",
+                "exec": "brkraw gui"
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "cat12": {
         "apps": {
             "cat12GUI-cat12 r1933": {
