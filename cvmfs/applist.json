@@ -502,6 +502,12 @@
             ]
         }, 
         {
+            "application": "julia_1.10.1_20240227", 
+            "categories": [
+                "programming"
+            ]
+        }, 
+        {
             "application": "lashis_1.0_20210105", 
             "categories": [
                 "hippocampus"
