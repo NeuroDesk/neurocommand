@@ -218,11 +218,11 @@
      "brkraw": {
         "apps": {
             "brkraw 0.3.11": {
-                "version": "20240223",
+                "version": "20240227",
                 "exec": ""
             },            
             "brkrawGUI-brkraw 0.3.11": {
-                "version": "20240223",
+                "version": "20240227",
                 "exec": "brkraw gui"
             }
         },
