@@ -637,6 +637,7 @@
             "REPLGUI-REPL 1.10.1": {
                 "version": "20240227",
                 "exec": "julia"
+            }
         },
         "categories": ["programming"]
     },
