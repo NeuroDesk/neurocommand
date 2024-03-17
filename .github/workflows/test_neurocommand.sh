@@ -1,24 +1,18 @@
 #!/usr/bin/env bash
 set -e
 
-#setup singularity 2.6.1 from neurodebian
-# This is for 18.04 (deprecated)
-# wget -O- http://neuro.debian.net/lists/bionic.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-# sudo apt-key adv --recv-keys --keyserver hkp://pool.sks-keyservers.net:80 0xA5D32F012649A5A9
-
-# This is for 20.04 (singularity-container is not build for later versions in neuro debian project yet)
-wget -O- http://neuro.debian.net/lists/focal.us-nh.full | sudo tee /etc/apt/sources.list.d/neurodebian.sources.list
-sudo apt-key adv --recv-keys --keyserver hkps://keyserver.ubuntu.com 0xA5D32F012649A5A9
-
-sudo apt-get update
-sudo apt-get install singularity-container 
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:apptainer/ppa
+sudo apt update
+sudo apt install -y apptainer apptainer-suid
 
 echo "checking if neurodesk installs and a containers gets downloaded correctly"
 
 echo "python version is ... "
 python --version
-echo "singularity version is ... "
-singularity --version
+echo "apptainer version is ... "
+apptainer --version
 echo "where am I"
 pwd
 bash build.sh --cli --lxde
