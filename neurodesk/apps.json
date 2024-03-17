@@ -884,6 +884,14 @@
             "mrviewGUI-mrtrix3 3.0.3": {
                 "version": "20210917",
                 "exec": "mrview"
+            },
+            "mrtrix3 3.0.4": {
+                "version": "20240316",
+                "exec": ""
+            },
+            "mrviewGUI-mrtrix3 3.0.4": {
+                "version": "20240316",
+                "exec": "mrview"
             }
         },
         "categories": ["diffusion imaging"]
