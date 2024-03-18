@@ -38,10 +38,10 @@ do
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
     else
         # if image is not in Ashburn cloud then check if the image is in the temporary cache:
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/${IMAGENAME_BUILDDATE}.simg"; then
+        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"; then
             # download simg file from cache:
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on ashburn oracle cloud"
-            curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds/${IMAGENAME_BUILDDATE}.simg"
+            curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
         else
             # image was not released previously and is not in cache - rebuild from docker:
             # check if there is enough free disk space on the runner:
