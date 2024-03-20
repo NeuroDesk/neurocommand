@@ -886,11 +886,11 @@
                 "exec": "mrview"
             },
             "mrtrix3 3.0.4": {
-                "version": "20240316",
+                "version": "20240319",
                 "exec": ""
             },
             "mrviewGUI-mrtrix3 3.0.4": {
-                "version": "20240316",
+                "version": "20240319",
                 "exec": "mrview"
             }
         },
