@@ -55,13 +55,16 @@ echo "[DEBUG] fetch_and_run.sh: MOD_VERS: " $MOD_VERS
 
 echo "[DEBUG] fetch_and_run.sh: Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module load ${MOD_NAME}/${MOD_VERS}' outside of this shell to use it."
 
-# If no additional command -> Give user a shell in the image
+# If no additional command -> Give user a shell in the image after loading the module to set SINGULARITY/APPTAINER_BINDPATH
 if [ $# -le 3 ]; then
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
     echo "[DEBUG] fetch_and_run.sh: looking for ${CONTAINER_FILE_NAME}"
     if [ -e "${CONTAINER_FILE_NAME}" ]; then
         cd 
+        echo "[DEBUG] fetch_and_run.sh: Module loading the container to set environment variables."
+        module load ${MOD_NAME}/${MOD_VERS}
         echo "[DEBUG] fetch_and_run.sh: Attempting to launch container ${IMG_NAME}"
+        
         export SINGULARITYENV_PS1="${MOD_NAME}-${MOD_VERS}:\w$ "
         singularity --silent exec  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
         singularity --silent shell  ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME}

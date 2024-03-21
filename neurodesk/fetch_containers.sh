@@ -53,7 +53,7 @@ if [ -e "${CONTAINER_FILE_NAME}" ]; then
     echo "[DEBUG] fetch_containers.sh: now checking if container is fully downloaded and executable:"
     qq=`which  singularity`
     if [[  ${#qq} -lt 1 ]]; then
-        echo "[DEBUG] fetch_containers.sh: ERROR: This script requires singularity on your path. EXITING"
+        echo "[DEBUG] fetch_containers.sh: ERROR: This script requires singularity/apptainer on your path. EXITING"
         exit 2
     fi
 
