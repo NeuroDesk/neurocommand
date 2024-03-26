@@ -630,11 +630,11 @@
                 "version": "20240321",
                 "exec": ""
             },
-            "vscodeGUI-vscode 1.10.1": {
+            "vscodeGUI-julia 1.10.1": {
                 "version": "20240321",
                 "exec": "code"
             },
-            "REPLGUI-REPL 1.10.1": {
+            "REPLGUI-julia 1.10.1": {
                 "version": "20240321",
                 "exec": "julia"
             }
