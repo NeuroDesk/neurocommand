@@ -111,6 +111,12 @@
             ]
         },
         {
+            "application": "bidscoin_4.3.2_20240329",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "bidsappaa_0.2.0_20230613",
             "categories": [
                 "bids apps"
