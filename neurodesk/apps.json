@@ -427,6 +427,10 @@
             "fmriprep 23.0.0": {
                 "version": "20230315",
                 "exec": ""
+            },
+            "fmriprep 23.2.1": {
+                "version": "20240402",
+                "exec": ""
             }
         },
         "categories": ["functional imaging", "workflows"]
