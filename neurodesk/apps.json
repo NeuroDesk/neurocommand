@@ -645,7 +645,7 @@
             "REPLGUI-julia 1.9.4": {
                 "version": "20240405",
                 "exec": "julia"
-            }
+            },
             "julia 1.10.1": {
                 "version": "20240321",
                 "exec": ""
