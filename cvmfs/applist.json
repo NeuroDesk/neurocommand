@@ -273,6 +273,12 @@
             ]
         },
         {
+            "application": "deepretinotopy_1.0.4_20240409",
+            "categories": [
+                "machine learning"
+            ]
+        },
+        {
             "application": "diffusiontoolkit_0.6.4.1_20220303",
             "categories": [
                 "diffusion imaging"
