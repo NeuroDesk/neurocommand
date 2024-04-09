@@ -35,7 +35,7 @@ env:
 
 jobs:
   upload_containers_simg:
-    runs-on: ubuntu-20.04
+    runs-on: self-hosted
     steps:
     # - name: Maximize build space
     #   uses: easimon/maximize-build-space@master
