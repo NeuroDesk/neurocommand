@@ -32,6 +32,14 @@
             "sumaGUI-afni 23.3.02": {
                     "version": "20231024",
                     "exec": "suma"
+            },
+            "afni 24.1.02": {
+                    "version": "20240409",
+                    "exec": ""
+            },
+            "sumaGUI-afni 24.1.02": {
+                    "version": "20240409",
+                    "exec": "suma"
             }
         },
         "categories": ["functional imaging"]
@@ -991,6 +999,15 @@
         },
         "categories": ["functional imaging"]
     },
+    "qsiprep": {
+        "apps": {
+            "qsiprep 0.20.0": {
+                "version": "20240408",
+                "exec": ""
+            }
+        },
+        "categories": ["diffusion imaging"]
+    },
     "qsmxt": {
         "apps": {
             "qsmxt 2.1.0": {
@@ -1071,6 +1088,10 @@
             },
             "rstudioGUI-rstudio 2023.09.1": {
                 "version": "20231207",
+                "exec": "rstudio"
+            },
+            "rstudioGUI-rstudio 2023.12.1": {
+                "version": "20240209",
                 "exec": "rstudio"
             }
         },
