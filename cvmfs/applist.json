@@ -297,6 +297,12 @@
             ]
         },
         {
+            "application": "dsistudio_chen.2024.04.19_20240426",
+            "categories": [
+                "diffusion imaging"
+            ]
+        },
+        {
             "application": "eeglab_2020.0_20211026",
             "categories": [
                 "electrophysiology"
