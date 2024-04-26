@@ -10,42 +10,10 @@ on:
       - 'neurodesk/apps.json'
       - 'neurodesk/write_log.py'
 
-  # pull_request_target:
-  #   types:
-  #     - closed
-  #   branches: 
-  #     - main
-  #   paths:
-  #     - '.github/workflows/update-neurocontainers.yml'
-  #     - 'neurodesk/apps.json'
-  #     - 'neurodesk/write_log.py'
-    
-env:
-  # DOCKERHUB_ORG: ${{ secrets.DOCKERHUB_ORG }}
-  # OS_PASSWORD: ${{ secrets.SWIFT_OS_PASSWORD }}
-  # OS_PROJECT_ID: ${{ secrets.SWIFT_OS_PROJECT_ID }}
-  # OS_USERNAME: ${{ secrets.SWIFT_OS_USERNAME }}
-  # OS_APPLICATION_CREDENTIAL_ID: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_ID }}
-  # OS_APPLICATION_CREDENTIAL_SECRET: ${{ secrets.SWIFT_OS_APPLICATION_CREDENTIAL_SECRET }}
-  # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  # DOCKERHUB_PASSWORD: ${{ secrets.DOCKERHUB_PASSWORD }}
-  # DOCKERHUB_USERNAME: ${{ secrets.DOCKERHUB_USERNAME }}
-
 jobs:
   upload_containers_simg:
     runs-on: self-hosted
     steps:
-    # - name: Maximize build space
-    #   uses: easimon/maximize-build-space@master
-    #   with:
-    #     root-reserve-mb: 40000
-    #     swap-size-mb: 1024
-    #     overprovision-lvm: 'true'
-    #     remove-dotnet: 'true'
-    #     remove-android: 'true'
-    #     remove-haskell: 'true'
-    #     remove-codeql: 'true'
-    #     remove-docker-images: 'true'
     - uses: actions/checkout@v3
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
