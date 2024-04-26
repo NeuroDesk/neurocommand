@@ -20,9 +20,7 @@ fi
 
 # echo "Syncing object storages:"
 export RCLONE_VERBOSE=2
-# rclone sync oracle-2021-sydney-bucket:/neurodesk/temporary-builds-new oracle-2021-us-bucket:/neurodesk/temporary-builds-new 
-# rclone sync oracle-2021-us-bucket:/neurodesk oracle-2021-sydney-bucket:/neurodesk
-# rclone copy oracle-2021-sydney-bucket:/neurodesk nectar:/neurodesk/
+# rclone copy  nectar:/neurodesk/ aws:/neurodesk
 
 cd ~/neurocommand/
 
@@ -76,8 +74,8 @@ do
 
         
         # check if singularity image is already in object storage
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
+        if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${IMAGENAME_BUILDDATE}.simg"; then
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in nectar cloud"
             # in case of problems:
             # cvmfs_server check
             # If you get bad whitelist error, check if the repository is signed: sudo /usr/bin/cvmfs_server resign neurodesk.ardc.edu.au
@@ -100,7 +98,7 @@ do
             fi
         else
             echo "[WARNING] ========================================================="
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist in oracle cloud"
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist in nectar cloud"
             echo "[WARNING] ========================================================="
         fi
     fi
