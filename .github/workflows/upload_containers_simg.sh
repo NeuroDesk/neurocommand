@@ -33,15 +33,14 @@ do
     echo "[DEBUG] IMAGENAME: $IMAGENAME"
     echo "[DEBUG] BUILDDATE: $BUILDDATE"
 
-    # Oracle Ashburn (with cloud mirror to Frankfurt)
-    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in ashburn oracle cloud"
+    if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${IMAGENAME_BUILDDATE}.simg"; then
+        echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in nectar cloud"
     else
-        # if image is not in Ashburn cloud then check if the image is in the temporary cache:
-        if curl --output /dev/null --silent --head --fail "https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"; then
+        # if image is not in standard nectar cloud then check if the image is in the temporary cache:
+        if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"; then
             # download simg file from cache:
-            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on ashburn oracle cloud"
-            curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on nectar cloud"
+            curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
         else
             # image was not released previously and is not in cache - rebuild from docker:
             # check if there is enough free disk space on the runner:
@@ -71,36 +70,29 @@ do
             singularity build "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg"  docker://vnmd/$IMAGENAME:$BUILDDATE
         fi
 
-        if [ -n "${ORACLE_USER}" ]; then
-            echo "[DEBUG] Attempting upload to Oracle ..."
-            curl -X PUT -u ${ORACLE_USER} --upload-file $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg $ORACLE_NEURODESK_BUCKET
+        echo "[DEBUG] Attempting upload to Nectar Cloud ..."
 
-            if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/${IMAGENAME_BUILDDATE}.simg"; then
-                echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
-                echo "[DEBUG] PROCEEDING TO NEXT LINE"
-                echo "[DEBUG] Cleaning up ..."
-                rm -rf /home/runner/.singularity/docker
-                rm -rf $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
-            else
-                echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
-                exit 2
-            fi
+        rclone copy --progress $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg nectar:/neurodesk/
+
+        if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${IMAGENAME_BUILDDATE}.simg"; then
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg was freshly build and exists now :)"
+            echo "[DEBUG] PROCEEDING TO NEXT LINE"
+            echo "[DEBUG] Cleaning up ..."
+            rm -rf /home/runner/.singularity/docker
+            rm -rf $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg
         else
-            echo "Upload credentials not set. NOT uploading. This is OK, if it is an external pull request. Otherwise check credentials."
+            echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg does not exist yet. Something is WRONG"
+            exit 2
         fi
     fi 
 done < log.txt
 
 
-if [ -n "${ORACLE_USER}" ]; then
-    #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
-    echo "[Debug] mv logfile to cvmfs directory"
-    mv log.txt cvmfs
+#once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
+echo "[Debug] mv logfile to cvmfs directory"
+mv log.txt cvmfs
 
-    cd cvmfs
-    echo "[Debug] generate applist.json file for website"
-    python json_gen.py #this generates the applist.json for the website
-    # these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
-else
-    echo "Upload credentials not set. NOT saving logfile. This is OK, if it is an external pull request. Otherwise check credentials."
-fi
+cd cvmfs
+echo "[Debug] generate applist.json file for website"
+python json_gen.py #this generates the applist.json for the website
+# these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
