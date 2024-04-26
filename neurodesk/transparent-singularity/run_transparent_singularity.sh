@@ -124,29 +124,25 @@ if [[ -d "/cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVe
    storage="cvmfs"
    container_pull="ln -s /cvmfs/neurodesk.ardc.edu.au/containers/${containerName}_${containerVersion}_${containerDate}/${containerName}_${containerVersion}_${containerDate}.simg $container"
 else
-   echo "$container does not exists in cvmfs. Testing Oracle temporary Object storage next: "
-   if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/$container"; then
-      echo "$container exists in the temporary builds oracle cache"
-      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
-      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
-      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/temporary-builds-new/"
+   echo "$container does not exists in cvmfs. Testing Nectar temporary Object storage next: "
+   if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/$container"; then      
+      echo "$container exists in the temporary builds nectar cache"
+      url="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/"
    fi
 
-   echo "Testing standard Oracle Object storage next: "
+   echo "Testing standard Nectar Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/$container"; then
-      echo "$container exists in the oracle object storage"
-      urlUS="https://objectstorage.us-ashburn-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
-      urlEUROPE="https://objectstorage.eu-frankfurt-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
-      urlSYDNEY="https://objectstorage.ap-sydney-1.oraclecloud.com/n/sd63xuke79z3/b/neurodesk/o/"
+      echo "$container exists in the standard nectar object storage"
+      url="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/"
    fi
 
-   if [[ -v urlUS ]]; then
+   if [[ -v url ]]; then
       # echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
           echo "aria2 is not installed. Defaulting to curl."
          
-          urls=($urlUS $urlEUROPE $urlSYDNEY)
+          urls=($url)
           declare -a speeds   
               
           echo "testing which server is fastest."
@@ -178,7 +174,7 @@ else
               
           container_pull="curl -X GET ${url}${container} -O"
        else # if aria2c does not exist:
-          container_pull="aria2c ${urlUS}${container} ${urlEUROPE}${container} ${urlSYDNEY}${container}"
+          container_pull="aria2c ${url}${container}"
        fi # end of aria2c check
    else # end of check if files exist in object storage
       # fallback to docker
