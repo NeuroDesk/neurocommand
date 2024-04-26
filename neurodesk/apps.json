@@ -365,6 +365,14 @@
             "dsistudioGUI-dsistudio 2020.10": {
                 "version": "20210109",
                 "exec": "dsi_studio"
+            },
+            "dsistudio chen-2024-04-19": {
+                "version": "20240426",
+                "exec": ""
+            },            
+            "dsistudioGUI-dsistudio chen-2024-04-19": {
+                "version": "20240426",
+                "exec": "dsi_studio"
             }
         },
         "categories": ["diffusion imaging"]
