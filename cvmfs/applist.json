@@ -468,6 +468,12 @@
             ]
         },
         {
+            "application": "glmsingle_1.2_20240429",
+            "categories": [
+                "functional imaging"
+            ]
+        },
+        {
             "application": "globus_3.2.2_20230620",
             "categories": [
                 "data organisation"
