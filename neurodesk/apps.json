@@ -554,6 +554,15 @@
         },
         "categories": ["visualization"]
     },
+    "glmsingle": {
+        "apps": {
+            "glmsingle 1.2": {
+                "version": "20240429",
+                "exec": ""
+            }
+        },
+        "categories": ["functional imaging"]
+    },
     "globus": {
         "apps": {
             "globusGUI-globus 3.2.2": {
