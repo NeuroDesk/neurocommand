@@ -62,6 +62,10 @@
             "ants 2.3.5": {
                 "version": "20211212",
                 "exec": ""
+            },
+            "ants 2.5.1": {
+                "version": "20240429",
+                "exec": ""
             }
         },
         "categories": ["image registration", "structural imaging", "image segmentation"]
