@@ -41,6 +41,8 @@ do
             # download simg file from cache:
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on nectar cloud"
             curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
+            echo "[DEBUG] Deleting file from cache ..."
+            rclone deletefile nectar:/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg
         else
             # image was not released previously and is not in cache - rebuild from docker:
             # check if there is enough free disk space on the runner:
