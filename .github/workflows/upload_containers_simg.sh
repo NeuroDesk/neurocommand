@@ -35,14 +35,16 @@ do
 
     if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${IMAGENAME_BUILDDATE}.simg"; then
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in nectar cloud"
+        echo "[DEBUG] refresh timestamp to show it's still in use"
+        rclone touch nectar:/neurodesk/${IMAGENAME_BUILDDATE}.simg
     else
         # if image is not in standard nectar cloud then check if the image is in the temporary cache:
         if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"; then
             # download simg file from cache:
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on nectar cloud"
             curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
-            echo "[DEBUG] Deleting file from cache ..."
-            rclone deletefile nectar:/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg
+            echo "[DEBUG] Deleting files older than 7days from cache ..."
+            rclone delete --min-age 7d nectar:/neurodesk/temporary-builds-new
         else
             # image was not released previously and is not in cache - rebuild from docker:
             # check if there is enough free disk space on the runner:
@@ -98,3 +100,12 @@ cd cvmfs
 echo "[Debug] generate applist.json file for website"
 python json_gen.py #this generates the applist.json for the website
 # these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
+
+
+# development
+# rclone lsl nectar:/neurodesk/temporary-builds-new
+# rclone touch nectar:/neurodesk/temporary-builds-new/vesselboost_0.9.4_20240404.simg
+# rclone lsl --min-age 7d nectar:/neurodesk/temporary-builds-new
+# rclone delete --min-age 7d nectar:/neurodesk/temporary-builds-new
+
+# rclone lsl --max-age 1d nectar:/neurodesk/
