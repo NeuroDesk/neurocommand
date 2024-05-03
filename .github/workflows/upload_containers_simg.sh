@@ -37,7 +37,6 @@ do
         echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in nectar cloud"
         echo "[DEBUG] refresh timestamp to show it's still in use"
         rclone touch nectar:/neurodesk/${IMAGENAME_BUILDDATE}.simg
-        rclone touch aws-neurocontainers:/neurocontainers/${IMAGENAME_BUILDDATE}.simg
     else
         # if image is not in standard nectar cloud then check if the image is in the temporary cache:
         if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"; then
