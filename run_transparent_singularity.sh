@@ -127,22 +127,34 @@ else
    echo "$container does not exists in cvmfs. Testing Nectar temporary Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/$container"; then      
       echo "$container exists in the temporary builds nectar cache"
-      url="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/"
+      url_nectar="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/"
    fi
 
    echo "Testing standard Nectar Object storage next: "
    if curl --output /dev/null --silent --head --fail "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$container"; then
       echo "$container exists in the standard nectar object storage"
-      url="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/"
+      url_nectar="https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/"
    fi
 
-   if [[ -v url ]]; then
+   echo "Testing temporary CDN Object storage next: "
+   if curl --output /dev/null --silent --head --fail "https://d15yxasja65rk8.cloudfront.net/temporary-builds-new/$container"; then      
+      echo "$container exists in the temporary builds cache"
+      url_cdn="https://d15yxasja65rk8.cloudfront.net/temporary-builds-new/"
+   fi
+
+   echo "Testing standard Object storage next: "
+   if curl --output /dev/null --silent --head --fail "https://d15yxasja65rk8.cloudfront.net/$container"; then
+      echo "$container exists in the standard object storage"
+      url_cdn="https://d15yxasja65rk8.cloudfront.net/"
+   fi
+
+   if [[ -v url_cdn ]]; then
       # echo "check if aria2 is installed ..."
       qq=`which  aria2c`
       if [[  ${#qq} -lt 1 ]]; then
           echo "aria2 is not installed. Defaulting to curl."
          
-          urls=($url)
+          urls=($url_cdn $url_nectar)
           declare -a speeds   
               
           echo "testing which server is fastest."
@@ -173,8 +185,8 @@ else
           echo using server $url
               
           container_pull="curl -X GET ${url}${container} -O"
-       else # if aria2c does not exist:
-          container_pull="aria2c ${url}${container}"
+       else 
+          container_pull="aria2c ${url_cdn}${container} ${url_nectar}${container}"
        fi # end of aria2c check
    else # end of check if files exist in object storage
       # fallback to docker
