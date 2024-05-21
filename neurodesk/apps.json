@@ -561,7 +561,7 @@
     "glmsingle": {
         "apps": {
             "glmsingle 1.2": {
-                "version": "20240429",
+                "version": "20240520",
                 "exec": ""
             }
         },
