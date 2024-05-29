@@ -1070,7 +1070,7 @@
                 "exec": "relion"
             }
         },
-        "categories": ["cryo-electron microscopy"]
+        "categories": ["cryo electron microscopy"]
     },
     "romeo": {
         "apps": {
