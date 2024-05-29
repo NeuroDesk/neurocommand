@@ -222,11 +222,11 @@
 			</Include>
 		</Menu>
 		<Menu>
-			<Name>Cryo Electron Microscopy</Name>
-			<Directory>neurodesk/cryo-electron-microscopy.directory</Directory>
+			<Name>Cryo EM</Name>
+			<Directory>neurodesk/cryo-em.directory</Directory>
 			<Include>
 				<And>
-					<Category>cryo-electron-microscopy</Category>
+					<Category>cryo-em</Category>
 				</And>
 			</Include>
 		</Menu>
