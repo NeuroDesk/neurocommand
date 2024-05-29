@@ -833,6 +833,12 @@
             ]
         },
         {
+            "application": "relion_4.0.1.sm61_20240528",
+            "categories": [
+                "cryo EM"
+            ]
+        },
+        {
             "application": "romeo_3.2.4_20211015",
             "categories": [
                 "phase processing"
