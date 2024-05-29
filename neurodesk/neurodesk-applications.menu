@@ -222,6 +222,15 @@
 			</Include>
 		</Menu>
 		<Menu>
+			<Name>Cryo-Electron Microscopy</Name>
+			<Directory>neurodesk/cryo-electron-microscopy.directory</Directory>
+			<Include>
+				<And>
+					<Category>cryo-electron-microscopy</Category>
+				</And>
+			</Include>
+		</Menu>
+		<Menu>
 			<Name>Programming</Name>
 			<Directory>neurodesk/programming.directory</Directory>
 			<Include>
