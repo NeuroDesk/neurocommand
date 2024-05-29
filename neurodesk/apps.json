@@ -1063,6 +1063,15 @@
         },
         "categories": ["rodent imaging"]
     },
+    "relion": {
+        "apps": {
+            "relion 4.0.1.sm61": {
+                "version": "20240528",
+                "exec": "relion"
+            }
+        },
+        "categories": ["cryo-electron microscopy"]
+    },
     "romeo": {
         "apps": {
             "romeo 3.2.4": {
