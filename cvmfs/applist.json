@@ -969,6 +969,12 @@
             ]
         },
         {
+            "application": "topaz_0.2.5_20240313",
+            "categories": [
+                "cryo EM"
+            ]
+        },
+        {
             "application": "trackvis_0.6.1_20220303",
             "categories": [
                 "diffusion imaging"
