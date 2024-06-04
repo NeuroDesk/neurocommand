@@ -27,7 +27,7 @@ mv /usr/bin/singularity_test /usr/bin/singularity
 sudo apt install -y datalad lmod
 
 #install pip packages
-pip install jupyterlmod pandas nilearn matplotlib nipype 
+pip install jupyterlmod pandas nilearn matplotlib nipype osfclient
 
 #setup cvmfs
 mkdir -p /etc/cvmfs/keys/ardc.edu.au/
