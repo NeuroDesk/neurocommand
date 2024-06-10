@@ -276,25 +276,13 @@
             ]
         },
         {
-            "application": "deepretinotopy_1.0.0_20221201",
-            "categories": [
-                "machine learning"
-            ]
-        },
-        {
-            "application": "deepretinotopy_1.0.1_20231011",
-            "categories": [
-                "machine learning"
-            ]
-        },
-        {
             "application": "deepretinotopy_1.0.2_20231223",
             "categories": [
                 "machine learning"
             ]
         },
         {
-            "application": "deepretinotopy_1.0.4_20240409",
+            "application": "deepretinotopy_1.0.5_20240609",
             "categories": [
                 "machine learning"
             ]
