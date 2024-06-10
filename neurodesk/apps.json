@@ -336,20 +336,12 @@
     },
     "deepretinotopy": {
         "apps": {
-            "deepretinotopy 1.0.0": {
-                "version": "20221201",
-                "exec": ""
-            },
-            "deepretinotopy 1.0.1": {
-                "version": "20231011",
-                "exec": ""
-            },
             "deepretinotopy 1.0.2": {
                 "version": "20231223",
                 "exec": ""
             },
-            "deepretinotopy 1.0.4": {
-                "version": "20240409",
+            "deepretinotopy 1.0.5": {
+                "version": "20240609",
                 "exec": ""
             }
         },
