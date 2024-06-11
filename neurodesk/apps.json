@@ -963,6 +963,15 @@
         },
         "categories": ["image registration"]
     },
+    "nighres": {
+        "apps": {
+            "nighres 1.5.1": {
+                "version": "20240611",
+                "exec": ""
+            }
+        },
+        "categories": ["structural imaging"]
+    },
     "niistat": {
         "apps": {
             "niistat 1.0.20191216": {
