@@ -771,6 +771,12 @@
             ]
         },
         {
+            "application": "quickshear_1.1.0_20240606",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "qsiprep_0.20.0_20240408",
             "categories": [
                 "diffusion imaging"
