@@ -741,6 +741,12 @@
             ]
         },
         {
+            "application": "nighres_1.5.1_20240611",
+            "categories": [
+                "structural imaging"
+            ]
+        },
+        {
             "application": "niistat_1.0.20191216_20220111",
             "categories": [
                 "functional imaging"
