@@ -108,6 +108,12 @@
             ]
         },
         {
+            "application": "bart_0.9.00_20240719",
+            "categories": [
+                "image reconstruction"
+            ]
+        },
+        {
             "application": "bidscoin_3.7.0_20220329",
             "categories": [
                 "data organisation"
