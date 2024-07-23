@@ -113,6 +113,10 @@
             "bart 0.9.00": {
                 "version": "20240719",
                 "exec": ""
+            },
+            "bart 0.9.00": {
+                "version": "20240723",
+                "exec": ""
             }
         },
         "categories": ["image reconstruction"]
