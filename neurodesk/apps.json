@@ -950,6 +950,10 @@
                 "version": "20240320",
                 "exec": "mrview"
             }
+            "mrtrix3src": {
+                "version": "latest",
+                "exec": ""
+            },
         },
         "categories": ["diffusion imaging"]
     },
