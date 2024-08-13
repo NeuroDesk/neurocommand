@@ -741,6 +741,12 @@
             ]
         },
         {
+            "application": "mrtrix3src_latest_latest",
+            "categories": [
+                "diffusion imaging"
+            ]
+        },
+        {
             "application": "mrtrix3tissue_5.2.8_20201111",
             "categories": [
                 "diffusion imaging"
