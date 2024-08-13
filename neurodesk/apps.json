@@ -949,11 +949,11 @@
             "mrviewGUI-mrtrix3 3.0.4": {
                 "version": "20240320",
                 "exec": "mrview"
-            }
-            "mrtrix3src": {
+            },
+            "mrtrix3src latest": {
                 "version": "latest",
                 "exec": ""
-            },
+            }
         },
         "categories": ["diffusion imaging"]
     },
