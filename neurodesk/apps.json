@@ -1310,8 +1310,12 @@
                 "version": "20231031",
                 "exec": ""
             },
-             "vesselboost 0.9.4": {
+            "vesselboost 0.9.4": {
                 "version": "20240404",
+                "exec": ""
+            },
+            "vesselboost 1.0.0": {
+                "version": "20240815",
                 "exec": ""
             }
         },
