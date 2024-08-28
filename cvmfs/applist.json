@@ -795,6 +795,12 @@
             ]
         },
         {
+            "application": "qmrlab_2.4.2_20240828",
+            "categories": [
+                "quantitative imaging"
+            ]
+        },
+        {
             "application": "quickshear_1.1.0_20240606",
             "categories": [
                 "data organisation"
