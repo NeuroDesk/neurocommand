@@ -771,6 +771,12 @@
             ]
         },
         {
+            "application": "niimath_1.0.0_20240902",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "nipype_1.8.3_20220825",
             "categories": [
                 "workflows"
