@@ -993,6 +993,15 @@
         },
         "categories": ["functional imaging"]
     },
+    "niimath": {
+        "apps": {
+            "niimath 1.0.0": {
+                "version": "20240902",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "nipype": {
         "apps": {
             "code-nipype 1.8.3": {
