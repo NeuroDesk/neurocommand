@@ -96,6 +96,13 @@
             ]
         },
         {
+            "application": "aslprep_0.7.2_20240917",
+            "categories": [
+                "quantitative imaging",
+                "workflows"
+            ]
+        },
+        {
             "application": "ashs_2.0.0_20210105",
             "categories": [
                 "hippocampus"
