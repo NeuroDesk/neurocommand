@@ -91,6 +91,10 @@
             "aslprep 0.7.0": {
                 "version": "20240530",
                 "exec": ""
+            },
+            "aslprep 0.7.2": {
+                "version": "20240917",
+                "exec": ""
             }
         },
         "categories": ["quantitative imaging", "workflows"]
