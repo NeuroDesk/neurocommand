@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 # set -e
 
-#This script runs on the CVMFS STRATUM 0 server every 1 minute
+#This script runs on the CVMFS STRATUM 0 server every 5 minutes
 
 #sudo vi /etc/cron.d/sync_containers_to_cvmfs
-#*/1 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
+#*/5 * * * * ec2-user cd ~ && bash /home/ec2-user/neurocommand/cvmfs/sync_containers_to_cvmfs.sh
 
-#The cronjob logfile gets cleared after every week successful run
+#The cronjob logfile gets cleared after every successful run
 
 
 LOCKFILE=~/ISRUNNING.lock
@@ -155,6 +155,9 @@ do
     IFS=$Field_Separator
 
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
+
+# finally, run a check - takes about 4 hours to complete
+cvmfs_server check
 
 rm -rf $LOCKFILE
 mv ~/cronjob.log ~/cronjob_previous_run.log
