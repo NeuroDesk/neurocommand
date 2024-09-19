@@ -157,7 +157,7 @@ do
 done < /home/ec2-user/neurocommand/cvmfs/log.txt
 
 # finally, run a check - takes about 4 hours to complete
-cvmfs_server check
+# cvmfs_server check
 
 rm -rf $LOCKFILE
 mv ~/cronjob.log ~/cronjob_previous_run.log
