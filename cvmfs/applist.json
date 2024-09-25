@@ -61,6 +61,14 @@
             ]
         },
         {
+            "application": "ants_2.5.3_20240925",
+            "categories": [
+                "image registration",
+                "structural imaging",
+                "image segmentation"
+            ]
+        },
+        {
             "application": "aslprep_0.2.7_20210323",
             "categories": [
                 "quantitative imaging",
