@@ -321,6 +321,12 @@
             ]
         },
         {
+            "application": "dcm2niix_v1.0.20240202_20240927",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "diffusiontoolkit_0.6.4.1_20220303",
             "categories": [
                 "diffusion imaging"
