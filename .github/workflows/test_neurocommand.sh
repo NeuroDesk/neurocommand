@@ -17,11 +17,11 @@ echo "where am I"
 pwd
 bash build.sh --cli --lxde
 bash containers.sh all
-bash /home/runner/work/neurocommand/neurocommand/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
+bash /home/runner/work/neurocommand/neurocommand/local/fetch_containers.sh niimath 1.0.0 20240902 niimath 
 
 
 # check if container file exists
-if [ -f /home/runner/work/neurocommand/neurocommand/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.simg ]; then
+if [ -f /home/runner/work/neurocommand/neurocommand/local/containers/niimath_1.0.0_20240902/niimath_1.0.0_20240902.simg ]; then
     echo "[DEBUG]: test_neurocommand.sh Container file exists"
 else 
     echo "[DEBUG]: test_neurocommand.sh Container file does not exist! Something went wrong when downloading."
@@ -29,13 +29,13 @@ else
 fi
 
 # check if transparent singularity generated executable output file:
-FILE="/home/runner/work/neurocommand/neurocommand/local/containers/itksnap_3.8.0_20200811/itksnap"
+FILE="/home/runner/work/neurocommand/neurocommand/local/containers/niimath_1.0.0_20240902/niimath"
 if [ -f $FILE ];then
     echo "[DEBUG]: test_neurocommand.sh $FILE exists."
 else
     echo "[DEBUG]: test_neurocommand.sh $FILE doesn't exist. Something went wrong with transparent singularity. Trying again."
-    rm -rf /home/runner/work/neurocommand/neurocommand/local/containers/itksnap_3.8.0_20200811/itksnap_3.8.0_20200811.simg
-    bash /home/runner/work/neurocommand/neurocommand/local/fetch_containers.sh itksnap 3.8.0 20200811 itksnap /MRIcrop-orig.gipl
+    rm -rf /home/runner/work/neurocommand/neurocommand/local/containers/niimath_1.0.0_20240902/niimath_1.0.0_20240902.simg
+    bash /home/runner/work/neurocommand/neurocommand/local/fetch_containers.sh niimath 1.0.0 20240902 niimath
     if [ -f $FILE ];then
         echo "[DEBUG]: test_neurocommand.sh $FILE exists."
     else 
