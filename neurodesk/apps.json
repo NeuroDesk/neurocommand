@@ -371,6 +371,15 @@
         },
         "categories": ["machine learning"]
     },
+     "dcm2niix": {
+        "apps": {
+            "dcm2niix v1.0.20240202": {
+                "version": "20240927",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "diffusiontoolkit": {
         "apps": {
             "diffusiontoolkit 0.6.4.1": {
