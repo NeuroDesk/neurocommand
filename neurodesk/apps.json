@@ -40,6 +40,14 @@
             "sumaGUI-afni 24.1.02": {
                     "version": "20240409",
                     "exec": "suma"
+            },
+            "afni 24.2.07": {
+                    "version": "20240927",
+                    "exec": ""
+            },
+            "sumaGUI-afni 24.2.07": {
+                    "version": "20240927",
+                    "exec": "suma"
             }
         },
         "categories": ["functional imaging"]
