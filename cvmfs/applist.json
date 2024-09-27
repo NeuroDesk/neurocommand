@@ -31,6 +31,12 @@
             ]
         },
         {
+            "application": "afni_24.2.07_20240927",
+            "categories": [
+                "functional imaging"
+            ]
+        },
+        {
             "application": "aidamri_1.1_20210708",
             "categories": [
                 "rodent imaging"
