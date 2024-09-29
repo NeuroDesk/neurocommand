@@ -809,6 +809,15 @@
         },
         "categories": ["molecular biology"]
     },
+     "micapipe": {
+        "apps": {
+            "micapipe v0.2.3": {
+                "version": "20240927",
+                "exec": ""
+            }
+        },
+        "categories": ["structural imaging, diffusion imaging, functional imaging, workflows"]
+    },
      "mitkdiffusion": {
         "apps": {
             "mitkdiffusion 1.2.0": {
