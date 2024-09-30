@@ -31,7 +31,7 @@
             ]
         },
         {
-            "application": "afni_24.2.07_20240927",
+            "application": "afni_24.2.07_20240929",
             "categories": [
                 "functional imaging"
             ]
@@ -651,6 +651,15 @@
             "application": "mgltools_1.5.7_20230313",
             "categories": [
                 "molecular biology"
+            ]
+        },
+        {
+            "application": "micapipe_v0.2.3_20240927",
+            "categories": [
+                "structural imaging",
+                " diffusion imaging",
+                " functional imaging",
+                " workflows"
             ]
         },
         {
