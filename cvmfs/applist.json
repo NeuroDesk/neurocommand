@@ -657,9 +657,9 @@
             "application": "micapipe_v0.2.3_20240927",
             "categories": [
                 "structural imaging",
-                " diffusion imaging",
-                " functional imaging",
-                " workflows"
+                "diffusion imaging",
+                "functional imaging",
+                "workflows"
             ]
         },
         {
