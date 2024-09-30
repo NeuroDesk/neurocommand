@@ -816,7 +816,7 @@
                 "exec": ""
             }
         },
-        "categories": ["structural imaging, diffusion imaging, functional imaging, workflows"]
+        "categories": ["structural imaging", "diffusion imaging", "functional imaging", "workflows"]
     },
      "mitkdiffusion": {
         "apps": {
