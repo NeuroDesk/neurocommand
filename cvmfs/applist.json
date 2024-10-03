@@ -237,6 +237,12 @@
             ]
         },
         {
+            "application": "brainlifecli_1.7.0_20241003",
+            "categories": [
+                "workflows"
+            ]
+        },
+        {
             "application": "brainnetviewer_1.7.20191031_20240904",
             "categories": [
                 "functional imaging",
