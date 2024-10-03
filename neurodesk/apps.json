@@ -41,12 +41,12 @@
                     "version": "20240409",
                     "exec": "suma"
             },
-            "afni 24.2.07": {
-                    "version": "20240929",
+            "afni 24.3.00": {
+                    "version": "20241003",
                     "exec": ""
             },
-            "sumaGUI-afni 24.2.07": {
-                    "version": "20240929",
+            "sumaGUI-afni 24.3.00": {
+                    "version": "20241003",
                     "exec": "suma"
             }
         },
