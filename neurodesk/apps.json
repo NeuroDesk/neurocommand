@@ -246,6 +246,15 @@
         },
         "categories": ["data organisation"]
     },
+    "brainlife": {
+        "apps": {
+            "brainlifecli 1.7.0": {
+                "version": "20241003",
+                "exec": ""
+            }
+        },
+        "categories": ["workflows"]
+    },
     "brainnetviewer": {
         "apps": {
             "brainnetviewer 1.7.20191031": {
