@@ -1444,5 +1444,14 @@
             }
         },
         "categories": ["molecular biology"]
+    },
+    "vmtk": {
+        "apps": {
+            "vmtk 1.5.0": {
+                "version": "20241004",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
     }
 }
