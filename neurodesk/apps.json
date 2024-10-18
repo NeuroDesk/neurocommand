@@ -616,6 +616,14 @@
             "fsleyesGUI-fsl 6.0.7.8": {
                 "version": "20240913",
                 "exec": "fsleyes"
+            },
+            "fsl 6.0.7.14": {  
+                "version": "20241018",
+                "exec": ""
+            },
+            "fsleyesGUI-fsl 6.0.7.14": {
+                "version": "20241018",
+                "exec": "fsleyes"
             }
         },
         "categories": ["functional imaging", "structural imaging", "diffusion imaging", "image segmentation", "image registration"]
