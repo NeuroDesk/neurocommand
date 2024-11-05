@@ -679,7 +679,7 @@
                 "exec": ""
             }
         },
-        "categories": ["image segmentation"]
+        "categories": ["data organisation"]
     },
     "hnncore": {
         "apps": {
