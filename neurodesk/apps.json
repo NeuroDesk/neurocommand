@@ -672,6 +672,15 @@
         },
         "categories": ["image segmentation"]
     },
+    "heudiconv": {
+        "apps": {
+            "heudiconv 1.3.1": {
+                "version": "20241105",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "hnncore": {
         "apps": {
             "hnncore 0.3": {
