@@ -987,6 +987,10 @@
             "mriqc 22.0.6": {
                 "version": "20230215",
                 "exec": ""
+            },
+            "mriqc 24.0.2": {
+                "version": "20241108",
+                "exec": ""
             }
         },
         "categories": ["data organisation", "functional imaging", "quality control", "workflows"]
