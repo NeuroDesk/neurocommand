@@ -793,6 +793,15 @@
             ]
         },
         {
+            "application": "mriqc_24.0.2_20241108",
+            "categories": [
+                "data organisation",
+                "functional imaging",
+                "quality control",
+                "workflows"
+            ]
+        },
+        {
             "application": "mritools_3.3.0_20220224",
             "categories": [
                 "phase processing"
