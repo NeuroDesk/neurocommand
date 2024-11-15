@@ -395,7 +395,7 @@
                 "exec": ""
             }
         },
-        "categories": ["machine learning"]
+        "categories": ["machine learning", "functional imaging"]
     },
      "dcm2niix": {
         "apps": {
@@ -1279,6 +1279,19 @@
             }
         },
         "categories": ["statistics"]
+    },
+    "samsrfx": {
+        "apps": {
+            "samsrfx v10.003": {
+                "version": "20241115",
+                "exec": ""
+            },
+            "samsrfxGUI-samsrfx v10.003": {
+                "version": "20241115",
+                "exec": "samsrfx"
+            }
+        },
+        "categories": ["functional imaging"]
     },
     "sigviewer": {
         "apps": {
