@@ -330,13 +330,15 @@
         {
             "application": "deepretinotopy_1.0.2_20231223",
             "categories": [
-                "machine learning"
+                "machine learning",
+                "functional imaging"
             ]
         },
         {
             "application": "deepretinotopy_1.0.5_20240609",
             "categories": [
-                "machine learning"
+                "machine learning",
+                "functional imaging"
             ]
         },
         {
@@ -1027,6 +1029,12 @@
             "application": "rstudio_2023.12.1_20240209",
             "categories": [
                 "statistics"
+            ]
+        },
+        {
+            "application": "samsrfx_v10.003_20241115",
+            "categories": [
+                "functional imaging"
             ]
         },
         {
