@@ -1143,7 +1143,7 @@
             "palmettobugGUI-palmettobug 0.0.1": {
                 "version": "20241119",
                 "exec": "palmettobug"
-            },
+            }
         },
         "categories": ["molecular biology"]
     },
