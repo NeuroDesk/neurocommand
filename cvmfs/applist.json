@@ -900,6 +900,12 @@
             ]
         },
         {
+            "application": "palmettobug_0.0.1_20241119",
+            "categories": [
+                "molecular biology"
+            ]
+        },
+        {
             "application": "physio_r2021a_20220220",
             "categories": [
                 "functional imaging"
