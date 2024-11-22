@@ -858,6 +858,12 @@
             ]
         },
         {
+            "application": "neurodock_1.0.0_20241122",
+            "categories": [
+                "diffusion imaging"
+            ]
+        },
+        {
             "application": "niftyreg_1.4.0_20220317",
             "categories": [
                 "image registration"
