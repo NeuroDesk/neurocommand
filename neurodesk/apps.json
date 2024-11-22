@@ -1067,6 +1067,15 @@
         },
         "categories": ["diffusion imaging"]
     },
+    "neurodock": {
+        "apps": {
+            "neurodock 1.0.0": {
+                "version": "20241122",
+                "exec": ""
+            }
+        },
+        "categories": ["diffusion imaging"]
+    },
     "niftyreg": {
         "apps": {
             "niftyreg 1.4.0": {
