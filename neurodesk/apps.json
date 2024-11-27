@@ -1304,12 +1304,12 @@
     },
     "samsrfx": {
         "apps": {
-            "samsrfx v10.003": {
-                "version": "20241115",
+            "samsrfx v10.004": {
+                "version": "20241127",
                 "exec": ""
             },
-            "samsrfxGUI-samsrfx v10.003": {
-                "version": "20241115",
+            "samsrfxGUI-samsrfx v10.004": {
+                "version": "20241127",
                 "exec": "samsrfx"
             }
         },
