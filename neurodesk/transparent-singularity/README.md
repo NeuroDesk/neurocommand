@@ -2,4 +2,4 @@ This project allows to use singularity containers transparently on HPCs, so that
 
 _Information on the **Neurodesk** project is available at [neurodesk.github.io](https://neurodesk.github.io)_
 
-_Information on **Transparent Singularity** is available at [neurodesk.github.io/developers/transparent_singularity](https://neurodesk.github.io/developers/transparent_singularity)_
+_Information on **Transparent Singularity** is available at [neurodesk.github.io/developers/transparent_singularity](https://neurodesk.github.io/developers/architecture/transparent_singularity)_
