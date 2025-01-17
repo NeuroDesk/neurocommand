@@ -328,14 +328,14 @@
             ]
         },
         {
-            "application": "deepretinotopy_1.0.2_20231223",
+            "application": "deepretinotopy_1.0.5_20240609",
             "categories": [
                 "machine learning",
                 "functional imaging"
             ]
         },
         {
-            "application": "deepretinotopy_1.0.5_20240609",
+            "application": "deepretinotopy_1.0.6_20250116",
             "categories": [
                 "machine learning",
                 "functional imaging"
