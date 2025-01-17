@@ -386,12 +386,12 @@
     },
     "deepretinotopy": {
         "apps": {
-            "deepretinotopy 1.0.2": {
-                "version": "20231223",
-                "exec": ""
-            },
             "deepretinotopy 1.0.5": {
                 "version": "20240609",
+                "exec": ""
+            },
+            "deepretinotopy 1.0.6": {
+                "version": "20250116",
                 "exec": ""
             }
         },
