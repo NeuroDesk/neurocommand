@@ -826,6 +826,14 @@
             "matlabGUI-matlab 2022a": {
                 "version": "20231207",
                 "exec": "matlab"
+            },
+            "matlab 2024b": {
+                "version": "20250117",
+                "exec": ""
+            },
+            "matlabGUI-matlab 2024b": {
+                "version": "20250117",
+                "exec": "matlab"
             }
         },
         "categories": ["programming", "visualization"]
