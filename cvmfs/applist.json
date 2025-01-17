@@ -684,6 +684,13 @@
             ]
         },
         {
+            "application": "matlab_2024b_20250117",
+            "categories": [
+                "programming",
+                "visualization"
+            ]
+        },
+        {
             "application": "mfcsc_1.0_20230306",
             "categories": [
                 "functional imaging",
