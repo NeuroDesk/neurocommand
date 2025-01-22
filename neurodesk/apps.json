@@ -827,6 +827,14 @@
                 "version": "20231207",
                 "exec": "matlab"
             },
+            "matlab 2023b": {
+                "version": "20250121",
+                "exec": ""
+            },
+            "matlabGUI-matlab 2023b": {
+                "version": "20250121",
+                "exec": "matlab"
+            },
             "matlab 2024b": {
                 "version": "20250117",
                 "exec": ""
