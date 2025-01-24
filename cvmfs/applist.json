@@ -684,6 +684,13 @@
             ]
         },
         {
+            "application": "matlab_2022b_20250124",
+            "categories": [
+                "programming",
+                "visualization"
+            ]
+        },
+        {
             "application": "matlab_2023b_20250121",
             "categories": [
                 "programming",
