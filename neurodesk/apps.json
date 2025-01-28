@@ -555,6 +555,14 @@
             "freeviewGUI-freesurfer 7.4.1": {
                 "version": "20231214",
                 "exec": "freeview"
+            },
+            "freesurfer 8.0.0": {
+                "version": "20250127",
+                "exec": ""
+            },
+            "freeviewGUI-freesurfer 8.0.0": {
+                "version": "20250127",
+                "exec": "freeview"
             }
         },
         "categories": ["image segmentation", "structural imaging"]
