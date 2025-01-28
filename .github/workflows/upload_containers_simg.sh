@@ -5,6 +5,7 @@ echo "checking if containers are built"
 
 #creating logfile with available containers
 python3 neurodesk/write_log.py
+pip3 install requests
 
 # remove empty lines
 sed -i '/^$/d' log.txt
@@ -44,7 +45,7 @@ do
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on nectar cloud"
             curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
             echo "Upload container to Zenodo"
-            python .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" --container_name=${IMAGENAME_BUILDDATE} --token=$1
+            python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" --container_name=${IMAGENAME_BUILDDATE} --token=$1
             echo "[DEBUG] Deleting file after download or when older than 30days from cache ..."
             rclone delete nectar:/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg
             rclone delete --min-age 30d nectar:/neurodesk/temporary-builds-new
