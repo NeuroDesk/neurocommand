@@ -478,6 +478,13 @@
             ]
         },
         {
+            "application": "freesurfer_8.0.0_20250127",
+            "categories": [
+                "image segmentation",
+                "structural imaging"
+            ]
+        },
+        {
             "application": "fsl_6.0.3_20200905",
             "categories": [
                 "functional imaging",
