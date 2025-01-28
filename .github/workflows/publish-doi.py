@@ -11,14 +11,10 @@ def post(container_filepath, container_name, token):
                     headers=headers)
     deposition_id = r.json()['id']
     bucket_url = r.json()["links"]["bucket"]
-
-    # New API 
-    path = "./%s" % container_filepath
-
     
     # The target URL is a combination of the bucket link with the desired filename
     # seperated by a slash.
-    with open(path, "rb") as fp:
+    with open(container_filepath, "rb") as fp:
         r = requests.put(
             "%s/%s" % (bucket_url, container_filepath),
             data=fp,
