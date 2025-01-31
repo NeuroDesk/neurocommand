@@ -1,10 +1,10 @@
 # Append custom license paths so that a license can be stored outside the container
 if { [info exists env(HOME)] } {
-    set additional_bind_paths "$env(HOME):/home/matlab/.matlab/RtoolVersion_licenses,$env(HOME):/opt/matlab/RtoolVersion/licenses"
+    set additional_bind_paths "$env(HOME):/opt/matlab/RtoolVersion/licenses"
 }
 
 if { ![info exists env(HOME)] } {
-    set additional_bind_paths "/tmp:/home/matlab/.matlab/RtoolVersion_licenses,/tmp:/opt/matlab/RtoolVersion/licenses"
+    set additional_bind_paths "/tmp:/opt/matlab/RtoolVersion/licenses"
 }
 
 if { [info exists env(SINGULARITY_BINDPATH)] } {
