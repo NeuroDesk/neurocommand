@@ -1,15 +1,10 @@
-#%Module####################################################################
-module-whatis  matlab_2022a_20231207.simg
-prepend-path PATH /cvmfs/neurodesk.ardc.edu.au/containers/matlab_2022a_20231207
-
-
 # Append custom license paths so that a license can be stored outside the container
 if { [info exists env(HOME)] } {
-    set additional_bind_paths "$env(HOME):/home/matlab/.matlab/R2022a_licenses,$env(HOME):/opt/matlab/R2022a/licenses"
+    set additional_bind_paths "$env(HOME):/home/matlab/.matlab/RtoolVersion_licenses,$env(HOME):/opt/matlab/RtoolVersion/licenses"
 }
 
 if { ![info exists env(HOME)] } {
-    set additional_bind_paths "/tmp:/home/matlab/.matlab/R2022a_licenses,/tmp:/opt/matlab/R2022a/licenses"
+    set additional_bind_paths "/tmp:/home/matlab/.matlab/RtoolVersion_licenses,/tmp:/opt/matlab/RtoolVersion/licenses"
 }
 
 if { [info exists env(SINGULARITY_BINDPATH)] } {
