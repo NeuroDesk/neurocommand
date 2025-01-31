@@ -61,6 +61,7 @@ set -- "${POSITIONAL[@]}" # restore positional parameters
 
 if [[ -n $1 ]]; then
     container="$1"
+   # e.g. export container=matlab_2024b_20250117
 fi
 
 if [ -z "$container" ]; then
@@ -274,12 +275,19 @@ echo  pathToRemove=$_base | cat - ts_deactivate_ > temp && mv temp deactivate_${
 chmod a+x deactivate_${container}.sh
 
 
-
+# e.g. export container=matlab_2024b_20250117
 echo "create module files one directory up"
 modulePath=$_base/../modules/`echo $container | cut -d _ -f 1`
 echo $modulePath
+# e.g. ../modules/matlab
 mkdir $modulePath -p
+
+moduleSoftwareName=`echo $container | cut -d _ -f 1`
+# e.g. matlab
+
 moduleName=`echo $container | cut -d _ -f 2`
+# e.g. 2024b
+
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
@@ -301,5 +309,11 @@ while read envvariable; do \
 
    echo "setenv ${variableName} \"${value_with_basepath}\"" >> ${modulePath}/${moduleName}
 done < $_base/env.txt
+
+#check if there is a manual module file for this container and add it to the end
+if [[ -e manual_module_files/${moduleSoftwareName} ]]; then
+   echo "addming manual module file"
+   cat manual_module_files/${moduleSoftwareName} | sed "s/toolVersion/${moduleName}/" >> ${modulePath}/${moduleName}
+fi
 
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
