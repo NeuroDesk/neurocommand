@@ -313,7 +313,7 @@ done < $_base/env.txt
 #check if there is a manual module file for this container and add it to the end
 if [[ -e manual_module_files/${moduleSoftwareName} ]]; then
    echo "addming manual module file"
-   cat manual_module_files/${moduleSoftwareName} | sed "s/toolVersion/${moduleName}/" >> ${modulePath}/${moduleName}
+   cat manual_module_files/${moduleSoftwareName} | sed "s/toolVersion/${moduleName}/g" >> ${modulePath}/${moduleName}
 fi
 
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
