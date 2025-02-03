@@ -557,11 +557,11 @@
                 "exec": "freeview"
             },
             "freesurfer 8.0.0": {
-                "version": "20250127",
+                "version": "20250203",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 8.0.0": {
-                "version": "20250127",
+                "version": "20250203",
                 "exec": "freeview"
             }
         },
@@ -1129,6 +1129,11 @@
         "apps": {
             "nighres 1.5.1": {
                 "version": "20240611",
+                "exec": ""
+            },
+            {
+            "nighres 1.5.2": {
+                "version": "20250203",
                 "exec": ""
             }
         },
