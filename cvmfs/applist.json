@@ -478,7 +478,7 @@
             ]
         },
         {
-            "application": "freesurfer_8.0.0_20250127",
+            "application": "freesurfer_8.0.0_20250203",
             "categories": [
                 "image segmentation",
                 "structural imaging"
@@ -909,6 +909,12 @@
         },
         {
             "application": "nighres_1.5.1_20240611",
+            "categories": [
+                "structural imaging"
+            ]
+        },
+        {
+            "application": "nighres_1.5.2_20250203",
             "categories": [
                 "structural imaging"
             ]
