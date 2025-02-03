@@ -1,10 +1,10 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # fetch_and_run.sh [name] [version] [date] {cmd} {args}
 # Example:
 #   fetch_and_run.sh itksnap 3.8.0 20200505 itksnap-wt
 
-source ~/.bashrc
+# source ~/.bashrc
 _script="$(readlink -f ${BASH_SOURCE[0]})" ## who am i? ##
 _base="$(dirname $_script)" ## Delete last component from $_script ##
 echo "[DEBUG] fetch_and_run.sh: Script name : $_script"

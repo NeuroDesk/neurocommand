@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -i
 
 # fetch_containers.sh [name] [version] [date]
 # Example - downloads the container:
