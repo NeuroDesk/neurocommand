@@ -406,6 +406,15 @@
         },
         "categories": ["data organisation"]
     },
+    "dicomtools": {
+        "apps": {
+            "dicomtools 1.0.0": {
+                "version": "20250204",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+    },
     "diffusiontoolkit": {
         "apps": {
             "diffusiontoolkit 0.6.4.1": {
