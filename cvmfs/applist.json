@@ -348,6 +348,12 @@
             ]
         },
         {
+            "application": "dicomtools_1.0.0_20250204",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "diffusiontoolkit_0.6.4.1_20220303",
             "categories": [
                 "diffusion imaging"
