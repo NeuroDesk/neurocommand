@@ -1200,6 +1200,13 @@
             ]
         },
         {
+            "application": "synthstrip_7.4.1_20240913",
+            "categories": [
+                "image segmentation",
+                "structural imaging"
+            ]
+        },
+        {
             "application": "tgvqsm_1.0.0_20210629",
             "categories": [
                 "quantitative imaging",
