@@ -1230,6 +1230,15 @@
         },
         "categories": ["functional imaging"]
     },
+    "pydeface": {
+        "apps": {
+            "pydeface 2.0.2": {
+                "version": "20250206",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
+    },
     "qmrlab": {
         "apps": {
             "qmrlab 2.4.2": {
