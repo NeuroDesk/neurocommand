@@ -981,6 +981,12 @@
             ]
         },
         {
+            "application": "pydeface_2.0.2_20250206",
+            "categories": [
+                "image segmentation"
+            ]
+        },
+        {
             "application": "qmrlab_2.4.2_20240828",
             "categories": [
                 "quantitative imaging"
