@@ -57,10 +57,10 @@ do
 
     echo "check if $IMAGENAME_BUILDDATE is in module files:"
     TOOLNAME="$(cut -d'_' -f1 <<< ${IMAGENAME_BUILDDATE})"
-    TOOLVERSION="$(cut -d'_' -f2 <<< ${IMAGENAME_BUILDDATE})"
+    {TOOLVERSION}="$(cut -d'_' -f2 <<< ${IMAGENAME_BUILDDATE})"
     BUILDDATE="$(cut -d'_' -f3 <<< ${IMAGENAME_BUILDDATE})"
     echo "[DEBUG] TOOLNAME: $TOOLNAME"
-    echo "[DEBUG] TOOLVERSION: $TOOLVERSION"
+    echo "[DEBUG] {TOOLVERSION}: ${TOOLVERSION}"
     echo "[DEBUG] BUILDDATE: $BUILDDATE"
 
     echo "check if $IMAGENAME_BUILDDATE is already on cvmfs:"
@@ -124,29 +124,56 @@ do
         echo $CATEGORY
         CATEGORY="${CATEGORY// /_}"
 
-        if [[ -a "/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION" ]]
+        if [[ -a "/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}" ]]
         then
             echo "$IMAGENAME_BUILDDATE exists in module $CATEGORY"
             echo "Checking if files are up-to-date:"
-            FILE1=/cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION
-            FILE2=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION
+            FILE1=/cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION}
+            FILE2=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}
             if cmp --silent -- "$FILE1" "$FILE2"; then
                 echo "files contents are identical"
             else
                 echo "files differ - copy again:"
                 cvmfs_server transaction neurodesk.ardc.edu.au
-                cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION
+                cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION} /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}
                 cd && cvmfs_server publish -m "updating modules for $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
             fi
         else
             cvmfs_server transaction neurodesk.ardc.edu.au
             mkdir -p /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/
-            cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION
+            cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION} /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}
             cd && cvmfs_server publish -m "added modules for $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
-            if  [[ -f /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION ]]; then
-                echo "module file $CATEGORY/$TOOLNAME/$TOOLVERSION written. This worked!"
+            if  [[ -f /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION} ]]; then
+                echo "module file $CATEGORY/$TOOLNAME/${TOOLVERSION} written. This worked!"
             else
-                echo "Something went wrong: cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/$TOOLVERSION /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/$TOOLVERSION"
+                echo "Something went wrong: cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION} /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}"
+                exit 2
+            fi
+        fi
+
+        if [[ -a "/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua" ]]
+        then
+            echo "$IMAGENAME_BUILDDATE exists in module $CATEGORY"
+            echo "Checking if files are up-to-date:"
+            FILE1=/cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION}.lua
+            FILE2=/cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua
+            if cmp --silent -- "$FILE1" "$FILE2"; then
+                echo "files contents are identical"
+            else
+                echo "files differ - copy again:"
+                cvmfs_server transaction neurodesk.ardc.edu.au
+                cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION}.lua /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua
+                cd && cvmfs_server publish -m "updating modules for $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            fi
+        else
+            cvmfs_server transaction neurodesk.ardc.edu.au
+            mkdir -p /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/
+            cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION}.lua /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua
+            cd && cvmfs_server publish -m "added modules for $IMAGENAME_BUILDDATE" neurodesk.ardc.edu.au
+            if  [[ -f /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua ]]; then
+                echo "module file $CATEGORY/$TOOLNAME/${TOOLVERSION} written. This worked!"
+            else
+                echo "Something went wrong: cp /cvmfs/neurodesk.ardc.edu.au/containers/modules/$TOOLNAME/${TOOLVERSION}.lua /cvmfs/neurodesk.ardc.edu.au/neurodesk-modules/$CATEGORY/$TOOLNAME/${TOOLVERSION}.lua"
                 exit 2
             fi
         fi
