@@ -217,6 +217,10 @@ then
     mv temp $container
 fi
 
+echo "checking if there is a README.md file in the container"
+echo "executing: singularity exec $singularity_opts --pwd $_base $container cat /README.md"
+singularity exec $singularity_opts --pwd $_base $container cat /README.md > README.md
+
 echo "checking which executables exist inside container"
 echo "executing: singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh"
 singularity exec $singularity_opts --pwd $_base $container $_base/ts_binaryFinder.sh
@@ -291,6 +295,11 @@ moduleName=`echo $container | cut -d _ -f 2`
 echo "#%Module####################################################################" > ${modulePath}/${moduleName}
 echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
 echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
+
+echo "help([[" >> ${modulePath}/${moduleName} 
+cat README.md >> ${modulePath}/${moduleName}
+echo "]])" >> ${modulePath}/${moduleName} 
+
 
 echo "create environment variables for module file"
 while read envvariable; do \

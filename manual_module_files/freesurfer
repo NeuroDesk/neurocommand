@@ -1,0 +1,15 @@
+# Append custom license paths so that a license can be stored outside the container
+set additional_bind_paths "/tmp:/scratch"
+
+if { [info exists env(SINGULARITY_BINDPATH)] } {
+    append-path -delim "," SINGULARITY_BINDPATH $additional_bind_paths
+}
+
+if { [info exists env(APPTAINER_BINDPATH)] } {
+    append-path -delim "," APPTAINER_BINDPATH $additional_bind_paths
+}
+
+if { ![info exists env(SINGULARITY_BINDPATH)] && ![info exists env(APPTAINER_BINDPATH)] } {
+    # Neither variable is set, so set SINGULARITY_BINDPATH, because it's backwards compatible with APPTAINER
+    setenv SINGULARITY_BINDPATH $additional_bind_paths
+}
