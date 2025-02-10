@@ -574,11 +574,11 @@
                 "exec": "freeview"
             },
             "freesurfer 8.0.0": {
-                "version": "20250203",
+                "version": "20250210",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 8.0.0": {
-                "version": "20250203",
+                "version": "20250210",
                 "exec": "freeview"
             }
         },
