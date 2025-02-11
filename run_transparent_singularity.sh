@@ -292,14 +292,13 @@ moduleSoftwareName=`echo $container | cut -d _ -f 1`
 moduleName=`echo $container | cut -d _ -f 2`
 # e.g. 2024b
 
-echo "#%Module####################################################################" > ${modulePath}/${moduleName}
-echo "module-whatis  ${container}" >> ${modulePath}/${moduleName}
-echo "prepend-path PATH ${_base}" >> ${modulePath}/${moduleName}
+echo "-- -*- lua -*-" > ${modulePath}/${moduleName}.lua
+echo "help([[" >> ${modulePath}/${moduleName}.lua 
+cat README.md >> ${modulePath}/${moduleName}.lua
+echo "]])" >> ${modulePath}/${moduleName}.lua
 
-echo "help([[" >> ${modulePath}/${moduleName} 
-cat README.md >> ${modulePath}/${moduleName}
-echo "]])" >> ${modulePath}/${moduleName} 
-
+echo "whatis(\"${container}\")" >> ${modulePath}/${moduleName}.lua
+echo "prepend_path(\"PATH\", ${_base}" >> ${modulePath}/${moduleName}.lua
 
 echo "create environment variables for module file"
 while read envvariable; do \
@@ -316,13 +315,13 @@ while read envvariable; do \
    variableName=${completeVariableName#*DEPLOY_ENV_}
    # echo $variableName
 
-   echo "setenv ${variableName} \"${value_with_basepath}\"" >> ${modulePath}/${moduleName}
+   echo "setenv(\"${variableName}\", ${value_with_basepath}" >> ${modulePath}/${moduleName}.lua
 done < $_base/env.txt
 
 #check if there is a manual module file for this container and add it to the end
 if [[ -e manual_module_files/${moduleSoftwareName} ]]; then
    echo "addming manual module file"
-   cat manual_module_files/${moduleSoftwareName} | sed "s/toolVersion/${moduleName}/g" >> ${modulePath}/${moduleName}
+   cat manual_module_files/${moduleSoftwareName} | sed "s/toolVersion/${moduleName}/g" >> ${modulePath}/${moduleName}.lua
 fi
 
 echo "rm ${modulePath}/${moduleName}" >> ts_uninstall.sh
