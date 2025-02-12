@@ -1,6 +1,7 @@
 import requests
 import json
 import argparse
+import os
 
 def post(container_filepath, container_name, token):
     headers = {"Content-Type": "application/json"}
@@ -11,21 +12,24 @@ def post(container_filepath, container_name, token):
                     headers=headers)
     deposition_id = r.json()['id']
     bucket_url = r.json()["links"]["bucket"]
-    
+    print("bucket_url", bucket_url)
     # The target URL is a combination of the bucket link with the desired filename
     # seperated by a slash.
     with open(container_filepath, "rb") as fp:
+        print(f"Uploading container {os.path.basename(container_filepath)} to Zenodo")
         r = requests.put(
-            "%s/%s" % (bucket_url, container_filepath),
+            "%s/%s" % (bucket_url, os.path.basename(container_filepath)), # bucket is a flat structure, can't include subfolders in it
             data=fp,
             params=params,
         )
+        print("Upload response", r.status_code)
 
     data = {
         'metadata': {
             'title': container_name,
             'upload_type': 'software',
             'description': container_name,
+            'license': 'mit',
             'creators': [{'name': 'Neurodesk, ',
                         'affiliation': 'University of Queensland'}]
         }
