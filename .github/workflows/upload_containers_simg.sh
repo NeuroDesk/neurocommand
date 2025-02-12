@@ -26,7 +26,7 @@ mapfile -t arr < log.txt
 for LINE in "${arr[@]}";
 do
     echo "LINE: $LINE"
-    IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
+    export IMAGENAME_BUILDDATE="$(cut -d' ' -f1 <<< ${LINE})"
     echo "IMAGENAME_BUILDDATE: $IMAGENAME_BUILDDATE"
 
     IMAGENAME="$(cut -d'_' -f1,2 <<< ${IMAGENAME_BUILDDATE})"
@@ -45,7 +45,7 @@ do
             echo "[DEBUG] ${IMAGENAME_BUILDDATE}.simg exists in temporary cache on nectar cloud"
             curl --output "$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg"
             echo "Upload container $IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg to Zenodo"
-            python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" --container_name=${IMAGENAME_BUILDDATE} --token=$1
+            export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${IMAGENAME_BUILDDATE}.simg" --container_name=${IMAGENAME_BUILDDATE} --token=$1)
             echo "[DEBUG] Deleting file after download or when older than 30days from cache ..."
             rclone delete nectar:/neurodesk/temporary-builds-new/${IMAGENAME_BUILDDATE}.simg
             rclone delete --min-age 30d nectar:/neurodesk/temporary-builds-new
@@ -106,7 +106,7 @@ mv log.txt cvmfs
 
 cd cvmfs
 echo "[Debug] generate applist.json file for website"
-python json_gen.py #this generates the applist.json for the website
+python json_gen.py --application=$IMAGENAME_BUILDDATE --doi_url=$DOI_URL #this generates the applist.json for the website
 # these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
 
 
