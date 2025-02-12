@@ -52,7 +52,7 @@ connectomeworkbench_1.4.2_20201119 categories:functional imaging,data organisati
 connectomeworkbench_1.5.0_20220919 categories:functional imaging,data organisation,
 convert3d_1.0.0_20210104 categories:data organisation,
 deepretinotopy_1.0.5_20240609 categories:machine learning,functional imaging,
-deepretinotopy_1.0.6_20250116 categories:machine learning,functional imaging,
+deepretinotopy_1.0.8_20250207 categories:machine learning,functional imaging,
 dcm2niix_v1.0.20240202_20241125 categories:data organisation,
 dicomtools_1.0.0_20250204 categories:data organisation,
 diffusiontoolkit_0.6.4.1_20220303 categories:diffusion imaging,
