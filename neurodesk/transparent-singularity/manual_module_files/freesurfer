@@ -1,11 +1,5 @@
 -- Append custom license paths so that a license can be stored outside the container
-local additional_bind_paths
-
-if os.getenv("HOME") then
-    additional_bind_paths = os.getenv("HOME") .. ":/opt/matlab/RtoolVersion/licenses"
-else
-    additional_bind_paths = "/tmp:/opt/matlab/RtoolVersion/licenses"
-end
+local additional_bind_paths = "/tmp:/scratch"
 
 if os.getenv("SINGULARITY_BINDPATH") then
     prepend_path("SINGULARITY_BINDPATH", additional_bind_paths, ",")

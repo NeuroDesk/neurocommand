@@ -398,8 +398,8 @@
                 "version": "20240609",
                 "exec": ""
             },
-            "deepretinotopy 1.0.6": {
-                "version": "20250116",
+            "deepretinotopy 1.0.8": {
+                "version": "20250207",
                 "exec": ""
             }
         },
@@ -574,11 +574,11 @@
                 "exec": "freeview"
             },
             "freesurfer 8.0.0": {
-                "version": "20250203",
+                "version": "20250210",
                 "exec": ""
             },
             "freeviewGUI-freesurfer 8.0.0": {
-                "version": "20250203",
+                "version": "20250210",
                 "exec": "freeview"
             }
         },
@@ -1229,6 +1229,15 @@
             }
         },
         "categories": ["functional imaging"]
+    },
+    "pydeface": {
+        "apps": {
+            "pydeface 2.0.2": {
+                "version": "20250206",
+                "exec": ""
+            }
+        },
+        "categories": ["image segmentation"]
     },
     "qmrlab": {
         "apps": {
