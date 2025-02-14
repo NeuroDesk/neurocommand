@@ -293,9 +293,9 @@ moduleName=`echo $container | cut -d _ -f 2`
 # e.g. 2024b
 
 echo "-- -*- lua -*-" > ${modulePath}/${moduleName}.lua
-echo "help([[" >> ${modulePath}/${moduleName}.lua 
+echo "help([===[" >> ${modulePath}/${moduleName}.lua 
 cat README.md >> ${modulePath}/${moduleName}.lua
-echo "]])" >> ${modulePath}/${moduleName}.lua
+echo "]===])" >> ${modulePath}/${moduleName}.lua
 
 echo "whatis(\"${container}\")" >> ${modulePath}/${moduleName}.lua
 echo "prepend_path(\"PATH\", \"${_base}\")" >> ${modulePath}/${moduleName}.lua
