@@ -18,12 +18,14 @@ def upload_container(container_filepath, container_name, token):
     # Upload the simg container to bucket in the created deposition
     # The target URL is a combination of the bucket link with the desired filename
     # seperated by a slash.
+    print("Uploading container to Zenodo...", container_filepath, os.path.basename(container_filepath))
     with open(container_filepath, "rb") as fp:
         r = requests.put(
             "%s/%s" % (bucket_url, os.path.basename(container_filepath)), # bucket is a flat structure, can't include subfolders in it
             data=fp,
             params=params,
         )
+    print("Upload", r.json())
 
     # Update the metadata
     data = {
@@ -43,6 +45,7 @@ def upload_container(container_filepath, container_name, token):
     # Publish the deposition
     r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
                       params=params )
+    print("Publish", r.json())
 
     # Get the DOI from the deposition
     r = requests.get('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
