@@ -104,7 +104,7 @@ mv log.txt cvmfs
 
 cd cvmfs
 echo "[Debug] generate applist.json file for website"
-python json_gen.py --application=$IMAGENAME_BUILDDATE --doi_url=$DOI_URL #this generates the applist.json for the website
+python json_gen.py #this generates the applist.json for the website
 # these files will be committed via uses: stefanzweifel/git-auto-commit-action@v4
 
 
