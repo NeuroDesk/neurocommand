@@ -1277,8 +1277,7 @@
             "application": "vmtk_1.5.0_20241004",
             "categories": [
                 "image segmentation"
-            ],
-            "doi": ""
+            ]
         }
     ]
 }
