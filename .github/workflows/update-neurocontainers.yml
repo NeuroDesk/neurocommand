@@ -22,7 +22,7 @@ jobs:
         python-version: 3.8
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
       run: |
-        /bin/bash .github/workflows/upload_containers_simg.sh ${{ secrets.ZENODO_TOKEN }}
+        /bin/bash .github/workflows/upload_containers_simg.sh
     - name: Auto commit changes to applist.json
       uses: stefanzweifel/git-auto-commit-action@v4
       id: auto-commit-action
