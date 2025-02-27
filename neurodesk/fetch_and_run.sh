@@ -36,7 +36,7 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 # -z checks if a CVMFS_DISABLE is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
     if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMG_NAME/commands.txt" ]]; then
-        echo "[INFO] fetch_and_run.sh line $LINENO: CVMFS detected and Container seems to be available"
+        echo "[INFO] fetch_and_run.sh line $LINENO: CVMFS detected and container seems to be available"
     else
         echo "[WARNING] fetch_and_run.sh line $LINENO: CVMFS does not seem to work or is disabled or the container is not available yet on CVMFS."
         CVMFS_DISABLE=true
@@ -81,7 +81,7 @@ if [ $# -le 3 ]; then
         echo "[INFO] fetch_and_run.sh line $LINENO: output README.md of the container"
         singularity --silent exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
         
-        echo "[INFO] fetch_and_run.sh line $LINENO: shell into the container"
+        # echo "[INFO] fetch_and_run.sh line $LINENO: shell into the container"
         singularity --silent shell ${neurodesk_singularity_opts} "${CONTAINER_FILE_NAME}"
         if [ $? -eq 0 ]; then
             echo "[INFO] fetch_and_run.sh line $LINENO: Container ran OK"
