@@ -1,22 +1,28 @@
 #!/bin/bash -i
 
-# fetch_and_run.sh [name] [version] [date] {cmd} {args}
+# fetch_and_run.sh line $LINENO [name] [version] [date] {cmd} {args}
 # Example:
-#   fetch_and_run.sh itksnap 3.8.0 20200505 itksnap-wt
+#   fetch_and_run.sh line $LINENO itksnap 3.8.0 20200505 itksnap-wt
 
 # source ~/.bashrc
 _script="$(readlink -f "${BASH_SOURCE[0]}")" ## who am i? ##
 _base="$(dirname "$_script")" ## Delete last component from $_script ##
-echo "[DEBUG] fetch_and_run.sh: Script name : $_script"
-echo "[DEBUG] fetch_and_run.sh: Current working dir : $PWD"
-echo "[DEBUG] fetch_and_run.sh: Script location path (dir) : $_base"
-echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
+echo "[INFO] fetch_and_run.sh line $LINENO: Script name : $_script"
+echo "[INFO] fetch_and_run.sh line $LINENO: Current working dir : $PWD"
+echo "[INFO] fetch_and_run.sh line $LINENO: Script location path (dir) : $_base"
+echo "[CHECK] fetch_and_run.sh line $LINENO: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 
 # -z checks if SINGULARITY_BINDPATH is not set
 if [ -z "$SINGULARITY_BINDPATH" ]
 then
-      echo "[DEBUG] fetch_and_run.sh: SINGULARITY_BINDPATH is not set. Trying to set it"
-      `cat /etc/bash.bashrc | grep SINGULARITY_BINDPATH`
+        echo "[WARNING] fetch_and_run.sh line $LINENO: SINGULARITY_BINDPATH is not set. Trying to set it"
+        export SINGULARITY_BINDPATH="$PWD"
+      
+        #   if /cvmfs exists add this as well:
+        if [ -d "/cvmfs" ]; then
+            export SINGULARITY_BINDPATH="$SINGULARITY_BINDPATH",/cvmfs
+        fi
+        echo "[CHECK] fetch_and_run.sh line $LINENO: SINGULARITY_BINDPATH : $SINGULARITY_BINDPATH"
 fi
 
 # shellcheck disable=SC1091
@@ -30,83 +36,89 @@ IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 # -z checks if a CVMFS_DISABLE is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
     if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMG_NAME/commands.txt" ]]; then
-        echo "CVMFS detected and Container seems to be available"
+        echo "[INFO] fetch_and_run.sh line $LINENO: CVMFS detected and Container seems to be available"
     else
-        echo "CVMFS does not seem to work or is disabled or the container is not available."
+        echo "[WARNING] fetch_and_run.sh line $LINENO: CVMFS does not seem to work or is disabled or the container is not available yet on CVMFS."
         CVMFS_DISABLE=true
     fi
 fi
 
 # -z checks if a variable is NOT set
 if [ -z "$CVMFS_DISABLE" ]; then
-        echo "Mounting containers from CVMFS directly."
+        echo "[INFO] fetch_and_run.sh line $LINENO: Mounting containers from CVMFS directly."
         CONTAINER_PATH=/cvmfs/neurodesk.ardc.edu.au/containers
         MODS_PATH=$CONTAINER_PATH/modules
         module use ${MODS_PATH}
 else
-        echo "Not using CVMFS! Downloading containers fully!"
+        echo "[WARNING] fetch_and_run.sh line $LINENO: Not using CVMFS! Downloading containers fully!"
         # shellcheck disable=SC1091
+        export CONTAINER_PATH="${_base}"/containers
+        echo "[INFO] fetch_and_run.sh line $LINENO: CONTAINER_PATH=$CONTAINER_PATH"
         source "${_base}"/fetch_containers.sh "$1" "$2" "$3"
-        CONTAINER_PATH="${_base}"/containers
+        module use ${MODS_PATH}
 fi
 
 
-echo "[DEBUG] fetch_and_run.sh: fetching containers done."
-echo "[DEBUG] fetch_and_run.sh: MOD_NAME: " "$MOD_NAME"
-echo "[DEBUG] fetch_and_run.sh: MOD_VERS: " "$MOD_VERS"
+echo "[INFO] fetch_and_run.sh line $LINENO: fetching containers done."
+echo "[INFO] fetch_and_run.sh line $LINENO: MOD_NAME: " "$MOD_NAME"
+echo "[INFO] fetch_and_run.sh line $LINENO: MOD_VERS: " "$MOD_VERS"
 
 
-echo "[DEBUG] fetch_and_run.sh: Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module load ${MOD_NAME}/${MOD_VERS}' outside of this shell to use it."
+echo "[INFO] fetch_and_run.sh line $LINENO: Module '${MOD_NAME}/${MOD_VERS}' is installed. Use the command 'module load ${MOD_NAME}/${MOD_VERS}' outside of this shell to use it."
 
 # If no additional command -> Give user a shell in the image after loading the module to set SINGULARITY/APPTAINER_BINDPATH
 if [ $# -le 3 ]; then
     CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
-    echo "[DEBUG] fetch_and_run.sh: looking for ${CONTAINER_FILE_NAME}"
+    echo "[INFO] fetch_and_run.sh line $LINENO: looking for ${CONTAINER_FILE_NAME}"
     if [ -e "${CONTAINER_FILE_NAME}" ]; then
         cd 
-        echo "[DEBUG] fetch_and_run.sh: Module loading the container to set environment variables."
+        echo "[INFO] fetch_and_run.sh line $LINENO: Module loading the container to set environment variables."
         module load "${MOD_NAME}"/"${MOD_VERS}"
-        echo "[DEBUG] fetch_and_run.sh: Attempting to launch container ${IMG_NAME}"
+        echo "[INFO] fetch_and_run.sh line $LINENO: Attempting to launch container ${CONTAINER_FILE_NAME} with neurodesk_singularity_opts=${neurodesk_singularity_opts}"
         
         export SINGULARITYENV_PS1="${MOD_NAME}-${MOD_VERS}:\w$ "
         # shellcheck disable=SC2154
-        singularity --silent exec  "${neurodesk_singularity_opts}" "${CONTAINER_FILE_NAME}" cat /README.md
-        singularity --silent shell  "${neurodesk_singularity_opts}" "${CONTAINER_FILE_NAME}"
+        echo "[INFO] fetch_and_run.sh line $LINENO: output README.md of the container"
+        singularity --silent exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
+        
+        echo "[INFO] fetch_and_run.sh line $LINENO: shell into the container"
+        singularity --silent shell ${neurodesk_singularity_opts} "${CONTAINER_FILE_NAME}"
         if [ $? -eq 0 ]; then
-            echo "[DEBUG] fetch_and_run.sh: Container ran OK"
+            echo "[INFO] fetch_and_run.sh line $LINENO: Container ran OK"
         else
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "the container ${CONTAINER_FILE_NAME} experienced an error when starting. This could be a problem with your firewall if it uses deep packet inspection. Please ask your IT if they do this and what they are blocking."
+            echo "[ERROR] fetch_and_run.sh line $LINENO: the container ${CONTAINER_FILE_NAME} experienced an error when starting. This could be a problem with your firewall if it uses deep packet inspection. Please ask your IT if they do this and what they are blocking."
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             
             read -n 1 -s -r -p "Press any key to continue..."
+            echo ""
             
-            echo "downloading the complete container as a workaround ..."
+            echo "[INFO] downloading the complete container as a workaround ..."
             # shellcheck disable=SC1091
             source "${_base}"/fetch_containers.sh "$1" "$2" "$3"
             CONTAINER_PATH="${_base}"/containers
             CONTAINER_FILE_NAME=${CONTAINER_PATH}/${IMG_NAME}/${IMG_NAME}.simg
-            singularity --silent exec  "${neurodesk_singularity_opts}" "${CONTAINER_FILE_NAME}" cat /README.md
-            singularity --silent shell  "${neurodesk_singularity_opts}" "${CONTAINER_FILE_NAME}"
+            singularity --silent exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
+            singularity --silent shell ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME}
             if [ $? -eq 0 ]; then
-                echo "[DEBUG] fetch_and_run.sh: Container ran OK"
+                echo "[INFO] fetch_and_run.sh line $LINENO: Container ran OK"
             else
                 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-                echo "the container ${CONTAINER_FILE_NAME} doesn't exist. There is something wrong with the container download. Please ask for help here with the output of this window: https://github.com/orgs/NeuroDesk/discussions "
+                echo "[ERROR] fetch_and_run.sh line $LINENO: the container ${CONTAINER_FILE_NAME} doesn't exist. There is something wrong with the container download. Please ask for help here with the output of this window: https://github.com/orgs/NeuroDesk/discussions "
                 echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
                 read -n 1 -s -r -p "Press any key to continue..."
             fi
         fi
     else 
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-        echo "the container ${CONTAINER_FILE_NAME} doesn't exist. There is something wrong with the container download or CVMFS. Please ask for help here with the output of this window: https://github.com/orgs/NeuroDesk/discussions "
+        echo "[ERROR] fetch_and_run.sh line $LINENO: the container ${CONTAINER_FILE_NAME} doesn't exist. There is something wrong with the container download or CVMFS. Please ask for help here with the output of this window: https://github.com/orgs/NeuroDesk/discussions "
         echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
         read -n 1 -s -r -p "Press any key to continue..."
     fi
 fi
 
 # If additional command -> Run it via module system
-echo "[DEBUG] fetch_and_run.sh: module load ${MOD_NAME}/${MOD_VERS}"
+echo "[INFO] fetch_and_run.sh line $LINENO: module load ${MOD_NAME}/${MOD_VERS}"
 module load ${MOD_NAME}/${MOD_VERS}
-echo "[DEBUG] fetch_and_run.sh: Running command '${@:4}'."
+echo "[INFO] fetch_and_run.sh line $LINENO: Running command '${@:4}'."
 ${@:4}
