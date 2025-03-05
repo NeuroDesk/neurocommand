@@ -87,11 +87,13 @@ if [ $# -le 3 ]; then
             echo "[INFO] fetch_and_run.sh line $LINENO: Container ran OK"
         else
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
-            echo "[ERROR] fetch_and_run.sh line $LINENO: the container ${CONTAINER_FILE_NAME} experienced an error when starting. This could be a problem with your firewall if it uses deep packet inspection. Please ask your IT if they do this and what they are blocking."
+            echo "[ERROR] fetch_and_run.sh line $LINENO: the container ${CONTAINER_FILE_NAME} experienced an error when starting. This could be a problem with your firewall if it uses deep packet inspection. Please ask your IT if they do this and what they are blocking. Trying a workaround next - hit Enter to try that!"
             echo "+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++"
             
             read -n 1 -s -r -p "Press any key to continue..."
             echo ""
+        
+            export CVMFS_DISABLE=true
             
             echo "[INFO] downloading the complete container as a workaround ..."
             # shellcheck disable=SC1091
