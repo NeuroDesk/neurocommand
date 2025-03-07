@@ -33,8 +33,12 @@ MOD_VERS=$2
 MOD_DATE=$3
 IMG_NAME=${MOD_NAME}_${MOD_VERS}_${MOD_DATE}
 
-# -z checks if a CVMFS_DISABLE is NOT set
+# This is to capture legacy use. If CVMFS_DISABLE is not set, we assume it is false, which was the legacy behaviour.
 if [ -z "$CVMFS_DISABLE" ]; then
+    export CVMFS_DISABLE="false"
+fi
+
+if [[ "$CVMFS_DISABLE" == "false" ]]; then
     if [[ -f "/cvmfs/neurodesk.ardc.edu.au/containers/$IMG_NAME/commands.txt" ]]; then
         echo "[INFO] fetch_and_run.sh line $LINENO: CVMFS detected and container seems to be available"
     else
@@ -43,11 +47,15 @@ if [ -z "$CVMFS_DISABLE" ]; then
     fi
 fi
 
-# -z checks if a variable is NOT set
-if [ -z "$CVMFS_DISABLE" ]; then
-        echo "[INFO] fetch_and_run.sh line $LINENO: Mounting containers from CVMFS directly."
-        CONTAINER_PATH=/cvmfs/neurodesk.ardc.edu.au/containers
-        MODS_PATH=$CONTAINER_PATH/modules
+if [[ "$CVMFS_DISABLE" == "false" ]]; then
+        echo "[INFO] fetch_and_run.sh line $LINENO: Mounting containers from CVMFS directly, but using local containers higher priority."
+        LOCAL_CONTAINER_FILE_NAME="${_base}"/containers/${IMG_NAME}/${IMG_NAME}.simg
+        if [ -e "${LOCAL_CONTAINER_FILE_NAME}" ]; then
+            export CONTAINER_PATH="${_base}"/containers/
+        else
+            export CONTAINER_PATH=/cvmfs/neurodesk.ardc.edu.au/containers
+        fi
+        MODS_PATH="${_base}"/containers/modules:$CONTAINER_PATH/modules
         module use ${MODS_PATH}
 else
         echo "[WARNING] fetch_and_run.sh line $LINENO: Not using CVMFS! Downloading containers fully!"
