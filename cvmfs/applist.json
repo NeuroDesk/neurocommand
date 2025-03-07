@@ -297,6 +297,14 @@
             ]
         },
         {
+            "application": "cat12_12.9_20250307",
+            "categories": [
+                "image segmentation",
+                "image registration",
+                "structural imaging"
+            ]
+        },
+        {
             "application": "clearswi_1.0.0_20211018",
             "categories": [
                 "phase processing"
