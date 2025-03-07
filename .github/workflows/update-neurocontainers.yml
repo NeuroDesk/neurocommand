@@ -29,6 +29,10 @@ jobs:
         role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
         aws-region: us-east-2
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
+      env:
+        AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
+        AWS_SESSION_TOKEN: ${{ env.AWS_SESSION_TOKEN }}
       run: |
         /bin/bash .github/workflows/upload_containers_simg.sh
     - name: Auto commit changes to applist.json
