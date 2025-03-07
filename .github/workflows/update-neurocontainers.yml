@@ -23,11 +23,11 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: 3.8
-    - name: Configure aws credentials
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-        aws-region: us-east-2
+    # - name: Configure aws credentials
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #     role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+    #     aws-region: us-east-2
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
       run: |
         /bin/bash .github/workflows/upload_containers_simg.sh
