@@ -1,4 +1,4 @@
-name: Update neurocontainers
+name: test-zenodo-workflow
 
 on:
   workflow_dispatch:
