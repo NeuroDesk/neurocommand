@@ -106,6 +106,9 @@ then
 fi
 # rclone sync nectar:/neurodesk/ aws-neurocontainers:/neurocontainers/ --checksum --progress
 
+echo "[Debug] can we list aws bucket?"
+rclone ls aws-neurocontainers:/neurocontainers/
+
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
 mv log.txt cvmfs
