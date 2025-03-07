@@ -23,11 +23,27 @@ jobs:
     - uses: actions/setup-python@v5
       with:
         python-version: 3.8
-    - name: Configure aws credentials
+    - name: Configure AWS Credentials 1
+      id: creds
       uses: aws-actions/configure-aws-credentials@v4
       with:
-        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
         aws-region: us-east-2
+        role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+        output-credentials: true
+    - name: get caller identity 1
+      run: |
+        aws sts get-caller-identity
+    - name: Configure AWS Credentials 2
+      uses: aws-actions/configure-aws-credentials@v4
+      with:
+          aws-region: us-east-2
+          aws-access-key-id: ${{ steps.creds.outputs.aws-access-key-id }}
+          aws-secret-access-key: ${{ steps.creds.outputs.aws-secret-access-key }}
+          aws-session-token: ${{ steps.creds.outputs.aws-session-token }}
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+    - name: get caller identity2
+      run: |
+        aws sts get-caller-identity
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
       env:
         AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
