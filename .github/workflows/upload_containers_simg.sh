@@ -98,6 +98,12 @@ echo "[Debug] cleanup & syncing nectar containers to aws-neurocontainers"
 rclone delete --min-age 30d nectar:/neurodesk/
 
 # Disable sync for now - need to do this with aws cli or find a way of using these credentials in rsync
+# check if aws cli is installed
+if ! command -v aws &> /dev/null
+then
+    echo "[DEBUG] Installing AWS CLI"
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install && rm -rf aws awscliv2.zip
+fi
 # rclone sync nectar:/neurodesk/ aws-neurocontainers:/neurocontainers/ --checksum --progress
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
