@@ -110,7 +110,7 @@ echo "[Debug] list bucket with aws cli?"
 aws s3 ls s3://neurocontainers/
 
 echo "[Debug] can we list aws bucket with rclone?"
-rclone ls aws-neurocontainers:/neurocontainers/
+rclone ls aws-neurocontainers-new:/neurocontainers/
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"

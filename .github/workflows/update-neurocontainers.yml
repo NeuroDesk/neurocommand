@@ -30,26 +30,13 @@ jobs:
         aws-region: us-east-2
         role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
         output-credentials: true
-    - name: get caller identity 1
-      run: |
-        aws sts get-caller-identity
-    - name: Configure AWS Credentials 2
-      uses: aws-actions/configure-aws-credentials@v4
-      with:
-          aws-region: us-east-2
-          aws-access-key-id: ${{ steps.creds.outputs.aws-access-key-id }}
-          aws-secret-access-key: ${{ steps.creds.outputs.aws-secret-access-key }}
-          aws-session-token: ${{ steps.creds.outputs.aws-session-token }}
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-    - name: get caller identity2
-      run: |
-        aws sts get-caller-identity
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
       env:
         AWS_ACCESS_KEY_ID: ${{ env.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ env.AWS_SECRET_ACCESS_KEY }}
         AWS_SESSION_TOKEN: ${{ env.AWS_SESSION_TOKEN }}
       run: |
+        rclone config create aws-neurocontainers-new s3 config_is_local false provider AWS env_auth true
         /bin/bash .github/workflows/upload_containers_simg.sh
     - name: Auto commit changes to applist.json
       uses: stefanzweifel/git-auto-commit-action@v4
