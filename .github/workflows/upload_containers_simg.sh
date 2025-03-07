@@ -104,13 +104,13 @@ then
     echo "[DEBUG] Installing AWS CLI"
     curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip" && unzip awscliv2.zip && sudo ./aws/install && rm -rf aws awscliv2.zip
 fi
-# rclone sync nectar:/neurodesk/ aws-neurocontainers:/neurocontainers/ --checksum --progress
+rclone sync nectar:/neurodesk/ aws-neurocontainers-new:/neurocontainers/ --checksum --progress
 
-echo "[Debug] list bucket with aws cli?"
-aws s3 ls s3://neurocontainers/
+# echo "[Debug] list bucket with aws cli?"
+# aws s3 ls s3://neurocontainers/
 
-echo "[Debug] can we list aws bucket with rclone?"
-rclone ls aws-neurocontainers-new:/neurocontainers/
+# echo "[Debug] can we list aws bucket with rclone?"
+# rclone ls aws-neurocontainers-new:/neurocontainers/
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
