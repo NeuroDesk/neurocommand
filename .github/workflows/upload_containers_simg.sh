@@ -96,7 +96,9 @@ done < log.txt
 # sync the nectar containers to aws-neurocontainers
 echo "[Debug] cleanup & syncing nectar containers to aws-neurocontainers"
 rclone delete --min-age 30d nectar:/neurodesk/
-rclone sync nectar:/neurodesk/ aws-neurocontainers:/neurocontainers/ --checksum --progress
+
+# Disable sync for now - need to do this with aws cli or find a way of using these credentials in rsync
+# rclone sync nectar:/neurodesk/ aws-neurocontainers:/neurocontainers/ --checksum --progress
 
 #once everything is uploaded successfully move log file to cvmfs folder, so cvmfs can start downloading the containers:
 echo "[Debug] mv logfile to cvmfs directory"
