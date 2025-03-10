@@ -10,11 +10,11 @@ echo "[DEBUG]: apt-get install cvmfs"
 sudo apt-get install cvmfs tree --allow-unauthenticated >> /dev/null
 
 # install apptainer for ubuntu:
-wget https://github.com/apptainer/apptainer/releases/download/v1.2.0/apptainer_1.2.0_amd64.deb
-sudo apt install -y ./apptainer_1.2.0_amd64.deb
-
-wget https://github.com/apptainer/apptainer/releases/download/v1.2.0/apptainer-suid_1.2.0_amd64.deb
-sudo dpkg -i ./apptainer-suid_1.2.0_amd64.deb
+sudo apt update
+sudo apt install -y software-properties-common
+sudo add-apt-repository -y ppa:apptainer/ppa
+sudo apt update
+sudo apt install -y apptainer-suid
 
 sudo apptainer config fakeroot --add root
 
