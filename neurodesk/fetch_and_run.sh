@@ -87,7 +87,7 @@ if [ $# -le 3 ]; then
         export SINGULARITYENV_PS1="${MOD_NAME}-${MOD_VERS}:\w$ "
         # shellcheck disable=SC2154
         echo "[INFO] fetch_and_run.sh line $LINENO: output README.md of the container"
-        singularity --silent exec ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
+        singularity --silent exec --cleanenv --env DISPLAY=$DISPLAY ${neurodesk_singularity_opts} ${CONTAINER_FILE_NAME} cat /README.md
         
         # echo "[INFO] fetch_and_run.sh line $LINENO: shell into the container"
         singularity --silent shell ${neurodesk_singularity_opts} "${CONTAINER_FILE_NAME}"
