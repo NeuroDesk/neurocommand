@@ -10,10 +10,10 @@ jobs:
   upload_containers_simg:
     runs-on: self-hosted
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
       with:
         token: ${{ secrets.ACCESS_TOKEN }}
-    - uses: actions/setup-python@v5
+    - uses: actions/setup-python@42375524e23c412d93fb67b49958b491fce71c38
       with:
         python-version: 3.8
     - name : Check if singularity container files exist in nectar cloud and build & upload if not there
