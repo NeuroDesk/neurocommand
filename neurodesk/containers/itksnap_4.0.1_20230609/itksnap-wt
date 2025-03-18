@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+export PWD=`pwd -P`
+singularity --silent exec --cleanenv --env DISPLAY=$DISPLAY  $neurodesk_singularity_opts --pwd "$PWD" /home/sebp/neurocommand/neurodesk/containers/itksnap_4.0.1_20230609/itksnap_4.0.1_20230609.simg itksnap-wt "$@"
