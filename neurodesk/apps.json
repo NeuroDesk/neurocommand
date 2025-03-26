@@ -170,6 +170,10 @@
             "bidscoin 4.5.0": {
                 "version": "20250205",
                 "exec": ""
+            },
+            "bidscoin 4.6.0": {
+                "version": "20250325",
+                "exec": ""
             }
         },
         "categories": ["data organisation"]
