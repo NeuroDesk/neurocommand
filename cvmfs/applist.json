@@ -369,6 +369,12 @@
             ]
         },
         {
+            "application": "dcm2bids_3.2.0_20250331",
+            "categories": [
+                "data organisation"
+            ]
+        },
+        {
             "application": "dcm2niix_v1.0.20240202_20241125",
             "categories": [
                 "data organisation"
