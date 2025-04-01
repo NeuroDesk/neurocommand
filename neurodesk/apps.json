@@ -417,6 +417,15 @@
         },
         "categories": ["machine learning", "functional imaging"]
     },
+     "dcm2bids": {
+        "apps": {
+            "dcm2bids 3.2.0": {
+                "version": "20250331",
+                "exec": ""
+            }
+        },
+        "categories": ["data organisation"]
+     },
      "dcm2niix": {
         "apps": {
             "dcm2niix v1.0.20240202": {
