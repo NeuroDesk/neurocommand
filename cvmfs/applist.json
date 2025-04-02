@@ -369,7 +369,7 @@
             ]
         },
         {
-            "application": "dcm2bids_3.2.0_20250331",
+            "application": "dcm2bids_3.2.0_20250402",
             "categories": [
                 "data organisation"
             ]
