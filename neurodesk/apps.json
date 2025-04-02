@@ -420,7 +420,7 @@
      "dcm2bids": {
         "apps": {
             "dcm2bids 3.2.0": {
-                "version": "20250331",
+                "version": "20250402",
                 "exec": ""
             }
         },
