@@ -413,6 +413,10 @@
             "deepretinotopy 1.0.8": {
                 "version": "20250207",
                 "exec": ""
+            },
+            "deepretinotopy 1.0.9": {
+                "version": "20250328",
+                "exec": ""
             }
         },
         "categories": ["machine learning", "functional imaging"]
