@@ -369,6 +369,13 @@
             ]
         },
         {
+            "application": "deepretinotopy_1.0.9_20250328",
+            "categories": [
+                "machine learning",
+                "functional imaging"
+            ]
+        },
+        {
             "application": "dcm2bids_3.2.0_20250402",
             "categories": [
                 "data organisation"
