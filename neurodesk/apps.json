@@ -1291,6 +1291,10 @@
             "qsiprep 0.20.0": {
                 "version": "20240408",
                 "exec": ""
+            },
+            "qsiprep 1.0.1": {
+                "version": "20250407",
+                "exec": ""
             }
         },
         "categories": ["diffusion imaging"]
