@@ -1243,12 +1243,12 @@
     },
     "palmettobug": {
         "apps": {
-            "palmettobug 0.0.1": {
-                "version": "20241119",
+            "palmettobug 0.0.3": {
+                "version": "20250424",
                 "exec": ""
             },
-            "palmettobugGUI-palmettobug 0.0.1": {
-                "version": "20241119",
+            "palmettobugGUI-palmettobug 0.0.3": {
+                "version": "20250424",
                 "exec": "palmettobug"
             }
         },
