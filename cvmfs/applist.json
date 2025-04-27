@@ -1061,6 +1061,12 @@
             ]
         },
         {
+            "application": "qsirecon_1.1.0_20250423",
+            "categories": [
+                "diffusion imaging"
+            ]
+        },
+        {
             "application": "qsmxt_5.1.0_20230905",
             "categories": [
                 "phase processing",
