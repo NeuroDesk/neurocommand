@@ -1,0 +1,49 @@
+name: generate-doi
+
+on:
+    schedule:
+        - cron: '0 0 * * 0' # Every Sunday at midnight
+    workflow_dispatch:
+
+jobs:
+    get-updated-apps:
+        runs-on: ubuntu-22.04
+        outputs:
+            unpublished_app_list: ${{ steps.list_apps.outputs.app_list }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+              with:
+                token: ${{ secrets.ACCESS_TOKEN }}
+            - name: Check for apps to publish to Zenodo
+              run: |
+                # Get the list of unpublished images from app.json
+                echo "Fetching apps list from GitHub registry..."
+                export IMAGENAME_BUILDDATE=$(python .github/workflows/get-unpublished-apps.py --zenodo_token ${{ secrets.ZENODO_TOKEN }})
+                echo "unpublished_app_list=${IMAGENAME_BUILDDATE}" >> $GITHUB_ENV
+
+    publish-doi:
+      needs: get-updated-apps
+      runs-on: ubuntu-22.04
+      if: ${{ needs.get-updated-apps.outputs.unpublished_app_list != '[]' }}
+      strategy:
+          fail-fast: false
+          matrix:
+            apps: ${{ fromJSON(needs.get-updated-apps.outputs.unpublished_app_list) }}
+      steps:
+          - name: Checkout
+            uses: actions/checkout@v4
+            with:
+                fetch-depth: 0
+          - uses: actions/setup-python@v5
+            with:
+              python-version: 3.8
+          - name : Publish singularity container files in nectar cloud to Zenodo
+            shell: bash
+            run: |
+              export IMAGE_HOME="/home/runner"
+              curl --output "$IMAGE_HOME/${{ matrix.apps }}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${{ matrix.apps }}.simg"
+              echo "Upload container $IMAGE_HOME/${{ matrix.apps }}.simg to Zenodo"
+              echo $(find $IMAGE_HOME/${{ matrix.apps }}.simg)
+              export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${{ matrix.apps }}.simg" --container_name=${{ matrix.apps }} --token=${{ secrets.ZENODO_TOKEN }})
+              echo "DOI_URL: $DOI_URL"
