@@ -62,11 +62,7 @@ def find_missing_zenodo_dois(gh_packages, zenodo_dois):
     gh_packages = set(gh_packages)
     zenodo_dois = set(zenodo_dois)
     # print(f"Found {len(gh_packages.intersection(zenodo_dois))} common items")
-
-    unpublished_apps = [item for item in gh_packages if item not in zenodo_dois]
-    batch_size = 50
-    batches = [{"apps": unpublished_apps[i:i + batch_size]} for i in range(0, len(unpublished_apps), batch_size)]
-    return batches
+    return [item for item in gh_packages if item not in zenodo_dois]
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(
@@ -78,5 +74,5 @@ if __name__ == '__main__':
 
     gh_packages = get_apps()
     zenodo_dois = fetch_zenodo_dois(args.zenodo_token)
-    batches = find_missing_zenodo_dois(gh_packages, zenodo_dois)
-    print(batches)
+    diff = find_missing_zenodo_dois(gh_packages, zenodo_dois)
+    print(diff)
