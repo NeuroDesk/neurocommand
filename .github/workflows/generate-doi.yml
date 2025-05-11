@@ -9,18 +9,19 @@ jobs:
     get-updated-apps:
         runs-on: ubuntu-22.04
         outputs:
-            unpublished_app_list: ${{ steps.list_apps.outputs.app_list }}
+            unpublished_app_list: ${{ steps.list_apps.outputs.unpublished_app_list }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
               with:
                 fetch-depth: 0
             - name: Check for apps to publish to Zenodo
+              id: list_apps
               run: |
                 # Get the list of unpublished images from app.json
                 echo "Fetching apps list from GitHub registry..."
                 export IMAGENAME_BUILDDATE=$(python .github/workflows/get-unpublished-apps.py --zenodo_token ${{ secrets.ZENODO_TOKEN }})
-                echo "unpublished_app_list=${IMAGENAME_BUILDDATE}" >> $GITHUB_ENV
+                echo "unpublished_app_list=${IMAGENAME_BUILDDATE}" >> $GITHUB_OUTPUT
 
     publish-doi:
       needs: get-updated-apps
