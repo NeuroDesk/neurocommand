@@ -9,7 +9,7 @@ jobs:
     get-updated-apps:
         runs-on: ubuntu-22.04
         outputs:
-            app_batches: ${{ steps.split_apps.outputs.app_batches }}
+            app_batches: ${{ steps.list_apps.outputs.app_batches }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
