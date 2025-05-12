@@ -36,17 +36,18 @@ jobs:
             uses: actions/checkout@v4
             with:
                 fetch-depth: 0
-          - uses: actions/setup-python@v5
+          - name: Set up Python 3.10
+            uses: actions/setup-python@v5
             with:
-              python-version: '3.10'
+              python-version: 3.10
           - name : Publish singularity files in batch
             shell: bash
             run: |
-              echo "Processing batches: ${{ matrix.app_batches }}"
+              echo "Processing batches: ${${{ matrix.app_batches }}[*]} "
               declare -a batch=${{ matrix.app_batches }}
               echo ${#batch[@]}
               for app in "${batch[@]}"; do
-                echo "  Processing app: $app"
+                echo "  Processing app: $app with ${#app[@]} apps"
                 export IMAGE_HOME="/home/runner"
                 curl --output "$IMAGE_HOME/${app}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${app}.simg"
                 echo "Upload container $IMAGE_HOME/${app}.simg to Zenodo"
