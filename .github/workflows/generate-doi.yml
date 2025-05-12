@@ -19,8 +19,9 @@ jobs:
               id: list_apps
               run: |
                 # Get the list of unpublished images from app.json
-                echo "FGet the list of unpublished images..."
+                echo "Get the list of unpublished images..."
                 export APP_BATCHES=$(python .github/workflows/get-unpublished-apps.py --zenodo_token ${{ secrets.ZENODO_TOKEN }})
+                echo "app_batches=${APP_BATCHES}"
                 echo "app_batches=${APP_BATCHES}" >> $GITHUB_OUTPUT
 
     publish-doi:
@@ -39,14 +40,14 @@ jobs:
           - name: Set up Python 3.10
             uses: actions/setup-python@v5
             with:
-              python-version: 3.10
+              python-version: '3.10'
           - name : Publish singularity files in batch
             shell: bash
             run: |
-              echo "Processing batches: ${${{ matrix.app_batches }}[*]} "
-              declare -a batch=${{ matrix.app_batches }}
-              echo ${#batch[@]}
-              for app in "${batch[@]}"; do
+              echo "Apps to process: ${{ toJson(matrix.app_batches.apps) }}"
+              apps_json='${{ toJson(matrix.app_batches.apps) }}'
+
+              for app in $(echo "$apps_json" | jq -r '.[]'); do
                 echo "  Processing app: $app with ${#app[@]} apps"
                 export IMAGE_HOME="/home/runner"
                 curl --output "$IMAGE_HOME/${app}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${app}.simg"
