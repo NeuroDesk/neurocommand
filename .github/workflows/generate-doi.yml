@@ -38,7 +38,7 @@ jobs:
     publish-doi:
       needs: get-updated-apps
       runs-on: ubuntu-22.04
-      if: ${{ needs.get-updated-apps.outputs.unpublished_app_list != '[]' }}
+      if: ${{ needs.get-updated-apps.outputs.app_batches != '[]' }}
       strategy:
           fail-fast: false
           matrix:
@@ -54,7 +54,8 @@ jobs:
           - name : Publish singularity container files in nectar cloud to Zenodo
             shell: bash
             run: |
-              for app in "${{ matrix.batch[@] }}"; do
+              echo "Processing batch: ${{ matrix.batch }}"
+              for app in $(echo '${{ matrix.batch }}' | jq -r '.[]'); do
                 echo "Processing app: $app"
                 export IMAGE_HOME="/home/runner"
                 curl --output "$IMAGE_HOME/$app.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$app.simg"
