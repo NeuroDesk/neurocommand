@@ -30,7 +30,7 @@ jobs:
       strategy:
           fail-fast: false
           matrix:
-            batch: ${{ fromJSON(needs.get-updated-apps.outputs.app_batches) }}
+            batches: ${{ fromJSON(needs.get-updated-apps.outputs.app_batches) }}
       steps:
           - name: Checkout
             uses: actions/checkout@v4
@@ -39,15 +39,19 @@ jobs:
           - uses: actions/setup-python@v5
             with:
               python-version: '3.10'
-          - name : Publish singularity container files in nectar cloud to Zenodo
+          - name : Publish singularity files in batch
             shell: bash
             run: |
-              echo "Processing batch: ${{ matrix.batch }}"
-              for app in $(echo '${{ matrix.batch }}' | jq -r '.[]'); do
-                echo "Processing app: $app"
-                export IMAGE_HOME="/home/runner"
-                curl --output "$IMAGE_HOME/$app.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$app.simg"
-                echo "Upload container $IMAGE_HOME/$app.simg to Zenodo"
-                export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/$app.simg" --container_name=$app --token=${{ secrets.ZENODO_TOKEN }})
-                echo "DOI_URL: $DOI_URL"
+              echo "Processing batches: ${{ matrix.batches }}"
+              json_batches=$(echo ${{ matrix.batches }} | sed "s/'/\"/g")
+              for batch in $(echo '${{ matrix.batches }}' | jq -c '.[]'); do
+                for app in $(echo "$batch" | jq -r '.[]'); do
+                  echo "  Processing app: $app"
+                  export IMAGE_HOME="/home/runner"
+                  curl --output "$IMAGE_HOME/${app}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${app}.simg"
+                  echo "Upload container $IMAGE_HOME/${app}.simg to Zenodo"
+                  echo $(find $IMAGE_HOME/${app}.simg)
+                  export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${app}.simg" --container_name=${app} --token=${{ secrets.ZENODO_TOKEN }})
+                  echo "DOI_URL: $DOI_URL"
+                done
               done
