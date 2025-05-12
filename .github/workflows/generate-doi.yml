@@ -10,6 +10,7 @@ jobs:
         runs-on: ubuntu-22.04
         outputs:
             unpublished_app_list: ${{ steps.list_apps.outputs.unpublished_app_list }}
+            app_batches: ${{ steps.split_apps.outputs.app_batches }}
         steps:
             - name: Checkout
               uses: actions/checkout@v4
@@ -22,6 +23,17 @@ jobs:
                 echo "Fetching apps list from GitHub registry..."
                 export IMAGENAME_BUILDDATE=$(python .github/workflows/get-unpublished-apps.py --zenodo_token ${{ secrets.ZENODO_TOKEN }})
                 echo "unpublished_app_list=${IMAGENAME_BUILDDATE}" >> $GITHUB_OUTPUT
+            - name: Split apps into batches
+              id: split_apps
+              run: |
+                echo "Splitting apps into batches..."
+                python -c "
+                  import json
+                  apps = json.loads('${{ steps.list_apps.outputs.unpublished_app_list }}')
+                  batch_size = 50
+                  batches = [apps[i:i + batch_size] for i in range(0, len(apps), batch_size)]
+                  print(f'app_batches={json.dumps(batches)}', file=open('${GITHUB_OUTPUT}', 'a'))
+                "
 
     publish-doi:
       needs: get-updated-apps
@@ -30,7 +42,7 @@ jobs:
       strategy:
           fail-fast: false
           matrix:
-            apps: ${{ fromJSON(needs.get-updated-apps.outputs.unpublished_app_list) }}
+            batch: ${{ fromJSON(needs.get-updated-apps.outputs.app_batches) }}
       steps:
           - name: Checkout
             uses: actions/checkout@v4
@@ -38,13 +50,15 @@ jobs:
                 fetch-depth: 0
           - uses: actions/setup-python@v5
             with:
-              python-version: 3.8
+              python-version: 3.10
           - name : Publish singularity container files in nectar cloud to Zenodo
             shell: bash
             run: |
-              export IMAGE_HOME="/home/runner"
-              curl --output "$IMAGE_HOME/${{ matrix.apps }}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${{ matrix.apps }}.simg"
-              echo "Upload container $IMAGE_HOME/${{ matrix.apps }}.simg to Zenodo"
-              echo $(find $IMAGE_HOME/${{ matrix.apps }}.simg)
-              export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/${{ matrix.apps }}.simg" --container_name=${{ matrix.apps }} --token=${{ secrets.ZENODO_TOKEN }})
-              echo "DOI_URL: $DOI_URL"
+              for app in "${{ matrix.batch[@] }}"; do
+                echo "Processing app: $app"
+                export IMAGE_HOME="/home/runner"
+                curl --output "$IMAGE_HOME/$app.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/$app.simg"
+                echo "Upload container $IMAGE_HOME/$app.simg to Zenodo"
+                export DOI_URL=$(python3 .github/workflows/publish-doi.py --container_filepath="$IMAGE_HOME/$app.simg" --container_name=$app --token=${{ secrets.ZENODO_TOKEN }})
+                echo "DOI_URL: $DOI_URL"
+              done
