@@ -65,7 +65,7 @@ def find_missing_zenodo_dois(gh_packages, zenodo_dois):
 
     unpublished_apps = [item for item in gh_packages if item not in zenodo_dois]
     batch_size = 50
-    batches = [unpublished_apps[i:i + batch_size] for i in range(0, len(unpublished_apps), batch_size)]
+    batches = [{"apps": unpublished_apps[i:i + batch_size]} for i in range(0, len(unpublished_apps), batch_size)]
     return batches
 
 if __name__ == '__main__':
