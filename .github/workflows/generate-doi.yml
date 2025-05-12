@@ -38,7 +38,7 @@ jobs:
                 fetch-depth: 0
           - uses: actions/setup-python@v5
             with:
-              python-version: 3.10
+              python-version: '3.10'
           - name : Publish singularity container files in nectar cloud to Zenodo
             shell: bash
             run: |
