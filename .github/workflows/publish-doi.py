@@ -3,7 +3,7 @@ import json
 import argparse
 import os
 
-def upload_container(container_filepath, container_name, token):
+def upload_container(container_url, container_name, token):
     headers = {"Content-Type": "application/json"}
     params = {'access_token': token}
 
@@ -18,11 +18,13 @@ def upload_container(container_filepath, container_name, token):
     # Upload the simg container to bucket in the created deposition
     # The target URL is a combination of the bucket link with the desired filename
     # seperated by a slash.
-    print("Uploading container to Zenodo...", container_filepath, os.path.basename(container_filepath))
-    with open(container_filepath, "rb") as fp:
+    # print("Uploading container to Zenodo...", container_url)
+    
+    with requests.get(container_url, stream=True) as response:
+        response.raise_for_status()  # Ensure the request was successful
         r = requests.put(
-            "%s/%s" % (bucket_url, os.path.basename(container_filepath)), # bucket is a flat structure, can't include subfolders in it
-            data=fp,
+            f"{bucket_url}/{os.path.basename(container_url)}", # bucket is a flat structure, can't include subfolders in it
+            data=response.content,  # Stream the file directly
             params=params,
         )
     print("Upload", r.json())
