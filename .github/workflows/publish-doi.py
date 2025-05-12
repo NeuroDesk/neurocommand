@@ -2,60 +2,8 @@ import requests
 import json
 import argparse
 import os
-import yaml
 
-def get_license(container_name, gh_token):
-    """
-    Get the license from copyright field in YAML file in the container.
-    """
-    # Get yaml recipe using github API
-    headers = {
-        "Accept": "application/vnd.github+json",
-        "Authorization": "Bearer " + gh_token,
-        "X-GitHub-Api-Version": "2022-11-28",
-    }
-    # Get the recipe name from the container name
-    recipe_name = container_name.split("_")[0]
-    url = f" https://api.github.com/repos/iishiishii/neurocontainers/contents/recipes/{recipe_name}/build.yaml"
-    try:
-        response = requests.get(url, headers=headers)
-        response.raise_for_status()
-        download_url = response.json().get("download_url")
-        if not download_url:
-            print("No download_url found in GitHub API response")
-            return ""
-        download_url_response = requests.get(download_url)
-        download_url_response.raise_for_status()
-        content = download_url_response.content.decode("utf-8")
-        tinyrange_config = yaml.safe_load(content)
-        copyrights = tinyrange_config.get('copyright')
-        print("Copyright field", copyrights)
-        if not copyrights or not isinstance(copyrights, list):
-            print("No copyright field found in the recipe")
-            return ""
-        # Return the first license found in the copyright field
-        # for copyright_entry in copyrights:
-        license = copyrights[0].get('license')
-        if license:
-            license_url = copyrights[0].get('url')
-            return {
-                    'id': license.lower(),
-                    'title': license,
-                    'url': license_url
-                    }
-        else:
-            license = copyrights[0].get('name')
-            license_url = copyrights[0].get('url')
-            return {
-                    'id': license.lower(),
-                    'title': license,
-                    'url': license_url
-                    }
-    except Exception as e:
-        print(f"Failed to get recipe or parse license: {e}")
-        return ""
-
-def upload_container(container_url, container_name, token, license):
+def upload_container(container_url, container_name, token):
     headers = {"Content-Type": "application/json"}
     params = {'access_token': token}
 
@@ -67,7 +15,20 @@ def upload_container(container_url, container_name, token, license):
     deposition_id = r.json()['id']
     bucket_url = r.json()["links"]["bucket"]
 
-    print("licenses", license)
+    # Upload the simg container to bucket in the created deposition
+    # The target URL is a combination of the bucket link with the desired filename
+    # seperated by a slash.
+    # print("Uploading container to Zenodo...", container_url)
+    
+    with requests.get(container_url, stream=True) as response:
+        response.raise_for_status()  # Ensure the request was successful
+        r = requests.put(
+            f"{bucket_url}/{os.path.basename(container_url)}", # bucket is a flat structure, can't include subfolders in it
+            data=response.content,  # Stream the file directly
+            params=params,
+        )
+    print("Upload", r.json())
+
     # Update the metadata
     data = {
         'metadata': {
