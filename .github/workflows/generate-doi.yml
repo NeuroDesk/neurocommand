@@ -43,7 +43,9 @@ jobs:
             shell: bash
             run: |
               echo "Processing batches: ${{ matrix.app_batches }}"
-              for app in ${{ matrix.app_batches }}; do
+              declare -a batch=${{ matrix.app_batches }}
+              echo ${#batch[@]}
+              for app in "${batch[@]}"; do
                 echo "  Processing app: $app"
                 export IMAGE_HOME="/home/runner"
                 curl --output "$IMAGE_HOME/${app}.simg" "https://object-store.rc.nectar.org.au/v1/AUTH_dead991e1fa847e3afcca2d3a7041f5d/neurodesk/${app}.simg"
