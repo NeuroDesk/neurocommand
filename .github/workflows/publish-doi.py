@@ -27,7 +27,7 @@ def upload_container(container_url, container_name, token):
             data=response.content,  # Stream the file directly
             params=params,
         )
-    print("Upload", r.json())
+    # print("Upload", r.json())
 
     # Update the metadata
     data = {
@@ -47,7 +47,7 @@ def upload_container(container_url, container_name, token):
     # Publish the deposition
     r = requests.post('https://sandbox.zenodo.org/api/deposit/depositions/%s/actions/publish' % deposition_id,
                       params=params )
-    print("Publish", r.json())
+    # print("Publish", r.json())
 
     # Get the DOI from the deposition
     r = requests.get('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
