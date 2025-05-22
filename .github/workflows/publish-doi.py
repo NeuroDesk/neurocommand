@@ -2,8 +2,36 @@ import requests
 import json
 import argparse
 import os
+import yaml
 
-def upload_container(container_url, container_name, token):
+def get_license(container_name, gh_token):
+    """
+    Get the license from copyright field in YAML file in the container.
+    """
+    recipe_name = container_name.split("/")[-1]
+    # Get yaml recipe using github API
+    headers = {
+        "Accept": "application/vnd.github.v3.raw",
+        "Authorization": "Bearer " + gh_token,
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+    # Get the recipe name from the container name
+    recipe_name = container_name.split("/")[-1]
+    url = f" https://api.github.com/repos/NeuroDesk/neurocontainers/contents/recipes/{recipe_name}/build.yaml"
+    response = requests.get(url, headers=headers)
+    if response.status_code == 200:
+        # print("Got recipe", response.json())
+        # Get the license from the recipe
+        recipe = response.json()
+        if "license" in recipe:
+            return recipe["license"]
+        else:
+            return "Unknown"
+        
+    with open("tinyrange.yaml", "r") as f:
+        tinyrange_config = yaml.safe_load(f)
+
+def upload_container(container_url, container_name, license, token):
     headers = {"Content-Type": "application/json"}
     params = {'access_token': token}
 
@@ -35,8 +63,8 @@ def upload_container(container_url, container_name, token):
             'title': container_name,
             'upload_type': 'software',
             'description': container_name,
-            'license': 'mit',
-            'creators': [{'name': 'Neurodesk, ',
+            'license': license,
+            'creators': [{'name': 'Neurodesk',
                         'affiliation': 'University of Queensland'}]
         }
     }
