@@ -40,6 +40,20 @@ def get_license(container_name, gh_token):
         print("Failed to get recipe", response.status_code, response.text)
         return ""
 
+def get_license_id(license_name):
+    # Get the license ID from Zenodo
+    headers = {"Content-Type": "application/json"}
+    response = requests.get('https://sandbox.zenodo.org/api/licenses/',
+                            headers=headers)
+    
+    if response.status_code == 200:
+        licenses = response.json()['hits']['hits']
+        for license in licenses:
+            if license['id'].lower() == license_name.lower():
+                return license['id']
+    else:
+        print("Failed to get licenses", response.status_code, response.text)
+    return None, None
 
 def upload_container(container_url, container_name, token, license, license_url):
     headers = {"Content-Type": "application/json"}
