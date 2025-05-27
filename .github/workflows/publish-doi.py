@@ -11,7 +11,7 @@ def get_license(container_name, gh_token):
     recipe_name = container_name.split("/")[-1]
     # Get yaml recipe using github API
     headers = {
-        "Accept": "application/vnd.github.v3.raw",
+        "Accept": "application/vnd.github+json",
         "Authorization": "Bearer " + gh_token,
         "X-GitHub-Api-Version": "2022-11-28",
     }
@@ -20,18 +20,28 @@ def get_license(container_name, gh_token):
     url = f" https://api.github.com/repos/NeuroDesk/neurocontainers/contents/recipes/{recipe_name}/build.yaml"
     response = requests.get(url, headers=headers)
     if response.status_code == 200:
-        # print("Got recipe", response.json())
         # Get the license from the recipe
-        recipe = response.json()
-        if "license" in recipe:
-            return recipe["license"]
-        else:
-            return "Unknown"
-        
-    with open("tinyrange.yaml", "r") as f:
-        tinyrange_config = yaml.safe_load(f)
+        download_url = response.json()["download_url"]
+        download_url_response = requests.get(download_url)
+        download_url_response.raise_for_status()
+        content = download_url_response.content.decode("utf-8")
+        tinyrange_config = yaml.safe_load(content)
+        # print("Tinyrange config", tinyrange_config['copyright'])
+        copyrights = tinyrange_config.get('copyright', {})
+        print("Copyright field", copyrights)
+        if not copyrights:
+            print("No copyright field found in the recipe")
+            return None, None
+        for copyright in copyrights:
+            license = copyright.get('license', None)
+            license_url = copyright.get('url', None)
+        return license, license_url
+    else:
+        print("Failed to get recipe", response.status_code, response.text)
+        return ""
 
-def upload_container(container_url, container_name, license, token):
+
+def upload_container(container_url, container_name, token, license, license_url):
     headers = {"Content-Type": "application/json"}
     params = {'access_token': token}
 
@@ -55,7 +65,6 @@ def upload_container(container_url, container_name, license, token):
             data=response.content,  # Stream the file directly
             params=params,
         )
-    # print("Upload", r.json())
 
     # Update the metadata
     data = {
@@ -110,6 +119,6 @@ if __name__ == '__main__':
     parser.add_argument("--gh_token", type=str, required=True, help="GitHub token to access the recipe")
     args = parser.parse_args()
 
-    license = get_license(args.container_name, args.gh_token)
-    doi_url = upload_container(args.container_filepath, args.container_name, args.zenodo_token, license)
+    license, license_url = get_license(args.container_name, args.token)
+    doi_url = upload_container(args.container_filepath, args.container_name, args.token, license, license_url)
     print(doi_url)
