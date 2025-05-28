@@ -1,0 +1,484 @@
+{
+  "hits": [
+    {
+      "id": "glide",
+      "created": "2023-11-16T18:54:36.992787+00:00",
+      "updated": "2023-11-16T18:54:37.004322+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/glide"
+      },
+      "revision_id": 1,
+      "title": { "en": "3dfx Glide License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "http://www.users.on.net/~triforce/glidexp/COPYING.txt",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "amdplpa",
+      "created": "2023-11-16T18:54:35.281597+00:00",
+      "updated": "2023-11-16T18:54:35.292404+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/amdplpa"
+      },
+      "revision_id": 1,
+      "title": { "en": "AMD's plpa_map.c License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/AMD_plpa_map_License",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "antlr-pd",
+      "created": "2023-11-16T18:54:35.323480+00:00",
+      "updated": "2023-11-16T18:54:35.336487+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/antlr-pd"
+      },
+      "revision_id": 1,
+      "title": { "en": "ANTLR Software Rights Notice" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.antlr2.org/license.html",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "antlr-pd-fallback",
+      "created": "2023-11-16T18:54:35.351028+00:00",
+      "updated": "2023-11-16T18:54:35.363113+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/antlr-pd-fallback"
+      },
+      "revision_id": 1,
+      "title": { "en": "ANTLR Software Rights Notice with license fallback" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.antlr2.org/license.html",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "abstyles",
+      "created": "2023-11-16T18:54:35.460683+00:00",
+      "updated": "2023-11-16T18:54:35.473929+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/abstyles"
+      },
+      "revision_id": 1,
+      "title": { "en": "Abstyles License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/Abstyles",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afl-1.1",
+      "created": "2023-11-16T18:54:35.112927+00:00",
+      "updated": "2023-11-16T18:54:35.125120+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afl-1.1"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academic Free License v1.1" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://opensource.linux-mirror.org/licenses/afl-1.1.txt",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afl-1.2",
+      "created": "2023-11-16T18:54:35.150017+00:00",
+      "updated": "2023-11-16T18:54:35.162495+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afl-1.2"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academic Free License v1.2" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://opensource.linux-mirror.org/licenses/afl-1.2.txt",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afl-2.0",
+      "created": "2023-11-16T18:54:35.150045+00:00",
+      "updated": "2023-11-16T18:54:35.162477+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afl-2.0"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academic Free License v2.0" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://wayback.archive.org/web/20060924134533/http://www.opensource.org/licenses/afl-2.0.txt",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afl-2.1",
+      "created": "2023-11-16T18:54:35.183624+00:00",
+      "updated": "2023-11-16T18:54:35.196139+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afl-2.1"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academic Free License v2.1" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://opensource.linux-mirror.org/licenses/afl-2.1.txt",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afl-3.0",
+      "created": "2023-11-16T18:54:35.184806+00:00",
+      "updated": "2023-11-16T18:54:35.198017+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afl-3.0"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academic Free License v3.0" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.rosenlaw.com/AFL3.0.htm",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "ampas",
+      "created": "2023-11-16T18:54:35.316622+00:00",
+      "updated": "2023-11-16T18:54:35.328457+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/ampas"
+      },
+      "revision_id": 1,
+      "title": { "en": "Academy of Motion Picture Arts and Sciences BSD" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/BSD#AMPASBSD",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "apl-1.0",
+      "created": "2023-11-16T18:54:35.384263+00:00",
+      "updated": "2023-11-16T18:54:35.395583+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/apl-1.0"
+      },
+      "revision_id": 1,
+      "title": { "en": "Adaptive Public License 1.0" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "https://opensource.org/licenses/APL-1.0",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "adobe-glyph",
+      "created": "2023-11-16T18:54:35.493447+00:00",
+      "updated": "2023-11-16T18:54:35.505266+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/adobe-glyph"
+      },
+      "revision_id": 1,
+      "title": { "en": "Adobe Glyph List License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/MIT#AdobeGlyph",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "apafml",
+      "created": "2023-11-16T18:54:35.361913+00:00",
+      "updated": "2023-11-16T18:54:35.374579+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/apafml"
+      },
+      "revision_id": 1,
+      "title": { "en": "Adobe Postscript AFM License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/AdobePostscriptAFM",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "adobe-2006",
+      "created": "2023-11-16T18:54:35.487817+00:00",
+      "updated": "2023-11-16T18:54:35.498926+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/adobe-2006"
+      },
+      "revision_id": 1,
+      "title": {
+        "en": "Adobe Systems Incorporated Source Code License Agreement"
+      },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/AdobeLicense",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "agpl-1.0-only",
+      "created": "2023-11-16T18:54:35.216049+00:00",
+      "updated": "2023-11-16T18:54:35.226768+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/agpl-1.0-only"
+      },
+      "revision_id": 1,
+      "title": { "en": "Affero General Public License v1.0 only" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.affero.org/oagpl.html",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "agpl-1.0-or-later",
+      "created": "2023-11-16T18:54:35.219768+00:00",
+      "updated": "2023-11-16T18:54:35.231498+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/agpl-1.0-or-later"
+      },
+      "revision_id": 1,
+      "title": { "en": "Affero General Public License v1.0 or later" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.affero.org/oagpl.html",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "afmparse",
+      "created": "2023-11-16T18:54:35.520019+00:00",
+      "updated": "2023-11-16T18:54:35.531857+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/afmparse"
+      },
+      "revision_id": 1,
+      "title": { "en": "Afmparse License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/Afmparse",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "against-drm",
+      "created": "2023-11-16T18:54:38.686277+00:00",
+      "updated": "2023-11-16T18:54:38.701555+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/against-drm"
+      },
+      "revision_id": 1,
+      "title": { "en": "Against DRM" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "http://www.opendefinition.org/licenses/against-drm",
+        "scheme": "",
+        "osi_approved": "False"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "aladdin",
+      "created": "2023-11-16T18:54:35.527319+00:00",
+      "updated": "2023-11-16T18:54:35.538640+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/aladdin"
+      },
+      "revision_id": 1,
+      "title": { "en": "Aladdin Free Public License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "http://pages.cs.wisc.edu/~ghost/doc/AFPL/6.01/Public.htm",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "adsl",
+      "created": "2023-11-16T18:54:35.113118+00:00",
+      "updated": "2023-11-16T18:54:35.125478+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/adsl"
+      },
+      "revision_id": 1,
+      "title": { "en": "Amazon Digital Services License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/AmazonDigitalServicesLicense",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "apache-1.0",
+      "created": "2023-11-16T18:54:35.552176+00:00",
+      "updated": "2023-11-16T18:54:35.564027+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/apache-1.0"
+      },
+      "revision_id": 1,
+      "title": { "en": "Apache License 1.0" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://www.apache.org/licenses/LICENSE-1.0",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "apache-1.1",
+      "created": "2023-11-16T18:54:35.558079+00:00",
+      "updated": "2023-11-16T18:54:35.569281+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/apache-1.1"
+      },
+      "revision_id": 1,
+      "title": { "en": "Apache License 1.1" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "http://apache.org/licenses/LICENSE-1.1",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "apache-2.0",
+      "created": "2023-11-16T18:54:35.585769+00:00",
+      "updated": "2023-11-16T18:54:35.599619+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/apache-2.0"
+      },
+      "revision_id": 1,
+      "title": { "en": "Apache License 2.0" },
+      "description": {
+        "en": "A permissive license whose main conditions require preservation of copyright and license notices. Contributors provide an express grant of patent rights. Licensed works, modifications, and larger works may be distributed under different terms and without source code."
+      },
+      "icon": "",
+      "tags": ["recommended", "all", "software"],
+      "props": {
+        "url": "http://www.apache.org/licenses/LICENSE-2.0",
+        "scheme": "spdx",
+        "osi_approved": "y"
+      },
+      "type": "licenses"
+    },
+    {
+      "id": "aml",
+      "created": "2023-11-16T18:54:35.286352+00:00",
+      "updated": "2023-11-16T18:54:35.299542+00:00",
+      "links": {
+        "self": "https://sandbox.zenodo.org/api/vocabularies/licenses/aml"
+      },
+      "revision_id": 1,
+      "title": { "en": "Apple MIT License" },
+      "description": { "en": "" },
+      "icon": "",
+      "tags": ["all", "software"],
+      "props": {
+        "url": "https://fedoraproject.org/wiki/Licensing/Apple_MIT_License",
+        "scheme": "spdx",
+        "osi_approved": ""
+      },
+      "type": "licenses"
+    }
+  ],
+  "total": 444
+}
