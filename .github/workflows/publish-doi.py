@@ -115,10 +115,10 @@ if __name__ == '__main__':
     
     parser.add_argument("--container_filepath", type=str, required=True, help="Container file to upload to Zenodo")
     parser.add_argument("--container_name", type=str, required=True, help="Container name")
-    parser.add_argument("--token", type=str, required=True, help="Zenodo token")
+    parser.add_argument("--zenodo_token", type=str, required=True, help="Zenodo token")
     parser.add_argument("--gh_token", type=str, required=True, help="GitHub token to access the recipe")
     args = parser.parse_args()
 
     license = get_license(args.container_name, args.gh_token)
-    doi_url = upload_container(args.container_filepath, args.container_name, args.token, license)
+    doi_url = upload_container(args.container_filepath, args.container_name, args.zenodo_token, license)
     print(doi_url)
