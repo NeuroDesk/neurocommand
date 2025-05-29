@@ -190,6 +190,26 @@ done < /home/ec2-user/neurocommand/cvmfs/log.txt
 # finally, run a check - takes about 4 hours to complete
 # cvmfs_server check
 
+
+# update neurocommand installation for the lxde menus:
+
+# to get this to work I manually created these on the CVMFS stratum 0 server:
+# sudo mkdir -p /etc/xdg/menus/
+# sudo touch /etc/xdg/menus/lxde-applications.menu
+# mkdir -p /usr/share/applications/
+# mkdir -p /usr/share/desktop-directories/
+# sudo touch /usr/share/applications/code.desktop
+# sudo touch /usr/share/desktop-directories/lxde-menu-system.directory
+# sudo vi /etc/xdg/menus/lxde-applications.menu
+#copy content of a real lxde-applications.menu file and save!
+
+cvmfs_server transaction neurodesk.ardc.edu.au
+cd /cvmfs/neurodesk.ardc.edu.au/neurocommand
+git pull
+bash build.sh --lxde --edit
+cd 
+cvmfs_server publish -m "update neurocommond for menus" neurodesk.ardc.edu.au
+
 rm -rf $LOCKFILE
 mv ~/cronjob.log ~/cronjob_previous_run.log
 
