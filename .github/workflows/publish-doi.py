@@ -86,7 +86,10 @@ def upload_container(container_url, container_name, token, license):
         r = requests.put('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
                         params=params, data=json.dumps(data),
                         headers=headers)
-    
+    else:
+        r = requests.put('https://sandbox.zenodo.org/api/deposit/depositions/%s' % deposition_id,
+                params=params, data=json.dumps(data),
+                headers=headers)
     with requests.get(container_url, stream=True) as response:
         response.raise_for_status()  # Ensure the request was successful
         r = requests.put(
