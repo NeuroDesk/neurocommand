@@ -34,28 +34,25 @@ def get_license(container_name, gh_token):
             print("No copyright field found in the recipe")
             return ""
         # Return the first license found in the copyright field
-        # for copyright_entry in copyrights:
-        license = copyrights[0].get('license')
+        license_info = copyrights[0]
+        license = license_info.get('license') or license_info.get('name')
+        license_url = license_info.get('url')
         if license:
-            license_url = copyrights[0].get('url')
             return {
-                    'id': license.lower(),
-                    'title': license,
-                    'url': license_url
-                    }
+                'id': license.lower(),
+                'title': license,
+                'url': license_url
+            }
         else:
-            license = copyrights[0].get('name')
-            license_url = copyrights[0].get('url')
-            return {
-                    'id': license.lower(),
-                    'title': license,
-                    'url': license_url
-                    }
+            return ""
     except Exception as e:
         print(f"Failed to get recipe or parse license: {e}")
         return ""
 
 def upload_container(container_url, container_name, token, license):
+    """
+    Upload simg to Zenodo and return the DOI URL.
+    """
     headers = {"Content-Type": "application/json"}
     params = {'access_token': token}
 
