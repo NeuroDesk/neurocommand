@@ -16,7 +16,7 @@ def get_license(container_name, gh_token):
     }
     # Get the recipe name from the container name
     recipe_name = container_name.split("_")[0]
-    url = f" https://api.github.com/repos/iishiishii/neurocontainers/contents/recipes/{recipe_name}/build.yaml"
+    url = f" https://api.github.com/repos/Neurodesk/neurocontainers/contents/recipes/{recipe_name}/build.yaml"
     try:
         response = requests.get(url, headers=headers)
         response.raise_for_status()
